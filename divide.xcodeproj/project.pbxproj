@@ -18,6 +18,8 @@
 		CC7EC1B11FC9ECFE002CCDE5 /* AuthVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7EC1B01FC9ECFE002CCDE5 /* AuthVC.swift */; };
 		CC7EC1B61FC9F160002CCDE5 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7EC1B51FC9F160002CCDE5 /* RoundedButton.swift */; };
 		CC7EC1B81FC9F241002CCDE5 /* RoundedOutlineButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7EC1B71FC9F241002CCDE5 /* RoundedOutlineButton.swift */; };
+		CC893A261FCA12240094E191 /* InsetTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC893A251FCA12240094E191 /* InsetTextField.swift */; };
+		CC893A281FCA16370094E191 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC893A271FCA16370094E191 /* AuthService.swift */; };
 		EE9D2C01E0A6A863BB95859C /* Pods_divide.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD7E76F6F659D586E219EA04 /* Pods_divide.framework */; };
 /* End PBXBuildFile section */
 
@@ -36,6 +38,8 @@
 		CC7EC1B01FC9ECFE002CCDE5 /* AuthVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthVC.swift; sourceTree = "<group>"; };
 		CC7EC1B51FC9F160002CCDE5 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		CC7EC1B71FC9F241002CCDE5 /* RoundedOutlineButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedOutlineButton.swift; sourceTree = "<group>"; };
+		CC893A251FCA12240094E191 /* InsetTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsetTextField.swift; sourceTree = "<group>"; };
+		CC893A271FCA16370094E191 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		F41D830AC3E35876AD8D5D7A /* Pods-divide.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-divide.release.xcconfig"; path = "Pods/Target Support Files/Pods-divide/Pods-divide.release.xcconfig"; sourceTree = "<group>"; };
 		FD7E76F6F659D586E219EA04 /* Pods_divide.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_divide.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -116,6 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				CC7EC1AB1FC9E857002CCDE5 /* DataService.swift */,
+				CC893A271FCA16370094E191 /* AuthService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -134,6 +139,7 @@
 			children = (
 				CC7EC1B51FC9F160002CCDE5 /* RoundedButton.swift */,
 				CC7EC1B71FC9F241002CCDE5 /* RoundedOutlineButton.swift */,
+				CC893A251FCA12240094E191 /* InsetTextField.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -277,6 +283,8 @@
 				CC7EC1B11FC9ECFE002CCDE5 /* AuthVC.swift in Sources */,
 				CC7EC1AC1FC9E857002CCDE5 /* DataService.swift in Sources */,
 				CC7EC1B81FC9F241002CCDE5 /* RoundedOutlineButton.swift in Sources */,
+				CC893A281FCA16370094E191 /* AuthService.swift in Sources */,
+				CC893A261FCA12240094E191 /* InsetTextField.swift in Sources */,
 				CC7EC1981FC9E140002CCDE5 /* ViewController.swift in Sources */,
 				CC7EC1AF1FC9EC4F002CCDE5 /* LoginVC.swift in Sources */,
 				CC7EC1B61FC9F160002CCDE5 /* RoundedButton.swift in Sources */,
