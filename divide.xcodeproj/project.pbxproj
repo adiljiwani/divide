@@ -16,7 +16,6 @@
 		CC7EC1AC1FC9E857002CCDE5 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7EC1AB1FC9E857002CCDE5 /* DataService.swift */; };
 		CC7EC1AF1FC9EC4F002CCDE5 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7EC1AE1FC9EC4F002CCDE5 /* LoginVC.swift */; };
 		CC7EC1B11FC9ECFE002CCDE5 /* AuthVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7EC1B01FC9ECFE002CCDE5 /* AuthVC.swift */; };
-		CC7EC1B31FC9ED0B002CCDE5 /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7EC1B21FC9ED0B002CCDE5 /* SignUpVC.swift */; };
 		CC7EC1B61FC9F160002CCDE5 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7EC1B51FC9F160002CCDE5 /* RoundedButton.swift */; };
 		CC7EC1B81FC9F241002CCDE5 /* RoundedOutlineButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7EC1B71FC9F241002CCDE5 /* RoundedOutlineButton.swift */; };
 		EE9D2C01E0A6A863BB95859C /* Pods_divide.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD7E76F6F659D586E219EA04 /* Pods_divide.framework */; };
@@ -35,7 +34,6 @@
 		CC7EC1AB1FC9E857002CCDE5 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		CC7EC1AE1FC9EC4F002CCDE5 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		CC7EC1B01FC9ECFE002CCDE5 /* AuthVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthVC.swift; sourceTree = "<group>"; };
-		CC7EC1B21FC9ED0B002CCDE5 /* SignUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
 		CC7EC1B51FC9F160002CCDE5 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		CC7EC1B71FC9F241002CCDE5 /* RoundedOutlineButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedOutlineButton.swift; sourceTree = "<group>"; };
 		F41D830AC3E35876AD8D5D7A /* Pods-divide.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-divide.release.xcconfig"; path = "Pods/Target Support Files/Pods-divide/Pods-divide.release.xcconfig"; sourceTree = "<group>"; };
@@ -127,7 +125,6 @@
 			children = (
 				CC7EC1AE1FC9EC4F002CCDE5 /* LoginVC.swift */,
 				CC7EC1B01FC9ECFE002CCDE5 /* AuthVC.swift */,
-				CC7EC1B21FC9ED0B002CCDE5 /* SignUpVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -283,7 +280,6 @@
 				CC7EC1981FC9E140002CCDE5 /* ViewController.swift in Sources */,
 				CC7EC1AF1FC9EC4F002CCDE5 /* LoginVC.swift in Sources */,
 				CC7EC1B61FC9F160002CCDE5 /* RoundedButton.swift in Sources */,
-				CC7EC1B31FC9ED0B002CCDE5 /* SignUpVC.swift in Sources */,
 				CC7EC1961FC9E140002CCDE5 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

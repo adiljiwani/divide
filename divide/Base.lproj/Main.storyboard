@@ -38,9 +38,6 @@
                                         <state key="normal" title="Sign up">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
-                                        <connections>
-                                            <segue destination="BcG-FP-6WR" kind="show" id="m8i-NK-9Su"/>
-                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sVr-bz-ScT" customClass="RoundedOutlineButton" customModule="divide" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="48" width="235" height="30"/>
@@ -66,21 +63,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2524" y="-367"/>
-        </scene>
-        <!--Sign UpVC-->
-        <scene sceneID="ioB-sF-A7J">
-            <objects>
-                <viewController id="BcG-FP-6WR" customClass="SignUpVC" customModule="divide" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Vwz-pk-SE6">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="gs4-yR-ZMh"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="SBz-QD-8Zc" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1637" y="-646"/>
         </scene>
         <!--Item 2-->
         <scene sceneID="z3g-gk-obQ">
@@ -127,7 +109,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6ej-nb-XZW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1648" y="62"/>
+            <point key="canvasLocation" x="-1463" y="-367"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="xBs-gR-hZ1">
