@@ -10,12 +10,15 @@ import UIKit
 
 class AuthVC: UIViewController {
 
+    @IBOutlet var mainview: UIView!
     @IBOutlet weak var passTxtField: InsetTextField!
+    @IBOutlet weak var loginBtn: RoundedOutlineButton!
     @IBOutlet weak var emailTxtField: InsetTextField!
     override func viewDidLoad() {
         super.viewDidLoad()
         emailTxtField.delegate = self
         passTxtField.delegate = self
+        loginBtn.bindToKeyboard()
     }
 
     @IBAction func loginPressed(_ sender: Any) {
