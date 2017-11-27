@@ -270,7 +270,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="members" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="odO-iz-HrS" customClass="InsetTextField" customModule="divide" customModuleProvider="target">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="add people to your group" textAlignment="natural" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="odO-iz-HrS" customClass="InsetTextField" customModule="divide" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="130" width="314" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="cyc-TZ-62O"/>
@@ -298,6 +298,12 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="nPH-ql-tH7"/>
                     </view>
+                    <connections>
+                        <outlet property="descriptionField" destination="uFi-iR-EO4" id="Shu-r8-PMZ"/>
+                        <outlet property="doneBtn" destination="7zq-MT-YeD" id="uwB-b1-Wy0"/>
+                        <outlet property="groupNameField" destination="z1b-RO-tjo" id="x9U-io-Fk9"/>
+                        <outlet property="membersField" destination="odO-iz-HrS" id="A63-Ab-55b"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="78S-SA-zqb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

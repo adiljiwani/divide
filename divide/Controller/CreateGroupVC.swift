@@ -10,6 +10,13 @@ import UIKit
 
 class CreateGroupVC: UIViewController {
 
+    @IBOutlet weak var groupNameField: InsetTextField!
+    
+    @IBOutlet weak var descriptionField: InsetTextField!
+    
+    @IBOutlet weak var membersField: InsetTextField!
+    
+    @IBOutlet weak var doneBtn: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         
