@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		CC778FCA1FCAAB6300149DA0 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC778FC91FCAAB6300149DA0 /* ProfileVC.swift */; };
+		CC778FCC1FCB4EFD00149DA0 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC778FCB1FCB4EFD00149DA0 /* HomeVC.swift */; };
+		CC778FCE1FCB4F0C00149DA0 /* GroupsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC778FCD1FCB4F0C00149DA0 /* GroupsVC.swift */; };
 		CC7EC1961FC9E140002CCDE5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7EC1951FC9E140002CCDE5 /* AppDelegate.swift */; };
 		CC7EC1981FC9E140002CCDE5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7EC1971FC9E140002CCDE5 /* ViewController.swift */; };
 		CC7EC19B1FC9E140002CCDE5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC7EC1991FC9E140002CCDE5 /* Main.storyboard */; };
@@ -26,6 +28,8 @@
 /* Begin PBXFileReference section */
 		74EB103CD9B5B534BD898AC5 /* Pods-divide.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-divide.debug.xcconfig"; path = "Pods/Target Support Files/Pods-divide/Pods-divide.debug.xcconfig"; sourceTree = "<group>"; };
 		CC778FC91FCAAB6300149DA0 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
+		CC778FCB1FCB4EFD00149DA0 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
+		CC778FCD1FCB4F0C00149DA0 /* GroupsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsVC.swift; sourceTree = "<group>"; };
 		CC7EC1921FC9E140002CCDE5 /* divide.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = divide.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC7EC1951FC9E140002CCDE5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CC7EC1971FC9E140002CCDE5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -130,6 +134,8 @@
 			children = (
 				CC7EC1B01FC9ECFE002CCDE5 /* AuthVC.swift */,
 				CC778FC91FCAAB6300149DA0 /* ProfileVC.swift */,
+				CC778FCB1FCB4EFD00149DA0 /* HomeVC.swift */,
+				CC778FCD1FCB4F0C00149DA0 /* GroupsVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -281,6 +287,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CC7EC1B11FC9ECFE002CCDE5 /* AuthVC.swift in Sources */,
+				CC778FCC1FCB4EFD00149DA0 /* HomeVC.swift in Sources */,
 				CC7EC1AC1FC9E857002CCDE5 /* DataService.swift in Sources */,
 				CC7EC1B81FC9F241002CCDE5 /* RoundedOutlineButton.swift in Sources */,
 				CC778FCA1FCAAB6300149DA0 /* ProfileVC.swift in Sources */,
@@ -288,6 +295,7 @@
 				CC893A261FCA12240094E191 /* InsetTextField.swift in Sources */,
 				CC7EC1981FC9E140002CCDE5 /* ViewController.swift in Sources */,
 				CC7EC1B61FC9F160002CCDE5 /* RoundedButton.swift in Sources */,
+				CC778FCE1FCB4F0C00149DA0 /* GroupsVC.swift in Sources */,
 				CC7EC1961FC9E140002CCDE5 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
