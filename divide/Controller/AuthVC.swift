@@ -15,10 +15,16 @@ class AuthVC: UIViewController {
     @IBOutlet weak var passTxtField: InsetTextField!
     @IBOutlet weak var loginBtn: RoundedOutlineButton!
     @IBOutlet weak var emailTxtField: InsetTextField!
+    var offsetY:CGFloat = 0
     override func viewDidLoad() {
         super.viewDidLoad()
         emailTxtField.delegate = self
         passTxtField.delegate = self
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardFrameChangeNotification(notification:)), name: NSNotification.Name.UIKeyboardWillChangeFrame, object: nil)
     }
 
     @IBAction func loginPressed(_ sender: Any) {
@@ -43,7 +49,27 @@ class AuthVC: UIViewController {
             })
         }
     }
-    
+    @objc func keyboardFrameChangeNotification(notification: Notification) {
+        if let userInfo = notification.userInfo {
+            let endFrame = userInfo[UIKeyboardFrameEndUserInfoKey] as? CGRect
+            let animationDuration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as? Double ?? 0
+            let animationCurveRawValue = (userInfo[UIKeyboardAnimationCurveUserInfoKey] as? Int) ?? Int(UIViewAnimationOptions.curveEaseInOut.rawValue)
+            let animationCurve = UIViewAnimationOptions(rawValue: UInt(animationCurveRawValue))
+            if let _ = endFrame, endFrame!.intersects(self.loginBtn.frame) {
+                self.offsetY = self.loginBtn.frame.maxY - endFrame!.minY
+                UIView.animate(withDuration: animationDuration, delay: TimeInterval(0), options: animationCurve, animations: {
+                    self.loginBtn.frame.origin.y = self.loginBtn.frame.origin.y - self.offsetY
+                }, completion: nil)
+            } else {
+                if self.offsetY != 0 {
+                    UIView.animate(withDuration: animationDuration, delay: TimeInterval(0), options: animationCurve, animations: {
+                        self.loginBtn.frame.origin.y = self.loginBtn.frame.origin.y + self.offsetY
+                        self.offsetY = 0
+                    }, completion: nil)
+                }
+            }
+        }
+    }
     
 }
 
