@@ -10,6 +10,7 @@ import UIKit
 
 class AuthVC: UIViewController {
 
+    @IBOutlet weak var bottomView: UIView!
     @IBOutlet var mainview: UIView!
     @IBOutlet weak var passTxtField: InsetTextField!
     @IBOutlet weak var loginBtn: RoundedOutlineButton!
@@ -18,7 +19,6 @@ class AuthVC: UIViewController {
         super.viewDidLoad()
         emailTxtField.delegate = self
         passTxtField.delegate = self
-        loginBtn.bindToKeyboard()
     }
 
     @IBAction func loginPressed(_ sender: Any) {
@@ -43,6 +43,7 @@ class AuthVC: UIViewController {
             })
         }
     }
+    
     
 }
 
