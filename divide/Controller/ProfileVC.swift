@@ -30,5 +30,10 @@ class ProfileVC: UIViewController {
         logoutPopup.addAction(logoutAction)
         present(logoutPopup, animated: true, completion: nil)
     }
+
+    
+    @IBAction func cancelPressed(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
     
 }
