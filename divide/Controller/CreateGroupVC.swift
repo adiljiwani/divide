@@ -26,4 +26,7 @@ class CreateGroupVC: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func donePressed(_ sender: Any) {
+    }
+    
 }

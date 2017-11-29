@@ -18,12 +18,12 @@ class AuthVC: UIViewController {
  
     @IBOutlet weak var emailTextField: InsetTextField!
     
+    @IBOutlet weak var backView: UIView!
     var offsetY:CGFloat = 0
     override func viewDidLoad() {
         super.viewDidLoad()
         emailTextField.delegate = self
         passTextField.delegate = self
-        loginBtn.bindToKeyboard()
     }
 
     @IBAction func loginPressed(_ sender: Any) {
@@ -51,11 +51,6 @@ class AuthVC: UIViewController {
     
 }
 
-extension AuthVC: UITextViewDelegate {
-    func textViewDidBeginEditing(_ textView: UITextView) {
-        textView.text = ""
-    }
-}
 extension AuthVC: UITextFieldDelegate {
 
 }
