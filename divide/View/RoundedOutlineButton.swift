@@ -11,7 +11,7 @@ class RoundedOutlineButton: UIButton {
     @IBInspectable var cornerRadius: CGFloat = 7.0 {
         didSet {
             self.layer.cornerRadius = cornerRadius
-            self.layer.borderWidth = 1
+            self.layer.borderWidth = 2
             self.layer.borderColor = self.currentTitleColor.cgColor
         }
     }
@@ -26,7 +26,7 @@ class RoundedOutlineButton: UIButton {
     
     func setupView () {
         self.layer.cornerRadius = cornerRadius
-        self.layer.borderWidth = 1
+        self.layer.borderWidth = 2 
         self.layer.borderColor = self.currentTitleColor.cgColor
     }
 }
