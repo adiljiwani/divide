@@ -16,14 +16,22 @@ class CreateGroupVC: UIViewController {
     
     @IBOutlet weak var membersField: InsetTextField!
     
+    @IBOutlet weak var tableView: UITableView!
+    
     @IBOutlet weak var doneBtn: UIButton!
+    
+
+    @IBOutlet weak var addBtn: RoundedButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        tableView.isHidden = true
     }
     
     @IBAction func cancelPressed(_ sender: Any) {
         dismiss(animated: true, completion: nil)
+    }
+
+    @IBAction func addPressed(_ sender: Any) {
     }
     
     @IBAction func donePressed(_ sender: Any) {

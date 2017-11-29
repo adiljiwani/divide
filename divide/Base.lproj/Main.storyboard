@@ -305,59 +305,59 @@
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="VNF-Vq-fQq">
-                                <rect key="frame" x="50" y="100" width="314" height="180"/>
+                                <rect key="frame" x="50" y="100" width="314" height="150"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="group name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="z1b-RO-tjo" customClass="InsetTextField" customModule="divide" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="314" height="50"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="314" height="40"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="PCG-UW-aGF"/>
+                                            <constraint firstAttribute="height" constant="40" id="PCG-UW-aGF"/>
                                         </constraints>
                                         <color key="textColor" red="0.016804177310000001" green="0.19835099580000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <real key="value" value="25"/>
+                                                <real key="value" value="20"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="description" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uFi-iR-EO4" customClass="InsetTextField" customModule="divide" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="65" width="314" height="50"/>
+                                        <rect key="frame" x="0.0" y="55" width="314" height="40"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="DRF-Y8-i5s"/>
+                                            <constraint firstAttribute="height" constant="40" id="DRF-Y8-i5s"/>
                                         </constraints>
                                         <color key="textColor" red="0.016804177310000001" green="0.19835099580000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <real key="value" value="25"/>
+                                                <real key="value" value="20"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="rp3-9d-Qgz">
-                                        <rect key="frame" x="0.0" y="130" width="314" height="50"/>
+                                        <rect key="frame" x="0.0" y="110" width="314" height="40"/>
                                         <subviews>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="add friends by email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7TK-04-Cuk" customClass="InsetTextField" customModule="divide" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="253" height="50"/>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="add friends by email" textAlignment="natural" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="7TK-04-Cuk" customClass="InsetTextField" customModule="divide" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="263" height="40"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="50" id="niG-52-u03"/>
+                                                    <constraint firstAttribute="height" constant="40" id="niG-52-u03"/>
                                                 </constraints>
                                                 <color key="textColor" red="0.016804177310000001" green="0.19835099580000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                        <real key="value" value="25"/>
+                                                        <real key="value" value="20"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zkw-bd-QAy" customClass="RoundedButton" customModule="divide" customModuleProvider="target">
-                                                <rect key="frame" x="264" y="0.0" width="50" height="50"/>
+                                                <rect key="frame" x="274" y="0.0" width="40" height="40"/>
                                                 <color key="backgroundColor" red="0.016804177310000001" green="0.19835099580000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="50" id="BSo-dG-HPu"/>
-                                                    <constraint firstAttribute="height" constant="50" id="qUQ-ld-uaa"/>
+                                                    <constraint firstAttribute="width" constant="40" id="BSo-dG-HPu"/>
+                                                    <constraint firstAttribute="height" constant="40" id="qUQ-ld-uaa"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="43"/>
                                                 <state key="normal" title="+">
@@ -365,31 +365,64 @@
                                                 </state>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                        <real key="value" value="25"/>
+                                                        <real key="value" value="20"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="addPressed:" destination="27c-zC-tiB" eventType="touchUpInside" id="Dwi-SE-w3W"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
                                 </subviews>
                             </stackView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PNu-D1-fBr">
+                                <rect key="frame" x="0.0" y="265" width="414" height="471"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="addedUserCell" rowHeight="40" id="wyd-4M-eLt">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="40"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wyd-4M-eLt" id="HaG-gt-MIf">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="39.666666666666664"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="user@divide.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="07F-7w-gnW">
+                                                    <rect key="frame" x="31" y="8" width="357" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.016804177310000001" green="0.19835099580000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="PNu-D1-fBr" firstAttribute="bottom" secondItem="nPH-ql-tH7" secondAttribute="bottom" id="0kT-IX-Lcj"/>
                             <constraint firstItem="RQN-Xz-JZm" firstAttribute="leading" secondItem="nPH-ql-tH7" secondAttribute="leading" id="Avk-MV-Qgp"/>
+                            <constraint firstItem="PNu-D1-fBr" firstAttribute="leading" secondItem="nPH-ql-tH7" secondAttribute="leading" id="Djs-Ua-3f8"/>
                             <constraint firstItem="VNF-Vq-fQq" firstAttribute="top" secondItem="RQN-Xz-JZm" secondAttribute="bottom" constant="30" id="GCF-ND-0L4"/>
                             <constraint firstItem="nPH-ql-tH7" firstAttribute="trailing" secondItem="VNF-Vq-fQq" secondAttribute="trailing" constant="50" id="GqS-Sn-Hm6"/>
                             <constraint firstItem="VNF-Vq-fQq" firstAttribute="leading" secondItem="nPH-ql-tH7" secondAttribute="leading" constant="50" id="Mi9-jV-bzK"/>
+                            <constraint firstItem="PNu-D1-fBr" firstAttribute="trailing" secondItem="nPH-ql-tH7" secondAttribute="trailing" id="fd7-CK-I25"/>
+                            <constraint firstItem="PNu-D1-fBr" firstAttribute="top" secondItem="VNF-Vq-fQq" secondAttribute="bottom" constant="15" id="o2e-gC-SIQ"/>
                             <constraint firstItem="RQN-Xz-JZm" firstAttribute="top" secondItem="RgW-gh-vzQ" secondAttribute="top" id="x9E-9j-AcK"/>
                             <constraint firstItem="RQN-Xz-JZm" firstAttribute="trailing" secondItem="nPH-ql-tH7" secondAttribute="trailing" id="z4Q-kJ-LQe"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="nPH-ql-tH7"/>
                     </view>
                     <connections>
+                        <outlet property="addBtn" destination="zkw-bd-QAy" id="UTy-Ie-MHx"/>
                         <outlet property="descriptionField" destination="uFi-iR-EO4" id="Shu-r8-PMZ"/>
                         <outlet property="doneBtn" destination="7zq-MT-YeD" id="uwB-b1-Wy0"/>
                         <outlet property="groupNameField" destination="z1b-RO-tjo" id="x9U-io-Fk9"/>
                         <outlet property="membersField" destination="7TK-04-Cuk" id="O3H-Yv-sgd"/>
+                        <outlet property="tableView" destination="PNu-D1-fBr" id="4fq-NU-YpL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="78S-SA-zqb" userLabel="First Responder" sceneMemberID="firstResponder"/>
