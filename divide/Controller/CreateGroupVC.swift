@@ -19,12 +19,17 @@ class CreateGroupVC: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     @IBOutlet weak var doneBtn: UIButton!
-    
-
+   
     @IBOutlet weak var addBtn: RoundedButton!
+    
+    var matchEmail: String = "ahaha"
+    var chosenUsers = [String]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.isHidden = true
+        tableView.delegate = self
+        tableView.dataSource = self
+        membersField.delegate = self
     }
     
     @IBAction func cancelPressed(_ sender: Any) {
@@ -32,9 +37,41 @@ class CreateGroupVC: UIViewController {
     }
 
     @IBAction func addPressed(_ sender: Any) {
+        if membersField.text! == "" && chosenUsers.contains(membersField.text!){
+            tableView.reloadData()
+        } else {
+            DataService.instance.getEmail(forSearchQuery: membersField.text!, handler: { (returnedEmail) in
+                self.matchEmail = returnedEmail
+                self.chosenUsers.append(self.matchEmail)
+                self.tableView.reloadData()
+                self.membersField.text = ""
+            })
+        }
     }
     
     @IBAction func donePressed(_ sender: Any) {
     }
+    
+}
+
+extension CreateGroupVC: UITableViewDelegate, UITableViewDataSource {
+    
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return chosenUsers.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "addUserCell") as? AddUserCell else {return UITableViewCell()}
+        cell.configureCell(email: chosenUsers[indexPath.row])
+        return cell
+    }
+}
+
+extension CreateGroupVC: UITextFieldDelegate {
     
 }
