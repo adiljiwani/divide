@@ -33,4 +33,18 @@ class DataService {
     func createDBUser(uid: String, userData: Dictionary<String, Any>) {
         REF_USERS.child(uid).updateChildValues(userData)
     }
+    
+    func getEmail (forSearchQuery query: String, handler: @escaping (_ email: String) -> ()) {
+        var matchEmail: String = ""
+        REF_USERS.observe(.value) { (userSnapshot) in
+            guard let userSnapshot = userSnapshot.children.allObjects as? [DataSnapshot] else {return}
+            for user in userSnapshot {
+                let userEmail = user.childSnapshot(forPath: "email").value as! String
+                if userEmail == query && userEmail != Auth.auth().currentUser?.email {
+                    matchEmail = userEmail
+                    handler(matchEmail)
+                }
+            }
+        }
+    }
 }
