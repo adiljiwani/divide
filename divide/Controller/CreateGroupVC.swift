@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CreateGroupVC: UIViewController {
+class CreateGroupVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var groupNameField: InsetTextField!
     
@@ -52,10 +52,10 @@ class CreateGroupVC: UIViewController {
     @IBAction func donePressed(_ sender: Any) {
     }
     
-}
-
-extension CreateGroupVC: UITableViewDelegate, UITableViewDataSource {
-    
+//    @IBAction func deletePressed(_ sender: Any) {
+//        chosenUsers = chosenUsers.filter({ $0 != "adiljiwani@gmail.com" })
+//        tableView.reloadData()
+//    }
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -66,11 +66,14 @@ extension CreateGroupVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "addUserCell") as? AddUserCell else {return UITableViewCell()}
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "addUserCell", for: indexPath) as? AddUserCell else {return UITableViewCell()}
         cell.configureCell(email: chosenUsers[indexPath.row])
         return cell
     }
+    
 }
+
+
 
 extension CreateGroupVC: UITextFieldDelegate {
     

@@ -394,7 +394,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W0Z-4o-Qnl" customClass="RoundedOutlineButton" customModule="divide" customModuleProvider="target">
-                                                    <rect key="frame" x="349" y="5" width="20" height="20"/>
+                                                    <rect key="frame" x="354" y="5" width="20" height="20"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="20" id="VhI-fh-Pym"/>
@@ -409,14 +409,11 @@
                                                             <real key="value" value="10"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
-                                                    <connections>
-                                                        <action selector="deletePressed:" destination="wyd-4M-eLt" eventType="touchUpInside" id="fRU-fK-Od0"/>
-                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="07F-7w-gnW" firstAttribute="leading" secondItem="HaG-gt-MIf" secondAttribute="leading" constant="15" id="7XQ-mZ-YZy"/>
-                                                <constraint firstAttribute="trailing" secondItem="W0Z-4o-Qnl" secondAttribute="trailing" constant="15" id="Fkf-kC-TVi"/>
+                                                <constraint firstAttribute="trailing" secondItem="W0Z-4o-Qnl" secondAttribute="trailing" constant="10" id="Fkf-kC-TVi"/>
                                                 <constraint firstItem="07F-7w-gnW" firstAttribute="centerY" secondItem="HaG-gt-MIf" secondAttribute="centerY" id="Kz4-Nr-ut0"/>
                                                 <constraint firstItem="W0Z-4o-Qnl" firstAttribute="centerY" secondItem="HaG-gt-MIf" secondAttribute="centerY" id="jht-zv-e2U"/>
                                             </constraints>
