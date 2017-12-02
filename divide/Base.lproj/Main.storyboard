@@ -84,7 +84,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="lKj-tT-4GT" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Hen-Cr-qdb"/>
                             <constraint firstItem="sVr-bz-ScT" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Hw4-Sj-yXR"/>
@@ -158,7 +158,7 @@
                                         </constraints>
                                     </imageView>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="72F-wW-haF" firstAttribute="centerX" secondItem="O6i-XN-ya1" secondAttribute="centerX" id="7Mm-1p-oCV"/>
                                     <constraint firstAttribute="trailing" secondItem="EoH-6i-QbR" secondAttribute="trailing" constant="20" id="Val-hC-4mY"/>
@@ -204,7 +204,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A4R-qM-Jpm">
-                                        <rect key="frame" x="345" y="30.333333333333329" width="49" height="36"/>
+                                        <rect key="frame" x="20" y="31" width="49" height="36"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
                                         <state key="normal" title="Profile">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -213,10 +213,14 @@
                                             <segue destination="Rue-TW-ZC7" kind="show" id="LIY-2k-MYj"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jPI-qy-Fnu">
-                                        <rect key="frame" x="20" y="30.666666666666671" width="34" height="36"/>
-                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
-                                        <state key="normal" title="Add">
+                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jPI-qy-Fnu">
+                                        <rect key="frame" x="364" y="33.666666666666664" width="30" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="Yja-Kr-oCi"/>
+                                            <constraint firstAttribute="width" constant="30" id="dHd-8N-I1s"/>
+                                        </constraints>
+                                        <color key="tintColor" red="0.30214685200000002" green="0.74723225829999995" blue="0.33267867569999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" image="add">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
@@ -228,13 +232,13 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="0ek-6Q-sY2"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="70" id="3kk-Cr-MLE"/>
-                                    <constraint firstAttribute="trailing" secondItem="A4R-qM-Jpm" secondAttribute="trailing" constant="20" id="7Yx-Ty-qWi"/>
+                                    <constraint firstItem="A4R-qM-Jpm" firstAttribute="leading" secondItem="0Tr-hv-3qz" secondAttribute="leading" constant="20" id="5Bf-Kc-NPR"/>
+                                    <constraint firstItem="jPI-qy-Fnu" firstAttribute="centerY" secondItem="xHp-RN-Os6" secondAttribute="centerY" id="7XD-Ed-uTe"/>
+                                    <constraint firstItem="A4R-qM-Jpm" firstAttribute="centerY" secondItem="xHp-RN-Os6" secondAttribute="centerY" id="HFo-VE-TXX"/>
                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="70" id="JdE-4Q-Cgn"/>
-                                    <constraint firstItem="A4R-qM-Jpm" firstAttribute="centerY" secondItem="xHp-RN-Os6" secondAttribute="centerY" id="Oml-zj-muy"/>
-                                    <constraint firstItem="jPI-qy-Fnu" firstAttribute="centerY" secondItem="xHp-RN-Os6" secondAttribute="centerY" id="P6O-1B-b2K"/>
+                                    <constraint firstAttribute="trailing" secondItem="jPI-qy-Fnu" secondAttribute="trailing" constant="20" id="Xdi-ON-xBN"/>
                                     <constraint firstAttribute="bottom" secondItem="xHp-RN-Os6" secondAttribute="bottom" constant="8" id="jhU-tK-J9U"/>
                                     <constraint firstItem="xHp-RN-Os6" firstAttribute="centerX" secondItem="0Tr-hv-3qz" secondAttribute="centerX" id="q3e-ra-30D"/>
-                                    <constraint firstItem="jPI-qy-Fnu" firstAttribute="leading" secondItem="0Tr-hv-3qz" secondAttribute="leading" constant="20" id="sDf-Ro-yVR"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -409,6 +413,9 @@
                                                             <real key="value" value="10"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="deletePressed:" destination="27c-zC-tiB" eventType="touchUpInside" id="geW-zY-eZv"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -427,7 +434,7 @@
                                 </prototypes>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="PNu-D1-fBr" firstAttribute="bottom" secondItem="nPH-ql-tH7" secondAttribute="bottom" id="0kT-IX-Lcj"/>
                             <constraint firstItem="RQN-Xz-JZm" firstAttribute="leading" secondItem="nPH-ql-tH7" secondAttribute="leading" id="Avk-MV-Qgp"/>
@@ -498,7 +505,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Ofu-S5-qSv" firstAttribute="top" secondItem="Dkl-i8-IJs" secondAttribute="top" id="6fr-iY-xdi"/>
                             <constraint firstItem="Ofu-S5-qSv" firstAttribute="leading" secondItem="hCa-R3-CXc" secondAttribute="leading" id="WSm-Cg-rzB"/>
@@ -562,7 +569,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="dCt-Oo-ACr" firstAttribute="trailing" secondItem="i4j-dn-Oug" secondAttribute="trailing" id="I7Z-zb-4d6"/>
                             <constraint firstItem="dCt-Oo-ACr" firstAttribute="top" secondItem="Gzl-j3-8id" secondAttribute="top" id="J2z-1o-Gl3"/>
@@ -601,7 +608,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="XSF-G2-sLn" firstAttribute="top" secondItem="x0O-03-sTP" secondAttribute="top" id="OPx-fh-qHv"/>
                             <constraint firstItem="XSF-G2-sLn" firstAttribute="trailing" secondItem="Npq-D7-BWZ" secondAttribute="trailing" id="Z5r-7d-aN1"/>
@@ -637,6 +644,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="add" width="15" height="15"/>
         <image name="backIcon" width="12" height="22"/>
         <image name="camera" width="25" height="25"/>
         <image name="groups" width="25" height="25"/>
