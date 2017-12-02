@@ -14,7 +14,6 @@ class AddUserCell: UITableViewCell {
     
     @IBOutlet weak var deleteBtn: RoundedOutlineButton!
 
-    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -24,9 +23,5 @@ class AddUserCell: UITableViewCell {
         self.layer.cornerRadius = self.bounds.height / 2
         self.deleteBtn.isHidden = false
     }
-    
-    @IBAction func deletePressed(_ sender: Any) {
-    }
-    
-
+            
 }

@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import Firebase
 
-class CreateGroupVC: UIViewController {
+class CreateGroupVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var groupNameField: InsetTextField!
     
@@ -32,6 +33,11 @@ class CreateGroupVC: UIViewController {
         membersField.delegate = self
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        doneBtn.isHidden = true
+    }
+    
     @IBAction func cancelPressed(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
@@ -43,6 +49,7 @@ class CreateGroupVC: UIViewController {
             DataService.instance.getEmail(forSearchQuery: membersField.text!, handler: { (returnedEmail) in
                 self.matchEmail = returnedEmail
                 self.chosenUsers.append(self.matchEmail)
+                self.doneBtn.isHidden = false
                 self.tableView.reloadData()
                 self.membersField.text = ""
             })
@@ -50,11 +57,30 @@ class CreateGroupVC: UIViewController {
     }
     
     @IBAction func donePressed(_ sender: Any) {
+        if groupNameField.text != "" && descriptionField.text != "" {
+            DataService.instance.getIds(forEmails: chosenUsers, handler: { (idsArray) in
+                var userIds = idsArray
+                userIds.append((Auth.auth().currentUser?.uid)!)
+                DataService.instance.createGroup(withTitle: self.groupNameField.text!, description: self.descriptionField.text!, ids: userIds, handler: { (groupCreated) in
+                    if groupCreated {
+                        self.dismiss(animated: true, completion: nil)
+                    } else {
+                        print("Group could not be created.")
+                    }
+                })
+            })
+        }
     }
     
-}
 
-extension CreateGroupVC: UITableViewDelegate, UITableViewDataSource {
+    @IBAction func deletePressed(_ sender: Any) {
+        chosenUsers = chosenUsers.filter({ $0 != "adiljiwani@gmail.com" })
+        if chosenUsers.count == 0 {
+            doneBtn.isHidden = true
+        }
+        tableView.reloadData()
+    }
+    
     
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -66,7 +92,7 @@ extension CreateGroupVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "addUserCell") as? AddUserCell else {return UITableViewCell()}
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "addUserCell", for: indexPath) as? AddUserCell else {return UITableViewCell()}
         cell.configureCell(email: chosenUsers[indexPath.row])
         return cell
     }
