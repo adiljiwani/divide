@@ -8,14 +8,23 @@
 
 import UIKit
 @IBDesignable
-class RoundedOutlineTextView: UITextView {
-    private var padding = UIEdgeInsets(top: 12.5, left: 20, bottom: 0, right: 0)
+class RoundedView: UIView {
         @IBInspectable var cornerRadius: CGFloat = 7.0 {
             didSet {
                 self.layer.cornerRadius = cornerRadius
-                self.layer.borderWidth = 1
-                self.layer.borderColor = self.textColor?.cgColor
-                self.textContainerInset = padding
             }
         }
+    
+    override func awakeFromNib() {
+        self.setupView()
+    }
+    
+    override func prepareForInterfaceBuilder() {
+        super.prepareForInterfaceBuilder()
+        self.setupView()
+    }
+    
+    func setupView () {
+        self.layer.cornerRadius = cornerRadius
+    }
 }

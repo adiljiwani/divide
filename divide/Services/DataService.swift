@@ -48,6 +48,10 @@ class DataService {
         }
     }
     
+    func getGroupIds (forSearchQuery query: String, handler: @escaping (_ groupIds: [String]) -> ()) {
+        var ids: [String]
+    }
+    
     func getIds(forEmails emails: [String], handler: @escaping (_ uidArray: [String]) -> ()) {
         REF_USERS.observeSingleEvent(of: .value) { (userSnapshot) in
             var idArray = [String]()
