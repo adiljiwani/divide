@@ -48,8 +48,18 @@ class DataService {
         }
     }
     
-    func getGroupIds (forSearchQuery query: String, handler: @escaping (_ groupIds: [String]) -> ()) {
-        var ids: [String]
+    func getGroupNames (forSearchQuery query: String, handler: @escaping (_ groupNames: [String]) -> ()) {
+        var groupNames = [String]()
+        REF_USERS.child((Auth.auth().currentUser?.uid)!).child("groups").observe(.value) { (groupSnapshot) in
+            guard let groupSnapshot = groupSnapshot.children.allObjects as? [DataSnapshot] else {return}
+            for group in groupSnapshot {
+                let groupName = group.childSnapshot(forPath: "title").value as! String
+                if groupName.contains(query) {
+                    groupNames.append(groupName)
+                }
+            }
+            handler(groupNames)
+        }
     }
     
     func getIds(forEmails emails: [String], handler: @escaping (_ uidArray: [String]) -> ()) {
