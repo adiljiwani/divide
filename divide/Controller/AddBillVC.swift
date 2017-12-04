@@ -19,6 +19,7 @@ class AddBillVC: UIViewController {
         super.viewDidLoad()
     }
     @IBAction func cancelPressed(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
     }
     
     @IBAction func donePressed(_ sender: Any) {
