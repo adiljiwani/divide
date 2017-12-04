@@ -633,10 +633,10 @@
             </objects>
             <point key="canvasLocation" x="541" y="-1125"/>
         </scene>
-        <!--View Controller-->
+        <!--Add BillVC-->
         <scene sceneID="39P-Oy-dyT">
             <objects>
-                <viewController id="2A3-Cv-Nmf" sceneMemberID="viewController">
+                <viewController id="2A3-Cv-Nmf" customClass="AddBillVC" customModule="divide" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wzd-dq-o7V">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -650,33 +650,41 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cancel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="POp-TL-0JD">
-                                        <rect key="frame" x="19.999999999999996" y="36.666666666666664" width="53.666666666666657" height="23.333333333333336"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RXR-7a-6tV">
+                                        <rect key="frame" x="351" y="31" width="43" height="36"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
-                                        <color key="textColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Done" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ITf-c2-2B3">
-                                        <rect key="frame" x="351" y="36.666666666666664" width="43" height="23.333333333333336"/>
+                                        <state key="normal" title="Done">
+                                            <color key="titleColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="donePressed:" destination="2A3-Cv-Nmf" eventType="touchUpInside" id="aYN-Ep-LeT"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fAb-Qx-2OP">
+                                        <rect key="frame" x="20" y="30.333333333333329" width="54" height="36"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
-                                        <color key="textColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                        <state key="normal" title="Cancel">
+                                            <color key="titleColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="cancelPressed:" destination="2A3-Cv-Nmf" eventType="touchUpInside" id="rEJ-M1-mMw"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.043137254899999998" green="0.1960784314" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="RXR-7a-6tV" secondAttribute="trailing" constant="20" id="5ur-2W-BPG"/>
                                     <constraint firstAttribute="bottom" secondItem="eGS-Wi-oiG" secondAttribute="bottom" constant="8" id="7cO-bM-Kv7"/>
-                                    <constraint firstItem="ITf-c2-2B3" firstAttribute="centerY" secondItem="eGS-Wi-oiG" secondAttribute="centerY" id="Lbi-wb-lcZ"/>
-                                    <constraint firstItem="POp-TL-0JD" firstAttribute="centerY" secondItem="eGS-Wi-oiG" secondAttribute="centerY" id="N5B-5G-p2Y"/>
+                                    <constraint firstItem="fAb-Qx-2OP" firstAttribute="leading" secondItem="YOJ-rH-TUl" secondAttribute="leading" constant="20" id="PQE-iZ-2uh"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="70" id="Q3m-Uc-dSc"/>
-                                    <constraint firstItem="POp-TL-0JD" firstAttribute="leading" secondItem="YOJ-rH-TUl" secondAttribute="leading" constant="20" id="Qd8-c7-nCy"/>
-                                    <constraint firstAttribute="trailing" secondItem="ITf-c2-2B3" secondAttribute="trailing" constant="20" id="TXU-B1-rot"/>
+                                    <constraint firstItem="RXR-7a-6tV" firstAttribute="centerY" secondItem="eGS-Wi-oiG" secondAttribute="centerY" id="Vry-BJ-3zB"/>
                                     <constraint firstAttribute="height" constant="70" id="mET-Ht-u4d"/>
                                     <constraint firstItem="eGS-Wi-oiG" firstAttribute="centerX" secondItem="YOJ-rH-TUl" secondAttribute="centerX" id="q4e-wr-Jai"/>
+                                    <constraint firstItem="fAb-Qx-2OP" firstAttribute="centerY" secondItem="eGS-Wi-oiG" secondAttribute="centerY" id="soX-1V-WbR"/>
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="r7B-DI-KuP">
-                                <rect key="frame" x="15" y="85" width="384" height="90"/>
+                                <rect key="frame" x="15" y="85" width="384" height="140"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="description" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Odi-Rp-I6V" customClass="InsetTextField" customModule="divide" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="384" height="40"/>
@@ -706,6 +714,20 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="amount" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GMI-L5-wFK" customClass="InsetTextField" customModule="divide" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="100" width="384" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="tOT-CZ-D3Y"/>
+                                        </constraints>
+                                        <color key="textColor" red="0.043137254899999998" green="0.1960784314" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </textField>
                                 </subviews>
                             </stackView>
                         </subviews>
@@ -720,6 +742,12 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Qze-hA-f5a"/>
                     </view>
+                    <connections>
+                        <outlet property="amountField" destination="GMI-L5-wFK" id="Nhw-P7-NNS"/>
+                        <outlet property="billDescriptionField" destination="Odi-Rp-I6V" id="XsE-wO-Xb7"/>
+                        <outlet property="doneBtn" destination="RXR-7a-6tV" id="xK3-zk-5U7"/>
+                        <outlet property="groupField" destination="AXo-jG-Jim" id="yei-mZ-CGr"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S1o-UE-3ll" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

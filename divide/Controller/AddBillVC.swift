@@ -10,9 +10,22 @@ import UIKit
 
 class AddBillVC: UIViewController {
 
+    @IBOutlet weak var groupField: InsetTextField!
+    @IBOutlet weak var billDescriptionField: InsetTextField!
+    @IBOutlet weak var amountField: InsetTextField!
+    @IBOutlet weak var doneBtn: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
+    @IBAction func cancelPressed(_ sender: Any) {
+    }
+    
+    @IBAction func donePressed(_ sender: Any) {
+        if billDescriptionField.text != "" && amountField.text != "" {
+            
+        }
+    }
+    
+    
 }
