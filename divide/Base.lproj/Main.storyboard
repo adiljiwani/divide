@@ -981,15 +981,18 @@
                                     </textField>
                                 </subviews>
                             </stackView>
-                            <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="40" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="55B-Qv-Ews">
-                                <rect key="frame" x="15" y="185" width="384" height="536"/>
+                            <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="40" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="55B-Qv-Ews">
+                                <rect key="frame" x="15" y="185" width="384" height="40"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="kEQ-1q-zo0"/>
+                                </constraints>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="searchGroupCell" rowHeight="40" id="Xxx-LU-kIz" customClass="SearchGroupCell" customModule="divide" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="384" height="40"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Xxx-LU-kIz" id="zvi-Yh-fno">
-                                            <rect key="frame" x="0.0" y="0.0" width="384" height="39.666666666666664"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="384" height="40"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GroupName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D5y-Mp-scq">
@@ -1021,7 +1024,6 @@
                             <constraint firstItem="r7B-DI-KuP" firstAttribute="leading" secondItem="Qze-hA-f5a" secondAttribute="leading" constant="15" id="MwU-x5-5TT"/>
                             <constraint firstItem="r7B-DI-KuP" firstAttribute="top" secondItem="YOJ-rH-TUl" secondAttribute="bottom" constant="15" id="d4w-qE-l11"/>
                             <constraint firstItem="YOJ-rH-TUl" firstAttribute="top" secondItem="wzd-dq-o7V" secondAttribute="top" id="dbD-HI-W0f"/>
-                            <constraint firstItem="55B-Qv-Ews" firstAttribute="bottom" secondItem="Qze-hA-f5a" secondAttribute="bottom" constant="-15" id="mdz-UT-1qr"/>
                             <constraint firstItem="Qze-hA-f5a" firstAttribute="trailing" secondItem="55B-Qv-Ews" secondAttribute="trailing" constant="15" id="nqn-ow-ZFA"/>
                             <constraint firstItem="YOJ-rH-TUl" firstAttribute="trailing" secondItem="Qze-hA-f5a" secondAttribute="trailing" id="wbF-kg-58X"/>
                             <constraint firstItem="YOJ-rH-TUl" firstAttribute="leading" secondItem="Qze-hA-f5a" secondAttribute="leading" id="zzf-NU-bSE"/>
@@ -1034,6 +1036,7 @@
                         <outlet property="doneBtn" destination="RXR-7a-6tV" id="xK3-zk-5U7"/>
                         <outlet property="groupField" destination="AXo-jG-Jim" id="yei-mZ-CGr"/>
                         <outlet property="groupsTableView" destination="55B-Qv-Ews" id="fKc-qY-4Lq"/>
+                        <outlet property="groupsTableViewHeightConstraint" destination="kEQ-1q-zo0" id="NXq-Yd-GvL"/>
                         <outlet property="paidByField" destination="9rU-8Q-Bsr" id="21B-NJ-Bwc"/>
                     </connections>
                 </viewController>

@@ -16,6 +16,7 @@ class AddBillVC: UIViewController {
     @IBOutlet weak var amountField: InsetTextField!
     @IBOutlet weak var doneBtn: UIButton!
     @IBOutlet weak var paidByField: InsetTextField!
+    @IBOutlet weak var groupsTableViewHeightConstraint: NSLayoutConstraint!
     var groupArray = [String]()
     var chosenGroup: String = ""
     
@@ -28,6 +29,8 @@ class AddBillVC: UIViewController {
         groupsTableView.isHidden = true
         groupsTableView.layer.cornerRadius = 20
         groupsTableView.layer.masksToBounds = true
+        groupsTableView.layer.borderColor = #colorLiteral(red: 0.9176470588, green: 0.9568627451, blue: 0.9647058824, alpha: 1)
+        groupsTableView.layer.borderWidth = 1.0
     }
     
     @objc func textFieldDidChange () {
@@ -39,6 +42,7 @@ class AddBillVC: UIViewController {
             self.groupsTableView.isHidden = false
             DataService.instance.getGroupNames(forSearchQuery: groupField.text!, handler: { (groupNameArray) in
                 self.groupArray = groupNameArray
+                self.groupsTableViewHeightConstraint.constant = CGFloat(self.groupArray.count * 40)
                 self.groupsTableView.reloadData()
             })
         }
