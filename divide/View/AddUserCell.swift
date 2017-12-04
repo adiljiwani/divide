@@ -18,10 +18,15 @@ class AddUserCell: UITableViewCell {
         super.awakeFromNib()
     }
     
+    
     func configureCell(email: String) {
         self.emailLbl.text = email
         self.layer.cornerRadius = self.bounds.height / 2
         self.deleteBtn.isHidden = false
+    }
+    
+    func returnEmail() -> String {
+        return self.emailLbl.text!
     }
             
 }

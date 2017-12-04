@@ -73,11 +73,12 @@ class CreateGroupVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     }
     
 
-    @IBAction func deletePressed(_ sender: Any) {
-        chosenUsers = chosenUsers.filter({ $0 != "adiljiwani@gmail.com" })
+    @IBAction func deletePressed(_ sender: UIButton) {
+        //chosenUsers = chosenUsers.filter({ $0 != "adiljiwani@gmail.com" })
         if chosenUsers.count == 0 {
             doneBtn.isHidden = true
         }
+        
         tableView.reloadData()
     }
     
