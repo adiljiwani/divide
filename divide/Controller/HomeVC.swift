@@ -16,6 +16,7 @@ class HomeVC: UIViewController {
     @IBOutlet weak var totalOwedLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var tableViewHeightConstraint: NSLayoutConstraint!
     var transactionsArray = [Transaction]()
     
     override func viewDidLoad() {
@@ -31,6 +32,7 @@ class HomeVC: UIViewController {
             DataService.instance.getAllTransactions { (returnedTransactionArray) in
                 self.transactionsArray = returnedTransactionArray
                 self.tableView.reloadData()
+                self.tableViewHeightConstraint.constant = CGFloat(self.transactionsArray.count * 65)
             }
         }
     }

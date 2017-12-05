@@ -758,6 +758,9 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="65" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rw6-lm-jTb">
                                 <rect key="frame" x="0.0" y="222.66666666666666" width="414" height="464.33333333333337"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="464.32999999999998" id="lNm-a6-2Q1"/>
+                                </constraints>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="transactionCell" rowHeight="65" id="a35-7w-2TB" customClass="TransactionCell" customModule="divide" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="65"/>
@@ -848,7 +851,6 @@
                             <constraint firstItem="ipu-Db-vV9" firstAttribute="leading" secondItem="Npq-D7-BWZ" secondAttribute="leading" id="hMH-bm-6yj"/>
                             <constraint firstItem="ipu-Db-vV9" firstAttribute="trailing" secondItem="Npq-D7-BWZ" secondAttribute="trailing" id="hhd-Yv-tOm"/>
                             <constraint firstItem="Npq-D7-BWZ" firstAttribute="trailing" secondItem="rw6-lm-jTb" secondAttribute="trailing" id="hzr-mQ-BlS"/>
-                            <constraint firstItem="Npq-D7-BWZ" firstAttribute="bottom" secondItem="rw6-lm-jTb" secondAttribute="bottom" id="qxU-Rs-4OW"/>
                             <constraint firstItem="XSF-G2-sLn" firstAttribute="leading" secondItem="Npq-D7-BWZ" secondAttribute="leading" id="xJL-jJ-yqz"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Npq-D7-BWZ"/>
@@ -863,6 +865,7 @@
                     </tabBarItem>
                     <connections>
                         <outlet property="tableView" destination="rw6-lm-jTb" id="bPC-Ob-rBd"/>
+                        <outlet property="tableViewHeightConstraint" destination="lNm-a6-2Q1" id="aMi-1H-LaQ"/>
                         <outlet property="totalOwedLabel" destination="K7U-GS-UPr" id="PI8-vU-cc2"/>
                         <outlet property="totalOwingLabel" destination="iHy-CC-Cbt" id="VA1-sD-HRb"/>
                     </connections>
