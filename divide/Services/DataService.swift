@@ -182,6 +182,7 @@ class DataService {
                 let payer = transaction.childSnapshot(forPath: "payer").value as! String
                 let payees = transaction.childSnapshot(forPath: "payees").value as! [String]
                 let settled = Bool(transaction.childSnapshot(forPath: "settled").value as! String)
+                if Auth.auth().currentUser != nil {
                 if payer == (Auth.auth().currentUser?.email)! || payees.contains((Auth.auth().currentUser?.email)!) {
                     if !settled! {
                     let groupName = transaction.childSnapshot(forPath: "groupTitle").value as! String
@@ -193,6 +194,7 @@ class DataService {
                     transactionArray.append(transactionFound)
                     }
                 }
+            }
             }
             handler(transactionArray)
         }

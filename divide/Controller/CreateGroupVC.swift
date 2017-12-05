@@ -26,11 +26,13 @@ class CreateGroupVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     var matchEmail: String = ""
     var chosenUsers = [String]()
     
+    @IBOutlet weak var tableViewHeightConstraint: NSLayoutConstraint!
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
         membersField.delegate = self
+        self.tableViewHeightConstraint.constant = CGFloat(self.chosenUsers.count) * self.tableView.rowHeight
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -52,6 +54,7 @@ class CreateGroupVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
                 self.doneBtn.isHidden = false
                 self.tableView.reloadData()
                 self.membersField.text = ""
+                self.tableViewHeightConstraint.constant = CGFloat(self.chosenUsers.count) * self.tableView.rowHeight
             })
         }
     }

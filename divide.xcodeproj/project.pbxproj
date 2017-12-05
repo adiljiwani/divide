@@ -35,6 +35,7 @@
 		CCAB46551FD5C61500BC3DE9 /* SearchGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCAB46541FD5C61500BC3DE9 /* SearchGroupCell.swift */; };
 		CCAB46571FD5E05300BC3DE9 /* SearchUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCAB46561FD5E05300BC3DE9 /* SearchUserCell.swift */; };
 		CCAB46591FD6119F00BC3DE9 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCAB46581FD6119F00BC3DE9 /* Transaction.swift */; };
+		CCAB465B1FD6F48A00BC3DE9 /* GroupTransactionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCAB465A1FD6F48A00BC3DE9 /* GroupTransactionCell.swift */; };
 		EE9D2C01E0A6A863BB95859C /* Pods_divide.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD7E76F6F659D586E219EA04 /* Pods_divide.framework */; };
 /* End PBXBuildFile section */
 
@@ -70,6 +71,7 @@
 		CCAB46541FD5C61500BC3DE9 /* SearchGroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchGroupCell.swift; sourceTree = "<group>"; };
 		CCAB46561FD5E05300BC3DE9 /* SearchUserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUserCell.swift; sourceTree = "<group>"; };
 		CCAB46581FD6119F00BC3DE9 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
+		CCAB465A1FD6F48A00BC3DE9 /* GroupTransactionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupTransactionCell.swift; sourceTree = "<group>"; };
 		F41D830AC3E35876AD8D5D7A /* Pods-divide.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-divide.release.xcconfig"; path = "Pods/Target Support Files/Pods-divide/Pods-divide.release.xcconfig"; sourceTree = "<group>"; };
 		FD7E76F6F659D586E219EA04 /* Pods_divide.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_divide.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -192,6 +194,7 @@
 				CC7790081FD50F9C00149DA0 /* TransactionCell.swift */,
 				CC77900A1FD5179200149DA0 /* GroupCell.swift */,
 				CCAB46541FD5C61500BC3DE9 /* SearchGroupCell.swift */,
+				CCAB465A1FD6F48A00BC3DE9 /* GroupTransactionCell.swift */,
 				CCAB46561FD5E05300BC3DE9 /* SearchUserCell.swift */,
 			);
 			path = View;
@@ -349,6 +352,7 @@
 				CC893A281FCA16370094E191 /* AuthService.swift in Sources */,
 				CC893A261FCA12240094E191 /* InsetTextField.swift in Sources */,
 				CC778FFF1FCDE70700149DA0 /* CameraVC.swift in Sources */,
+				CCAB465B1FD6F48A00BC3DE9 /* GroupTransactionCell.swift in Sources */,
 				CC7EC1981FC9E140002CCDE5 /* ViewController.swift in Sources */,
 				CC7790011FCF314600149DA0 /* RoundedView.swift in Sources */,
 				CC7790091FD50F9C00149DA0 /* TransactionCell.swift in Sources */,

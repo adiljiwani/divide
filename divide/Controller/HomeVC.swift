@@ -37,6 +37,7 @@ class HomeVC: UIViewController {
                 self.tableViewHeightConstraint.constant = CGFloat(self.transactionsArray.count) * self.tableView.rowHeight
             }
         }
+        if Auth.auth().currentUser != nil {
         DataService.instance.getOwed(userKey: (Auth.auth().currentUser?.uid)!) { (owed) in
             self.owed = owed
             self.totalOwedLabel.text = String(format: "$%.2f", owed)
@@ -44,6 +45,7 @@ class HomeVC: UIViewController {
         DataService.instance.getOwing(userKey: (Auth.auth().currentUser?.uid)!) { (owing) in
             self.owing = owing
             self.totalOwingLabel.text = String(format: "$%.2f", owing)
+        }
         }
     }
 }
@@ -62,13 +64,14 @@ extension HomeVC: UITableViewDataSource, UITableViewDelegate {
         let transaction = transactionsArray[indexPath.row]
         let owing = transaction.payees.contains((Auth.auth().currentUser?.email)!)
         let date = transaction.date
+        let groupName = transaction.groupTitle
         var amount: Float = 0.0
         if owing {
             amount = transaction.amount / Float(transaction.payees.count + 1)
         } else {
             amount = Float(transaction.payees.count) * (transaction.amount / Float(transaction.payees.count + 1))
         }
-        cell.configureCell(description: transaction.description, owing: owing, date: date, amount: Float(amount))
+        cell.configureCell(description: transaction.description, owing: owing, date: date, amount: Float(amount), groupName: groupName)
         return cell
     }
 }
