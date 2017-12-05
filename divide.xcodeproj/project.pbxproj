@@ -16,6 +16,10 @@
 		CC7790011FCF314600149DA0 /* RoundedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7790001FCF314600149DA0 /* RoundedView.swift */; };
 		CC7790031FCF7BC900149DA0 /* AddUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7790021FCF7BC900149DA0 /* AddUserCell.swift */; };
 		CC7790071FD4ECA900149DA0 /* AddBillVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7790061FD4ECA900149DA0 /* AddBillVC.swift */; };
+		CC7790091FD50F9C00149DA0 /* TransactionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7790081FD50F9C00149DA0 /* TransactionCell.swift */; };
+		CC77900B1FD5179200149DA0 /* GroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC77900A1FD5179200149DA0 /* GroupCell.swift */; };
+		CC77900D1FD51A1F00149DA0 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC77900C1FD51A1F00149DA0 /* Group.swift */; };
+		CC7790111FD5B7E900149DA0 /* GroupTransactionsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7790101FD5B7E900149DA0 /* GroupTransactionsVC.swift */; };
 		CC7EC1961FC9E140002CCDE5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7EC1951FC9E140002CCDE5 /* AppDelegate.swift */; };
 		CC7EC1981FC9E140002CCDE5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7EC1971FC9E140002CCDE5 /* ViewController.swift */; };
 		CC7EC19B1FC9E140002CCDE5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC7EC1991FC9E140002CCDE5 /* Main.storyboard */; };
@@ -28,6 +32,9 @@
 		CC7EC1B81FC9F241002CCDE5 /* RoundedOutlineButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7EC1B71FC9F241002CCDE5 /* RoundedOutlineButton.swift */; };
 		CC893A261FCA12240094E191 /* InsetTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC893A251FCA12240094E191 /* InsetTextField.swift */; };
 		CC893A281FCA16370094E191 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC893A271FCA16370094E191 /* AuthService.swift */; };
+		CCAB46551FD5C61500BC3DE9 /* SearchGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCAB46541FD5C61500BC3DE9 /* SearchGroupCell.swift */; };
+		CCAB46571FD5E05300BC3DE9 /* SearchUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCAB46561FD5E05300BC3DE9 /* SearchUserCell.swift */; };
+		CCAB46591FD6119F00BC3DE9 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCAB46581FD6119F00BC3DE9 /* Transaction.swift */; };
 		EE9D2C01E0A6A863BB95859C /* Pods_divide.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD7E76F6F659D586E219EA04 /* Pods_divide.framework */; };
 /* End PBXBuildFile section */
 
@@ -42,6 +49,10 @@
 		CC7790001FCF314600149DA0 /* RoundedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedView.swift; sourceTree = "<group>"; };
 		CC7790021FCF7BC900149DA0 /* AddUserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddUserCell.swift; sourceTree = "<group>"; };
 		CC7790061FD4ECA900149DA0 /* AddBillVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBillVC.swift; sourceTree = "<group>"; };
+		CC7790081FD50F9C00149DA0 /* TransactionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCell.swift; sourceTree = "<group>"; };
+		CC77900A1FD5179200149DA0 /* GroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupCell.swift; sourceTree = "<group>"; };
+		CC77900C1FD51A1F00149DA0 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
+		CC7790101FD5B7E900149DA0 /* GroupTransactionsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupTransactionsVC.swift; sourceTree = "<group>"; };
 		CC7EC1921FC9E140002CCDE5 /* divide.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = divide.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC7EC1951FC9E140002CCDE5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CC7EC1971FC9E140002CCDE5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -56,6 +67,9 @@
 		CC7EC1B71FC9F241002CCDE5 /* RoundedOutlineButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedOutlineButton.swift; sourceTree = "<group>"; };
 		CC893A251FCA12240094E191 /* InsetTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsetTextField.swift; sourceTree = "<group>"; };
 		CC893A271FCA16370094E191 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		CCAB46541FD5C61500BC3DE9 /* SearchGroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchGroupCell.swift; sourceTree = "<group>"; };
+		CCAB46561FD5E05300BC3DE9 /* SearchUserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUserCell.swift; sourceTree = "<group>"; };
+		CCAB46581FD6119F00BC3DE9 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		F41D830AC3E35876AD8D5D7A /* Pods-divide.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-divide.release.xcconfig"; path = "Pods/Target Support Files/Pods-divide/Pods-divide.release.xcconfig"; sourceTree = "<group>"; };
 		FD7E76F6F659D586E219EA04 /* Pods_divide.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_divide.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -137,6 +151,8 @@
 		CC7EC1A91FC9E840002CCDE5 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				CC77900C1FD51A1F00149DA0 /* Group.swift */,
+				CCAB46581FD6119F00BC3DE9 /* Transaction.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -155,9 +171,10 @@
 			children = (
 				CC7EC1B01FC9ECFE002CCDE5 /* AuthVC.swift */,
 				CC778FC91FCAAB6300149DA0 /* ProfileVC.swift */,
+				CC7790101FD5B7E900149DA0 /* GroupTransactionsVC.swift */,
 				CC778FCB1FCB4EFD00149DA0 /* HomeVC.swift */,
-				CC7790061FD4ECA900149DA0 /* AddBillVC.swift */,
 				CC778FCD1FCB4F0C00149DA0 /* GroupsVC.swift */,
+				CC7790061FD4ECA900149DA0 /* AddBillVC.swift */,
 				CC778FD31FCC7A2300149DA0 /* CreateGroupVC.swift */,
 				CC778FFE1FCDE70700149DA0 /* CameraVC.swift */,
 			);
@@ -172,6 +189,10 @@
 				CC893A251FCA12240094E191 /* InsetTextField.swift */,
 				CC7790001FCF314600149DA0 /* RoundedView.swift */,
 				CC7790021FCF7BC900149DA0 /* AddUserCell.swift */,
+				CC7790081FD50F9C00149DA0 /* TransactionCell.swift */,
+				CC77900A1FD5179200149DA0 /* GroupCell.swift */,
+				CCAB46541FD5C61500BC3DE9 /* SearchGroupCell.swift */,
+				CCAB46561FD5E05300BC3DE9 /* SearchUserCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -314,11 +335,15 @@
 			files = (
 				CC778FD11FCC5DBC00149DA0 /* UIViewExt.swift in Sources */,
 				CC7EC1B11FC9ECFE002CCDE5 /* AuthVC.swift in Sources */,
+				CCAB46591FD6119F00BC3DE9 /* Transaction.swift in Sources */,
+				CC77900B1FD5179200149DA0 /* GroupCell.swift in Sources */,
+				CC77900D1FD51A1F00149DA0 /* Group.swift in Sources */,
 				CC778FCC1FCB4EFD00149DA0 /* HomeVC.swift in Sources */,
 				CC7790071FD4ECA900149DA0 /* AddBillVC.swift in Sources */,
 				CC778FD41FCC7A2300149DA0 /* CreateGroupVC.swift in Sources */,
 				CC7790031FCF7BC900149DA0 /* AddUserCell.swift in Sources */,
 				CC7EC1AC1FC9E857002CCDE5 /* DataService.swift in Sources */,
+				CCAB46551FD5C61500BC3DE9 /* SearchGroupCell.swift in Sources */,
 				CC7EC1B81FC9F241002CCDE5 /* RoundedOutlineButton.swift in Sources */,
 				CC778FCA1FCAAB6300149DA0 /* ProfileVC.swift in Sources */,
 				CC893A281FCA16370094E191 /* AuthService.swift in Sources */,
@@ -326,6 +351,9 @@
 				CC778FFF1FCDE70700149DA0 /* CameraVC.swift in Sources */,
 				CC7EC1981FC9E140002CCDE5 /* ViewController.swift in Sources */,
 				CC7790011FCF314600149DA0 /* RoundedView.swift in Sources */,
+				CC7790091FD50F9C00149DA0 /* TransactionCell.swift in Sources */,
+				CCAB46571FD5E05300BC3DE9 /* SearchUserCell.swift in Sources */,
+				CC7790111FD5B7E900149DA0 /* GroupTransactionsVC.swift in Sources */,
 				CC7EC1B61FC9F160002CCDE5 /* RoundedButton.swift in Sources */,
 				CC778FCE1FCB4F0C00149DA0 /* GroupsVC.swift in Sources */,
 				CC7EC1961FC9E140002CCDE5 /* AppDelegate.swift in Sources */,
