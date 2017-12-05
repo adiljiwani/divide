@@ -49,9 +49,9 @@ extension GroupsVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let groupFeedVC = storyboard?.instantiateViewController(withIdentifier: "GroupTransactionsVC") as? GroupTransactionsVC else {return}
-        groupFeedVC.initData(forGroup: groupsArray[indexPath.row])
-        present(groupFeedVC, animated: true, completion: nil)
+        guard let groupTransactionVC = storyboard?.instantiateViewController(withIdentifier: "GroupTransactionsVC") as? GroupTransactionsVC else {return}
+        groupTransactionVC.initData(forGroup: groupsArray[indexPath.row])
+        presentDetail(groupTransactionVC)
         
     }
 }
