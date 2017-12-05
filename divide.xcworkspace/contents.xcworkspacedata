@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:/Users/AdilJiwani/Desktop/iOSdev/divide/divide/Home.storyboard">
+   </FileRef>
+   <FileRef
       location = "group:divide.xcodeproj">
    </FileRef>
    <FileRef
