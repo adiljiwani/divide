@@ -85,7 +85,7 @@ class AddBillVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBAction func donePressed(_ sender: Any) {
         let date = Date()
         let formatter = DateFormatter()
-        formatter.dateFormat = "dd-MM-yyyy"
+        formatter.dateFormat = "MMM dd, yyyy"
         let result = formatter.string(from: date)
         let payeesArray = payerArray.filter({ $0 != payer })
         if billDescriptionField.text != "" && amountField.text != "" && groupField.text != "" && paidByField.text != "" {

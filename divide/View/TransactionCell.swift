@@ -26,7 +26,7 @@ class TransactionCell: UITableViewCell {
         self.amountLbl.text = String(describing: amount)
         if owing {
             self.owingLbl.text = "YOU OWE:"
-            self.owingView.backgroundColor = #colorLiteral(red: 0.8980392157, green: 0.137254902, blue: 0.007843137255, alpha: 1)
+            self.owingView.backgroundColor = #colorLiteral(red: 1, green: 0.1490196078, blue: 0, alpha: 1)
         } else {
             self.owingLbl.text = "YOU ARE OWED:"
             self.owingView.backgroundColor = #colorLiteral(red: 0.2980392157, green: 0.7411764706, blue: 0.3294117647, alpha: 1)
