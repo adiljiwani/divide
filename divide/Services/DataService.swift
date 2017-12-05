@@ -53,6 +53,20 @@ class DataService {
         }
     }
     
+    func getEmails (group: Group, handler: @escaping (_ emailArray: [String]) -> ()) {
+        var emailArray = [String]()
+        REF_USERS.observeSingleEvent(of: .value) { (userSnapshot) in
+            guard let userSnapshot = userSnapshot.children.allObjects as? [DataSnapshot] else {return}
+            for user in userSnapshot {
+                if group.members.contains(user.key) {
+                    let email = user.childSnapshot(forPath: "email").value as! String
+                    emailArray.append(email)
+                }
+            }
+            handler(emailArray)
+        }
+    }
+    
     func getGroupNames (forSearchQuery query: String, handler: @escaping (_ groupNames: [String]) -> ()) {
         var groupNames = [String]()
         REF_USERS.child((Auth.auth().currentUser?.uid)!).child("groups").observe(.value) { (groupSnapshot) in
@@ -197,6 +211,33 @@ class DataService {
             }
             }
             handler(transactionArray)
+        }
+    }
+    
+    func getAllTransactions (forGroup group: Group, handler: @escaping (_ transactionArray: [Transaction]) -> ()) {
+        var groupTransactionArray = [Transaction]()
+        REF_TRANSACTIONS.observeSingleEvent(of: .value) { (transactionSnapshot) in
+            guard let transactionSnapshot = transactionSnapshot.children.allObjects as? [DataSnapshot] else {return}
+            for transaction in transactionSnapshot {
+                let payer = transaction.childSnapshot(forPath: "payer").value as! String
+                let payees = transaction.childSnapshot(forPath: "payees").value as! [String]
+                let settled = Bool(transaction.childSnapshot(forPath: "settled").value as! String)
+                if Auth.auth().currentUser != nil {
+                    if payer == (Auth.auth().currentUser?.email)! || payees.contains((Auth.auth().currentUser?.email)!) {
+                        if !settled! {
+                            let groupName = transaction.childSnapshot(forPath: "groupTitle").value as! String
+                            let date = transaction.childSnapshot(forPath: "date").value as! String
+                            let description = transaction.childSnapshot(forPath: "description").value as! String
+                            let amount = transaction.childSnapshot(forPath: "amount").value as! Float
+                            if groupName == group.groupTitle {
+                            let transactionFound = Transaction(groupTitle: groupName, key: transaction.key, payees: payees, payer: payer, date: date, description: description, amount: amount, settled: settled!)
+                            groupTransactionArray.append(transactionFound)
+                            }
+                        }
+                    }
+                }
+            }
+            handler(groupTransactionArray)
         }
     }
     
