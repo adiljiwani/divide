@@ -15,6 +15,8 @@ class HomeVC: UIViewController {
     @IBOutlet weak var totalOwingLabel: UILabel!
     @IBOutlet weak var totalOwedLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
+    var owing: Float = 0.0
+    var owed: Float = 0.0
     
     @IBOutlet weak var tableViewHeightConstraint: NSLayoutConstraint!
     var transactionsArray = [Transaction]()
@@ -32,11 +34,18 @@ class HomeVC: UIViewController {
             DataService.instance.getAllTransactions { (returnedTransactionArray) in
                 self.transactionsArray = returnedTransactionArray
                 self.tableView.reloadData()
-                self.tableViewHeightConstraint.constant = CGFloat(self.transactionsArray.count * 65)
+                self.tableViewHeightConstraint.constant = CGFloat(self.transactionsArray.count) * self.tableView.rowHeight
             }
         }
+        DataService.instance.getOwed(userKey: (Auth.auth().currentUser?.uid)!) { (owed) in
+            self.owed = owed
+            self.totalOwedLabel.text = String(format: "$%.2f", owed)
+        }
+        DataService.instance.getOwing(userKey: (Auth.auth().currentUser?.uid)!) { (owing) in
+            self.owing = owing
+            self.totalOwingLabel.text = String(format: "$%.2f", owing)
+        }
     }
-
 }
 
 extension HomeVC: UITableViewDataSource, UITableViewDelegate {
@@ -53,7 +62,12 @@ extension HomeVC: UITableViewDataSource, UITableViewDelegate {
         let transaction = transactionsArray[indexPath.row]
         let owing = transaction.payees.contains((Auth.auth().currentUser?.email)!)
         let date = transaction.date
-        let amount = transaction.amount / Float(transaction.payees.count + 1)
+        var amount: Float = 0.0
+        if owing {
+            amount = transaction.amount / Float(transaction.payees.count + 1)
+        } else {
+            amount = Float(transaction.payees.count) * (transaction.amount / Float(transaction.payees.count + 1))
+        }
         cell.configureCell(description: transaction.description, owing: owing, date: date, amount: Float(amount))
         return cell
     }

@@ -23,7 +23,7 @@ class TransactionCell: UITableViewCell {
     func configureCell(description: String, owing: Bool, date: String, amount: Float) {
         self.descriptionLabel.text = description
         self.dateLbl.text = date
-        self.amountLbl.text = String(describing: amount)
+        self.amountLbl.text = String(format: "$%.2f", amount)
         if owing {
             self.owingLbl.text = "YOU OWE:"
             self.owingView.backgroundColor = #colorLiteral(red: 1, green: 0.1490196078, blue: 0, alpha: 1)

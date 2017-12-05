@@ -119,8 +119,58 @@ class DataService {
     }
     
     func createTransaction(groupTitle: String, description: String, payees: [String], payer: String, date: String, amount: Float, settled: Bool, handler: @escaping (_ transactionCreated: Bool) -> ()) {
-        REF_TRANSACTIONS.childByAutoId().updateChildValues(["description": description, "groupTitle": groupTitle, "payees": payees, "payer": payer, "date": date, "amount": amount, "settled": String(describing: settled)])
+        let transactionsRef = REF_TRANSACTIONS.childByAutoId()
+        transactionsRef.updateChildValues(["description": description, "groupTitle": groupTitle, "payees": payees, "payer": payer, "date": date, "amount": amount, "settled": String(describing: settled)])
+            getIds(forEmails: payees, handler: { (payeeIds) in
+                for payeeId in payeeIds {
+                    self.REF_USERS.observeSingleEvent(of: .value, with: { (userSnapshot) in
+                        guard let userSnapshot = userSnapshot.children.allObjects as? [DataSnapshot] else {return}
+                        for user in userSnapshot {
+                            if payeeId == user.key {
+                                let owingValue = (user.childSnapshot(forPath: "owing").value as! NSString).floatValue + amount / Float(payees.count + 1)
+                                self.REF_USERS.child(payeeId).updateChildValues(["owing": String(format: "%.2f", owingValue)])
+                            
+                            }
+                        }
+                    })
+                }
+            })
+        getIds(forEmails: [payer], handler: { (userIds) in
+            for userId in userIds {
+                self.REF_USERS.observeSingleEvent(of: .value, with: { (userSnapshot) in
+                    guard let userSnapshot = userSnapshot.children.allObjects as? [DataSnapshot] else {return}
+                    for user in userSnapshot {
+                        if user.key == userId {
+                            let owedValue = (user.childSnapshot(forPath: "owed").value as! NSString).floatValue + Float(payees.count) * (amount / Float(payees.count + 1))
+                            self.REF_USERS.child(userId).updateChildValues(["owed": String(format: "%.2f", owedValue)])
+                        }
+                    }
+                })
+            }
+        })
         handler(true)
+    }
+    
+    func getOwing (userKey: String, handler: @escaping (_ owingAmount: Float) -> ()) {
+        REF_USERS.observe(.value) { (userSnapshot) in
+            guard let userSnapshot = userSnapshot.children.allObjects as? [DataSnapshot] else {return}
+            for user in userSnapshot {
+                if user.key == userKey {
+                    handler((user.childSnapshot(forPath: "owing").value as! NSString).floatValue)
+                }
+            }
+        }
+    }
+    
+    func getOwed (userKey: String, handler: @escaping (_ owedAmount: Float) -> ()) {
+        REF_USERS.observe(.value) { (userSnapshot) in
+            guard let userSnapshot = userSnapshot.children.allObjects as? [DataSnapshot] else {return}
+            for user in userSnapshot {
+                if user.key == userKey{
+                    handler((user.childSnapshot(forPath: "owed").value as! NSString).floatValue)
+                }
+            }
+        }
     }
     
     func getAllTransactions (handler: @escaping (_ transactionArray: [Transaction]) -> ()) {
