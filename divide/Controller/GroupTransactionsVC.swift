@@ -13,10 +13,11 @@ class GroupTransactionsVC: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var groupNameLbl: UILabel!
-    
+    @IBOutlet weak var membersTextView: UITextView!
     @IBOutlet weak var tableViewHeightConstraint: NSLayoutConstraint!
     var group: Group?
     var groupTransactions = [Transaction]()
+    var maxHeight: CGFloat = 0.0
     
     func initData (forGroup group: Group) {
         self.group = group
@@ -32,8 +33,7 @@ class GroupTransactionsVC: UIViewController {
         super.viewWillAppear(animated)
         groupNameLbl.text = group?.groupTitle
         DataService.instance.getEmails(group: group!) { (returnedEmails) in
-            //self.membersLbl.text = returnedEmails.joined(separator: ", ")
-            print(returnedEmails.joined(separator: ", "))
+            self.membersTextView.text = returnedEmails.joined(separator: ", ")
         }
         
         DataService.instance.getAllTransactions(forGroup: group!) { (returnedTransactions) in
