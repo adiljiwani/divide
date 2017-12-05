@@ -830,6 +830,7 @@
                                             <outlet property="dateLbl" destination="ioJ-Xy-1sF" id="aHT-d0-dIq"/>
                                             <outlet property="descriptionLabel" destination="onH-QN-Yjs" id="mqc-aF-NrT"/>
                                             <outlet property="owingLbl" destination="rHa-wC-y4T" id="MNx-QF-XE4"/>
+                                            <outlet property="owingView" destination="gKt-af-N1R" id="Mad-n6-BEb"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

@@ -23,7 +23,7 @@ class CreateGroupVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
    
     @IBOutlet weak var addBtn: RoundedButton!
     
-    var matchEmail: String = "ahaha"
+    var matchEmail: String = ""
     var chosenUsers = [String]()
     
     override func viewDidLoad() {
