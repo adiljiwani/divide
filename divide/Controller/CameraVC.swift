@@ -24,20 +24,18 @@ class CameraVC: UIViewController {
     
     func performImageRecognition(_ image: UIImage) {
         if let tesseract = G8Tesseract(language: "eng+fra") {
-            // 2
             tesseract.engineMode = .tesseractCubeCombined
-            // 3
             tesseract.pageSegmentationMode = .auto
-            // 4
             tesseract.image = image.g8_blackAndWhite()
-            // 5
             tesseract.recognize()
-            // 6
             textView.text = tesseract.recognizedText
+            if tesseract.recognizedText.contains("$"){
+                print("hello")
+            }
         }
-        // 7
         activityIndicator.stopAnimating()
         activityIndicator.isHidden = true
+        takePhotoBtn.setTitle("Take Photo / Upload Image", for: .normal)
     }
     
     @IBAction func takePhoto(_ sender: Any) {
@@ -77,14 +75,11 @@ extension CameraVC: UIImagePickerControllerDelegate, UINavigationControllerDeleg
     
     func imagePickerController(_ picker: UIImagePickerController,
                                didFinishPickingMediaWithInfo info: [String : Any]) {
-        // 2
         if let selectedPhoto = info[UIImagePickerControllerOriginalImage] as? UIImage,
             let scaledImage = selectedPhoto.scaleImage(640) {
-            // 3
             activityIndicator.startAnimating()
             activityIndicator.isHidden = false
-            takePhotoBtn.setTitle("Take Photo / Upload Image", for: .normal)
-            // 4
+            takePhotoBtn.setTitle("", for: .normal)
             dismiss(animated: true, completion: {
                 self.performImageRecognition(scaledImage)
             })
