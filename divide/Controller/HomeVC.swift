@@ -74,4 +74,10 @@ extension HomeVC: UITableViewDataSource, UITableViewDelegate {
         cell.configureCell(description: transaction.description, owing: owing, date: date, amount: Float(amount), groupName: groupName)
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let transactionVC = storyboard?.instantiateViewController(withIdentifier: "TransactionVC") as? TransactionVC else {return}
+        transactionVC.initData(forTransaction: transactionsArray[indexPath.row])
+        presentDetail(transactionVC)
+    }
 }

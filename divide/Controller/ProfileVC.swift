@@ -11,9 +11,12 @@ import Firebase
 
 class ProfileVC: UIViewController {
 
+    @IBOutlet weak var userEmailLbl: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        if Auth.auth().currentUser != nil {
+            self.userEmailLbl.text = Auth.auth().currentUser?.email
+        }
     }
 
     @IBAction func logoutPressed(_ sender: Any) {

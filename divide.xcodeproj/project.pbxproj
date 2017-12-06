@@ -37,6 +37,8 @@
 		CCAB46591FD6119F00BC3DE9 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCAB46581FD6119F00BC3DE9 /* Transaction.swift */; };
 		CCAB465B1FD6F48A00BC3DE9 /* GroupTransactionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCAB465A1FD6F48A00BC3DE9 /* GroupTransactionCell.swift */; };
 		CCCB0DBF1FD748B8006B3CDE /* UIViewControllerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCB0DBE1FD748B8006B3CDE /* UIViewControllerExt.swift */; };
+		CCCB0DC11FD773F4006B3CDE /* TransactionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCB0DC01FD773F4006B3CDE /* TransactionVC.swift */; };
+		CCCB0DC31FD7A7B3006B3CDE /* BalanceUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCB0DC21FD7A7B3006B3CDE /* BalanceUserCell.swift */; };
 		EE9D2C01E0A6A863BB95859C /* Pods_divide.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD7E76F6F659D586E219EA04 /* Pods_divide.framework */; };
 /* End PBXBuildFile section */
 
@@ -74,6 +76,8 @@
 		CCAB46581FD6119F00BC3DE9 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		CCAB465A1FD6F48A00BC3DE9 /* GroupTransactionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupTransactionCell.swift; sourceTree = "<group>"; };
 		CCCB0DBE1FD748B8006B3CDE /* UIViewControllerExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExt.swift; sourceTree = "<group>"; };
+		CCCB0DC01FD773F4006B3CDE /* TransactionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionVC.swift; sourceTree = "<group>"; };
+		CCCB0DC21FD7A7B3006B3CDE /* BalanceUserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceUserCell.swift; sourceTree = "<group>"; };
 		F41D830AC3E35876AD8D5D7A /* Pods-divide.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-divide.release.xcconfig"; path = "Pods/Target Support Files/Pods-divide/Pods-divide.release.xcconfig"; sourceTree = "<group>"; };
 		FD7E76F6F659D586E219EA04 /* Pods_divide.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_divide.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -182,6 +186,7 @@
 				CC7790061FD4ECA900149DA0 /* AddBillVC.swift */,
 				CC778FD31FCC7A2300149DA0 /* CreateGroupVC.swift */,
 				CC778FFE1FCDE70700149DA0 /* CameraVC.swift */,
+				CCCB0DC01FD773F4006B3CDE /* TransactionVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -197,6 +202,7 @@
 				CC7790081FD50F9C00149DA0 /* TransactionCell.swift */,
 				CC77900A1FD5179200149DA0 /* GroupCell.swift */,
 				CCAB46541FD5C61500BC3DE9 /* SearchGroupCell.swift */,
+				CCCB0DC21FD7A7B3006B3CDE /* BalanceUserCell.swift */,
 				CCAB465A1FD6F48A00BC3DE9 /* GroupTransactionCell.swift */,
 				CCAB46561FD5E05300BC3DE9 /* SearchUserCell.swift */,
 			);
@@ -340,11 +346,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				CC778FD11FCC5DBC00149DA0 /* UIViewExt.swift in Sources */,
+				CCCB0DC31FD7A7B3006B3CDE /* BalanceUserCell.swift in Sources */,
 				CC7EC1B11FC9ECFE002CCDE5 /* AuthVC.swift in Sources */,
 				CCAB46591FD6119F00BC3DE9 /* Transaction.swift in Sources */,
 				CC77900B1FD5179200149DA0 /* GroupCell.swift in Sources */,
 				CC77900D1FD51A1F00149DA0 /* Group.swift in Sources */,
 				CC778FCC1FCB4EFD00149DA0 /* HomeVC.swift in Sources */,
+				CCCB0DC11FD773F4006B3CDE /* TransactionVC.swift in Sources */,
 				CC7790071FD4ECA900149DA0 /* AddBillVC.swift in Sources */,
 				CC778FD41FCC7A2300149DA0 /* CreateGroupVC.swift in Sources */,
 				CC7790031FCF7BC900149DA0 /* AddUserCell.swift in Sources */,
