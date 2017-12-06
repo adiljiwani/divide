@@ -39,6 +39,10 @@
 		CCCB0DBF1FD748B8006B3CDE /* UIViewControllerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCB0DBE1FD748B8006B3CDE /* UIViewControllerExt.swift */; };
 		CCCB0DC11FD773F4006B3CDE /* TransactionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCB0DC01FD773F4006B3CDE /* TransactionVC.swift */; };
 		CCCB0DC31FD7A7B3006B3CDE /* BalanceUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCB0DC21FD7A7B3006B3CDE /* BalanceUserCell.swift */; };
+		CCCB0DCF1FD86D19006B3CDE /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = CCCB0DCE1FD86D19006B3CDE /* tessdata */; };
+		CCCB0DD21FD86D87006B3CDE /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = CCCB0DD01FD86D7A006B3CDE /* libstdc++.tbd */; };
+		CCCB0DD41FD86D91006B3CDE /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCCB0DD31FD86D91006B3CDE /* CoreImage.framework */; };
+		CCCB0DD51FD86D9B006B3CDE /* TesseractOCR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCCB0DD61FD86D9B006B3CDE /* TesseractOCR.framework */; };
 		EE9D2C01E0A6A863BB95859C /* Pods_divide.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD7E76F6F659D586E219EA04 /* Pods_divide.framework */; };
 /* End PBXBuildFile section */
 
@@ -78,6 +82,10 @@
 		CCCB0DBE1FD748B8006B3CDE /* UIViewControllerExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExt.swift; sourceTree = "<group>"; };
 		CCCB0DC01FD773F4006B3CDE /* TransactionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionVC.swift; sourceTree = "<group>"; };
 		CCCB0DC21FD7A7B3006B3CDE /* BalanceUserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceUserCell.swift; sourceTree = "<group>"; };
+		CCCB0DCE1FD86D19006B3CDE /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tessdata; sourceTree = "<group>"; };
+		CCCB0DD01FD86D7A006B3CDE /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
+		CCCB0DD31FD86D91006B3CDE /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
+		CCCB0DD61FD86D9B006B3CDE /* TesseractOCR.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TesseractOCR.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F41D830AC3E35876AD8D5D7A /* Pods-divide.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-divide.release.xcconfig"; path = "Pods/Target Support Files/Pods-divide/Pods-divide.release.xcconfig"; sourceTree = "<group>"; };
 		FD7E76F6F659D586E219EA04 /* Pods_divide.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_divide.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -87,6 +95,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CCCB0DD51FD86D9B006B3CDE /* TesseractOCR.framework in Frameworks */,
+				CCCB0DD41FD86D91006B3CDE /* CoreImage.framework in Frameworks */,
+				CCCB0DD21FD86D87006B3CDE /* libstdc++.tbd in Frameworks */,
 				EE9D2C01E0A6A863BB95859C /* Pods_divide.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -97,6 +108,9 @@
 		01E200814F19E8C23460076B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CCCB0DD61FD86D9B006B3CDE /* TesseractOCR.framework */,
+				CCCB0DD31FD86D91006B3CDE /* CoreImage.framework */,
+				CCCB0DD01FD86D7A006B3CDE /* libstdc++.tbd */,
 				FD7E76F6F659D586E219EA04 /* Pods_divide.framework */,
 			);
 			name = Frameworks;
@@ -141,6 +155,7 @@
 		CC7EC1941FC9E140002CCDE5 /* divide */ = {
 			isa = PBXGroup;
 			children = (
+				CCCB0DCD1FD86CFF006B3CDE /* Supporting Files */,
 				CC778FCF1FCC5DAE00149DA0 /* Extensions */,
 				CC7EC1B41FC9F154002CCDE5 /* View */,
 				CC7EC1AD1FC9EC35002CCDE5 /* Controller */,
@@ -209,6 +224,14 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		CCCB0DCD1FD86CFF006B3CDE /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				CCCB0DCE1FD86D19006B3CDE /* tessdata */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -273,6 +296,7 @@
 			files = (
 				CC7EC1A01FC9E140002CCDE5 /* LaunchScreen.storyboard in Resources */,
 				CC7EC1A81FC9E18C002CCDE5 /* GoogleService-Info.plist in Resources */,
+				CCCB0DCF1FD86D19006B3CDE /* tessdata in Resources */,
 				CC7EC19D1FC9E140002CCDE5 /* Assets.xcassets in Resources */,
 				CC7EC19B1FC9E140002CCDE5 /* Main.storyboard in Resources */,
 			);
@@ -308,6 +332,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-divide/Pods-divide-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/TesseractOCRiOS/TesseractOCR.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
@@ -315,6 +340,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TesseractOCR.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -512,6 +538,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = R274C354T3;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = divide/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = AJ.divide;
@@ -528,6 +555,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = R274C354T3;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = divide/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = AJ.divide;

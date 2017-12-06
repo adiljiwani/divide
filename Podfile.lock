@@ -42,11 +42,13 @@ PODS:
     - nanopb/encode (= 0.3.8)
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
+  - TesseractOCRiOS (4.0.0)
 
 DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Database
+  - TesseractOCRiOS
 
 SPEC CHECKSUMS:
   Firebase: d83d287bdb6b1c78320561482706d1fcfc8ddfc1
@@ -59,7 +61,8 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: ebaa1f79a5366922c1735f1566901f50beba23b7
   leveldb-library: 44ef425bfde64f5b41daef86b38db2d13edbbee1
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
+  TesseractOCRiOS: 90638afbe43d082433f2e76b384c7901d23956df
 
-PODFILE CHECKSUM: d1bb6d11686170e24941c6fccbcb717e6e9e86e4
+PODFILE CHECKSUM: c2644329f80d76174ff759266b1da53014007643
 
 COCOAPODS: 1.3.1
