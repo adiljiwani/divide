@@ -17,6 +17,7 @@ class TransactionVC: UIViewController {
     @IBOutlet weak var descriptionLbl: UILabel!
     @IBOutlet weak var groupNameLbl: UILabel!
     @IBOutlet weak var dateLbl: UILabel!
+    @IBOutlet weak var settleBtn: RoundedButton!
     
     var transaction: Transaction?
     var emailArray = [String]()
@@ -29,6 +30,9 @@ class TransactionVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if Auth.auth().currentUser?.email == transaction!.payer {
+            self.settleBtn.isHidden = true
+        }
         tableView.delegate = self
         tableView.dataSource = self
         emailArray.append((transaction?.payer)!)
@@ -51,6 +55,15 @@ class TransactionVC: UIViewController {
 
     @IBAction func backPressed(_ sender: Any) {
         dismissDetail()
+    }
+    
+
+    @IBAction func settlePressed(_ sender: Any) {
+        DataService.instance.settleTransaction(transaction: transaction!) { (transactionSettled) in
+            if transactionSettled {
+                self.dismissDetail()
+            }
+        }
     }
 }
 

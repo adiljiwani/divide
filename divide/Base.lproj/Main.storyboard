@@ -1305,6 +1305,9 @@
                                         <real key="value" value="20"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="settlePressed:" destination="Ov0-iz-GbV" eventType="touchUpInside" id="I6g-2q-FVI"/>
+                                </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="sio-AD-nEy">
                                 <rect key="frame" x="30" y="92" width="142.66666666666666" height="93.333333333333314"/>
@@ -1402,6 +1405,7 @@
                         <outlet property="dateLbl" destination="RwI-vB-RvJ" id="WW8-3r-WMT"/>
                         <outlet property="descriptionLbl" destination="om3-vT-DKe" id="aVD-Gs-rcH"/>
                         <outlet property="groupNameLbl" destination="R94-Q1-zuF" id="85z-64-hJi"/>
+                        <outlet property="settleBtn" destination="DME-93-xQw" id="W6P-eN-sc1"/>
                         <outlet property="tableView" destination="Rcg-4T-s5d" id="IRo-Cu-uW3"/>
                         <outlet property="tableViewHeightConstraint" destination="3tB-H9-Fu1" id="Otk-v1-K79"/>
                     </connections>

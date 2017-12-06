@@ -165,6 +165,40 @@ class DataService {
         handler(true)
     }
     
+    func settleTransaction (transaction: Transaction, handler: @escaping (_ transactionSettled:Bool) -> ()) {
+        REF_TRANSACTIONS.child(transaction.key).updateChildValues(["settled": "true"])
+        getIds(forEmails: [(Auth.auth().currentUser?.email)!], handler: { (payeeIds) in
+            for payeeId in payeeIds {
+                self.REF_USERS.observeSingleEvent(of: .value, with: { (userSnapshot) in
+                    guard let userSnapshot = userSnapshot.children.allObjects as? [DataSnapshot] else {return}
+                    for user in userSnapshot {
+                        if payeeId == user.key {
+                            let owingValue = (user.childSnapshot(forPath: "owing").value as! NSString).floatValue - (transaction.amount / Float(transaction.payees.count + 1))
+                            print(owingValue)
+                            self.REF_USERS.child(payeeId).updateChildValues(["owing": String(format: "%.2f", owingValue)])
+                            
+                        }
+                    }
+                })
+            }
+        })
+        getIds(forEmails: [transaction.payer], handler: { (userIds) in
+            for userId in userIds {
+                self.REF_USERS.observeSingleEvent(of: .value, with: { (userSnapshot) in
+                    guard let userSnapshot = userSnapshot.children.allObjects as? [DataSnapshot] else {return}
+                    for user in userSnapshot {
+                        if user.key == userId {
+                            let owedValue = (user.childSnapshot(forPath: "owed").value as! NSString).floatValue - (transaction.amount / Float(transaction.payees.count + 1))
+                            print(owedValue)
+                            self.REF_USERS.child(userId).updateChildValues(["owed": String(format: "%.2f", owedValue)])
+                        }
+                    }
+                })
+            }
+        })
+        handler(true)
+    }
+    
     func getOwing (userKey: String, handler: @escaping (_ owingAmount: Float) -> ()) {
         REF_USERS.observe(.value) { (userSnapshot) in
             guard let userSnapshot = userSnapshot.children.allObjects as? [DataSnapshot] else {return}
