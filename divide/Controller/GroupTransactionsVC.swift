@@ -66,7 +66,7 @@ extension GroupTransactionsVC: UITableViewDelegate, UITableViewDataSource {
         if owing {
             amount = groupTransactions[indexPath.row].amount / Float(groupTransactions[indexPath.row].payees.count + 1)
         } else {
-            amount = Float(groupTransactions[indexPath.row].payees.count) * (groupTransactions[indexPath.row].amount / Float(groupTransactions[indexPath.row].payees.count + 1))
+            amount = Float(groupTransactions[indexPath.row].settled.count) * (groupTransactions[indexPath.row].amount / Float(groupTransactions[indexPath.row].payees.count + 1))
         }
         cell.configureCell(description: description, owing: owing, date: date, amount: amount)
         return cell

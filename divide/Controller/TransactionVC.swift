@@ -81,7 +81,7 @@ extension TransactionVC: UITableViewDataSource, UITableViewDelegate {
         let email = emailArray[indexPath.row]
         let paid = transaction?.payer == email
         let amount = amountArray[indexPath.row]
-        cell.configureCell(email: email, paid: paid, amount: amount)
+        cell.configureCell(email: email, paid: paid, amount: amount, transaction: transaction!)
         return cell
     }
 }

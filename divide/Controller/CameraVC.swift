@@ -37,6 +37,7 @@ class CameraVC: UIViewController {
             let result = detector?.firstMatch(in: fullText, range: NSMakeRange(0,fullText.utf16.count))
             if result?.resultType == .date {
                 date = (result?.date)!
+                print(date)
             }
         }
         guard let addBillVC = storyboard?.instantiateViewController(withIdentifier: "AddBillVC") as? AddBillVC else {return}

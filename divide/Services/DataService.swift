@@ -232,7 +232,7 @@ class DataService {
                 let payees = transaction.childSnapshot(forPath: "payees").value as! [String]
                 let settled = transaction.childSnapshot(forPath: "settled").value as! [String]
                 if Auth.auth().currentUser != nil {
-                if payer == (Auth.auth().currentUser?.email)! || payees.contains((Auth.auth().currentUser?.email)!) {
+                if payer == (Auth.auth().currentUser?.email)! || !settled.contains((Auth.auth().currentUser?.email)!) {
                     let groupName = transaction.childSnapshot(forPath: "groupTitle").value as! String
                     let date = transaction.childSnapshot(forPath: "date").value as! String
                     let description = transaction.childSnapshot(forPath: "description").value as! String
@@ -256,7 +256,7 @@ class DataService {
                 let payees = transaction.childSnapshot(forPath: "payees").value as! [String]
                 let settled = transaction.childSnapshot(forPath: "settled").value as! [String]
                 if Auth.auth().currentUser != nil {
-                    if payer == (Auth.auth().currentUser?.email)! || payees.contains((Auth.auth().currentUser?.email)!) {
+                    if payer == (Auth.auth().currentUser?.email)! || !settled.contains((Auth.auth().currentUser?.email)!) {
                             let groupName = transaction.childSnapshot(forPath: "groupTitle").value as! String
                             let date = transaction.childSnapshot(forPath: "date").value as! String
                             let description = transaction.childSnapshot(forPath: "description").value as! String
