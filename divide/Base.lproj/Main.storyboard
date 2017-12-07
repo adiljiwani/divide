@@ -196,10 +196,13 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A4R-qM-Jpm">
-                                        <rect key="frame" x="20" y="31" width="49" height="36"/>
-                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
-                                        <state key="normal" title="Profile">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A4R-qM-Jpm">
+                                        <rect key="frame" x="20" y="36.666666666666664" width="25" height="25"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="25" id="L3o-B6-C7h"/>
+                                            <constraint firstAttribute="height" constant="25" id="fwv-df-0oe"/>
+                                        </constraints>
+                                        <state key="normal" image="defaultProfileImage">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
@@ -207,10 +210,10 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jPI-qy-Fnu">
-                                        <rect key="frame" x="364" y="33.666666666666664" width="30" height="30"/>
+                                        <rect key="frame" x="369" y="36.333333333333336" width="25" height="25"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="Yja-Kr-oCi"/>
-                                            <constraint firstAttribute="width" constant="30" id="dHd-8N-I1s"/>
+                                            <constraint firstAttribute="height" constant="25" id="Yja-Kr-oCi"/>
+                                            <constraint firstAttribute="width" constant="25" id="dHd-8N-I1s"/>
                                         </constraints>
                                         <color key="tintColor" red="0.30214685200000002" green="0.74723225829999995" blue="0.33267867569999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" image="add">
@@ -797,16 +800,23 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SfP-9U-2pK">
-                                        <rect key="frame" x="379" y="38.333333333333336" width="15" height="22"/>
+                                        <rect key="frame" x="369" y="37" width="25" height="25"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="25" id="T3e-bG-Z4m"/>
+                                            <constraint firstAttribute="width" constant="25" id="jkm-vS-mu6"/>
+                                        </constraints>
                                         <state key="normal" image="add"/>
                                         <connections>
                                             <segue destination="2A3-Cv-Nmf" kind="show" id="ALC-4a-tbD"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HvH-JL-p2m">
-                                        <rect key="frame" x="20" y="31" width="49" height="36"/>
-                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
-                                        <state key="normal" title="Profile">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HvH-JL-p2m">
+                                        <rect key="frame" x="20" y="36.666666666666664" width="25" height="25"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="25" id="4Cr-iB-2Yz"/>
+                                            <constraint firstAttribute="width" constant="25" id="A0N-WD-ZVh"/>
+                                        </constraints>
+                                        <state key="normal" image="defaultProfileImage">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
@@ -1043,7 +1053,7 @@
         <!--Add BillVC-->
         <scene sceneID="39P-Oy-dyT">
             <objects>
-                <viewController id="2A3-Cv-Nmf" customClass="AddBillVC" customModule="divide" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddBillVC" id="2A3-Cv-Nmf" customClass="AddBillVC" customModule="divide" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wzd-dq-o7V">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1451,6 +1461,6 @@
         <image name="home" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="wtW-nf-V3M"/>
+        <segue reference="LIY-2k-MYj"/>
     </inferredMetricsTieBreakers>
 </document>

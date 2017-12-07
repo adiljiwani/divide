@@ -23,16 +23,25 @@ class CameraVC: UIViewController {
     }
     
     func performImageRecognition(_ image: UIImage) {
-        if let tesseract = G8Tesseract(language: "eng+fra") {
+        var date = Date()
+        if let tesseract = G8Tesseract(language: "eng") {
             tesseract.engineMode = .tesseractCubeCombined
             tesseract.pageSegmentationMode = .auto
             tesseract.image = image.g8_blackAndWhite()
             tesseract.recognize()
             textView.text = tesseract.recognizedText
-            if tesseract.recognizedText.contains("$"){
-                print("hello")
+            var fullText = tesseract.recognizedText.lowercased()
+            print(fullText.contains("total"))
+            let types: NSTextCheckingResult.CheckingType = [.date ]
+            let detector = try? NSDataDetector(types: types.rawValue)
+            let result = detector?.firstMatch(in: fullText, range: NSMakeRange(0,fullText.utf16.count))
+            if result?.resultType == .date {
+                date = (result?.date)!
             }
         }
+        guard let addBillVC = storyboard?.instantiateViewController(withIdentifier: "AddBillVC") as? AddBillVC else {return}
+        addBillVC.initData(date: date, amount: 0.0)
+        presentDetail(addBillVC)
         activityIndicator.stopAnimating()
         activityIndicator.isHidden = true
         takePhotoBtn.setTitle("Take Photo / Upload Image", for: .normal)

@@ -24,6 +24,12 @@ class AddBillVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var payer: String = ""
     var payerArray = [String]()
     var chosenGroup: String = ""
+    var date = Date()
+    
+    func initData (date: Date, amount: Float) {
+        self.date = date
+        print(String(describing:amount))
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +41,7 @@ class AddBillVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         groupsTableView.layer.cornerRadius = 20
         groupsTableView.layer.masksToBounds = true
         groupsTableView.layer.borderColor = #colorLiteral(red: 0.9176470588, green: 0.9568627451, blue: 0.9647058824, alpha: 1)
-        groupsTableView.layer.borderWidth = 1.0
+        groupsTableView.layer.borderWidth = 3.0
         
         usersTableView.delegate = self
         usersTableView.dataSource = self
@@ -45,7 +51,7 @@ class AddBillVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         usersTableView.layer.cornerRadius = 20
         usersTableView.layer.masksToBounds = true
         usersTableView.layer.borderColor = #colorLiteral(red: 0.9176470588, green: 0.9568627451, blue: 0.9647058824, alpha: 1)
-        usersTableView.layer.borderWidth = 1.0
+        usersTableView.layer.borderWidth = 3.0
     }
     
     @objc func payerFieldTapped () {
@@ -83,13 +89,13 @@ class AddBillVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     @IBAction func donePressed(_ sender: Any) {
-        let date = Date()
+        print(date)
         let formatter = DateFormatter()
         formatter.dateFormat = "MMM dd, yyyy"
         let result = formatter.string(from: date)
         let payeesArray = payerArray.filter({ $0 != payer })
         if billDescriptionField.text != "" && amountField.text != "" && groupField.text != "" && paidByField.text != "" {
-            DataService.instance.createTransaction(groupTitle: groupField.text!, description: billDescriptionField.text!, payees: payeesArray, payer: paidByField.text!, date: result, amount: Float(amountField.text!)!, settled: false, handler: { (transactionCreated) in
+            DataService.instance.createTransaction(groupTitle: groupField.text!, description: billDescriptionField.text!, payees: payeesArray, payer: paidByField.text!, date: result, amount: Float(amountField.text!)!, settled: payeesArray, handler: { (transactionCreated) in
                 if transactionCreated {
                     self.dismiss(animated: true, completion: nil)
                 } else {
