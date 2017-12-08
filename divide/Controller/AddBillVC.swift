@@ -51,7 +51,7 @@ class AddBillVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         usersTableView.layer.cornerRadius = 20
         usersTableView.layer.masksToBounds = true
         usersTableView.layer.borderColor = #colorLiteral(red: 0.9176470588, green: 0.9568627451, blue: 0.9647058824, alpha: 1)
-        usersTableView.layer.borderWidth = 3.0
+        usersTableView.layer.borderWidth = 1.0
     }
     
     @objc func payerFieldTapped () {
