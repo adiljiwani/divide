@@ -32,8 +32,8 @@ class GroupTransactionsVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         groupNameLbl.text = group?.groupTitle
-        DataService.instance.getEmails(group: group!) { (returnedEmails) in
-            self.membersTextView.text = returnedEmails.joined(separator: ", ")
+        DataService.instance.getNames(group: group!) { (returnedNames) in
+            self.membersTextView.text = returnedNames.joined(separator: ", ")
         }
         
         DataService.instance.getAllTransactions(forGroup: group!) { (returnedTransactions) in

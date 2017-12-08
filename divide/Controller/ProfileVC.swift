@@ -15,7 +15,10 @@ class ProfileVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         if Auth.auth().currentUser != nil {
-            self.userEmailLbl.text = Auth.auth().currentUser?.email
+            DataService.instance.getName(handler: { (name) in
+                self.userEmailLbl.text = name
+            })
+            
         }
     }
 

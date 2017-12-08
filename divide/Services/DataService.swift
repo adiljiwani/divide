@@ -53,6 +53,32 @@ class DataService {
         }
     }
     
+    func getName (handler: @escaping (_ name: String) -> ()) {
+        REF_USERS.observe(.value) { (userSnapshot) in
+            guard let userSnapshot = userSnapshot.children.allObjects as? [DataSnapshot] else {return}
+            for user in userSnapshot {
+                let userName = user.childSnapshot(forPath: "name").value as! String
+                let userEmail = user.childSnapshot(forPath: "email").value as! String
+                if userEmail == Auth.auth().currentUser?.email {
+                    handler(userName)
+                }
+            }
+        }
+    }
+    
+    func getName (forEmail email: String, handler: @escaping (_ name: String) -> ()) {
+        REF_USERS.observe(.value) { (userSnapshot) in
+            guard let userSnapshot = userSnapshot.children.allObjects as? [DataSnapshot] else {return}
+            for user in userSnapshot {
+                let userName = user.childSnapshot(forPath: "name").value as! String
+                let userEmail = user.childSnapshot(forPath: "email").value as! String
+                if userEmail == email {
+                    handler(userName)
+                }
+            }
+        }
+    }
+    
     func getEmails (group: Group, handler: @escaping (_ emailArray: [String]) -> ()) {
         var emailArray = [String]()
         REF_USERS.observeSingleEvent(of: .value) { (userSnapshot) in
@@ -64,6 +90,20 @@ class DataService {
                 }
             }
             handler(emailArray)
+        }
+    }
+    
+    func getNames (group: Group, handler: @escaping (_ emailArray: [String]) -> ()) {
+        var nameArray = [String]()
+        REF_USERS.observeSingleEvent(of: .value) { (userSnapshot) in
+            guard let userSnapshot = userSnapshot.children.allObjects as? [DataSnapshot] else {return}
+            for user in userSnapshot {
+                if group.members.contains(user.key) {
+                    let name = user.childSnapshot(forPath: "name").value as! String
+                    nameArray.append(name)
+                }
+            }
+            handler(nameArray)
         }
     }
     
