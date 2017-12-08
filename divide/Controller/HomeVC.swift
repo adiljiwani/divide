@@ -61,7 +61,6 @@ extension HomeVC: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "transactionCell") as? TransactionCell else {return UITableViewCell()}
-        cell.selectedBackgroundView?.backgroundColor = #colorLiteral(red: 0.8078431373, green: 0.1137254902, blue: 0.007843137255, alpha: 1)
         let transaction = transactionsArray[indexPath.row]
         let owing = transaction.payees.contains((Auth.auth().currentUser?.email)!)
         let date = transaction.date
@@ -79,8 +78,6 @@ extension HomeVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let transactionVC = storyboard?.instantiateViewController(withIdentifier: "TransactionVC") as? TransactionVC else {return}
         transactionVC.initData(forTransaction: transactionsArray[indexPath.row])
-        guard let cell = tableView.cellForRow(at: indexPath) else {return}
-        cell.selectedBackgroundView?.backgroundColor = #colorLiteral(red: 0.8078431373, green: 0.1137254902, blue: 0.007843137255, alpha: 1)
         presentDetail(transactionVC)
     }
 }

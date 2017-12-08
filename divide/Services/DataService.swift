@@ -73,7 +73,8 @@ class DataService {
             guard let groupSnapshot = groupSnapshot.children.allObjects as? [DataSnapshot] else {return}
             for group in groupSnapshot {
                 let groupName = group.childSnapshot(forPath: "title").value as! String
-                if groupName.contains(query) {
+                let lowercasedName = groupName.lowercased()
+                if lowercasedName.hasPrefix(query.lowercased()) {
                     groupNames.append(groupName)
                 }
             }

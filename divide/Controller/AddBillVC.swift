@@ -89,7 +89,6 @@ class AddBillVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     @IBAction func donePressed(_ sender: Any) {
-        print(date)
         let formatter = DateFormatter()
         formatter.dateFormat = "MMM dd, yyyy"
         let result = formatter.string(from: date)
