@@ -69,9 +69,15 @@ extension HomeVC: UITableViewDataSource, UITableViewDelegate {
         if owing {
             amount = transaction.amount / Float(transaction.payees.count + 1)
         } else {
-            amount = Float(transaction.payees.count) * (transaction.amount / Float(transaction.payees.count + 1))
+            amount = Float(transaction.settled.count) * (transaction.amount / Float(transaction.payees.count + 1))
         }
         cell.configureCell(description: transaction.description, owing: owing, date: date, amount: Float(amount), groupName: groupName)
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let transactionVC = storyboard?.instantiateViewController(withIdentifier: "TransactionVC") as? TransactionVC else {return}
+        transactionVC.initData(forTransaction: transactionsArray[indexPath.row])
+        presentDetail(transactionVC)
     }
 }

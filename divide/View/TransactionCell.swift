@@ -28,10 +28,10 @@ class TransactionCell: UITableViewCell {
         self.groupNameLbl.text = groupName
         if owing {
             self.owingLbl.text = "YOU OWE"
-            self.owingView.backgroundColor = #colorLiteral(red: 1, green: 0.1490196078, blue: 0, alpha: 1)
+            self.owingView.backgroundColor = #colorLiteral(red: 0.8078431373, green: 0.1137254902, blue: 0.007843137255, alpha: 1)
         } else {
             self.owingLbl.text = "YOU ARE OWED"
-            self.owingView.backgroundColor = #colorLiteral(red: 0.2980392157, green: 0.7411764706, blue: 0.3294117647, alpha: 1)
+            self.owingView.backgroundColor = #colorLiteral(red: 0.2784313725, green: 0.6941176471, blue: 0.3137254902, alpha: 1)
         }
     }
 

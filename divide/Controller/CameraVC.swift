@@ -8,77 +8,113 @@
 
 import UIKit
 import AVFoundation
+import TesseractOCR
 
 class CameraVC: UIViewController {
-
-    var captureSession: AVCaptureSession!
-    var cameraOutput: AVCapturePhotoOutput!
-    var previewLayer: AVCaptureVideoPreviewLayer!
-
-    var photoData: Data?
     
-        @IBOutlet weak var captureImageView: UIImageView!
-    @IBOutlet weak var cameraView: UIView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var takePhotoBtn: RoundedButton!
+    
+    @IBOutlet weak var textView: UITextView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        activityIndicator.isHidden = true
+        takePhotoBtn.setTitle("Take Photo / Upload Image", for: .normal)
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        previewLayer.frame = cameraView.bounds
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        captureSession = AVCaptureSession()
-        captureSession.sessionPreset = AVCaptureSession.Preset.hd1920x1080
-        
-        let backCamera = AVCaptureDevice.default(for: AVMediaType.video)
-        
-        do {
-            let input = try AVCaptureDeviceInput(device: backCamera!)
-            if captureSession.canAddInput(input) {
-                captureSession.addInput(input)
+    func performImageRecognition(_ image: UIImage) {
+        var date = Date()
+        if let tesseract = G8Tesseract(language: "eng") {
+            tesseract.engineMode = .tesseractCubeCombined
+            tesseract.pageSegmentationMode = .auto
+            tesseract.image = image.g8_blackAndWhite()
+            tesseract.recognize()
+            textView.text = tesseract.recognizedText
+            var fullText = tesseract.recognizedText.lowercased()
+            print(fullText.contains("total"))
+            let types: NSTextCheckingResult.CheckingType = [.date ]
+            let detector = try? NSDataDetector(types: types.rawValue)
+            let result = detector?.firstMatch(in: fullText, range: NSMakeRange(0,fullText.utf16.count))
+            if result?.resultType == .date {
+                date = (result?.date)!
+                print(date)
             }
-            
-            cameraOutput = AVCapturePhotoOutput()
-            if captureSession.canAddOutput(cameraOutput){
-                captureSession.addOutput(cameraOutput!)
-                
-                previewLayer = AVCaptureVideoPreviewLayer(session: captureSession!)
-                previewLayer.videoGravity = AVLayerVideoGravity.resizeAspect
-                previewLayer.connection?.videoOrientation = AVCaptureVideoOrientation.portrait
-                
-                cameraView.layer.addSublayer(previewLayer!)
-                captureSession.startRunning()
-            }
-        } catch {
-            debugPrint(error)
         }
+        guard let addBillVC = storyboard?.instantiateViewController(withIdentifier: "AddBillVC") as? AddBillVC else {return}
+        addBillVC.initData(date: date, amount: 0.0)
+        presentDetail(addBillVC)
+        activityIndicator.stopAnimating()
+        activityIndicator.isHidden = true
+        takePhotoBtn.setTitle("Take Photo / Upload Image", for: .normal)
     }
     
-    @IBAction func capturePressed(_ sender: Any) {
-        let settings = AVCapturePhotoSettings()
-        settings.previewPhotoFormat = settings.embeddedThumbnailPhotoFormat
-        
-        cameraOutput.capturePhoto(with: settings, delegate: self)
+    @IBAction func takePhoto(_ sender: Any) {
+        presentImagePicker()
     }
-    
-    @IBAction func backPressed(_ sender: Any) {
-        
-    }
-    
 }
 
-extension CameraVC: AVCapturePhotoCaptureDelegate {
-    func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
-        if let error = error {
-            debugPrint(error)
-        } else {
-            photoData = photo.fileDataRepresentation()
-            
-            let image = UIImage(data: photoData!)
-            self.captureImageView.image = image
+extension CameraVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func presentImagePicker() {
+        let imagePickerActionSheet = UIAlertController(title: "Take Photo/Upload Image",
+                                                       message: nil, preferredStyle: .actionSheet)
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            let cameraButton = UIAlertAction(title: "Take Photo",
+                                             style: .default) { (alert) -> Void in
+                                                let imagePicker = UIImagePickerController()
+                                                imagePicker.delegate = self
+                                                imagePicker.sourceType = .camera
+                                                self.present(imagePicker, animated: true)
+            }
+            imagePickerActionSheet.addAction(cameraButton)
+        }
+        // 1
+        let libraryButton = UIAlertAction(title: "Choose from Camera Roll",
+                                          style: .default) { (alert) -> Void in
+                                            let imagePicker = UIImagePickerController()
+                                            imagePicker.delegate = self
+                                            imagePicker.sourceType = .photoLibrary
+                                            self.present(imagePicker, animated: true)
+        }
+        imagePickerActionSheet.addAction(libraryButton)
+        // 2
+        let cancelButton = UIAlertAction(title: "Cancel", style: .cancel)
+        imagePickerActionSheet.addAction(cancelButton)
+        // 3
+        present(imagePickerActionSheet, animated: true)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController,
+                               didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let selectedPhoto = info[UIImagePickerControllerOriginalImage] as? UIImage,
+            let scaledImage = selectedPhoto.scaleImage(640) {
+            activityIndicator.startAnimating()
+            activityIndicator.isHidden = false
+            takePhotoBtn.setTitle("", for: .normal)
+            dismiss(animated: true, completion: {
+                self.performImageRecognition(scaledImage)
+            })
         }
     }
 }
+
+extension UIImage {
+    func scaleImage(_ maxDimension: CGFloat) -> UIImage? {
+        var scaledSize = CGSize(width: maxDimension, height: maxDimension)
+        
+        if size.width > size.height {
+            let scaleFactor = size.height / size.width
+            scaledSize.height = scaledSize.width * scaleFactor
+        } else {
+            let scaleFactor = size.width / size.height
+            scaledSize.width = scaledSize.height * scaleFactor
+        }
+        
+        UIGraphicsBeginImageContext(scaledSize)
+        draw(in: CGRect(origin: .zero, size: scaledSize))
+        let scaledImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return scaledImage
+    }
+}
+

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CC4CE6251FD910B700DFFEFC /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4CE6241FD910B700DFFEFC /* GradientView.swift */; };
+		CC4CE6271FD9948F00DFFEFC /* ShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4CE6261FD9948F00DFFEFC /* ShadowView.swift */; };
+		CC4CE6291FD9951900DFFEFC /* RoundedShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4CE6281FD9951900DFFEFC /* RoundedShadowView.swift */; };
 		CC778FCA1FCAAB6300149DA0 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC778FC91FCAAB6300149DA0 /* ProfileVC.swift */; };
 		CC778FCC1FCB4EFD00149DA0 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC778FCB1FCB4EFD00149DA0 /* HomeVC.swift */; };
 		CC778FCE1FCB4F0C00149DA0 /* GroupsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC778FCD1FCB4F0C00149DA0 /* GroupsVC.swift */; };
@@ -37,11 +40,20 @@
 		CCAB46591FD6119F00BC3DE9 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCAB46581FD6119F00BC3DE9 /* Transaction.swift */; };
 		CCAB465B1FD6F48A00BC3DE9 /* GroupTransactionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCAB465A1FD6F48A00BC3DE9 /* GroupTransactionCell.swift */; };
 		CCCB0DBF1FD748B8006B3CDE /* UIViewControllerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCB0DBE1FD748B8006B3CDE /* UIViewControllerExt.swift */; };
+		CCCB0DC11FD773F4006B3CDE /* TransactionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCB0DC01FD773F4006B3CDE /* TransactionVC.swift */; };
+		CCCB0DC31FD7A7B3006B3CDE /* BalanceUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCB0DC21FD7A7B3006B3CDE /* BalanceUserCell.swift */; };
+		CCCB0DCF1FD86D19006B3CDE /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = CCCB0DCE1FD86D19006B3CDE /* tessdata */; };
+		CCCB0DD21FD86D87006B3CDE /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = CCCB0DD01FD86D7A006B3CDE /* libstdc++.tbd */; };
+		CCCB0DD41FD86D91006B3CDE /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCCB0DD31FD86D91006B3CDE /* CoreImage.framework */; };
+		CCCB0DD51FD86D9B006B3CDE /* TesseractOCR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCCB0DD61FD86D9B006B3CDE /* TesseractOCR.framework */; };
 		EE9D2C01E0A6A863BB95859C /* Pods_divide.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD7E76F6F659D586E219EA04 /* Pods_divide.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		74EB103CD9B5B534BD898AC5 /* Pods-divide.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-divide.debug.xcconfig"; path = "Pods/Target Support Files/Pods-divide/Pods-divide.debug.xcconfig"; sourceTree = "<group>"; };
+		CC4CE6241FD910B700DFFEFC /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		CC4CE6261FD9948F00DFFEFC /* ShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowView.swift; sourceTree = "<group>"; };
+		CC4CE6281FD9951900DFFEFC /* RoundedShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedShadowView.swift; sourceTree = "<group>"; };
 		CC778FC91FCAAB6300149DA0 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		CC778FCB1FCB4EFD00149DA0 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		CC778FCD1FCB4F0C00149DA0 /* GroupsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsVC.swift; sourceTree = "<group>"; };
@@ -74,6 +86,12 @@
 		CCAB46581FD6119F00BC3DE9 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		CCAB465A1FD6F48A00BC3DE9 /* GroupTransactionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupTransactionCell.swift; sourceTree = "<group>"; };
 		CCCB0DBE1FD748B8006B3CDE /* UIViewControllerExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExt.swift; sourceTree = "<group>"; };
+		CCCB0DC01FD773F4006B3CDE /* TransactionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionVC.swift; sourceTree = "<group>"; };
+		CCCB0DC21FD7A7B3006B3CDE /* BalanceUserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceUserCell.swift; sourceTree = "<group>"; };
+		CCCB0DCE1FD86D19006B3CDE /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tessdata; sourceTree = "<group>"; };
+		CCCB0DD01FD86D7A006B3CDE /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
+		CCCB0DD31FD86D91006B3CDE /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
+		CCCB0DD61FD86D9B006B3CDE /* TesseractOCR.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TesseractOCR.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F41D830AC3E35876AD8D5D7A /* Pods-divide.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-divide.release.xcconfig"; path = "Pods/Target Support Files/Pods-divide/Pods-divide.release.xcconfig"; sourceTree = "<group>"; };
 		FD7E76F6F659D586E219EA04 /* Pods_divide.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_divide.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -83,6 +101,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CCCB0DD51FD86D9B006B3CDE /* TesseractOCR.framework in Frameworks */,
+				CCCB0DD41FD86D91006B3CDE /* CoreImage.framework in Frameworks */,
+				CCCB0DD21FD86D87006B3CDE /* libstdc++.tbd in Frameworks */,
 				EE9D2C01E0A6A863BB95859C /* Pods_divide.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -93,6 +114,9 @@
 		01E200814F19E8C23460076B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CCCB0DD61FD86D9B006B3CDE /* TesseractOCR.framework */,
+				CCCB0DD31FD86D91006B3CDE /* CoreImage.framework */,
+				CCCB0DD01FD86D7A006B3CDE /* libstdc++.tbd */,
 				FD7E76F6F659D586E219EA04 /* Pods_divide.framework */,
 			);
 			name = Frameworks;
@@ -137,6 +161,7 @@
 		CC7EC1941FC9E140002CCDE5 /* divide */ = {
 			isa = PBXGroup;
 			children = (
+				CCCB0DCD1FD86CFF006B3CDE /* Supporting Files */,
 				CC778FCF1FCC5DAE00149DA0 /* Extensions */,
 				CC7EC1B41FC9F154002CCDE5 /* View */,
 				CC7EC1AD1FC9EC35002CCDE5 /* Controller */,
@@ -182,6 +207,7 @@
 				CC7790061FD4ECA900149DA0 /* AddBillVC.swift */,
 				CC778FD31FCC7A2300149DA0 /* CreateGroupVC.swift */,
 				CC778FFE1FCDE70700149DA0 /* CameraVC.swift */,
+				CCCB0DC01FD773F4006B3CDE /* TransactionVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -197,10 +223,22 @@
 				CC7790081FD50F9C00149DA0 /* TransactionCell.swift */,
 				CC77900A1FD5179200149DA0 /* GroupCell.swift */,
 				CCAB46541FD5C61500BC3DE9 /* SearchGroupCell.swift */,
+				CCCB0DC21FD7A7B3006B3CDE /* BalanceUserCell.swift */,
 				CCAB465A1FD6F48A00BC3DE9 /* GroupTransactionCell.swift */,
 				CCAB46561FD5E05300BC3DE9 /* SearchUserCell.swift */,
+				CC4CE6261FD9948F00DFFEFC /* ShadowView.swift */,
+				CC4CE6281FD9951900DFFEFC /* RoundedShadowView.swift */,
+				CC4CE6241FD910B700DFFEFC /* GradientView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		CCCB0DCD1FD86CFF006B3CDE /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				CCCB0DCE1FD86D19006B3CDE /* tessdata */,
+			);
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -267,6 +305,7 @@
 			files = (
 				CC7EC1A01FC9E140002CCDE5 /* LaunchScreen.storyboard in Resources */,
 				CC7EC1A81FC9E18C002CCDE5 /* GoogleService-Info.plist in Resources */,
+				CCCB0DCF1FD86D19006B3CDE /* tessdata in Resources */,
 				CC7EC19D1FC9E140002CCDE5 /* Assets.xcassets in Resources */,
 				CC7EC19B1FC9E140002CCDE5 /* Main.storyboard in Resources */,
 			);
@@ -302,6 +341,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-divide/Pods-divide-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/TesseractOCRiOS/TesseractOCR.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
@@ -309,6 +349,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TesseractOCR.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -340,16 +381,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				CC778FD11FCC5DBC00149DA0 /* UIViewExt.swift in Sources */,
+				CCCB0DC31FD7A7B3006B3CDE /* BalanceUserCell.swift in Sources */,
 				CC7EC1B11FC9ECFE002CCDE5 /* AuthVC.swift in Sources */,
 				CCAB46591FD6119F00BC3DE9 /* Transaction.swift in Sources */,
 				CC77900B1FD5179200149DA0 /* GroupCell.swift in Sources */,
 				CC77900D1FD51A1F00149DA0 /* Group.swift in Sources */,
 				CC778FCC1FCB4EFD00149DA0 /* HomeVC.swift in Sources */,
+				CCCB0DC11FD773F4006B3CDE /* TransactionVC.swift in Sources */,
 				CC7790071FD4ECA900149DA0 /* AddBillVC.swift in Sources */,
 				CC778FD41FCC7A2300149DA0 /* CreateGroupVC.swift in Sources */,
 				CC7790031FCF7BC900149DA0 /* AddUserCell.swift in Sources */,
 				CC7EC1AC1FC9E857002CCDE5 /* DataService.swift in Sources */,
 				CCAB46551FD5C61500BC3DE9 /* SearchGroupCell.swift in Sources */,
+				CC4CE6291FD9951900DFFEFC /* RoundedShadowView.swift in Sources */,
 				CC7EC1B81FC9F241002CCDE5 /* RoundedOutlineButton.swift in Sources */,
 				CC778FCA1FCAAB6300149DA0 /* ProfileVC.swift in Sources */,
 				CC893A281FCA16370094E191 /* AuthService.swift in Sources */,
@@ -361,8 +405,10 @@
 				CC7790091FD50F9C00149DA0 /* TransactionCell.swift in Sources */,
 				CCAB46571FD5E05300BC3DE9 /* SearchUserCell.swift in Sources */,
 				CC7790111FD5B7E900149DA0 /* GroupTransactionsVC.swift in Sources */,
+				CC4CE6271FD9948F00DFFEFC /* ShadowView.swift in Sources */,
 				CCCB0DBF1FD748B8006B3CDE /* UIViewControllerExt.swift in Sources */,
 				CC7EC1B61FC9F160002CCDE5 /* RoundedButton.swift in Sources */,
+				CC4CE6251FD910B700DFFEFC /* GradientView.swift in Sources */,
 				CC778FCE1FCB4F0C00149DA0 /* GroupsVC.swift in Sources */,
 				CC7EC1961FC9E140002CCDE5 /* AppDelegate.swift in Sources */,
 			);
@@ -504,6 +550,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = R274C354T3;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = divide/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = AJ.divide;
@@ -520,6 +567,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = R274C354T3;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = divide/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = AJ.divide;
