@@ -165,9 +165,9 @@ class DataService {
         }
     }
     
-    func createGroup (withTitle title: String, description: String, ids: [String], handler: @escaping (_ groupCreated: Bool) -> ()) {
+    func createGroup (withTitle title: String, ids: [String], handler: @escaping (_ groupCreated: Bool) -> ()) {
         let groupRef = REF_GROUPS.childByAutoId()
-        groupRef.updateChildValues(["title": title, "description": description, "members": ids])
+        groupRef.updateChildValues(["title": title, "members": ids])
         for userId in ids {
             REF_USERS.child(userId).child("groups").child(groupRef.key).updateChildValues(["title": title, "members": ids])
         }

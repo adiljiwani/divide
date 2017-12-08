@@ -13,8 +13,6 @@ class CreateGroupVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
 
     @IBOutlet weak var groupNameField: InsetTextField!
     
-    @IBOutlet weak var descriptionField: InsetTextField!
-    
     @IBOutlet weak var membersField: InsetTextField!
     
     @IBOutlet weak var tableView: UITableView!
@@ -60,11 +58,11 @@ class CreateGroupVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     }
     
     @IBAction func donePressed(_ sender: Any) {
-        if groupNameField.text != "" && descriptionField.text != "" {
+        if groupNameField.text != "" && membersField.text != "" {
             DataService.instance.getIds(forEmails: chosenUsers, handler: { (idsArray) in
                 var userIds = idsArray
                 userIds.append((Auth.auth().currentUser?.uid)!)
-                DataService.instance.createGroup(withTitle: self.groupNameField.text!, description: self.descriptionField.text!, ids: userIds, handler: { (groupCreated) in
+                DataService.instance.createGroup(withTitle: self.groupNameField.text!, ids: userIds, handler: { (groupCreated) in
                     if groupCreated {
                         self.dismiss(animated: true, completion: nil)
                     } else {
