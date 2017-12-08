@@ -69,7 +69,7 @@ extension HomeVC: UITableViewDataSource, UITableViewDelegate {
         if owing {
             amount = transaction.amount / Float(transaction.payees.count + 1)
         } else {
-            amount = Float(transaction.settled.count) * (transaction.amount / Float(transaction.payees.count + 1))
+            amount = Float(transaction.payees.count - (transaction.settled.count - 1)) * (transaction.amount / Float(transaction.payees.count + 1))
         }
         cell.configureCell(description: transaction.description, owing: owing, date: date, amount: Float(amount), groupName: groupName)
         return cell
