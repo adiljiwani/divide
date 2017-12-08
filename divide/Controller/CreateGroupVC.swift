@@ -48,6 +48,9 @@ class CreateGroupVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         } else {
             DataService.instance.getEmail(forSearchQuery: membersField.text!, handler: { (returnedEmail) in
                 self.matchEmail = returnedEmail
+                DataService.instance.addFriend(byEmail: self.matchEmail, handler: { (added) in
+                    
+                })
                 self.chosenUsers.append(self.matchEmail)
                 self.doneBtn.isHidden = false
                 self.tableView.reloadData()

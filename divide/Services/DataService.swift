@@ -53,6 +53,25 @@ class DataService {
         }
     }
     
+    func addFriend (byEmail email: String, handler: @escaping (_ added: Bool) -> ()) {
+        var friendsArray = [String]()
+        REF_USERS.observeSingleEvent(of: .value) { (userSnapshot) in
+            guard let userSnapshot = userSnapshot.children.allObjects as? [DataSnapshot] else {return}
+            for user in userSnapshot {
+                if user.key == Auth.auth().currentUser?.uid {
+                    if (user.hasChild("friends")) {
+                        friendsArray = user.childSnapshot(forPath: "friends").value as! [String]
+                    }
+                    if (!friendsArray.contains(email)) {
+                    friendsArray.append(email)
+                    self.REF_USERS.child((Auth.auth().currentUser?.uid)!).updateChildValues(["friends": friendsArray])
+                    }
+                }
+            }
+            handler(true)
+        }
+    }
+    
     func getName (handler: @escaping (_ name: String) -> ()) {
         REF_USERS.observe(.value) { (userSnapshot) in
             guard let userSnapshot = userSnapshot.children.allObjects as? [DataSnapshot] else {return}
