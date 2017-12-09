@@ -52,6 +52,13 @@ class AddBillVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         usersTableView.layer.masksToBounds = true
         usersTableView.layer.borderColor = #colorLiteral(red: 0.9176470588, green: 0.9568627451, blue: 0.9647058824, alpha: 1)
         usersTableView.layer.borderWidth = 1.0
+        
+        amountField.delegate = self
+        amountField.addTarget(self, action: #selector(amountFieldChanged), for: .editingChanged)
+    }
+    
+    @objc func amountFieldChanged () {
+        amountField.text = amountField.text?.currencyInputFormatting()
     }
     
     @objc func payerFieldTapped () {
@@ -94,7 +101,7 @@ class AddBillVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         let result = formatter.string(from: date)
         let payeesArray = payerArray.filter({ $0 != payer })
         if billDescriptionField.text != "" && amountField.text != "" && groupField.text != "" && paidByField.text != "" {
-            DataService.instance.createTransaction(groupTitle: groupField.text!, description: billDescriptionField.text!, payees: payeesArray, payer: paidByField.text!, date: result, amount: Float(amountField.text!)!, settled: payeesArray, handler: { (transactionCreated) in
+            DataService.instance.createTransaction(groupTitle: groupField.text!, description: billDescriptionField.text!, payees: payeesArray, payer: paidByField.text!, date: result, amount: Float(amountField.text!.replacingOccurrences(of: "$", with: ""))!, settled: payeesArray, handler: { (transactionCreated) in
                 if transactionCreated {
                     self.dismiss(animated: true, completion: nil)
                 } else {

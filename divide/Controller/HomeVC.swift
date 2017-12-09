@@ -35,6 +35,7 @@ class HomeVC: UIViewController {
                 self.transactionsArray = returnedTransactionArray
                 self.tableView.reloadData()
                 self.tableViewHeightConstraint.constant = CGFloat(self.transactionsArray.count) * self.tableView.rowHeight
+                self.view.layoutIfNeeded()
             }
         }
         if Auth.auth().currentUser != nil {
