@@ -46,6 +46,17 @@ class GroupTransactionsVC: UIViewController {
     @IBAction func backPressed(_ sender: Any) {
         dismissDetail()
     }
+    
+    @IBAction func addPressed(_ sender: Any) {
+    }
+    
+    @IBAction func removePressed(_ sender: Any) {
+    }
+    
+    
+    @IBAction func deletePressed(_ sender: Any) {
+    }
+    
 }
 
 extension GroupTransactionsVC: UITableViewDelegate, UITableViewDataSource {
