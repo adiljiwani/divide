@@ -127,7 +127,7 @@ class AddBillVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             cell = groupCell
         } else if tableView == usersTableView {
             guard let userCell = tableView.dequeueReusableCell(withIdentifier: "searchUserCell") as? SearchUserCell else {return UITableViewCell()}
-            userCell.configureCell(email: payerArray[indexPath.row])
+            userCell.configureCell(email: payerArray[indexPath.row], sender: "transaction")
             cell = userCell
         }
         return cell

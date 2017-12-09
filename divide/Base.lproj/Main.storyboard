@@ -457,28 +457,28 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="30" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PNu-D1-fBr">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="40" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PNu-D1-fBr">
                                 <rect key="frame" x="15" y="190" width="384" height="100"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="qze-Dd-0vx"/>
                                 </constraints>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="addUserCell" rowHeight="30" id="wyd-4M-eLt" customClass="AddUserCell" customModule="divide" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="384" height="30"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="addUserCell" rowHeight="40" id="wyd-4M-eLt" customClass="AddUserCell" customModule="divide" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="384" height="40"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wyd-4M-eLt" id="HaG-gt-MIf">
-                                            <rect key="frame" x="0.0" y="0.0" width="384" height="30"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="384" height="40"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="user@divide.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="07F-7w-gnW">
-                                                    <rect key="frame" x="15" y="5.3333333333333339" width="110" height="19.333333333333329"/>
+                                                    <rect key="frame" x="15" y="10.333333333333334" width="110" height="19.333333333333329"/>
                                                     <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="14"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W0Z-4o-Qnl" customClass="RoundedOutlineButton" customModule="divide" customModuleProvider="target">
-                                                    <rect key="frame" x="354" y="5" width="20" height="20"/>
+                                                    <rect key="frame" x="354" y="10" width="20" height="20"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="20" id="VhI-fh-Pym"/>
@@ -513,6 +513,58 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="40" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="il8-Ci-GrD">
+                                <rect key="frame" x="15" y="190" width="384" height="175"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="175" id="FrT-r3-vLT"/>
+                                </constraints>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="searchUserCell" rowHeight="40" id="QbN-xs-xcf" customClass="SearchUserCell" customModule="divide" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="384" height="40"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="QbN-xs-xcf" id="Y69-E2-qlX">
+                                            <rect key="frame" x="0.0" y="0.0" width="384" height="39.666666666666664"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="user@divide.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dqw-dj-6Ra">
+                                                    <rect key="frame" x="15" y="9" width="319" height="20"/>
+                                                    <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="14"/>
+                                                    <color key="textColor" red="0.043137254899999998" green="0.1960784314" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qIV-xb-5u1" customClass="RoundedButton" customModule="divide" customModuleProvider="target">
+                                                    <rect key="frame" x="347" y="8" width="22" height="22"/>
+                                                    <color key="backgroundColor" red="0.043137254899999998" green="0.1960784314" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="22" id="6Ur-Cr-fIa"/>
+                                                        <constraint firstAttribute="height" constant="22" id="qTB-VK-TKa"/>
+                                                    </constraints>
+                                                    <state key="normal" image="add">
+                                                        <color key="titleColor" red="0.043137254899999998" green="0.1960784314" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </state>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                            <real key="value" value="11"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="dqw-dj-6Ra" firstAttribute="leading" secondItem="Y69-E2-qlX" secondAttribute="leading" constant="15" id="F6Y-qe-bNk"/>
+                                                <constraint firstItem="dqw-dj-6Ra" firstAttribute="centerY" secondItem="Y69-E2-qlX" secondAttribute="centerY" id="Fzm-xy-AhI"/>
+                                                <constraint firstAttribute="trailing" secondItem="qIV-xb-5u1" secondAttribute="trailing" constant="15" id="M4j-rb-50Z"/>
+                                                <constraint firstItem="qIV-xb-5u1" firstAttribute="centerY" secondItem="Y69-E2-qlX" secondAttribute="centerY" id="aiR-gh-b3d"/>
+                                                <constraint firstAttribute="trailing" secondItem="dqw-dj-6Ra" secondAttribute="trailing" constant="50" id="vbn-1j-xpb"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.91764705879999997" green="0.95686274510000002" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <outlet property="friendEmailLbl" destination="dqw-dj-6Ra" id="iJC-IA-Clv"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -521,8 +573,11 @@
                             <constraint firstItem="VNF-Vq-fQq" firstAttribute="top" secondItem="RQN-Xz-JZm" secondAttribute="bottom" constant="15" id="GCF-ND-0L4"/>
                             <constraint firstItem="nPH-ql-tH7" firstAttribute="trailing" secondItem="VNF-Vq-fQq" secondAttribute="trailing" constant="15" id="GqS-Sn-Hm6"/>
                             <constraint firstItem="VNF-Vq-fQq" firstAttribute="leading" secondItem="nPH-ql-tH7" secondAttribute="leading" constant="15" id="Mi9-jV-bzK"/>
+                            <constraint firstItem="il8-Ci-GrD" firstAttribute="leading" secondItem="nPH-ql-tH7" secondAttribute="leading" constant="15" id="PCg-36-hsL"/>
+                            <constraint firstItem="nPH-ql-tH7" firstAttribute="trailing" secondItem="il8-Ci-GrD" secondAttribute="trailing" constant="15" id="XVW-9b-bsy"/>
                             <constraint firstItem="PNu-D1-fBr" firstAttribute="trailing" secondItem="nPH-ql-tH7" secondAttribute="trailing" constant="-15" id="fd7-CK-I25"/>
                             <constraint firstItem="PNu-D1-fBr" firstAttribute="top" secondItem="VNF-Vq-fQq" secondAttribute="bottom" constant="15" id="o2e-gC-SIQ"/>
+                            <constraint firstItem="il8-Ci-GrD" firstAttribute="top" secondItem="VNF-Vq-fQq" secondAttribute="bottom" constant="15" id="qE4-sa-Eba"/>
                             <constraint firstItem="RQN-Xz-JZm" firstAttribute="top" secondItem="RgW-gh-vzQ" secondAttribute="top" id="x9E-9j-AcK"/>
                             <constraint firstItem="RQN-Xz-JZm" firstAttribute="trailing" secondItem="nPH-ql-tH7" secondAttribute="trailing" id="z4Q-kJ-LQe"/>
                         </constraints>
@@ -530,16 +585,18 @@
                     </view>
                     <connections>
                         <outlet property="addBtn" destination="zkw-bd-QAy" id="UTy-Ie-MHx"/>
+                        <outlet property="chosenUsersTableView" destination="PNu-D1-fBr" id="27k-Re-qgG"/>
                         <outlet property="doneBtn" destination="7zq-MT-YeD" id="uwB-b1-Wy0"/>
                         <outlet property="groupNameField" destination="z1b-RO-tjo" id="x9U-io-Fk9"/>
                         <outlet property="membersField" destination="7TK-04-Cuk" id="O3H-Yv-sgd"/>
-                        <outlet property="tableView" destination="PNu-D1-fBr" id="4fq-NU-YpL"/>
                         <outlet property="tableViewHeightConstraint" destination="qze-Dd-0vx" id="Cdj-ay-iMq"/>
+                        <outlet property="usersTableView" destination="il8-Ci-GrD" id="XEI-CU-PRK"/>
+                        <outlet property="usersTableViewHeightConstraint" destination="FrT-r3-vLT" id="RAM-Sk-omY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="78S-SA-zqb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1686" y="649"/>
+            <point key="canvasLocation" x="1685.5072463768117" y="648.91304347826087"/>
         </scene>
         <!--Group TransactionsVC-->
         <scene sceneID="dRO-yz-lh3">
@@ -960,7 +1017,7 @@
                                         </subviews>
                                     </stackView>
                                 </subviews>
-                                <color key="backgroundColor" red="0.91764705882352937" green="0.95686274509803915" blue="0.96470588235294119" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.91764705879999997" green="0.95686274510000002" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="JtU-FI-mPa" firstAttribute="leading" secondItem="ipu-Db-vV9" secondAttribute="leading" constant="20" id="FcA-x8-o1j"/>
                                     <constraint firstAttribute="bottom" secondItem="JtU-FI-mPa" secondAttribute="bottom" constant="20" id="NcO-gE-bWM"/>
