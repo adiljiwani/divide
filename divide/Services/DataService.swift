@@ -369,4 +369,20 @@ class DataService {
             handler(groupsArray)
         }
     }
+    
+    func deleteGroup (key: String, handler: @escaping (_ groupDeleted: Bool) -> ()) {
+        var ids = [String]()
+        REF_GROUPS.child(key).observeSingleEvent(of: .value) { (groupSnapshot) in
+            guard let groupSnapshot = groupSnapshot.children.allObjects as? [DataSnapshot] else {return}
+            for group in groupSnapshot {
+                if group.key == key {
+                    ids = group.childSnapshot(forPath: "members").value as! [String]
+                }
+            }
+        }
+        for userId in ids {
+            REF_USERS.child(userId).child("groups").child(key).removeValue()
+        }
+        REF_GROUPS.child(key).removeValue()
+    }
 }
