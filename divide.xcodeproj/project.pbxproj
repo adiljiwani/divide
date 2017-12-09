@@ -7,9 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CC4CE6251FD910B700DFFEFC /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4CE6241FD910B700DFFEFC /* GradientView.swift */; };
-		CC4CE6271FD9948F00DFFEFC /* ShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4CE6261FD9948F00DFFEFC /* ShadowView.swift */; };
-		CC4CE6291FD9951900DFFEFC /* RoundedShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4CE6281FD9951900DFFEFC /* RoundedShadowView.swift */; };
 		CC5B44E81FDC39600061B8CB /* StringExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5B44E71FDC39600061B8CB /* StringExt.swift */; };
 		CC778FCA1FCAAB6300149DA0 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC778FC91FCAAB6300149DA0 /* ProfileVC.swift */; };
 		CC778FCC1FCB4EFD00149DA0 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC778FCB1FCB4EFD00149DA0 /* HomeVC.swift */; };
@@ -53,9 +50,6 @@
 
 /* Begin PBXFileReference section */
 		74EB103CD9B5B534BD898AC5 /* Pods-divide.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-divide.debug.xcconfig"; path = "Pods/Target Support Files/Pods-divide/Pods-divide.debug.xcconfig"; sourceTree = "<group>"; };
-		CC4CE6241FD910B700DFFEFC /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
-		CC4CE6261FD9948F00DFFEFC /* ShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowView.swift; sourceTree = "<group>"; };
-		CC4CE6281FD9951900DFFEFC /* RoundedShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedShadowView.swift; sourceTree = "<group>"; };
 		CC5B44E71FDC39600061B8CB /* StringExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExt.swift; sourceTree = "<group>"; };
 		CC778FC91FCAAB6300149DA0 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		CC778FCB1FCB4EFD00149DA0 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
@@ -232,9 +226,6 @@
 				CCCB0DC21FD7A7B3006B3CDE /* BalanceUserCell.swift */,
 				CCAB465A1FD6F48A00BC3DE9 /* GroupTransactionCell.swift */,
 				CCAB46561FD5E05300BC3DE9 /* SearchUserCell.swift */,
-				CC4CE6261FD9948F00DFFEFC /* ShadowView.swift */,
-				CC4CE6281FD9951900DFFEFC /* RoundedShadowView.swift */,
-				CC4CE6241FD910B700DFFEFC /* GradientView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -400,7 +391,6 @@
 				CC7790031FCF7BC900149DA0 /* AddUserCell.swift in Sources */,
 				CC7EC1AC1FC9E857002CCDE5 /* DataService.swift in Sources */,
 				CCAB46551FD5C61500BC3DE9 /* SearchGroupCell.swift in Sources */,
-				CC4CE6291FD9951900DFFEFC /* RoundedShadowView.swift in Sources */,
 				CC7EC1B81FC9F241002CCDE5 /* RoundedOutlineButton.swift in Sources */,
 				CC778FCA1FCAAB6300149DA0 /* ProfileVC.swift in Sources */,
 				CC893A281FCA16370094E191 /* AuthService.swift in Sources */,
@@ -413,10 +403,8 @@
 				CCAB46571FD5E05300BC3DE9 /* SearchUserCell.swift in Sources */,
 				CCD724A61FDA5ACE00483E94 /* SignupVC.swift in Sources */,
 				CC7790111FD5B7E900149DA0 /* GroupTransactionsVC.swift in Sources */,
-				CC4CE6271FD9948F00DFFEFC /* ShadowView.swift in Sources */,
 				CCCB0DBF1FD748B8006B3CDE /* UIViewControllerExt.swift in Sources */,
 				CC7EC1B61FC9F160002CCDE5 /* RoundedButton.swift in Sources */,
-				CC4CE6251FD910B700DFFEFC /* GradientView.swift in Sources */,
 				CC778FCE1FCB4F0C00149DA0 /* GroupsVC.swift in Sources */,
 				CC7EC1961FC9E140002CCDE5 /* AppDelegate.swift in Sources */,
 			);

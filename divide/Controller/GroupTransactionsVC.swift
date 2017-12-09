@@ -39,7 +39,7 @@ class GroupTransactionsVC: UIViewController {
         DataService.instance.getAllTransactions(forGroup: group!) { (returnedTransactions) in
             self.groupTransactions = returnedTransactions
             self.tableView.reloadData()
-            self.tableViewHeightConstraint.constant = CGFloat(self.groupTransactions.count) * self.tableView.rowHeight
+            self.tableViewHeightConstraint.constant = min(CGFloat(self.groupTransactions.count) * self.tableView.rowHeight, self.view.frame.maxY - self.tableView.frame.minY)
         }
     }
 

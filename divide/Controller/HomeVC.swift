@@ -34,7 +34,7 @@ class HomeVC: UIViewController {
             DataService.instance.getAllTransactions { (returnedTransactionArray) in
                 self.transactionsArray = returnedTransactionArray
                 self.tableView.reloadData()
-                self.tableViewHeightConstraint.constant = CGFloat(self.transactionsArray.count) * self.tableView.rowHeight
+                self.tableViewHeightConstraint.constant = min(CGFloat(self.transactionsArray.count) * self.tableView.rowHeight, self.view.frame.maxY - self.tableView.frame.minY)
                 self.view.layoutIfNeeded()
             }
         }

@@ -28,7 +28,7 @@ class GroupsVC: UIViewController {
             DataService.instance.getAllGroups { (returnedGroupsArray) in
                 self.groupsArray = returnedGroupsArray
                 self.tableView.reloadData()
-                self.tableViewHeightConstraint.constant = CGFloat(self.groupsArray.count) * self.tableView.rowHeight
+                self.tableViewHeightConstraint.constant = min(CGFloat(self.groupsArray.count) * self.tableView.rowHeight, self.view.frame.maxY - self.tableView.frame.minY)
             }
         }
     }
