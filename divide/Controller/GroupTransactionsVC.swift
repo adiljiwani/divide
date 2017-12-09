@@ -71,4 +71,10 @@ extension GroupTransactionsVC: UITableViewDelegate, UITableViewDataSource {
         cell.configureCell(description: description, owing: owing, date: date, amount: amount)
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let transactionVC = storyboard?.instantiateViewController(withIdentifier: "TransactionVC") as? TransactionVC else {return}
+        transactionVC.initData(forTransaction: groupTransactions[indexPath.row])
+        presentDetail(transactionVC)
+    }
 }
