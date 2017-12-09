@@ -12,6 +12,7 @@ class GroupsVC: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var tableViewHeightConstraint: NSLayoutConstraint!
     var groupsArray = [Group]()
     
     override func viewDidLoad() {
@@ -27,6 +28,7 @@ class GroupsVC: UIViewController {
             DataService.instance.getAllGroups { (returnedGroupsArray) in
                 self.groupsArray = returnedGroupsArray
                 self.tableView.reloadData()
+                self.tableViewHeightConstraint.constant = CGFloat(self.groupsArray.count) * self.tableView.rowHeight
             }
         }
     }

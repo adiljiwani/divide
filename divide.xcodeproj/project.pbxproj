@@ -46,6 +46,7 @@
 		CCCB0DD21FD86D87006B3CDE /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = CCCB0DD01FD86D7A006B3CDE /* libstdc++.tbd */; };
 		CCCB0DD41FD86D91006B3CDE /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCCB0DD31FD86D91006B3CDE /* CoreImage.framework */; };
 		CCCB0DD51FD86D9B006B3CDE /* TesseractOCR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCCB0DD61FD86D9B006B3CDE /* TesseractOCR.framework */; };
+		CCD724A61FDA5ACE00483E94 /* SignupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD724A51FDA5ACE00483E94 /* SignupVC.swift */; };
 		EE9D2C01E0A6A863BB95859C /* Pods_divide.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD7E76F6F659D586E219EA04 /* Pods_divide.framework */; };
 /* End PBXBuildFile section */
 
@@ -92,6 +93,7 @@
 		CCCB0DD01FD86D7A006B3CDE /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
 		CCCB0DD31FD86D91006B3CDE /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		CCCB0DD61FD86D9B006B3CDE /* TesseractOCR.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TesseractOCR.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CCD724A51FDA5ACE00483E94 /* SignupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupVC.swift; sourceTree = "<group>"; };
 		F41D830AC3E35876AD8D5D7A /* Pods-divide.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-divide.release.xcconfig"; path = "Pods/Target Support Files/Pods-divide/Pods-divide.release.xcconfig"; sourceTree = "<group>"; };
 		FD7E76F6F659D586E219EA04 /* Pods_divide.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_divide.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -200,6 +202,7 @@
 			isa = PBXGroup;
 			children = (
 				CC7EC1B01FC9ECFE002CCDE5 /* AuthVC.swift */,
+				CCD724A51FDA5ACE00483E94 /* SignupVC.swift */,
 				CC778FC91FCAAB6300149DA0 /* ProfileVC.swift */,
 				CC7790101FD5B7E900149DA0 /* GroupTransactionsVC.swift */,
 				CC778FCB1FCB4EFD00149DA0 /* HomeVC.swift */,
@@ -404,6 +407,7 @@
 				CC7790011FCF314600149DA0 /* RoundedView.swift in Sources */,
 				CC7790091FD50F9C00149DA0 /* TransactionCell.swift in Sources */,
 				CCAB46571FD5E05300BC3DE9 /* SearchUserCell.swift in Sources */,
+				CCD724A61FDA5ACE00483E94 /* SignupVC.swift in Sources */,
 				CC7790111FD5B7E900149DA0 /* GroupTransactionsVC.swift in Sources */,
 				CC4CE6271FD9948F00DFFEFC /* ShadowView.swift in Sources */,
 				CCCB0DBF1FD748B8006B3CDE /* UIViewControllerExt.swift in Sources */,

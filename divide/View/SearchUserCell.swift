@@ -11,6 +11,7 @@ import UIKit
 class SearchUserCell: UITableViewCell {
 
     @IBOutlet weak var userEmailLbl: UILabel!
+    @IBOutlet weak var friendEmailLbl: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,8 +24,12 @@ class SearchUserCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func configureCell (email: String) {
+    func configureCell (email: String, sender: String) {
+        if sender == "transaction"{
         self.userEmailLbl.text = email
+        } else {
+            self.friendEmailLbl.text = email
+        }
     }
 
 }

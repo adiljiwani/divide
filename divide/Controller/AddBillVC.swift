@@ -51,7 +51,7 @@ class AddBillVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         usersTableView.layer.cornerRadius = 20
         usersTableView.layer.masksToBounds = true
         usersTableView.layer.borderColor = #colorLiteral(red: 0.9176470588, green: 0.9568627451, blue: 0.9647058824, alpha: 1)
-        usersTableView.layer.borderWidth = 3.0
+        usersTableView.layer.borderWidth = 1.0
     }
     
     @objc func payerFieldTapped () {
@@ -89,7 +89,6 @@ class AddBillVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     @IBAction func donePressed(_ sender: Any) {
-        print(date)
         let formatter = DateFormatter()
         formatter.dateFormat = "MMM dd, yyyy"
         let result = formatter.string(from: date)
@@ -128,7 +127,7 @@ class AddBillVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             cell = groupCell
         } else if tableView == usersTableView {
             guard let userCell = tableView.dequeueReusableCell(withIdentifier: "searchUserCell") as? SearchUserCell else {return UITableViewCell()}
-            userCell.configureCell(email: payerArray[indexPath.row])
+            userCell.configureCell(email: payerArray[indexPath.row], sender: "transaction")
             cell = userCell
         }
         return cell

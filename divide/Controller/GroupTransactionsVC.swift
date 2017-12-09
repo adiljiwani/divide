@@ -32,8 +32,8 @@ class GroupTransactionsVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         groupNameLbl.text = group?.groupTitle
-        DataService.instance.getEmails(group: group!) { (returnedEmails) in
-            self.membersTextView.text = returnedEmails.joined(separator: ", ")
+        DataService.instance.getNames(group: group!) { (returnedNames) in
+            self.membersTextView.text = returnedNames.joined(separator: ", ")
         }
         
         DataService.instance.getAllTransactions(forGroup: group!) { (returnedTransactions) in
@@ -66,7 +66,7 @@ extension GroupTransactionsVC: UITableViewDelegate, UITableViewDataSource {
         if owing {
             amount = groupTransactions[indexPath.row].amount / Float(groupTransactions[indexPath.row].payees.count + 1)
         } else {
-            amount = Float(groupTransactions[indexPath.row].settled.count) * (groupTransactions[indexPath.row].amount / Float(groupTransactions[indexPath.row].payees.count + 1))
+            amount = Float(groupTransactions[indexPath.row].payees.count - (groupTransactions[indexPath.row].settled.count - 1)) * (groupTransactions[indexPath.row].amount / Float(groupTransactions[indexPath.row].payees.count + 1))
         }
         cell.configureCell(description: description, owing: owing, date: date, amount: amount)
         return cell

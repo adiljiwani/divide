@@ -32,7 +32,9 @@ class BalanceUserCell: UITableViewCell {
         if Auth.auth().currentUser?.email == email {
             userEmailLbl.text = "You"
         } else {
-            userEmailLbl.text = email
+            DataService.instance.getName(forEmail: email, handler: { (name) in
+                self.userEmailLbl.text = name
+            })
         }
         
         amountLbl.text = String(format: "$%.2f", amount)

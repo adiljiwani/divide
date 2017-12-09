@@ -34,17 +34,6 @@ class AuthVC: UIViewController {
                 } else {
                     print(String(describing: loginError?.localizedDescription))
                 }
-                
-                AuthService.instance.registerUser(withEmail: self.emailTextField.text!, andPassword: self.passTextField.text!, userCreationComplete: { (success, registrationError) in
-                    if success {
-                        AuthService.instance.loginUser(withEmail: self.emailTextField.text!, andPassword: self.passTextField.text!, loginComplete: { (success, nil) in
-                            self.dismiss(animated: true, completion: nil)
-                            print("Successfully registered user.")
-                        })
-                    } else {
-                        print(String(describing: registrationError?.localizedDescription))
-                    }
-                })
             })
         }
     }
