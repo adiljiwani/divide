@@ -41,7 +41,7 @@ class DataService {
     
     func getEmail (forSearchQuery query: String, handler: @escaping (_ email: String) -> ()) {
         var matchEmail: String = ""
-        REF_USERS.observe(.value) { (userSnapshot) in
+        REF_USERS.observeSingleEvent(of: .value) { (userSnapshot) in
             guard let userSnapshot = userSnapshot.children.allObjects as? [DataSnapshot] else {return}
             for user in userSnapshot {
                 let userEmail = user.childSnapshot(forPath: "email").value as! String
@@ -66,9 +66,9 @@ class DataService {
                             friendsArray.append(email)
                         self.REF_USERS.child((Auth.auth().currentUser?.uid)!).updateChildValues(["friends": friendsArray])
                     }
+                    handler(true)
                 }
             }
-            handler(true)
         }
     }
     

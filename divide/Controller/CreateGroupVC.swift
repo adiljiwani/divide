@@ -54,11 +54,12 @@ class CreateGroupVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
             usersTableView.reloadData()
             self.chosenUsersTableView.isHidden = false
         } else {
-            self.usersTableView.isHidden = false
             if chosenUsers.count == 0 {
                 self.chosenUsersTableView.isHidden = true
             }
+
             DataService.instance.getFriends(forSearchQuery: membersField.text!, handler: { (friendsArray) in
+                self.usersTableView.isHidden = false
                 self.membersArray = friendsArray.filter { !self.chosenUsers.contains($0) }
                 self.usersTableViewHeightConstraint.constant = CGFloat(self.membersArray.count * 40)
                 self.usersTableView.reloadData()
@@ -82,13 +83,15 @@ class CreateGroupVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
             usersTableView.isHidden = true
             DataService.instance.getEmail(forSearchQuery: membersField.text!, handler: { (returnedEmail) in
                 DataService.instance.addFriend(byEmail: returnedEmail, handler: { (added) in
-                    
+                    if added {
+                        self.chosenUsers.append(returnedEmail)
+                        self.doneBtn.isHidden = false
+                        self.chosenUsersTableView.reloadData()
+                        self.membersField.text = ""
+                        self.tableViewHeightConstraint.constant = CGFloat(self.chosenUsers.count) * self.chosenUsersTableView.rowHeight
+                    }
                 })
-                self.chosenUsers.append(returnedEmail)
-                self.doneBtn.isHidden = false
-                self.chosenUsersTableView.reloadData()
-                self.membersField.text = ""
-                self.tableViewHeightConstraint.constant = CGFloat(self.chosenUsers.count) * self.chosenUsersTableView.rowHeight
+                
             })
         }
     }
