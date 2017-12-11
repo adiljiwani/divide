@@ -56,19 +56,20 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @IBAction func segmentControlChanged(_ sender: Any) {
         if segmentControl.selectedSegmentIndex == 0 {
             transactionType = .pending
-            DataService.instance.getAllTransactions { (returnedTransactionArray) in
-                self.transactionsArray = returnedTransactionArray
-                self.tableView.reloadData()
-                self.tableViewHeightConstraint.constant = min(CGFloat(self.transactionsArray.count) * self.tableView.rowHeight, self.view.frame.maxY - self.tableView.frame.minY)
-            }
+                DataService.instance.getAllTransactions { (returnedTransactionArray) in
+                    self.transactionsArray = returnedTransactionArray
+                    self.tableView.reloadData()
+                    self.tableViewHeightConstraint.constant = min(CGFloat(self.transactionsArray.count) * self.tableView.rowHeight, self.view.frame.maxY - self.tableView.frame.minY)
+                }
+            
         } else {
             transactionType = .settled
-            DataService.instance.getAllSettledTransactions(handler: { (settledTransactions) in
-                self.settledArray = settledTransactions
-                self.tableView.reloadData()
-                self.tableViewHeightConstraint.constant = min(CGFloat(self.settledArray.count) * self.tableView.rowHeight, self.view.frame.maxY - self.tableView.frame.minY)
-                
-            })
+                DataService.instance.getAllSettledTransactions{ (settledTransactions) in
+                    self.settledArray = settledTransactions
+                    self.tableView.reloadData()
+                    self.tableViewHeightConstraint.constant = min(CGFloat(self.settledArray.count) * self.tableView.rowHeight, self.view.frame.maxY - self.tableView.frame.minY)
+                    
+                }
         }
     }
     
@@ -111,7 +112,12 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let transactionVC = storyboard?.instantiateViewController(withIdentifier: "TransactionVC") as? TransactionVC else {return}
+        if transactionType == .pending {
             transactionVC.initData(forTransaction: transactionsArray[indexPath.row], type: transactionType)
+        } else {
+            transactionVC.initData(forTransaction: settledArray[indexPath.row], type: transactionType)
+        }
+        
         presentDetail(transactionVC)
     }
     

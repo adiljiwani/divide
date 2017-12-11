@@ -354,7 +354,7 @@ class DataService {
     
     func getAllTransactions (forGroup group: Group, handler: @escaping (_ transactionArray: [Transaction]) -> ()) {
         var groupTransactionArray = [Transaction]()
-        REF_TRANSACTIONS.observeSingleEvent(of: .value) { (transactionSnapshot) in
+        REF_TRANSACTIONS.observe(.value) { (transactionSnapshot) in
             guard let transactionSnapshot = transactionSnapshot.children.allObjects as? [DataSnapshot] else {return}
             for transaction in transactionSnapshot {
                 let payer = transaction.childSnapshot(forPath: "payer").value as! String
@@ -363,7 +363,7 @@ class DataService {
                 if Auth.auth().currentUser != nil {
                     if (payer == (Auth.auth().currentUser?.email)! && (settled.count - 1) != payees.count) || !settled.contains((Auth.auth().currentUser?.email)!) {
                             let groupName = transaction.childSnapshot(forPath: "groupTitle").value as! String
-                            let date = transaction.childSnapshot(forPath: "settled").value as! String
+                            let date = transaction.childSnapshot(forPath: "date").value as! String
                             let description = transaction.childSnapshot(forPath: "description").value as! String
                             let amount = transaction.childSnapshot(forPath: "amount").value as! Float
                             if groupName == group.groupTitle {
@@ -386,27 +386,26 @@ class DataService {
                 let payees = transaction.childSnapshot(forPath: "payees").value as! [String]
                 let settled = transaction.childSnapshot(forPath: "settled").value as! [String]
                 let groupName = transaction.childSnapshot(forPath: "groupTitle").value as! String
-                
                 let description = transaction.childSnapshot(forPath: "description").value as! String
                 var amount: Float = 0.0
-                var date = "Jan 01, 2017"
-                self.REF_TRANSACTIONS.child(transaction.key).observeSingleEvent(of: .value, with: { (userSnapshot) in
+                var date = transaction.childSnapshot(forPath: "date").value as! String
+                self.REF_TRANSACTIONS.child(transaction.key).observe(.value) { (userSnapshot) in
                     guard let userSnapshot = userSnapshot.children.allObjects as? [DataSnapshot] else {return}
                     for user in userSnapshot {
-                        if user.key == Auth.auth().currentUser?.uid {
+                        if user.key == Auth.auth().currentUser?.uid && user.hasChild("settled"){
                             if payees.contains((Auth.auth().currentUser?.email)!) {
                                 amount = (user.childSnapshot(forPath: "owing").value as! NSString).floatValue
                             } else if payer == (Auth.auth().currentUser?.email)! {
                                 amount = (user.childSnapshot(forPath: "owed").value as! NSString).floatValue
                             }
-                            if user.hasChild("settled"){
                                 date = user.childSnapshot(forPath: "settled").value as! String
-                            }
+                            let transactionFound = Transaction(groupTitle: groupName, key: transaction.key, payees: payees, payer: payer, date: date, description: description, amount: amount, settled: settled)
+                            transactionArray.append(transactionFound)
+                            handler(transactionArray)
                         }
-                        let transactionFound = Transaction(groupTitle: groupName, key: transaction.key, payees: payees, payer: payer, date: date, description: description, amount: amount, settled: settled)
-                        
                     }
-                })
+                }
+                
             }
         }
     }

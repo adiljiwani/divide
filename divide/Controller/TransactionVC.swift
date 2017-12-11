@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class TransactionVC: UIViewController {
+class TransactionVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var tableViewHeightConstraint: NSLayoutConstraint!
@@ -27,6 +27,7 @@ class TransactionVC: UIViewController {
 
     func initData (forTransaction transaction: Transaction, type: TransactionType) {
         self.transaction = transaction
+        self.transactionType = type
     }
     
     override func viewDidLoad() {
@@ -66,9 +67,7 @@ class TransactionVC: UIViewController {
             }
         }
     }
-}
-
-extension TransactionVC: UITableViewDataSource, UITableViewDelegate {
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -84,6 +83,10 @@ extension TransactionVC: UITableViewDataSource, UITableViewDelegate {
         var amount: Float = 0.0
         if transactionType == .pending {
             amount = amountArray[indexPath.row]
+        }
+        if transactionType == .settled {
+            
+            settleBtn.isHidden = true
         }
         cell.configureCell(email: email, paid: paid, amount: amount, transaction: transaction!)
         return cell
