@@ -55,6 +55,22 @@ class GroupTransactionsVC: UIViewController {
     
     
     @IBAction func deletePressed(_ sender: Any) {
+        let groupName = group?.groupTitle
+        let deleteAlert = UIAlertController(title: "Delete \"\(groupName!)\"", message: "Are you sure you want to delete this group?", preferredStyle: .actionSheet)
+        let deleteAction = UIAlertAction(title: "Delete group", style: .destructive, handler: { (buttonPressed) in
+            DataService.instance.deleteGroup(key: (self.group?.key)!, handler: { (groupDeleted) in
+                if groupDeleted {
+                    self.dismissDetail()
+                }
+            })
+        })
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (cancel) in
+            deleteAlert.dismiss(animated: true, completion: nil)
+        }
+        deleteAlert.addAction(deleteAction)
+        deleteAlert.addAction(cancelAction)
+        present(deleteAlert, animated: true, completion: nil)
     }
     
 }
@@ -85,7 +101,7 @@ extension GroupTransactionsVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let transactionVC = storyboard?.instantiateViewController(withIdentifier: "TransactionVC") as? TransactionVC else {return}
-        transactionVC.initData(forTransaction: groupTransactions[indexPath.row])
+        transactionVC.initData(forTransaction: groupTransactions[indexPath.row], type: TransactionType.pending)
         presentDetail(transactionVC)
     }
 }

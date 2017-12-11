@@ -225,7 +225,7 @@ class DataService {
                             if payeeId == user.key {
                                 let owingValue = (user.childSnapshot(forPath: "owing").value as! NSString).floatValue + amount / Float(payees.count + 1)
                                 self.REF_USERS.child(payeeId).updateChildValues(["owing": String(format: "%.2f", owingValue)])
-                                self.REF_USERS.child(user.key).child("transactions").child(transactionsRef.key).updateChildValues(["created": date])
+                                self.REF_TRANSACTIONS.child(transactionsRef.key).child(payeeId).updateChildValues(["owing": String(format: "%.2f", amount / Float(payees.count + 1))])
                             
                             }
                         }
@@ -240,7 +240,7 @@ class DataService {
                         if user.key == userId {
                             let owedValue = (user.childSnapshot(forPath: "owed").value as! NSString).floatValue + Float(payees.count) * (amount / Float(payees.count + 1))
                             self.REF_USERS.child(userId).updateChildValues(["owed": String(format: "%.2f", owedValue)])
-                            self.REF_USERS.child(user.key).child("transactions").child(transactionsRef.key).updateChildValues(["created": date])
+                            self.REF_TRANSACTIONS.child(transactionsRef.key).child(userId).updateChildValues(["owed": String(format: "%.2f", Float(payees.count) * (amount / Float(payees.count + 1)))])
                         }
                     }
                 })
@@ -265,7 +265,8 @@ class DataService {
                         if payeeId == user.key {
                             let owingValue = (user.childSnapshot(forPath: "owing").value as! NSString).floatValue - (transaction.amount / Float(transaction.payees.count + 1))
                             self.REF_USERS.child(payeeId).updateChildValues(["owing": String(format: "%.2f", owingValue)])
-                            self.REF_USERS.child(user.key).child("transactions").child(transaction.key).updateChildValues(["settled": result])
+                            self.REF_TRANSACTIONS.child(transaction.key).child(payeeId).updateChildValues(["owing": String(format: "%.2f", 0)])
+                            self.REF_TRANSACTIONS.child(transaction.key).child(payeeId).updateChildValues(["settled": result])
                             
                         }
                     }
@@ -279,7 +280,19 @@ class DataService {
                     for user in userSnapshot {
                         if user.key == userId {
                             let owedValue = (user.childSnapshot(forPath: "owed").value as! NSString).floatValue - (transaction.amount / Float(transaction.payees.count + 1))
-                            self.REF_USERS.child(userId).updateChildValues(["owed": String(format: "%.2f", owedValue)])
+                            
+                           self.REF_USERS.child(userId).updateChildValues(["owed": String(format: "%.2f", owedValue)])
+                            var transactionOwedValue: Float = 0.0
+                             self.REF_TRANSACTIONS.child(transaction.key).observeSingleEvent(of: .value, with: { (transactionSnapshot) in
+                                guard let transactionSnapshot = transactionSnapshot.children.allObjects as? [DataSnapshot] else {return}
+                                for user in transactionSnapshot {
+                                    if user.key == userId {
+                                        transactionOwedValue = (user.childSnapshot(forPath: "owed").value as! NSString).floatValue - (transaction.amount / Float(transaction.payees.count + 1))
+                                        self.REF_TRANSACTIONS.child(transaction.key).child(userId).updateChildValues(["owed": String(format: "%.2f", transactionOwedValue)])
+                                    }
+                                }
+                            })
+                            
                         }
                     }
                 })
@@ -350,7 +363,7 @@ class DataService {
                 if Auth.auth().currentUser != nil {
                     if (payer == (Auth.auth().currentUser?.email)! && (settled.count - 1) != payees.count) || !settled.contains((Auth.auth().currentUser?.email)!) {
                             let groupName = transaction.childSnapshot(forPath: "groupTitle").value as! String
-                            let date = transaction.childSnapshot(forPath: "date").value as! String
+                            let date = transaction.childSnapshot(forPath: "settled").value as! String
                             let description = transaction.childSnapshot(forPath: "description").value as! String
                             let amount = transaction.childSnapshot(forPath: "amount").value as! Float
                             if groupName == group.groupTitle {
@@ -366,38 +379,35 @@ class DataService {
     
     func getAllSettledTransactions (handler: @escaping (_ transactionArray: [Transaction]) -> ()) {
         var transactionArray = [Transaction]()
-        REF_TRANSACTIONS.observeSingleEvent(of: .value) { (transactionSnapshot) in
+        REF_TRANSACTIONS.observe(.value) { (transactionSnapshot) in
             guard let transactionSnapshot = transactionSnapshot.children.allObjects as? [DataSnapshot] else {return}
             for transaction in transactionSnapshot {
                 let payer = transaction.childSnapshot(forPath: "payer").value as! String
                 let payees = transaction.childSnapshot(forPath: "payees").value as! [String]
                 let settled = transaction.childSnapshot(forPath: "settled").value as! [String]
-                if Auth.auth().currentUser != nil {
-                    if payer == (Auth.auth().currentUser?.email)! || payees.contains((Auth.auth().currentUser?.email)!){
-                        if (payer == (Auth.auth().currentUser?.email)! && (settled.count - 1) == payees.count) || settled.contains((Auth.auth().currentUser?.email)!) {
-                            let groupName = transaction.childSnapshot(forPath: "groupTitle").value as! String
-                            
-                            let description = transaction.childSnapshot(forPath: "description").value as! String
-                            let amount = transaction.childSnapshot(forPath: "amount").value as! Float
-                            
-                           var date = ""
-                            self.REF_USERS.child((Auth.auth().currentUser?.uid)!).child("transactions").observe(.value) { (userTransactionSnapshot) in
-                                guard let userTransactionSnapshot = userTransactionSnapshot.children.allObjects as? [DataSnapshot] else {return}
-                                for userTransaction in userTransactionSnapshot {
-                                    if userTransaction.hasChild("settled") && userTransaction.key == transaction.key {
-                                        date = userTransaction.childSnapshot(forPath: "settled").value as! String
-                                    }
-                                }
+                let groupName = transaction.childSnapshot(forPath: "groupTitle").value as! String
+                
+                let description = transaction.childSnapshot(forPath: "description").value as! String
+                var amount: Float = 0.0
+                var date = "Jan 01, 2017"
+                self.REF_TRANSACTIONS.child(transaction.key).observeSingleEvent(of: .value, with: { (userSnapshot) in
+                    guard let userSnapshot = userSnapshot.children.allObjects as? [DataSnapshot] else {return}
+                    for user in userSnapshot {
+                        if user.key == Auth.auth().currentUser?.uid {
+                            if payees.contains((Auth.auth().currentUser?.email)!) {
+                                amount = (user.childSnapshot(forPath: "owing").value as! NSString).floatValue
+                            } else if payer == (Auth.auth().currentUser?.email)! {
+                                amount = (user.childSnapshot(forPath: "owed").value as! NSString).floatValue
                             }
-                            
-                            
-                            let transactionFound = Transaction(groupTitle: groupName, key: transaction.key, payees: payees, payer: payer, date: date, description: description, amount: amount, settled: settled)
-                            transactionArray.append(transactionFound)
+                            if user.hasChild("settled"){
+                                date = user.childSnapshot(forPath: "settled").value as! String
+                            }
                         }
+                        let transactionFound = Transaction(groupTitle: groupName, key: transaction.key, payees: payees, payer: payer, date: date, description: description, amount: amount, settled: settled)
+                        
                     }
-                }
+                })
             }
-            handler(transactionArray)
         }
     }
     
@@ -416,18 +426,34 @@ class DataService {
     }
     
     func deleteGroup (key: String, handler: @escaping (_ groupDeleted: Bool) -> ()) {
-        var ids = [String]()
-        REF_GROUPS.child(key).observeSingleEvent(of: .value) { (groupSnapshot) in
+        var groupName = ""
+        var members = [String]()
+        REF_GROUPS.observeSingleEvent(of: .value) { (groupSnapshot) in
             guard let groupSnapshot = groupSnapshot.children.allObjects as? [DataSnapshot] else {return}
             for group in groupSnapshot {
                 if group.key == key {
-                    ids = group.childSnapshot(forPath: "members").value as! [String]
+                    groupName = group.childSnapshot(forPath: "title").value as! String
+                    members = group.childSnapshot(forPath: "members").value as! [String]
+                    for userId in members {
+                        self.REF_USERS.child(userId).child("groups").child(key).removeValue()
+                    }
                 }
             }
         }
-        for userId in ids {
-            REF_USERS.child(userId).child("groups").child(key).removeValue()
+        
+        REF_TRANSACTIONS.observeSingleEvent(of: .value) { (transactionSnapshot) in
+            guard let transactionSnapshot = transactionSnapshot.children.allObjects as? [DataSnapshot] else {return}
+            for transaction in transactionSnapshot {
+                let groupTitle = transaction.childSnapshot(forPath: "groupTitle").value as! String
+                if groupTitle == groupName {
+                    self.REF_TRANSACTIONS.child(transaction.key).removeValue()
+                }
+                for userId in members {
+                    self.REF_USERS.child(userId).child("transactions").child(transaction.key).removeValue()
+                }
+            }
         }
         REF_GROUPS.child(key).removeValue()
+        handler(true)
     }
 }

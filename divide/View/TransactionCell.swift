@@ -8,6 +8,12 @@
 
 import UIKit
 
+enum TransactionType {
+    case pending
+    case settled
+    
+}
+
 class TransactionCell: UITableViewCell {
 
     @IBOutlet weak var amountLbl: UILabel!
@@ -21,7 +27,7 @@ class TransactionCell: UITableViewCell {
     }
     
     
-    func configureCell(description: String, owing: Bool, date: String, amount: Float, groupName: String) {
+    func configureCell(description: String, owing: Bool, date: String, amount: Float, groupName: String, type: TransactionType) {
         self.descriptionLabel.text = description
         self.dateLbl.text = date
         self.amountLbl.text = String(format: "$%.2f", amount)
@@ -33,6 +39,7 @@ class TransactionCell: UITableViewCell {
             self.owingLbl.text = "YOU ARE OWED"
             self.owingView.backgroundColor = #colorLiteral(red: 0.2784313725, green: 0.6941176471, blue: 0.3137254902, alpha: 1)
         }
+
     }
 
 }
