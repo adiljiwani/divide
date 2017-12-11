@@ -22,15 +22,16 @@ class TransactionVC: UIViewController {
     var transaction: Transaction?
     var emailArray = [String]()
     var amountArray = [Float]()
+    var transactionType = TransactionType.pending
 
 
-    func initData (forTransaction transaction: Transaction) {
+    func initData (forTransaction transaction: Transaction, type: TransactionType) {
         self.transaction = transaction
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if Auth.auth().currentUser?.email == transaction!.payer {
+        if Auth.auth().currentUser?.email == transaction!.payer || transactionType == .settled{
             self.settleBtn.isHidden = true
         }
         tableView.delegate = self
@@ -80,7 +81,10 @@ extension TransactionVC: UITableViewDataSource, UITableViewDelegate {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "balanceUserCell") as? BalanceUserCell else {return UITableViewCell()}
         let email = emailArray[indexPath.row]
         let paid = transaction?.payer == email
-        let amount = amountArray[indexPath.row]
+        var amount: Float = 0.0
+        if transactionType == .pending {
+            amount = amountArray[indexPath.row]
+        }
         cell.configureCell(email: email, paid: paid, amount: amount, transaction: transaction!)
         return cell
     }

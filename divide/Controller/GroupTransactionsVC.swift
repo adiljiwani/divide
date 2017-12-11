@@ -39,13 +39,40 @@ class GroupTransactionsVC: UIViewController {
         DataService.instance.getAllTransactions(forGroup: group!) { (returnedTransactions) in
             self.groupTransactions = returnedTransactions
             self.tableView.reloadData()
-            self.tableViewHeightConstraint.constant = CGFloat(self.groupTransactions.count) * self.tableView.rowHeight
+            self.tableViewHeightConstraint.constant = min(CGFloat(self.groupTransactions.count) * self.tableView.rowHeight, self.view.frame.maxY - self.tableView.frame.minY)
         }
     }
 
     @IBAction func backPressed(_ sender: Any) {
         dismissDetail()
     }
+    
+    @IBAction func addPressed(_ sender: Any) {
+    }
+    
+    @IBAction func removePressed(_ sender: Any) {
+    }
+    
+    
+    @IBAction func deletePressed(_ sender: Any) {
+        let groupName = group?.groupTitle
+        let deleteAlert = UIAlertController(title: "Delete \"\(groupName!)\"", message: "Are you sure you want to delete this group?", preferredStyle: .actionSheet)
+        let deleteAction = UIAlertAction(title: "Delete group", style: .destructive, handler: { (buttonPressed) in
+            DataService.instance.deleteGroup(key: (self.group?.key)!, handler: { (groupDeleted) in
+                if groupDeleted {
+                    self.dismissDetail()
+                }
+            })
+        })
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (cancel) in
+            deleteAlert.dismiss(animated: true, completion: nil)
+        }
+        deleteAlert.addAction(deleteAction)
+        deleteAlert.addAction(cancelAction)
+        present(deleteAlert, animated: true, completion: nil)
+    }
+    
 }
 
 extension GroupTransactionsVC: UITableViewDelegate, UITableViewDataSource {
@@ -70,5 +97,11 @@ extension GroupTransactionsVC: UITableViewDelegate, UITableViewDataSource {
         }
         cell.configureCell(description: description, owing: owing, date: date, amount: amount)
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let transactionVC = storyboard?.instantiateViewController(withIdentifier: "TransactionVC") as? TransactionVC else {return}
+        transactionVC.initData(forTransaction: groupTransactions[indexPath.row], type: TransactionType.pending)
+        presentDetail(transactionVC)
     }
 }

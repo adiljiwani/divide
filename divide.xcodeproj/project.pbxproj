@@ -7,9 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CC4CE6251FD910B700DFFEFC /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4CE6241FD910B700DFFEFC /* GradientView.swift */; };
-		CC4CE6271FD9948F00DFFEFC /* ShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4CE6261FD9948F00DFFEFC /* ShadowView.swift */; };
-		CC4CE6291FD9951900DFFEFC /* RoundedShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4CE6281FD9951900DFFEFC /* RoundedShadowView.swift */; };
+		CC45576B1FDC66CB0082B701 /* AddMemberVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4557691FDC66CB0082B701 /* AddMemberVC.swift */; };
+		CC45576C1FDC66CB0082B701 /* AddMemberVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC45576A1FDC66CB0082B701 /* AddMemberVC.xib */; };
+		CC45576F1FDC68280082B701 /* RoundedModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC45576E1FDC68280082B701 /* RoundedModalView.swift */; };
+		CC5B44E81FDC39600061B8CB /* StringExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5B44E71FDC39600061B8CB /* StringExt.swift */; };
 		CC778FCA1FCAAB6300149DA0 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC778FC91FCAAB6300149DA0 /* ProfileVC.swift */; };
 		CC778FCC1FCB4EFD00149DA0 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC778FCB1FCB4EFD00149DA0 /* HomeVC.swift */; };
 		CC778FCE1FCB4F0C00149DA0 /* GroupsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC778FCD1FCB4F0C00149DA0 /* GroupsVC.swift */; };
@@ -52,9 +53,10 @@
 
 /* Begin PBXFileReference section */
 		74EB103CD9B5B534BD898AC5 /* Pods-divide.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-divide.debug.xcconfig"; path = "Pods/Target Support Files/Pods-divide/Pods-divide.debug.xcconfig"; sourceTree = "<group>"; };
-		CC4CE6241FD910B700DFFEFC /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
-		CC4CE6261FD9948F00DFFEFC /* ShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowView.swift; sourceTree = "<group>"; };
-		CC4CE6281FD9951900DFFEFC /* RoundedShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedShadowView.swift; sourceTree = "<group>"; };
+		CC4557691FDC66CB0082B701 /* AddMemberVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMemberVC.swift; sourceTree = "<group>"; };
+		CC45576A1FDC66CB0082B701 /* AddMemberVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddMemberVC.xib; sourceTree = "<group>"; };
+		CC45576E1FDC68280082B701 /* RoundedModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedModalView.swift; sourceTree = "<group>"; };
+		CC5B44E71FDC39600061B8CB /* StringExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExt.swift; sourceTree = "<group>"; };
 		CC778FC91FCAAB6300149DA0 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		CC778FCB1FCB4EFD00149DA0 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		CC778FCD1FCB4F0C00149DA0 /* GroupsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsVC.swift; sourceTree = "<group>"; };
@@ -133,11 +135,20 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		CC45576D1FDC66E90082B701 /* XIBs */ = {
+			isa = PBXGroup;
+			children = (
+				CC45576A1FDC66CB0082B701 /* AddMemberVC.xib */,
+			);
+			path = XIBs;
+			sourceTree = "<group>";
+		};
 		CC778FCF1FCC5DAE00149DA0 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				CC778FD01FCC5DBC00149DA0 /* UIViewExt.swift */,
 				CCCB0DBE1FD748B8006B3CDE /* UIViewControllerExt.swift */,
+				CC5B44E71FDC39600061B8CB /* StringExt.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -163,6 +174,7 @@
 		CC7EC1941FC9E140002CCDE5 /* divide */ = {
 			isa = PBXGroup;
 			children = (
+				CC45576D1FDC66E90082B701 /* XIBs */,
 				CCCB0DCD1FD86CFF006B3CDE /* Supporting Files */,
 				CC778FCF1FCC5DAE00149DA0 /* Extensions */,
 				CC7EC1B41FC9F154002CCDE5 /* View */,
@@ -211,6 +223,7 @@
 				CC778FD31FCC7A2300149DA0 /* CreateGroupVC.swift */,
 				CC778FFE1FCDE70700149DA0 /* CameraVC.swift */,
 				CCCB0DC01FD773F4006B3CDE /* TransactionVC.swift */,
+				CC4557691FDC66CB0082B701 /* AddMemberVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -219,6 +232,7 @@
 			isa = PBXGroup;
 			children = (
 				CC7EC1B51FC9F160002CCDE5 /* RoundedButton.swift */,
+				CC45576E1FDC68280082B701 /* RoundedModalView.swift */,
 				CC7EC1B71FC9F241002CCDE5 /* RoundedOutlineButton.swift */,
 				CC893A251FCA12240094E191 /* InsetTextField.swift */,
 				CC7790001FCF314600149DA0 /* RoundedView.swift */,
@@ -229,9 +243,6 @@
 				CCCB0DC21FD7A7B3006B3CDE /* BalanceUserCell.swift */,
 				CCAB465A1FD6F48A00BC3DE9 /* GroupTransactionCell.swift */,
 				CCAB46561FD5E05300BC3DE9 /* SearchUserCell.swift */,
-				CC4CE6261FD9948F00DFFEFC /* ShadowView.swift */,
-				CC4CE6281FD9951900DFFEFC /* RoundedShadowView.swift */,
-				CC4CE6241FD910B700DFFEFC /* GradientView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -306,6 +317,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CC45576C1FDC66CB0082B701 /* AddMemberVC.xib in Resources */,
 				CC7EC1A01FC9E140002CCDE5 /* LaunchScreen.storyboard in Resources */,
 				CC7EC1A81FC9E18C002CCDE5 /* GoogleService-Info.plist in Resources */,
 				CCCB0DCF1FD86D19006B3CDE /* tessdata in Resources */,
@@ -384,19 +396,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				CC778FD11FCC5DBC00149DA0 /* UIViewExt.swift in Sources */,
+				CC5B44E81FDC39600061B8CB /* StringExt.swift in Sources */,
 				CCCB0DC31FD7A7B3006B3CDE /* BalanceUserCell.swift in Sources */,
+				CC45576B1FDC66CB0082B701 /* AddMemberVC.swift in Sources */,
 				CC7EC1B11FC9ECFE002CCDE5 /* AuthVC.swift in Sources */,
 				CCAB46591FD6119F00BC3DE9 /* Transaction.swift in Sources */,
 				CC77900B1FD5179200149DA0 /* GroupCell.swift in Sources */,
 				CC77900D1FD51A1F00149DA0 /* Group.swift in Sources */,
 				CC778FCC1FCB4EFD00149DA0 /* HomeVC.swift in Sources */,
 				CCCB0DC11FD773F4006B3CDE /* TransactionVC.swift in Sources */,
+				CC45576F1FDC68280082B701 /* RoundedModalView.swift in Sources */,
 				CC7790071FD4ECA900149DA0 /* AddBillVC.swift in Sources */,
 				CC778FD41FCC7A2300149DA0 /* CreateGroupVC.swift in Sources */,
 				CC7790031FCF7BC900149DA0 /* AddUserCell.swift in Sources */,
 				CC7EC1AC1FC9E857002CCDE5 /* DataService.swift in Sources */,
 				CCAB46551FD5C61500BC3DE9 /* SearchGroupCell.swift in Sources */,
-				CC4CE6291FD9951900DFFEFC /* RoundedShadowView.swift in Sources */,
 				CC7EC1B81FC9F241002CCDE5 /* RoundedOutlineButton.swift in Sources */,
 				CC778FCA1FCAAB6300149DA0 /* ProfileVC.swift in Sources */,
 				CC893A281FCA16370094E191 /* AuthService.swift in Sources */,
@@ -409,10 +423,8 @@
 				CCAB46571FD5E05300BC3DE9 /* SearchUserCell.swift in Sources */,
 				CCD724A61FDA5ACE00483E94 /* SignupVC.swift in Sources */,
 				CC7790111FD5B7E900149DA0 /* GroupTransactionsVC.swift in Sources */,
-				CC4CE6271FD9948F00DFFEFC /* ShadowView.swift in Sources */,
 				CCCB0DBF1FD748B8006B3CDE /* UIViewControllerExt.swift in Sources */,
 				CC7EC1B61FC9F160002CCDE5 /* RoundedButton.swift in Sources */,
-				CC4CE6251FD910B700DFFEFC /* GradientView.swift in Sources */,
 				CC778FCE1FCB4F0C00149DA0 /* GroupsVC.swift in Sources */,
 				CC7EC1961FC9E140002CCDE5 /* AppDelegate.swift in Sources */,
 			);
