@@ -101,7 +101,8 @@ class AddBillVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         let result = formatter.string(from: date)
         let payeesArray = payerArray.filter({ $0 != payer })
         if billDescriptionField.text != "" && amountField.text != "" && groupField.text != "" && paidByField.text != "" {
-            DataService.instance.createTransaction(groupTitle: groupField.text!, description: billDescriptionField.text!, payees: payeesArray, payer: paidByField.text!, date: result, amount: Float(amountField.text!.replacingOccurrences(of: "$", with: ""))!, settled: payeesArray, handler: { (transactionCreated) in
+            let amountFieldWithoutCurrency = amountField.text!.replacingOccurrences(of: "$", with: "")
+            DataService.instance.createTransaction(groupTitle: groupField.text!, description: billDescriptionField.text!, payees: payeesArray, payer: paidByField.text!, date: result, amount: Float(amountFieldWithoutCurrency.replacingOccurrences(of: ",", with: ""))!, settled: payeesArray, handler: { (transactionCreated) in
                 if transactionCreated {
                     self.dismiss(animated: true, completion: nil)
                 } else {
