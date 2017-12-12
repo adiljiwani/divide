@@ -24,11 +24,14 @@ class GroupsVC: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        DataService.instance.REF_GROUPS.observe(.value) { (snapshot) in
             DataService.instance.getAllGroups { (returnedGroupsArray) in
                 self.groupsArray = returnedGroupsArray
                 self.tableView.reloadData()
                 self.tableViewHeightConstraint.constant = min(CGFloat(self.groupsArray.count) * self.tableView.rowHeight, self.view.frame.maxY - self.tableView.frame.minY)
             }
+        }
+        
     }
 }
 

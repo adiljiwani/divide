@@ -456,9 +456,12 @@ class DataService {
         handler(true)
     }
     
-    func addMember (toGroup key: String, currentMembers: [String], membersToAdd: [String], handler: @escaping (_ addedMember: Bool) -> ()) {
+    func addMember (toGroup key: String, currentMembers: [String], membersToAdd: [String], groupName: String, handler: @escaping (_ addedMember: Bool) -> ()) {
         var groupMembers = currentMembers
         groupMembers += membersToAdd
+        for member in groupMembers {
+            self.REF_USERS.child(member).child("groups").child(key).updateChildValues(["members": groupMembers, "title": groupName])
+        }
         REF_GROUPS.child(key).updateChildValues(["members": groupMembers])
         handler(true)
     }

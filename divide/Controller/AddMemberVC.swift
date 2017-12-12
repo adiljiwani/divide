@@ -7,11 +7,14 @@
 //
 
 import UIKit
+import Firebase
 
 class AddMemberVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var doneBtn: RoundedButton!
     
+    @IBOutlet weak var errorLbl: UILabel!
+    @IBOutlet weak var addBtn: RoundedButton!
     @IBOutlet weak var usersTableView: UITableView!
     @IBOutlet weak var membersTextField: InsetTextField!
     
@@ -26,21 +29,21 @@ class AddMemberVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
     func initData (group: Group) {
         DataService.instance.getEmails(group: group) { (returnedEmails) in
             self.currentUsers = returnedEmails
-            self.chosenUsers = returnedEmails
         }
         self.group = group
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        errorLbl.isHidden = true
         membersTextField.delegate = self
         membersTextField.addTarget(self, action: #selector(membersFieldDidChange), for: .editingChanged)
         
         chosenUsersTableView.delegate = self
         chosenUsersTableView.dataSource = self
         self.chosenUsersTableViewHeightConstraint.constant = CGFloat(self.chosenUsers.count) * self.chosenUsersTableView.rowHeight
+        chosenUsersTableView.reloadData()
         chosenUsersTableView.isHidden = false
-        
         usersTableView.delegate = self
         usersTableView.dataSource = self
         usersTableView.isHidden = true
@@ -56,14 +59,15 @@ class AddMemberVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
             membersArray = []
             usersTableView.reloadData()
             self.chosenUsersTableView.isHidden = false
+            errorLbl.isHidden = true
         } else {
             if chosenUsers.count == 0 {
                 self.chosenUsersTableView.isHidden = true
             }
-            
+            self.errorLbl.isHidden = true
             DataService.instance.getFriends(forSearchQuery: membersTextField.text!, handler: { (friendsArray) in
                 self.usersTableView.isHidden = false
-                self.membersArray = friendsArray.filter { !self.chosenUsers.contains($0) }
+                self.membersArray = friendsArray.filter { !self.chosenUsers.contains($0) && !self.currentUsers.contains($0) }
                 self.usersTableViewHeightConstraint.constant = CGFloat(self.membersArray.count * 40)
                 self.usersTableView.reloadData()
             })
@@ -79,7 +83,7 @@ class AddMemberVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
         var memberIds = [String]()
         DataService.instance.getIds(forEmails: addedMembers) { (ids) in
             memberIds = ids
-            DataService.instance.addMember(toGroup: (self.group?.key)!, currentMembers: (self.group?.members)!, membersToAdd: memberIds) { (membersAdded) in
+            DataService.instance.addMember(toGroup: (self.group?.key)!, currentMembers: (self.group?.members)!, membersToAdd: memberIds, groupName: (self.group?.groupTitle)!) { (membersAdded) in
                 if membersAdded {
                     self.dismiss(animated: true, completion: nil)
                 }
@@ -87,6 +91,39 @@ class AddMemberVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
         }
         
     }
+    
+    @IBAction func addPressed(_ sender: Any) {
+        if membersTextField.text! == "" {
+            chosenUsersTableView.reloadData()
+            errorLbl.isHidden = true
+        } else if chosenUsers.contains(membersTextField.text!) {
+            chosenUsersTableView.reloadData()
+            errorLbl.isHidden = false
+            errorLbl.text = "This user has already been chosen."
+        } else if membersTextField.text! == Auth.auth().currentUser?.email {
+            errorLbl.isHidden = false
+            errorLbl.text = "That's your email! You're already part of the group!"
+        } else if currentUsers.contains(membersTextField.text!){
+            errorLbl.isHidden = false
+            errorLbl.text = "This user is already part of the group."
+        }  else {
+            chosenUsersTableView.isHidden = false
+            usersTableView.isHidden = true
+            DataService.instance.getEmail(forSearchQuery: membersTextField.text!, handler: { (returnedEmail) in
+                DataService.instance.addFriend(byEmail: returnedEmail, handler: { (added) in
+                    if added {
+                        self.chosenUsers.append(returnedEmail)
+                        self.doneBtn.isHidden = false
+                        self.chosenUsersTableView.reloadData()
+                        self.membersTextField.text = ""
+                        self.chosenUsersTableViewHeightConstraint.constant = CGFloat(self.chosenUsers.count) * self.chosenUsersTableView.rowHeight
+                    }
+                })
+                
+            })
+        }
+    }
+    
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1

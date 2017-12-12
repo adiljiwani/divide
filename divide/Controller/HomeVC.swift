@@ -40,7 +40,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         settledTableView.dataSource = self
         settledTableView.reloadData()
         self.settledTableViewHeightConstraint.constant = min(CGFloat(self.settledArray.count) * self.settledTableView.rowHeight, self.view.frame.maxY - self.settledTableView.frame.minY)
-        
+        self.pendingTableViewHeightConstraint.constant = min(CGFloat(self.transactionsArray.count) * self.pendingTableView.rowHeight, self.view.frame.maxY - self.pendingTableView.frame.minY)
         self.segmentControl.layer.cornerRadius = 20
         self.segmentControl.layer.borderColor = #colorLiteral(red: 0.0431372549, green: 0.1960784314, blue: 0.3490196078, alpha: 1)
         self.segmentControl.layer.borderWidth = 1
