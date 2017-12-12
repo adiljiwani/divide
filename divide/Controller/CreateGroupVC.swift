@@ -143,7 +143,7 @@ class CreateGroupVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         
         if tableView == chosenUsersTableView {
             guard let addUserCell = tableView.dequeueReusableCell(withIdentifier: "addUserCell", for: indexPath) as? AddUserCell else {return UITableViewCell()}
-            addUserCell.configureCell(email: chosenUsers[indexPath.row])
+            addUserCell.configureCell(email: chosenUsers[indexPath.row], sender: "group")
             cell = addUserCell
         } else if tableView == usersTableView {
             if membersArray.count != 0 {

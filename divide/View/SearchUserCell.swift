@@ -13,6 +13,8 @@ class SearchUserCell: UITableViewCell {
     @IBOutlet weak var userEmailLbl: UILabel!
     @IBOutlet weak var friendEmailLbl: UILabel!
     
+    @IBOutlet weak var friendEmailLblFromGroup: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -27,8 +29,10 @@ class SearchUserCell: UITableViewCell {
     func configureCell (email: String, sender: String) {
         if sender == "transaction"{
         self.userEmailLbl.text = email
-        } else {
+        } else if sender == "group"{
             self.friendEmailLbl.text = email
+        } else if sender == "addMember" {
+            self.friendEmailLblFromGroup.text = email
         }
     }
 
