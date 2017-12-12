@@ -18,6 +18,7 @@ class GroupTransactionsVC: UIViewController {
     var group: Group?
     var groupTransactions = [Transaction]()
     var maxHeight: CGFloat = 0.0
+    var groupMembers = [String]()
     
     func initData (forGroup group: Group) {
         self.group = group
@@ -36,6 +37,10 @@ class GroupTransactionsVC: UIViewController {
             self.membersTextView.text = returnedNames.joined(separator: ", ")
         }
         
+        DataService.instance.getEmails(group: group!) { (returnedEmails) in
+            self.groupMembers = returnedEmails
+        }
+        
         DataService.instance.getAllTransactions(forGroup: group!) { (returnedTransactions) in
             self.groupTransactions = returnedTransactions
             self.tableView.reloadData()
@@ -48,6 +53,10 @@ class GroupTransactionsVC: UIViewController {
     }
     
     @IBAction func addPressed(_ sender: Any) {
+        guard let addMemberVC = storyboard?.instantiateViewController(withIdentifier: "AddMemberVC") as? AddMemberVC else {return}
+        addMemberVC.initData(currentUsers: groupMembers)
+        addMemberVC.modalPresentationStyle = .custom
+        self.present(addMemberVC, animated: true, completion: nil)
     }
     
     @IBAction func removePressed(_ sender: Any) {
