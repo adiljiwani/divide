@@ -31,6 +31,7 @@ class GroupsVC: UIViewController {
                 self.tableViewHeightConstraint.constant = min(CGFloat(self.groupsArray.count) * self.tableView.rowHeight, self.view.frame.maxY - self.tableView.frame.minY)
             }
         }
+        
     }
 }
 

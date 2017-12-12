@@ -33,9 +33,12 @@ class GroupTransactionsVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         groupNameLbl.text = group?.groupTitle
-        DataService.instance.getNames(group: group!) { (returnedNames) in
-            self.membersTextView.text = returnedNames.joined(separator: ", ")
+        DataService.instance.REF_GROUPS.child((group?.key)!).child("members").observe(.value) { (snapshot) in
+            DataService.instance.getNames(group: self.group!) { (returnedNames) in
+                self.membersTextView.text = returnedNames.joined(separator: ", ")
+            }
         }
+        
         
         DataService.instance.getEmails(group: group!) { (returnedEmails) in
             self.groupMembers = returnedEmails
@@ -54,7 +57,7 @@ class GroupTransactionsVC: UIViewController {
     
     @IBAction func addPressed(_ sender: Any) {
         guard let addMemberVC = storyboard?.instantiateViewController(withIdentifier: "AddMemberVC") as? AddMemberVC else {return}
-        addMemberVC.initData(currentUsers: groupMembers)
+        addMemberVC.initData(group: group!)
         addMemberVC.modalPresentationStyle = .custom
         self.present(addMemberVC, animated: true, completion: nil)
     }

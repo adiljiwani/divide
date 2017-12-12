@@ -11,6 +11,7 @@ import Firebase
 
 class CreateGroupVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    @IBOutlet weak var errorLbl: UILabel!
     @IBOutlet weak var groupNameField: InsetTextField!
     
     @IBOutlet weak var membersField: InsetTextField!
@@ -31,6 +32,7 @@ class CreateGroupVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        errorLbl.isHidden = true
         chosenUsersTableView.delegate = self
         chosenUsersTableView.dataSource = self
         membersField.delegate = self
@@ -53,11 +55,12 @@ class CreateGroupVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
             membersArray = []
             usersTableView.reloadData()
             self.chosenUsersTableView.isHidden = false
+            errorLbl.isHidden = true
         } else {
             if chosenUsers.count == 0 {
                 self.chosenUsersTableView.isHidden = true
             }
-
+            self.errorLbl.isHidden = true
             DataService.instance.getFriends(forSearchQuery: membersField.text!, handler: { (friendsArray) in
                 self.usersTableView.isHidden = false
                 self.membersArray = friendsArray.filter { !self.chosenUsers.contains($0) }
@@ -76,12 +79,21 @@ class CreateGroupVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     }
 
     @IBAction func addPressed(_ sender: Any) {
-        if membersField.text! == "" && chosenUsers.contains(membersField.text!){
+        if membersField.text! == "" {
             chosenUsersTableView.reloadData()
+            errorLbl.isHidden = true
+        } else if chosenUsers.contains(membersField.text!) {
+            chosenUsersTableView.reloadData()
+            errorLbl.isHidden = false
+            errorLbl.text = "This user has already been chosen."
+        } else if membersField.text! == Auth.auth().currentUser?.email {
+            errorLbl.isHidden = false
+            errorLbl.text = "That's your email! You'll be added to the group too!"
         } else {
             chosenUsersTableView.isHidden = false
             usersTableView.isHidden = true
             DataService.instance.getEmail(forSearchQuery: membersField.text!, handler: { (returnedEmail) in
+                if returnedEmail != nil {
                 DataService.instance.addFriend(byEmail: returnedEmail, handler: { (added) in
                     if added {
                         self.chosenUsers.append(returnedEmail)
@@ -91,7 +103,10 @@ class CreateGroupVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
                         self.tableViewHeightConstraint.constant = CGFloat(self.chosenUsers.count) * self.chosenUsersTableView.rowHeight
                     }
                 })
-                
+                } else {
+                        self.errorLbl.isHidden = false
+                        self.errorLbl.text = "This user does not have a divide account."
+                }
             })
         }
     }
