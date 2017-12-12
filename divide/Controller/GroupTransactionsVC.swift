@@ -54,7 +54,7 @@ class GroupTransactionsVC: UIViewController {
     
     @IBAction func addPressed(_ sender: Any) {
         guard let addMemberVC = storyboard?.instantiateViewController(withIdentifier: "AddMemberVC") as? AddMemberVC else {return}
-        addMemberVC.initData(currentUsers: groupMembers)
+        addMemberVC.initData(group: group!)
         addMemberVC.modalPresentationStyle = .custom
         self.present(addMemberVC, animated: true, completion: nil)
     }

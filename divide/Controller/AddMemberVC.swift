@@ -22,9 +22,13 @@ class AddMemberVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
     var chosenUsers = [String]()
     var membersArray = [String]()
     var currentUsers = [String]()
-    func initData (currentUsers: [String]) {
-       self.currentUsers = currentUsers
-        self.chosenUsers = currentUsers
+    var group: Group?
+    func initData (group: Group) {
+        DataService.instance.getEmails(group: group) { (returnedEmails) in
+            self.currentUsers = returnedEmails
+            self.chosenUsers = returnedEmails
+        }
+        self.group = group
     }
     
     override func viewDidLoad() {
@@ -72,7 +76,16 @@ class AddMemberVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
     
     @IBAction func donePressed(_ sender: Any) {
         var addedMembers = chosenUsers.filter { !self.currentUsers.contains($0) }
-        print(addedMembers)
+        var memberIds = [String]()
+        DataService.instance.getIds(forEmails: addedMembers) { (ids) in
+            memberIds = ids
+            DataService.instance.addMember(toGroup: (self.group?.key)!, currentMembers: (self.group?.members)!, membersToAdd: memberIds) { (membersAdded) in
+                if membersAdded {
+                    self.dismiss(animated: true, completion: nil)
+                }
+            }
+        }
+        
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
