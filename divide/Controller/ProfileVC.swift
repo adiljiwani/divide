@@ -11,14 +11,18 @@ import Firebase
 
 class ProfileVC: UIViewController {
 
+    @IBOutlet weak var userNameLbl: UILabel!
+    
     @IBOutlet weak var userEmailLbl: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         if Auth.auth().currentUser != nil {
             DataService.instance.getName(handler: { (name) in
-                self.userEmailLbl.text = name
+                self.userNameLbl.text = name
             })
-            
+            self.userEmailLbl.text = Auth.auth().currentUser?.email
         }
     }
 

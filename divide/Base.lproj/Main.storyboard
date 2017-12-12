@@ -1133,32 +1133,48 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f2C-vm-8pV">
                                 <rect key="frame" x="0.0" y="70" width="414" height="225"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="XV6-0P-Uei">
-                                        <rect key="frame" x="116.33333333333333" y="34.666666666666671" width="181.33333333333337" height="156.66666666666663"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="aOL-Tu-Dkb">
+                                        <rect key="frame" x="140.33333333333337" y="30.333333333333329" width="133.66666666666663" height="166"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultProfileImage" translatesAutoresizingMaskIntoConstraints="NO" id="hZS-rK-SMU">
-                                                <rect key="frame" x="40.666666666666671" y="0.0" width="100.00000000000001" height="100"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="100" id="CE3-Rc-nm3"/>
-                                                    <constraint firstAttribute="height" constant="100" id="axn-5z-2Q5"/>
-                                                </constraints>
-                                            </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="user@divide.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Xi-tv-kGF">
-                                                <rect key="frame" x="0.0" y="124.99999999999999" width="181.33333333333334" height="31.666666666666671"/>
-                                                <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="23"/>
-                                                <color key="textColor" red="0.043137254899999998" green="0.1960784314" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="XV6-0P-Uei">
+                                                <rect key="frame" x="17" y="0.0" width="100" height="100"/>
+                                                <subviews>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultProfileImage" translatesAutoresizingMaskIntoConstraints="NO" id="hZS-rK-SMU">
+                                                        <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="100" id="CE3-Rc-nm3"/>
+                                                            <constraint firstAttribute="height" constant="100" id="axn-5z-2Q5"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="hQf-9P-2M4">
+                                                <rect key="frame" x="0.0" y="111" width="133.66666666666666" height="55"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Xi-tv-kGF">
+                                                        <rect key="frame" x="35" y="0.0" width="64" height="31.666666666666668"/>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="23"/>
+                                                        <color key="textColor" red="0.043137254899999998" green="0.1960784314" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="user@divide.com" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ina-kh-cdD">
+                                                        <rect key="frame" x="0.0" y="31.666666666666657" width="133.66666666666666" height="23.333333333333329"/>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
+                                                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
                                         </subviews>
                                     </stackView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.91764705879999997" green="0.95686274510000002" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstItem="XV6-0P-Uei" firstAttribute="centerX" secondItem="f2C-vm-8pV" secondAttribute="centerX" id="OFZ-XF-91D"/>
-                                    <constraint firstItem="XV6-0P-Uei" firstAttribute="centerY" secondItem="f2C-vm-8pV" secondAttribute="centerY" id="jLS-ty-mTn"/>
+                                    <constraint firstItem="aOL-Tu-Dkb" firstAttribute="centerY" secondItem="f2C-vm-8pV" secondAttribute="centerY" id="fbO-Es-8gs"/>
                                     <constraint firstAttribute="height" constant="225" id="o0U-Wp-MQ8"/>
+                                    <constraint firstItem="aOL-Tu-Dkb" firstAttribute="centerX" secondItem="f2C-vm-8pV" secondAttribute="centerX" id="pvc-HN-WAP"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SETTLED TRANSACTIONS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tRI-Rm-vdD">
@@ -1182,7 +1198,8 @@
                         <viewLayoutGuide key="safeArea" id="i4j-dn-Oug"/>
                     </view>
                     <connections>
-                        <outlet property="userEmailLbl" destination="3Xi-tv-kGF" id="xKn-PW-loq"/>
+                        <outlet property="userEmailLbl" destination="Ina-kh-cdD" id="Pss-hK-Bn4"/>
+                        <outlet property="userNameLbl" destination="3Xi-tv-kGF" id="zrG-HA-ds3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c5s-gJ-YnI" userLabel="First Responder" sceneMemberID="firstResponder"/>
