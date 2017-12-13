@@ -31,7 +31,20 @@ class CameraVC: UIViewController {
             tesseract.recognize()
             textView.text = tesseract.recognizedText
             var fullText = tesseract.recognizedText.lowercased()
-            print(fullText.contains("total"))
+            print(fullText.lowercased().contains("$"))
+            var fullTextArray = fullText.lowercased().components(separatedBy: " ")
+            var totalFound = false
+            for word in fullTextArray {
+                if word.contains("total") {
+                    totalFound = true
+                }
+                if totalFound {
+                    print("hello")
+                    if word.hasPrefix("$") {
+                        print(word)
+                    }
+                }
+            }
             let types: NSTextCheckingResult.CheckingType = [.date ]
             let detector = try? NSDataDetector(types: types.rawValue)
             let result = detector?.firstMatch(in: fullText, range: NSMakeRange(0,fullText.utf16.count))

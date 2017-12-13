@@ -40,8 +40,6 @@
 		CCAB46591FD6119F00BC3DE9 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCAB46581FD6119F00BC3DE9 /* Transaction.swift */; };
 		CCAB465B1FD6F48A00BC3DE9 /* GroupTransactionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCAB465A1FD6F48A00BC3DE9 /* GroupTransactionCell.swift */; };
 		CCC7D1101FE0DEE4005EAB01 /* GroupDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC7D10F1FE0DEE4005EAB01 /* GroupDetailsVC.swift */; };
-		CCC7D1161FE18D24005EAB01 /* SBSDKLanguageData in Resources */ = {isa = PBXBuildFile; fileRef = CCC7D1141FE18D24005EAB01 /* SBSDKLanguageData */; };
-		CCC7D1171FE18D24005EAB01 /* ScanbotSDKCreditCardData.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CCC7D1151FE18D24005EAB01 /* ScanbotSDKCreditCardData.bundle */; };
 		CCCB0DBF1FD748B8006B3CDE /* UIViewControllerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCB0DBE1FD748B8006B3CDE /* UIViewControllerExt.swift */; };
 		CCCB0DC11FD773F4006B3CDE /* TransactionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCB0DC01FD773F4006B3CDE /* TransactionVC.swift */; };
 		CCCB0DC31FD7A7B3006B3CDE /* BalanceUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCB0DC21FD7A7B3006B3CDE /* BalanceUserCell.swift */; };
@@ -104,8 +102,6 @@
 		CCAB465A1FD6F48A00BC3DE9 /* GroupTransactionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupTransactionCell.swift; sourceTree = "<group>"; };
 		CCC7D10F1FE0DEE4005EAB01 /* GroupDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDetailsVC.swift; sourceTree = "<group>"; };
 		CCC7D1111FE18C41005EAB01 /* ScanbotSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScanbotSDK.framework; path = "scanbot-ios-sdk1.5.1/ScanbotSDK/ScanbotSDK.framework"; sourceTree = "<group>"; };
-		CCC7D1141FE18D24005EAB01 /* SBSDKLanguageData */ = {isa = PBXFileReference; lastKnownFileType = folder; name = SBSDKLanguageData; path = "scanbot-ios-sdk1.5.1/ScanbotSDK/AdditionalData/SBSDKLanguageData"; sourceTree = SOURCE_ROOT; };
-		CCC7D1151FE18D24005EAB01 /* ScanbotSDKCreditCardData.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = ScanbotSDKCreditCardData.bundle; path = "scanbot-ios-sdk1.5.1/ScanbotSDK/AdditionalData/ScanbotSDKCreditCardData.bundle"; sourceTree = SOURCE_ROOT; };
 		CCCB0DBE1FD748B8006B3CDE /* UIViewControllerExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExt.swift; sourceTree = "<group>"; };
 		CCCB0DC01FD773F4006B3CDE /* TransactionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionVC.swift; sourceTree = "<group>"; };
 		CCCB0DC21FD7A7B3006B3CDE /* BalanceUserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceUserCell.swift; sourceTree = "<group>"; };
@@ -269,8 +265,6 @@
 		CCCB0DCD1FD86CFF006B3CDE /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				CCC7D1141FE18D24005EAB01 /* SBSDKLanguageData */,
-				CCC7D1151FE18D24005EAB01 /* ScanbotSDKCreditCardData.bundle */,
 				CCCB0DCE1FD86D19006B3CDE /* tessdata */,
 			);
 			path = "Supporting Files";
@@ -341,8 +335,6 @@
 			files = (
 				CC7EC1A01FC9E140002CCDE5 /* LaunchScreen.storyboard in Resources */,
 				CC7EC1A81FC9E18C002CCDE5 /* GoogleService-Info.plist in Resources */,
-				CCC7D1171FE18D24005EAB01 /* ScanbotSDKCreditCardData.bundle in Resources */,
-				CCC7D1161FE18D24005EAB01 /* SBSDKLanguageData in Resources */,
 				CCCB0DCF1FD86D19006B3CDE /* tessdata in Resources */,
 				CC7EC19D1FC9E140002CCDE5 /* Assets.xcassets in Resources */,
 				CC7EC19B1FC9E140002CCDE5 /* Main.storyboard in Resources */,
