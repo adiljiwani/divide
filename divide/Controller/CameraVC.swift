@@ -14,8 +14,7 @@ class CameraVC: UIViewController {
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var takePhotoBtn: RoundedButton!
-    
-    @IBOutlet weak var textView: UITextView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         activityIndicator.isHidden = true
@@ -24,27 +23,40 @@ class CameraVC: UIViewController {
     
     func performImageRecognition(_ image: UIImage) {
         var date = Date()
+        var amount = ""
         if let tesseract = G8Tesseract(language: "eng") {
             tesseract.engineMode = .tesseractCubeCombined
             tesseract.pageSegmentationMode = .auto
             tesseract.image = image.g8_blackAndWhite()
             tesseract.recognize()
-            textView.text = tesseract.recognizedText
             var fullText = tesseract.recognizedText.lowercased()
-            print(fullText.contains("total"))
+            var fullTextArray = fullText.lowercased().components(separatedBy: " ,\n")
+            var totalFound = false
+            for word in fullTextArray {
+                if word.contains("total") {
+                    totalFound = true
+                }
+                
+            }
+            
+            for word in fullTextArray {
+                if word.hasPrefix("$"){
+                    amount = word.replacingOccurrences(of: "$", with: "")
+                    print(amount)
+                }
+            }
             let types: NSTextCheckingResult.CheckingType = [.date ]
             let detector = try? NSDataDetector(types: types.rawValue)
             let result = detector?.firstMatch(in: fullText, range: NSMakeRange(0,fullText.utf16.count))
             if result?.resultType == .date {
                 date = (result?.date)!
-                print(date)
             }
         }
         guard let addBillVC = storyboard?.instantiateViewController(withIdentifier: "AddBillVC") as? AddBillVC else {return}
         let formatter = DateFormatter()
         formatter.dateFormat = "MMM dd, yyyy"
         let result = formatter.string(from: date)
-        addBillVC.initData(date: result, amount: 0.0)
+        addBillVC.initData(scannedDate: result, amount: amount)
         presentDetail(addBillVC)
         activityIndicator.stopAnimating()
         activityIndicator.isHidden = true
@@ -70,7 +82,7 @@ extension CameraVC: UIImagePickerControllerDelegate, UINavigationControllerDeleg
             }
             imagePickerActionSheet.addAction(cameraButton)
         }
-        // 1
+
         let libraryButton = UIAlertAction(title: "Choose from Camera Roll",
                                           style: .default) { (alert) -> Void in
                                             let imagePicker = UIImagePickerController()
@@ -79,10 +91,8 @@ extension CameraVC: UIImagePickerControllerDelegate, UINavigationControllerDeleg
                                             self.present(imagePicker, animated: true)
         }
         imagePickerActionSheet.addAction(libraryButton)
-        // 2
         let cancelButton = UIAlertAction(title: "Cancel", style: .cancel)
         imagePickerActionSheet.addAction(cancelButton)
-        // 3
         present(imagePickerActionSheet, animated: true)
     }
     

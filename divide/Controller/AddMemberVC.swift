@@ -22,6 +22,7 @@ class AddMemberVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
     @IBOutlet weak var chosenUsersTableViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var chosenUsersTableView: UITableView!
     
+    @IBOutlet weak var bgView: UIView!
     var chosenUsers = [String]()
     var membersArray = [String]()
     var currentUsers = [String]()
@@ -51,6 +52,14 @@ class AddMemberVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
         usersTableView.layer.masksToBounds = true
         usersTableView.layer.borderColor = #colorLiteral(red: 0.9176470588, green: 0.9568627451, blue: 0.9647058824, alpha: 1)
         usersTableView.layer.borderWidth = 1.0
+        
+        let closeTouch = UITapGestureRecognizer(target: self, action: #selector(AddMemberVC.closeTap(_:)))
+            
+        bgView.addGestureRecognizer(closeTouch)
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        membersTextField.becomeFirstResponder()
     }
     
     @objc func membersFieldDidChange () {
@@ -77,7 +86,9 @@ class AddMemberVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
     @IBAction func closePressed(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
-    
+    @objc func closeTap(_ recognizer: UITapGestureRecognizer) {
+        dismiss(animated: true, completion: nil)
+    }
     @IBAction func donePressed(_ sender: Any) {
         var addedMembers = chosenUsers.filter { !self.currentUsers.contains($0) }
         var memberIds = [String]()

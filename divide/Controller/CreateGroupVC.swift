@@ -49,6 +49,11 @@ class CreateGroupVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         usersTableView.layer.borderWidth = 1.0
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        groupNameField.becomeFirstResponder()
+    }
+    
     @objc func membersFieldDidChange () {
         if membersField.text == "" {
             self.usersTableView.isHidden = true
@@ -68,10 +73,6 @@ class CreateGroupVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
                 self.usersTableView.reloadData()
             })
         }
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
     }
     
     @IBAction func cancelPressed(_ sender: Any) {

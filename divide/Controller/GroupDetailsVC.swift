@@ -87,6 +87,11 @@ class GroupDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         chosenPayeesTableView.isHidden = false
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        groupNameField.becomeFirstResponder()
+    }
+    
     @objc func payerFieldTapped () {
         self.payerTableView.isHidden = false
         self.payeeTableView.isHidden = true
