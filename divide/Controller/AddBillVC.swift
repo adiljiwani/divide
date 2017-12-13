@@ -45,6 +45,11 @@ class AddBillVC: UIViewController {
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        billDescriptionField.becomeFirstResponder()
+    }
+    
     func createDatePicker () {
         let toolbar = UIToolbar()
         toolbar.sizeToFit()

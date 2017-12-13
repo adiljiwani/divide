@@ -52,6 +52,10 @@ class AddMemberVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
         usersTableView.layer.borderColor = #colorLiteral(red: 0.9176470588, green: 0.9568627451, blue: 0.9647058824, alpha: 1)
         usersTableView.layer.borderWidth = 1.0
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        membersTextField.becomeFirstResponder()
+    }
     
     @objc func membersFieldDidChange () {
         if membersTextField.text == "" {

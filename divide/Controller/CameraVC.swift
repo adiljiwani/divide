@@ -33,7 +33,6 @@ class CameraVC: UIViewController {
             var fullTextArray = fullText.lowercased().components(separatedBy: " ,\n")
             var totalFound = false
             for word in fullTextArray {
-                print(word)
                 if word.contains("total") {
                     totalFound = true
                 }
@@ -41,7 +40,7 @@ class CameraVC: UIViewController {
             }
             
             for word in fullTextArray {
-                if totalFound && word.contains("$"){
+                if word.hasPrefix("$"){
                     amount = word.replacingOccurrences(of: "$", with: "")
                     print(amount)
                 }
