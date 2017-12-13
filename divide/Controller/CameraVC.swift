@@ -37,14 +37,13 @@ class CameraVC: UIViewController {
             let result = detector?.firstMatch(in: fullText, range: NSMakeRange(0,fullText.utf16.count))
             if result?.resultType == .date {
                 date = (result?.date)!
-                print(date)
             }
         }
         guard let addBillVC = storyboard?.instantiateViewController(withIdentifier: "AddBillVC") as? AddBillVC else {return}
         let formatter = DateFormatter()
         formatter.dateFormat = "MMM dd, yyyy"
         let result = formatter.string(from: date)
-        addBillVC.initData(date: result, amount: 0.0)
+        addBillVC.initData(scannedDate: result, amount: 0.0)
         presentDetail(addBillVC)
         activityIndicator.stopAnimating()
         activityIndicator.isHidden = true
@@ -70,7 +69,7 @@ extension CameraVC: UIImagePickerControllerDelegate, UINavigationControllerDeleg
             }
             imagePickerActionSheet.addAction(cameraButton)
         }
-        // 1
+
         let libraryButton = UIAlertAction(title: "Choose from Camera Roll",
                                           style: .default) { (alert) -> Void in
                                             let imagePicker = UIImagePickerController()
@@ -79,10 +78,8 @@ extension CameraVC: UIImagePickerControllerDelegate, UINavigationControllerDeleg
                                             self.present(imagePicker, animated: true)
         }
         imagePickerActionSheet.addAction(libraryButton)
-        // 2
         let cancelButton = UIAlertAction(title: "Cancel", style: .cancel)
         imagePickerActionSheet.addAction(cancelButton)
-        // 3
         present(imagePickerActionSheet, animated: true)
     }
     

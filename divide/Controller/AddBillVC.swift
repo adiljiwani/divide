@@ -26,8 +26,8 @@ class AddBillVC: UIViewController {
     
     let picker = UIDatePicker()
     
-    func initData (date: String, amount: Float) {
-        self.date = date
+    func initData (scannedDate: String, amount: Float) {
+        self.date = scannedDate
         print(String(describing:amount))
     }
     
@@ -36,6 +36,9 @@ class AddBillVC: UIViewController {
         amountField.delegate = self
         amountField.addTarget(self, action: #selector(amountFieldChanged), for: .editingChanged)
         createDatePicker()
+        if date != nil {
+            dateField.text = date
+        }
     }
     
     func createDatePicker () {
