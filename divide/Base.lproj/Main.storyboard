@@ -1076,6 +1076,7 @@
                     </view>
                     <connections>
                         <outlet property="addBtn" destination="0WL-Re-5Ek" id="GZE-Do-T2G"/>
+                        <outlet property="bgView" destination="Hc7-jR-A2a" id="dC0-ew-rAN"/>
                         <outlet property="chosenUsersTableView" destination="UPQ-nW-K2W" id="FWA-hO-QkL"/>
                         <outlet property="chosenUsersTableViewHeightConstraint" destination="3Zz-N3-NXS" id="dUm-GJ-CoU"/>
                         <outlet property="doneBtn" destination="X8A-Qr-Drh" id="lsB-nP-7if"/>
