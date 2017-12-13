@@ -113,7 +113,7 @@ class AddMemberVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
             errorLbl.text = "This user has already been chosen."
         } else if membersTextField.text! == Auth.auth().currentUser?.email {
             errorLbl.isHidden = false
-            errorLbl.text = "That's your email! You're already part of the group!"
+            errorLbl.text = "You're already part of the group!"
         } else if currentUsers.contains(membersTextField.text!){
             errorLbl.isHidden = false
             errorLbl.text = "This user is already part of the group."

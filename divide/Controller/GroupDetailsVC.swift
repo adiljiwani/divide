@@ -12,6 +12,9 @@ class GroupDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     @IBOutlet weak var doneBtn: UIButton!
     
+    @IBOutlet weak var errorLbl: UILabel!
+    
+    @IBOutlet weak var bgView: UIView!
     @IBOutlet weak var groupNameField: InsetTextField!
     
     @IBOutlet weak var groupsTableView: UITableView!
@@ -85,6 +88,19 @@ class GroupDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         chosenPayeesTableView.dataSource = self
         self.chosenPayeeTableViewHeightConstraint.constant = CGFloat(self.payeeArray.count) * self.chosenPayeesTableView.rowHeight
         chosenPayeesTableView.isHidden = false
+        
+        errorLbl.isHidden = true
+        
+        let closeTouch = UITapGestureRecognizer(target: self, action: #selector(AddMemberVC.closeTap(_:)))
+        
+        bgView.addGestureRecognizer(closeTouch)
+    }
+    
+    @objc func closeTap(_ recognizer: UITapGestureRecognizer) {
+        payeeTableView.isHidden = true
+        payerTableView.isHidden = true
+        groupsTableView.isHidden = true
+        errorLbl.isHidden = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -93,27 +109,31 @@ class GroupDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     @objc func payerFieldTapped () {
-        self.payerTableView.isHidden = false
-        self.payeeTableView.isHidden = true
-        payerArray = []
-        DataService.instance.getGroupMemberIds(forGroup: groupNameField.text!, handler: { (groupMemberIds) in
+        if chosenGroup != "" {
+            self.payerTableView.isHidden = false
+            self.payeeTableView.isHidden = true
+            payerArray = []
+            DataService.instance.getGroupMemberIds(forGroup: groupNameField.text!, handler: { (groupMemberIds) in
             for id in groupMemberIds {
                 DataService.instance.getUsername(forUid: id, handler: { (email) in
-                    if !self.chosenUsers.contains(email){
                         self.payerArray.append(email)
                         self.payerTableView.reloadData()
                         self.payerTableViewHeightConstraint.constant = CGFloat(self.payerArray.count * 40)
-                    }
                 })
             }
         })
+        } else {
+            self.payerTableView.isHidden = true
+            errorLbl.isHidden = false
+        }
     }
     
     @objc func payeeFieldTapped () {
-        self.payeeTableView.isHidden = false
-        self.payerTableView.isHidden = true
-        suggestedPayeeArray = []
-        DataService.instance.getGroupMemberIds(forGroup: groupNameField.text!, handler: { (groupMemberIds) in
+        if chosenGroup != "" {
+            self.payeeTableView.isHidden = false
+            self.payerTableView.isHidden = true
+            suggestedPayeeArray = []
+            DataService.instance.getGroupMemberIds(forGroup: groupNameField.text!, handler: { (groupMemberIds) in
             for id in groupMemberIds {
                 DataService.instance.getUsername(forUid: id, handler: { (email) in
                     if email != self.payer && !self.chosenUsers.contains(email){
@@ -124,6 +144,10 @@ class GroupDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
                 })
             }
         })
+        } else {
+            self.payeeTableView.isHidden = true
+            errorLbl.isHidden = false
+        }
     }
     
     @objc func groupTextFieldDidChange () {
@@ -207,10 +231,14 @@ class GroupDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
             chosenGroup = cell.groupNameLbl.text!
             self.groupNameField.text = chosenGroup
             self.groupsTableView.isHidden = true
+            errorLbl.isHidden = true
         } else if tableView == payerTableView {
             guard let cell = tableView.cellForRow(at: indexPath) as? SearchUserCell else {return}
             payer = cell.userEmailLbl.text!
-            chosenUsers = []
+            if chosenUsers.contains(payer) {
+                chosenUsers = chosenUsers.filter { $0 != payer }
+                chosenPayeesTableView.reloadData()
+            }
             self.payerField.text = payer
             self.payerTableView.isHidden = true
         } else if tableView == payeeTableView {
