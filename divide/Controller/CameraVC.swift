@@ -41,7 +41,10 @@ class CameraVC: UIViewController {
             }
         }
         guard let addBillVC = storyboard?.instantiateViewController(withIdentifier: "AddBillVC") as? AddBillVC else {return}
-        addBillVC.initData(date: date, amount: 0.0)
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMM dd, yyyy"
+        let result = formatter.string(from: date)
+        addBillVC.initData(date: result, amount: 0.0)
         presentDetail(addBillVC)
         activityIndicator.stopAnimating()
         activityIndicator.isHidden = true

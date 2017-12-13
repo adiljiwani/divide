@@ -12,6 +12,7 @@ class AddUserCell: UITableViewCell {
 
     @IBOutlet weak var emailLbl: UILabel!
     
+    @IBOutlet weak var chosenPayeeCell: UILabel!
     @IBOutlet weak var chosenUserEmailLbl: UILabel!
     @IBOutlet weak var deleteBtn: RoundedOutlineButton!
 
@@ -26,6 +27,8 @@ class AddUserCell: UITableViewCell {
         self.deleteBtn.isHidden = false
         } else if sender == "addMember" {
             self.chosenUserEmailLbl.text = email
+        } else if sender == "groupDetails" {
+            self.chosenPayeeCell.text = email
         }
         self.layer.cornerRadius = self.bounds.height / 2
     }

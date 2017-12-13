@@ -219,11 +219,11 @@
 				CC778FCB1FCB4EFD00149DA0 /* HomeVC.swift */,
 				CC778FCD1FCB4F0C00149DA0 /* GroupsVC.swift */,
 				CC7790061FD4ECA900149DA0 /* AddBillVC.swift */,
+				CCC7D10F1FE0DEE4005EAB01 /* GroupDetailsVC.swift */,
 				CC778FD31FCC7A2300149DA0 /* CreateGroupVC.swift */,
 				CC778FFE1FCDE70700149DA0 /* CameraVC.swift */,
 				CCCB0DC01FD773F4006B3CDE /* TransactionVC.swift */,
 				CC4557691FDC66CB0082B701 /* AddMemberVC.swift */,
-				CCC7D10F1FE0DEE4005EAB01 /* GroupDetailsVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
