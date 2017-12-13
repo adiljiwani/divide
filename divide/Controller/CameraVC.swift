@@ -14,8 +14,7 @@ class CameraVC: UIViewController {
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var takePhotoBtn: RoundedButton!
-    
-    @IBOutlet weak var textView: UITextView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         activityIndicator.isHidden = true
@@ -30,7 +29,6 @@ class CameraVC: UIViewController {
             tesseract.pageSegmentationMode = .auto
             tesseract.image = image.g8_blackAndWhite()
             tesseract.recognize()
-            textView.text = tesseract.recognizedText
             var fullText = tesseract.recognizedText.lowercased()
             var fullTextArray = fullText.lowercased().components(separatedBy: " ,\n")
             var totalFound = false
