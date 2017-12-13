@@ -24,6 +24,7 @@ class CameraVC: UIViewController {
     
     func performImageRecognition(_ image: UIImage) {
         var date = Date()
+        var amount = ""
         if let tesseract = G8Tesseract(language: "eng") {
             tesseract.engineMode = .tesseractCubeCombined
             tesseract.pageSegmentationMode = .auto
@@ -31,18 +32,20 @@ class CameraVC: UIViewController {
             tesseract.recognize()
             textView.text = tesseract.recognizedText
             var fullText = tesseract.recognizedText.lowercased()
-            print(fullText.lowercased().contains("$"))
-            var fullTextArray = fullText.lowercased().components(separatedBy: " ")
+            var fullTextArray = fullText.lowercased().components(separatedBy: " ,\n")
             var totalFound = false
             for word in fullTextArray {
+                print(word)
                 if word.contains("total") {
                     totalFound = true
                 }
-                if totalFound {
-                    print("hello")
-                    if word.hasPrefix("$") {
-                        print(word)
-                    }
+                
+            }
+            
+            for word in fullTextArray {
+                if totalFound && word.contains("$"){
+                    amount = word.replacingOccurrences(of: "$", with: "")
+                    print(amount)
                 }
             }
             let types: NSTextCheckingResult.CheckingType = [.date ]
@@ -56,7 +59,7 @@ class CameraVC: UIViewController {
         let formatter = DateFormatter()
         formatter.dateFormat = "MMM dd, yyyy"
         let result = formatter.string(from: date)
-        addBillVC.initData(scannedDate: result, amount: 0.0)
+        addBillVC.initData(scannedDate: result, amount: amount)
         presentDetail(addBillVC)
         activityIndicator.stopAnimating()
         activityIndicator.isHidden = true

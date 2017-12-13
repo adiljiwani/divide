@@ -23,12 +23,13 @@ class AddBillVC: UIViewController {
     var payerArray = [String]()
     var chosenGroup: String = ""
     var date: String?
+    var amount: String?
     
     let picker = UIDatePicker()
     
-    func initData (scannedDate: String, amount: Float) {
+    func initData (scannedDate: String, amount: String) {
         self.date = scannedDate
-        print(String(describing:amount))
+        self.amount = amount
     }
     
     override func viewDidLoad() {
@@ -38,6 +39,9 @@ class AddBillVC: UIViewController {
         createDatePicker()
         if date != nil {
             dateField.text = date
+        }
+        if amount != nil {
+            amountField.text = amount?.currencyInputFormatting()
         }
     }
     
@@ -50,7 +54,11 @@ class AddBillVC: UIViewController {
         
         dateField.inputAccessoryView = toolbar
         dateField.inputView = picker
-        
+        if date != nil {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "MMM dd, yyyy"
+            picker.date = formatter.date(from: date!)!
+        }
         picker.datePickerMode = .date
     }
     
