@@ -68,21 +68,31 @@ class GroupTransactionsVC: UIViewController {
     
     @IBAction func deletePressed(_ sender: Any) {
         let groupName = group?.groupTitle
-        let deleteAlert = UIAlertController(title: "Delete \"\(groupName!)\"", message: "Are you sure you want to delete this group?", preferredStyle: .actionSheet)
-        let deleteAction = UIAlertAction(title: "Delete group", style: .destructive, handler: { (buttonPressed) in
-            DataService.instance.deleteGroup(key: (self.group?.key)!, handler: { (groupDeleted) in
-                if groupDeleted {
-                    self.dismissDetail()
+        DataService.instance.getNumTransactions(inGroup: (group?.key)!) { (canDelete) in
+            if canDelete {
+                let deleteAlert = UIAlertController(title: "Delete \"\(groupName!)\"", message: "Are you sure you want to delete this group?", preferredStyle: .actionSheet)
+                let deleteAction = UIAlertAction(title: "Delete group", style: .destructive, handler: { (buttonPressed) in
+                    DataService.instance.deleteGroup(key: (self.group?.key)!, handler: { (groupDeleted) in
+                        if groupDeleted {
+                            self.dismissDetail()
+                        }
+                    })
+                })
+                
+                let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (cancel) in
+                    deleteAlert.dismiss(animated: true, completion: nil)
                 }
-            })
-        })
-        
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (cancel) in
-            deleteAlert.dismiss(animated: true, completion: nil)
+                deleteAlert.addAction(deleteAction)
+                deleteAlert.addAction(cancelAction)
+                self.present(deleteAlert, animated: true, completion: nil)
+            } else {
+                let alert = UIAlertController(title: "Delete \"\(groupName!)\"", message: "This group cannot be deleted. There are one or more pending transactions in this group.", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            }
         }
-        deleteAlert.addAction(deleteAction)
-        deleteAlert.addAction(cancelAction)
-        present(deleteAlert, animated: true, completion: nil)
+        
+        
     }
     
 }

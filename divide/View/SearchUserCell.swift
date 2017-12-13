@@ -10,9 +10,11 @@ import UIKit
 
 class SearchUserCell: UITableViewCell {
 
+
     @IBOutlet weak var userEmailLbl: UILabel!
     @IBOutlet weak var friendEmailLbl: UILabel!
     
+    @IBOutlet weak var payeeEmailLbl: UILabel!
     @IBOutlet weak var friendEmailLblFromGroup: UILabel!
     
     override func awakeFromNib() {
@@ -33,6 +35,8 @@ class SearchUserCell: UITableViewCell {
             self.friendEmailLbl.text = email
         } else if sender == "addMember" {
             self.friendEmailLblFromGroup.text = email
+        } else if sender == "payee" {
+            self.payeeEmailLbl.text = email
         }
     }
 

@@ -39,6 +39,7 @@
 		CCAB46571FD5E05300BC3DE9 /* SearchUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCAB46561FD5E05300BC3DE9 /* SearchUserCell.swift */; };
 		CCAB46591FD6119F00BC3DE9 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCAB46581FD6119F00BC3DE9 /* Transaction.swift */; };
 		CCAB465B1FD6F48A00BC3DE9 /* GroupTransactionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCAB465A1FD6F48A00BC3DE9 /* GroupTransactionCell.swift */; };
+		CCC7D1101FE0DEE4005EAB01 /* GroupDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC7D10F1FE0DEE4005EAB01 /* GroupDetailsVC.swift */; };
 		CCCB0DBF1FD748B8006B3CDE /* UIViewControllerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCB0DBE1FD748B8006B3CDE /* UIViewControllerExt.swift */; };
 		CCCB0DC11FD773F4006B3CDE /* TransactionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCB0DC01FD773F4006B3CDE /* TransactionVC.swift */; };
 		CCCB0DC31FD7A7B3006B3CDE /* BalanceUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCB0DC21FD7A7B3006B3CDE /* BalanceUserCell.swift */; };
@@ -86,6 +87,7 @@
 		CCAB46561FD5E05300BC3DE9 /* SearchUserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUserCell.swift; sourceTree = "<group>"; };
 		CCAB46581FD6119F00BC3DE9 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		CCAB465A1FD6F48A00BC3DE9 /* GroupTransactionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupTransactionCell.swift; sourceTree = "<group>"; };
+		CCC7D10F1FE0DEE4005EAB01 /* GroupDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDetailsVC.swift; sourceTree = "<group>"; };
 		CCCB0DBE1FD748B8006B3CDE /* UIViewControllerExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExt.swift; sourceTree = "<group>"; };
 		CCCB0DC01FD773F4006B3CDE /* TransactionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionVC.swift; sourceTree = "<group>"; };
 		CCCB0DC21FD7A7B3006B3CDE /* BalanceUserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceUserCell.swift; sourceTree = "<group>"; };
@@ -217,6 +219,7 @@
 				CC778FCB1FCB4EFD00149DA0 /* HomeVC.swift */,
 				CC778FCD1FCB4F0C00149DA0 /* GroupsVC.swift */,
 				CC7790061FD4ECA900149DA0 /* AddBillVC.swift */,
+				CCC7D10F1FE0DEE4005EAB01 /* GroupDetailsVC.swift */,
 				CC778FD31FCC7A2300149DA0 /* CreateGroupVC.swift */,
 				CC778FFE1FCDE70700149DA0 /* CameraVC.swift */,
 				CCCB0DC01FD773F4006B3CDE /* TransactionVC.swift */,
@@ -396,6 +399,7 @@
 				CCCB0DC31FD7A7B3006B3CDE /* BalanceUserCell.swift in Sources */,
 				CC45576B1FDC66CB0082B701 /* AddMemberVC.swift in Sources */,
 				CC7EC1B11FC9ECFE002CCDE5 /* AuthVC.swift in Sources */,
+				CCC7D1101FE0DEE4005EAB01 /* GroupDetailsVC.swift in Sources */,
 				CCAB46591FD6119F00BC3DE9 /* Transaction.swift in Sources */,
 				CC77900B1FD5179200149DA0 /* GroupCell.swift in Sources */,
 				CC77900D1FD51A1F00149DA0 /* Group.swift in Sources */,

@@ -27,10 +27,11 @@ class AuthVC: UIViewController {
     }
 
     @IBAction func loginPressed(_ sender: Any) {
+        let tabBar = storyboard?.instantiateViewController(withIdentifier: "MainTabBar")
         if emailTextField.text != nil && passTextField.text != nil {
             AuthService.instance.loginUser(withEmail: emailTextField.text!, andPassword: passTextField.text!, loginComplete: { (success, loginError) in
                 if success {
-                    self.dismiss(animated: true, completion: nil)
+                    self.presentDetail(tabBar!)
                 } else {
                     print(String(describing: loginError?.localizedDescription))
                 }

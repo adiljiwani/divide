@@ -264,7 +264,7 @@ class DataService {
                     for user in userSnapshot {
                         if payeeId == user.key {
                             let owingValue = (user.childSnapshot(forPath: "owing").value as! NSString).floatValue - (transaction.amount / Float(transaction.payees.count + 1))
-                            self.REF_USERS.child(payeeId).updateChildValues(["owing": String(format: "%.2f", owingValue)])
+                            self.REF_USERS.child(payeeId).updateChildValues(["owing": String(format: "%.2f", owingValue).replacingOccurrences(of: "-", with: "")])
                             self.REF_TRANSACTIONS.child(transaction.key).child(payeeId).updateChildValues(["owing": String(format: "%.2f", 0)])
                             self.REF_TRANSACTIONS.child(transaction.key).child(payeeId).updateChildValues(["settled": result])
                             
@@ -281,7 +281,7 @@ class DataService {
                         if user.key == userId {
                             let owedValue = (user.childSnapshot(forPath: "owed").value as! NSString).floatValue - (transaction.amount / Float(transaction.payees.count + 1))
                             
-                           self.REF_USERS.child(userId).updateChildValues(["owed": String(format: "%.2f", owedValue)])
+                           self.REF_USERS.child(userId).updateChildValues(["owed": String(format: "%.2f", owedValue).replacingOccurrences(of: "-", with: "")])
                             var transactionOwedValue: Float = 0.0
                              self.REF_TRANSACTIONS.child(transaction.key).observeSingleEvent(of: .value, with: { (transactionSnapshot) in
                                 guard let transactionSnapshot = transactionSnapshot.children.allObjects as? [DataSnapshot] else {return}
@@ -424,36 +424,75 @@ class DataService {
         }
     }
     
-    func deleteGroup (key: String, handler: @escaping (_ groupDeleted: Bool) -> ()) {
+    func getNumTransactions(inGroup key: String, handler: @escaping (_ canDelete: Bool) -> ()) {
         var groupName = ""
-        var members = [String]()
+        var groupMemberCount = 0
         REF_GROUPS.observeSingleEvent(of: .value) { (groupSnapshot) in
             guard let groupSnapshot = groupSnapshot.children.allObjects as? [DataSnapshot] else {return}
             for group in groupSnapshot {
                 if group.key == key {
                     groupName = group.childSnapshot(forPath: "title").value as! String
-                    members = group.childSnapshot(forPath: "members").value as! [String]
-                    for userId in members {
-                        self.REF_USERS.child(userId).child("groups").child(key).removeValue()
-                    }
+                    groupMemberCount = (group.childSnapshot(forPath: "members").value as! [String]).count
                 }
             }
         }
         
+        var numTransactions = 0
         REF_TRANSACTIONS.observeSingleEvent(of: .value) { (transactionSnapshot) in
             guard let transactionSnapshot = transactionSnapshot.children.allObjects as? [DataSnapshot] else {return}
             for transaction in transactionSnapshot {
                 let groupTitle = transaction.childSnapshot(forPath: "groupTitle").value as! String
-                if groupTitle == groupName {
-                    self.REF_TRANSACTIONS.child(transaction.key).removeValue()
+                let settled = transaction.childSnapshot(forPath: "settled").value as! [String]
+                if groupTitle == groupName && !(settled.count == groupMemberCount){
+                    numTransactions += 1
                 }
-                for userId in members {
-                    self.REF_USERS.child(userId).child("transactions").child(transaction.key).removeValue()
+            }
+            if numTransactions == 0 {
+                handler(true)
+            } else {
+                handler(false)
+            }
+        }
+    }
+    
+    func deleteGroup (key: String, handler: @escaping (_ groupDeleted: Bool) -> ()) {
+        var groupName = ""
+        REF_GROUPS.observeSingleEvent(of: .value) { (groupSnapshot) in
+            guard let groupSnapshot = groupSnapshot.children.allObjects as? [DataSnapshot] else {return}
+            for group in groupSnapshot {
+                if group.key == key {
+                    groupName = group.childSnapshot(forPath: "title").value as! String
                 }
             }
         }
-        REF_GROUPS.child(key).removeValue()
-        handler(true)
+            var members = [String]()
+            REF_GROUPS.observeSingleEvent(of: .value) { (groupSnapshot) in
+                guard let groupSnapshot = groupSnapshot.children.allObjects as? [DataSnapshot] else {return}
+                for group in groupSnapshot {
+                    if group.key == key {
+                        groupName = group.childSnapshot(forPath: "title").value as! String
+                        members = group.childSnapshot(forPath: "members").value as! [String]
+                        for userId in members {
+                            self.REF_USERS.child(userId).child("groups").child(key).removeValue()
+                        }
+                    }
+                }
+            }
+            
+            REF_TRANSACTIONS.observeSingleEvent(of: .value) { (transactionSnapshot) in
+                guard let transactionSnapshot = transactionSnapshot.children.allObjects as? [DataSnapshot] else {return}
+                for transaction in transactionSnapshot {
+                    let groupTitle = transaction.childSnapshot(forPath: "groupTitle").value as! String
+                    if groupTitle == groupName {
+                        self.REF_TRANSACTIONS.child(transaction.key).removeValue()
+                    }
+                    for userId in members {
+                        self.REF_USERS.child(userId).child("transactions").child(transaction.key).removeValue()
+                    }
+                }
+            }
+            REF_GROUPS.child(key).removeValue()
+            handler(true)
     }
     
     func addMember (toGroup key: String, currentMembers: [String], membersToAdd: [String], groupName: String, handler: @escaping (_ addedMember: Bool) -> ()) {
