@@ -34,6 +34,9 @@ class AddBillVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        billDescriptionField.delegate = self
+        billDescriptionField.addTarget(self, action: #selector(descFieldChanged), for: .editingChanged)
+        dateField.delegate = self
         amountField.delegate = self
         amountField.addTarget(self, action: #selector(amountFieldChanged), for: .editingChanged)
         createDatePicker()
@@ -42,6 +45,14 @@ class AddBillVC: UIViewController {
         }
         if amount != nil {
             amountField.text = amount?.currencyInputFormatting()
+        }
+    }
+    
+    @objc func descFieldChanged () {
+        if billDescriptionField.layer.borderColor == #colorLiteral(red: 0.8078431373, green: 0.1137254902, blue: 0.007843137255, alpha: 1) {
+            billDescriptionField.layer.borderColor = #colorLiteral(red: 0.0431372549, green: 0.1960784314, blue: 0.3490196078, alpha: 1)
+            let placeholder = NSAttributedString(string: billDescriptionField.placeholder!, attributes: [NSAttributedStringKey.foregroundColor: #colorLiteral(red: 0.0431372549, green: 0.1960784314, blue: 0.3490196078, alpha: 1)])
+            billDescriptionField.attributedPlaceholder = placeholder
         }
     }
     
@@ -68,6 +79,11 @@ class AddBillVC: UIViewController {
     }
     
     @objc func donePressed() {
+        if dateField.layer.borderColor == #colorLiteral(red: 0.8078431373, green: 0.1137254902, blue: 0.007843137255, alpha: 1) {
+            dateField.layer.borderColor = #colorLiteral(red: 0.0431372549, green: 0.1960784314, blue: 0.3490196078, alpha: 1)
+            let placeholder = NSAttributedString(string: dateField.placeholder!, attributes: [NSAttributedStringKey.foregroundColor: #colorLiteral(red: 0.0431372549, green: 0.1960784314, blue: 0.3490196078, alpha: 1)])
+            dateField.attributedPlaceholder = placeholder
+        }
         let formatter = DateFormatter()
         formatter.dateFormat = "MMM dd, yyyy"
         let result = formatter.string(from: picker.date)
@@ -77,6 +93,11 @@ class AddBillVC: UIViewController {
     }
     
     @objc func amountFieldChanged () {
+        if amountField.layer.borderColor == #colorLiteral(red: 0.8078431373, green: 0.1137254902, blue: 0.007843137255, alpha: 1) {
+            amountField.layer.borderColor = #colorLiteral(red: 0.0431372549, green: 0.1960784314, blue: 0.3490196078, alpha: 1)
+            let placeholder = NSAttributedString(string: amountField.placeholder!, attributes: [NSAttributedStringKey.foregroundColor: #colorLiteral(red: 0.0431372549, green: 0.1960784314, blue: 0.3490196078, alpha: 1)])
+            amountField.attributedPlaceholder = placeholder
+        }
         amountField.text = amountField.text?.currencyInputFormatting()
     }
 
@@ -86,6 +107,25 @@ class AddBillVC: UIViewController {
     
     
     @IBAction func nextPressed(_ sender: Any) {
+        
+        if (billDescriptionField.text == "") {
+            billDescriptionField.layer.borderColor = #colorLiteral(red: 0.8078431373, green: 0.1137254902, blue: 0.007843137255, alpha: 1)
+            let placeholder = NSAttributedString(string: billDescriptionField.placeholder!, attributes: [NSAttributedStringKey.foregroundColor: #colorLiteral(red: 0.8078431373, green: 0.1137254902, blue: 0.007843137255, alpha: 1)])
+            billDescriptionField.attributedPlaceholder = placeholder
+        }
+        
+        if amountField.text == "" {
+            amountField.layer.borderColor = #colorLiteral(red: 0.8078431373, green: 0.1137254902, blue: 0.007843137255, alpha: 1)
+            let placeholder = NSAttributedString(string: amountField.placeholder!, attributes: [NSAttributedStringKey.foregroundColor: #colorLiteral(red: 0.8078431373, green: 0.1137254902, blue: 0.007843137255, alpha: 1)])
+            amountField.attributedPlaceholder = placeholder
+        }
+        
+        if dateField.text == "" {
+            dateField.layer.borderColor = #colorLiteral(red: 0.8078431373, green: 0.1137254902, blue: 0.007843137255, alpha: 1)
+            let placeholder = NSAttributedString(string: dateField.placeholder!, attributes: [NSAttributedStringKey.foregroundColor: #colorLiteral(red: 0.8078431373, green: 0.1137254902, blue: 0.007843137255, alpha: 1)])
+            dateField.attributedPlaceholder = placeholder
+        }
+        
         guard let groupDetailsVC = storyboard?.instantiateViewController(withIdentifier: "GroupDetailsVC") as? GroupDetailsVC else {return}
         
         let amountFieldWithoutCurrency = amountField.text?.replacingOccurrences(of: "$", with: "")
