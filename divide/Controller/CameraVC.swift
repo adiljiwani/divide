@@ -62,7 +62,7 @@ class CameraVC: UIViewController {
         formatter.dateFormat = "MMM dd, yyyy"
         let result = formatter.string(from: date)
         addBillVC.initData(scannedDate: result, amount: amount)
-        presentDetail(addBillVC)
+        present(addBillVC, animated: true, completion: nil)
         activityIndicator.stopAnimating()
         activityIndicator.isHidden = true
         takePhotoBtn.setTitle("Take Photo / Upload Image", for: .normal)
@@ -70,9 +70,6 @@ class CameraVC: UIViewController {
     
     @IBAction func takePhoto(_ sender: Any) {
         presentImagePicker()
-    }
-    
-    @IBAction func profilePressed(_ sender: Any) {
     }
     
 }
