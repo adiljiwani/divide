@@ -30,6 +30,7 @@ class SignupVC: UIViewController {
             if success {
                 AuthService.instance.loginUser(withEmail: self.emailTextField.text!, andPassword: self.passwordField.text!, loginComplete: { (success, nil) in
                     self.presentDetail(tabBar!)
+                    UIApplication.shared.statusBarStyle = .lightContent
                 })
             } else {
                 print(String(describing: registrationError?.localizedDescription))

@@ -24,6 +24,7 @@ class AuthVC: UIViewController {
         super.viewDidLoad()
         emailTextField.delegate = self
         passTextField.delegate = self
+        UIApplication.shared.statusBarStyle = .default
     }
 
     @IBAction func loginPressed(_ sender: Any) {
@@ -32,6 +33,7 @@ class AuthVC: UIViewController {
             AuthService.instance.loginUser(withEmail: emailTextField.text!, andPassword: passTextField.text!, loginComplete: { (success, loginError) in
                 if success {
                     self.presentDetail(tabBar!)
+                    UIApplication.shared.statusBarStyle = .lightContent
                 } else {
                     print(String(describing: loginError?.localizedDescription))
                 }
