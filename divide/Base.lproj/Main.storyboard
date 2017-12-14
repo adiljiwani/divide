@@ -190,12 +190,25 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wgj-1w-fZu">
+                                        <rect key="frame" x="20" y="35.666666666666664" width="25" height="25"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="25" id="0k3-2u-ZQX"/>
+                                            <constraint firstAttribute="width" constant="25" id="7HA-9k-B0x"/>
+                                        </constraints>
+                                        <state key="normal" image="defaultProfileImage"/>
+                                        <connections>
+                                            <segue destination="Rue-TW-ZC7" kind="show" id="b5M-uI-y3r"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.043137254899999998" green="0.1960784314" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="GAG-4I-yx5"/>
                                     <constraint firstItem="e2L-wU-LQr" firstAttribute="centerX" secondItem="i15-Do-7gO" secondAttribute="centerX" id="Nra-KN-YUC"/>
                                     <constraint firstAttribute="bottom" secondItem="e2L-wU-LQr" secondAttribute="bottom" constant="8" id="Umu-BN-YT5"/>
+                                    <constraint firstItem="wgj-1w-fZu" firstAttribute="leading" secondItem="i15-Do-7gO" secondAttribute="leading" constant="20" id="brq-vc-SSA"/>
+                                    <constraint firstItem="wgj-1w-fZu" firstAttribute="centerY" secondItem="e2L-wU-LQr" secondAttribute="centerY" id="vcm-yG-FoT"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -1764,20 +1777,6 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="fMf-T8-fSK">
-                                <rect key="frame" x="20" y="210" width="374" height="41"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="KUs-Yb-U9L"/>
-                                </constraints>
-                                <segments>
-                                    <segment title="Pending"/>
-                                    <segment title="Settled"/>
-                                </segments>
-                                <color key="tintColor" red="0.043137254899999998" green="0.1960784314" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <connections>
-                                    <action selector="segmentControlChanged:" destination="lHp-Pi-2dz" eventType="valueChanged" id="i6e-yK-rTf"/>
-                                </connections>
-                            </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="IHP-G2-Gan">
                                 <rect key="frame" x="0.0" y="270" width="414" height="150"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1869,6 +1868,21 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <segmentedControl opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="fMf-T8-fSK">
+                                <rect key="frame" x="20" y="210" width="374" height="41"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="KUs-Yb-U9L"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="Pending"/>
+                                    <segment title="Settled"/>
+                                </segments>
+                                <color key="tintColor" red="0.043137254899999998" green="0.1960784314" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="segmentControlChanged:" destination="lHp-Pi-2dz" eventType="valueChanged" id="i6e-yK-rTf"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -2354,6 +2368,6 @@
         <image name="home" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="LIY-2k-MYj"/>
+        <segue reference="b5M-uI-y3r"/>
     </inferredMetricsTieBreakers>
 </document>

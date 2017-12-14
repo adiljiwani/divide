@@ -66,6 +66,10 @@ class CameraVC: UIViewController {
     @IBAction func takePhoto(_ sender: Any) {
         presentImagePicker()
     }
+    
+    @IBAction func profilePressed(_ sender: Any) {
+    }
+    
 }
 
 extension CameraVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {

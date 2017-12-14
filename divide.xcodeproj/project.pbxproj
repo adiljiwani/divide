@@ -40,6 +40,7 @@
 		CCAB46591FD6119F00BC3DE9 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCAB46581FD6119F00BC3DE9 /* Transaction.swift */; };
 		CCAB465B1FD6F48A00BC3DE9 /* GroupTransactionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCAB465A1FD6F48A00BC3DE9 /* GroupTransactionCell.swift */; };
 		CCC7D1101FE0DEE4005EAB01 /* GroupDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC7D10F1FE0DEE4005EAB01 /* GroupDetailsVC.swift */; };
+		CCC7D11F1FE2D633005EAB01 /* RoundedOutlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC7D11E1FE2D633005EAB01 /* RoundedOutlineView.swift */; };
 		CCCB0DBF1FD748B8006B3CDE /* UIViewControllerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCB0DBE1FD748B8006B3CDE /* UIViewControllerExt.swift */; };
 		CCCB0DC11FD773F4006B3CDE /* TransactionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCB0DC01FD773F4006B3CDE /* TransactionVC.swift */; };
 		CCCB0DC31FD7A7B3006B3CDE /* BalanceUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCB0DC21FD7A7B3006B3CDE /* BalanceUserCell.swift */; };
@@ -102,6 +103,7 @@
 		CCAB465A1FD6F48A00BC3DE9 /* GroupTransactionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupTransactionCell.swift; sourceTree = "<group>"; };
 		CCC7D10F1FE0DEE4005EAB01 /* GroupDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDetailsVC.swift; sourceTree = "<group>"; };
 		CCC7D1111FE18C41005EAB01 /* ScanbotSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScanbotSDK.framework; path = "scanbot-ios-sdk1.5.1/ScanbotSDK/ScanbotSDK.framework"; sourceTree = "<group>"; };
+		CCC7D11E1FE2D633005EAB01 /* RoundedOutlineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedOutlineView.swift; sourceTree = "<group>"; };
 		CCCB0DBE1FD748B8006B3CDE /* UIViewControllerExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExt.swift; sourceTree = "<group>"; };
 		CCCB0DC01FD773F4006B3CDE /* TransactionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionVC.swift; sourceTree = "<group>"; };
 		CCCB0DC21FD7A7B3006B3CDE /* BalanceUserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceUserCell.swift; sourceTree = "<group>"; };
@@ -248,6 +250,7 @@
 			children = (
 				CC7EC1B51FC9F160002CCDE5 /* RoundedButton.swift */,
 				CC45576E1FDC68280082B701 /* RoundedModalView.swift */,
+				CCC7D11E1FE2D633005EAB01 /* RoundedOutlineView.swift */,
 				CC7EC1B71FC9F241002CCDE5 /* RoundedOutlineButton.swift */,
 				CC893A251FCA12240094E191 /* InsetTextField.swift */,
 				CC7790001FCF314600149DA0 /* RoundedView.swift */,
@@ -419,6 +422,7 @@
 				CCAB46591FD6119F00BC3DE9 /* Transaction.swift in Sources */,
 				CC77900B1FD5179200149DA0 /* GroupCell.swift in Sources */,
 				CC77900D1FD51A1F00149DA0 /* Group.swift in Sources */,
+				CCC7D11F1FE2D633005EAB01 /* RoundedOutlineView.swift in Sources */,
 				CC778FCC1FCB4EFD00149DA0 /* HomeVC.swift in Sources */,
 				CCCB0DC11FD773F4006B3CDE /* TransactionVC.swift in Sources */,
 				CC45576F1FDC68280082B701 /* RoundedModalView.swift in Sources */,
