@@ -34,11 +34,8 @@ class CameraVC: UIViewController {
             var fullTextArray = fullText.lowercased().components(separatedBy: " ")
             var totalFound = false
             var possibleAmountString: String
-            var possibleAmount: Float
             for word in fullTextArray {
-                    possibleAmountString = word.replacingOccurrences(of: "-", with: "")
-                    possibleAmountString = possibleAmountString.replacingOccurrences(of: "$", with: "")
-                    possibleAmountString = possibleAmountString.trimmingCharacters(in: CharacterSet(charactersIn: "01234567890.").inverted)
+                    possibleAmountString = word.trimmingCharacters(in: CharacterSet(charactersIn: "01234567890.").inverted)
                     let pattern = "\\d+\\.\\d{2}"
                     let amountRegex = try! NSRegularExpression(pattern: pattern, options: [])
                     let matches = amountRegex.matches(in: possibleAmountString, options: [], range: NSMakeRange(0, possibleAmountString.count))
@@ -46,8 +43,9 @@ class CameraVC: UIViewController {
                     print(possibleAmountString)
                     print("")
                     if matches.count == 1{
-                        possibleAmount = Float(possibleAmountString)!
+                        if let possibleAmount = Float(possibleAmountString){
                         amount = String(format: "$%.2f", possibleAmount)
+                        }
                     }
                 
             }
@@ -55,7 +53,7 @@ class CameraVC: UIViewController {
             let types: NSTextCheckingResult.CheckingType = [.date ]
             let detector = try? NSDataDetector(types: types.rawValue)
             let result = detector?.firstMatch(in: fullText, range: NSMakeRange(0,fullText.utf16.count))
-            if result?.resultType == .date {
+            if result?.resultType == .date && (result?.date)! <= date {
                 date = (result?.date)!
             }
         }
