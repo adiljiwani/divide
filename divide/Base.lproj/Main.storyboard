@@ -1893,6 +1893,12 @@
                                     <action selector="segmentControlChanged:" destination="lHp-Pi-2dz" eventType="valueChanged" id="i6e-yK-rTf"/>
                                 </connections>
                             </segmentedControl>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You have no pending transactions." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yHY-S1-ZhF">
+                                <rect key="frame" x="73.666666666666657" y="290" width="266.66666666666674" height="23.333333333333314"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
+                                <color key="textColor" red="0.043137254899999998" green="0.1960784314" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -1902,6 +1908,7 @@
                             <constraint firstItem="ipu-Db-vV9" firstAttribute="top" secondItem="XSF-G2-sLn" secondAttribute="bottom" id="CG9-js-hjY"/>
                             <constraint firstItem="fMf-T8-fSK" firstAttribute="top" secondItem="ipu-Db-vV9" secondAttribute="bottom" constant="20" id="CHI-qP-AP1"/>
                             <constraint firstItem="rw6-lm-jTb" firstAttribute="leading" secondItem="Npq-D7-BWZ" secondAttribute="leading" id="Emg-7d-U1E"/>
+                            <constraint firstItem="yHY-S1-ZhF" firstAttribute="top" secondItem="fMf-T8-fSK" secondAttribute="bottom" constant="40" id="Hqj-44-Hob"/>
                             <constraint firstItem="rw6-lm-jTb" firstAttribute="top" secondItem="fMf-T8-fSK" secondAttribute="bottom" constant="20" id="Le6-bp-ZwY"/>
                             <constraint firstItem="XSF-G2-sLn" firstAttribute="top" secondItem="x0O-03-sTP" secondAttribute="top" id="OPx-fh-qHv"/>
                             <constraint firstItem="XSF-G2-sLn" firstAttribute="trailing" secondItem="Npq-D7-BWZ" secondAttribute="trailing" id="Z5r-7d-aN1"/>
@@ -1909,6 +1916,7 @@
                             <constraint firstItem="ipu-Db-vV9" firstAttribute="leading" secondItem="Npq-D7-BWZ" secondAttribute="leading" id="hMH-bm-6yj"/>
                             <constraint firstItem="ipu-Db-vV9" firstAttribute="trailing" secondItem="Npq-D7-BWZ" secondAttribute="trailing" id="hhd-Yv-tOm"/>
                             <constraint firstItem="Npq-D7-BWZ" firstAttribute="trailing" secondItem="rw6-lm-jTb" secondAttribute="trailing" id="hzr-mQ-BlS"/>
+                            <constraint firstItem="yHY-S1-ZhF" firstAttribute="centerX" secondItem="x0O-03-sTP" secondAttribute="centerX" id="pX8-3E-wEw"/>
                             <constraint firstItem="IHP-G2-Gan" firstAttribute="top" secondItem="fMf-T8-fSK" secondAttribute="bottom" constant="20" id="wWC-Kq-2cY"/>
                             <constraint firstItem="XSF-G2-sLn" firstAttribute="leading" secondItem="Npq-D7-BWZ" secondAttribute="leading" id="xJL-jJ-yqz"/>
                         </constraints>
@@ -1930,6 +1938,7 @@
                         <outlet property="settledTableViewHeightConstraint" destination="44m-7r-tE5" id="0TS-76-ohS"/>
                         <outlet property="totalOwedLabel" destination="K7U-GS-UPr" id="PI8-vU-cc2"/>
                         <outlet property="totalOwingLabel" destination="iHy-CC-Cbt" id="VA1-sD-HRb"/>
+                        <outlet property="transactionStatusLbl" destination="yHY-S1-ZhF" id="fFX-qx-XgW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fmU-jW-wIz" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2378,6 +2387,6 @@
         <image name="home" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="b5M-uI-y3r"/>
+        <segue reference="wtW-nf-V3M"/>
     </inferredMetricsTieBreakers>
 </document>
