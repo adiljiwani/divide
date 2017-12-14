@@ -153,34 +153,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gxH-cC-K9w" customClass="RoundedButton" customModule="divide" customModuleProvider="target">
-                                <rect key="frame" x="82.666666666666686" y="343" width="250" height="50"/>
-                                <color key="backgroundColor" red="0.043137254899999998" green="0.1960784314" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="250" id="gbi-jP-n36"/>
-                                    <constraint firstAttribute="height" constant="50" id="n6A-SJ-p4P"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
-                                <state key="normal" title="Take Photo / Upload Image">
-                                    <color key="titleColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="25"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="takePhoto:" destination="Mx4-PU-Lsv" eventType="touchUpInside" id="6oM-SH-2Dh"/>
-                                </connections>
-                            </button>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="S61-Zy-uwu">
-                                <rect key="frame" x="192" y="353" width="30" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="30" id="azm-cy-pBE"/>
-                                    <constraint firstAttribute="height" constant="30" id="w4C-76-klh"/>
-                                </constraints>
-                                <color key="color" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </activityIndicatorView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i15-Do-7gO">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="70"/>
                                 <subviews>
@@ -211,22 +183,60 @@
                                     <constraint firstItem="wgj-1w-fZu" firstAttribute="centerY" secondItem="e2L-wU-LQr" secondAttribute="centerY" id="vcm-yG-FoT"/>
                                 </constraints>
                             </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sVX-Cx-7n9">
+                                <rect key="frame" x="40" y="110" width="334" height="343"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="343" id="llb-CH-Cjf"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gxH-cC-K9w" customClass="RoundedButton" customModule="divide" customModuleProvider="target">
+                                <rect key="frame" x="82" y="493" width="250" height="50"/>
+                                <color key="backgroundColor" red="0.043137254899999998" green="0.1960784314" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="250" id="gbi-jP-n36"/>
+                                    <constraint firstAttribute="height" constant="50" id="n6A-SJ-p4P"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
+                                <state key="normal" title="Take Photo / Upload Image">
+                                    <color key="titleColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="25"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="takePhoto:" destination="Mx4-PU-Lsv" eventType="touchUpInside" id="6oM-SH-2Dh"/>
+                                </connections>
+                            </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="S61-Zy-uwu">
+                                <rect key="frame" x="192" y="503" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="azm-cy-pBE"/>
+                                    <constraint firstAttribute="height" constant="30" id="w4C-76-klh"/>
+                                </constraints>
+                                <color key="color" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="gxH-cC-K9w" firstAttribute="centerY" secondItem="jS8-Yr-VHV" secondAttribute="centerY" id="851-D3-sCs"/>
                             <constraint firstItem="gxH-cC-K9w" firstAttribute="centerX" secondItem="jS8-Yr-VHV" secondAttribute="centerX" id="ELB-sF-Gc5"/>
+                            <constraint firstItem="gxH-cC-K9w" firstAttribute="centerY" secondItem="jS8-Yr-VHV" secondAttribute="centerY" constant="150" id="KKX-FR-5ga"/>
                             <constraint firstItem="i15-Do-7gO" firstAttribute="leading" secondItem="Oe4-2B-oYJ" secondAttribute="leading" id="LSk-t7-yLD"/>
-                            <constraint firstItem="S61-Zy-uwu" firstAttribute="centerX" secondItem="jS8-Yr-VHV" secondAttribute="centerX" id="eUz-Qj-Ob2"/>
+                            <constraint firstItem="Oe4-2B-oYJ" firstAttribute="trailing" secondItem="sVX-Cx-7n9" secondAttribute="trailing" constant="40" id="Tva-Xg-Nfs"/>
+                            <constraint firstItem="sVX-Cx-7n9" firstAttribute="top" secondItem="i15-Do-7gO" secondAttribute="bottom" constant="40" id="dFq-VH-AOB"/>
+                            <constraint firstItem="sVX-Cx-7n9" firstAttribute="leading" secondItem="Oe4-2B-oYJ" secondAttribute="leading" constant="40" id="dfJ-Sq-nWz"/>
+                            <constraint firstItem="S61-Zy-uwu" firstAttribute="centerX" secondItem="gxH-cC-K9w" secondAttribute="centerX" id="nFu-oG-pqB"/>
                             <constraint firstItem="i15-Do-7gO" firstAttribute="trailing" secondItem="Oe4-2B-oYJ" secondAttribute="trailing" id="wBM-ws-rGu"/>
                             <constraint firstItem="i15-Do-7gO" firstAttribute="top" secondItem="jS8-Yr-VHV" secondAttribute="top" id="x8G-gS-BNS"/>
-                            <constraint firstItem="S61-Zy-uwu" firstAttribute="centerY" secondItem="jS8-Yr-VHV" secondAttribute="centerY" id="yfV-6I-3lb"/>
+                            <constraint firstItem="S61-Zy-uwu" firstAttribute="centerY" secondItem="gxH-cC-K9w" secondAttribute="centerY" id="zXA-wj-nqN"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Oe4-2B-oYJ"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Camera" image="camera" selectedImage="camera" id="Eq3-e7-Or9"/>
                     <connections>
                         <outlet property="activityIndicator" destination="S61-Zy-uwu" id="hOJ-uN-Y7M"/>
+                        <outlet property="imageView" destination="sVX-Cx-7n9" id="8UP-Cq-SXd"/>
                         <outlet property="takePhotoBtn" destination="gxH-cC-K9w" id="3CX-yn-YKf"/>
                     </connections>
                 </viewController>

@@ -15,6 +15,7 @@ class CameraVC: UIViewController {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var takePhotoBtn: RoundedButton!
 
+    @IBOutlet weak var imageView: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
         activityIndicator.isHidden = true
@@ -33,6 +34,7 @@ class CameraVC: UIViewController {
             var fullTextArray = fullText.lowercased().components(separatedBy: " ,\n")
             var totalFound = false
             for word in fullTextArray {
+                print(word)
                 if word.contains("total") {
                     totalFound = true
                 }
@@ -104,6 +106,7 @@ extension CameraVC: UIImagePickerControllerDelegate, UINavigationControllerDeleg
                                didFinishPickingMediaWithInfo info: [String : Any]) {
         if let selectedPhoto = info[UIImagePickerControllerOriginalImage] as? UIImage,
             let scaledImage = selectedPhoto.scaleImage(640) {
+            imageView.image = scaledImage.g8_blackAndWhite()
             activityIndicator.startAnimating()
             activityIndicator.isHidden = false
             takePhotoBtn.setTitle("", for: .normal)
