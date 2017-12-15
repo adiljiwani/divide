@@ -130,12 +130,13 @@ class CreateGroupVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     
 
     @IBAction func deletePressed(_ sender: UIButton) {
-        //chosenUsers = chosenUsers.filter({ $0 != "adiljiwani@gmail.com" })
-        if chosenUsers.count == 0 {
-            doneBtn.isHidden = true
+         let point = chosenUsersTableView.convert(CGPoint.zero, from: sender)
+        if let indexPath = chosenUsersTableView.indexPathForRow(at: point) {
+            print(indexPath.row)
+            chosenUsers = chosenUsers.filter { $0 != chosenUsers[indexPath.row]}
         }
-        
         chosenUsersTableView.reloadData()
+        self.tableViewHeightConstraint.constant = CGFloat(self.chosenUsers.count) * self.chosenUsersTableView.rowHeight
     }
     
     

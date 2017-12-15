@@ -34,6 +34,7 @@ class CameraVC: UIViewController {
             var fullTextArray = fullText.lowercased().components(separatedBy: " ")
             var totalFound = false
             var possibleAmountString: String
+            var possibleAmountArray = [Float]()
             for word in fullTextArray {
                     possibleAmountString = word.trimmingCharacters(in: CharacterSet(charactersIn: "01234567890.").inverted)
                     let pattern = "\\d+\\.\\d{2}"
@@ -44,12 +45,16 @@ class CameraVC: UIViewController {
                     print("")
                     if matches.count == 1{
                         if let possibleAmount = Float(possibleAmountString){
-                        amount = String(format: "$%.2f", possibleAmount)
+                            possibleAmountArray.append(possibleAmount)
+                        
                         }
                     }
                 
             }
-            
+            print(possibleAmountArray)
+            if possibleAmountArray.count != 0 {
+            amount = String(format: "$%.2f", possibleAmountArray.max()!)
+            }
             let types: NSTextCheckingResult.CheckingType = [.date ]
             let detector = try? NSDataDetector(types: types.rawValue)
             let result = detector?.firstMatch(in: fullText, range: NSMakeRange(0,fullText.utf16.count))
