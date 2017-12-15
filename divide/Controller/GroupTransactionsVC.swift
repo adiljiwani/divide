@@ -63,8 +63,11 @@ class GroupTransactionsVC: UIViewController {
     }
     
     @IBAction func removePressed(_ sender: Any) {
+        guard let removeMembersVC = storyboard?.instantiateViewController(withIdentifier: "RemoveMembersVC") as? RemoveMembersVC else {return}
+        removeMembersVC.initData(chosenGroup: group!)
+        removeMembersVC.modalPresentationStyle = .custom
+        self.present(removeMembersVC, animated: true, completion: nil)
     }
-    
     
     @IBAction func deletePressed(_ sender: Any) {
         let groupName = group?.groupTitle
