@@ -9,8 +9,9 @@
 import UIKit
 import Firebase
 
-class AddMemberVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class EditMembersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    @IBOutlet weak var deleteUserButton: RoundedButton!
     @IBOutlet weak var doneBtn: RoundedButton!
     
     @IBOutlet weak var errorLbl: UILabel!
@@ -53,13 +54,23 @@ class AddMemberVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
         usersTableView.layer.borderColor = #colorLiteral(red: 0.9176470588, green: 0.9568627451, blue: 0.9647058824, alpha: 1)
         usersTableView.layer.borderWidth = 1.0
         
-        let closeTouch = UITapGestureRecognizer(target: self, action: #selector(AddMemberVC.closeTap(_:)))
+        let closeTouch = UITapGestureRecognizer(target: self, action: #selector(EditMembersVC.closeTap(_:)))
             
         bgView.addGestureRecognizer(closeTouch)
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         membersTextField.becomeFirstResponder()
+    }
+    
+    
+    @IBAction func deleteUserFromGroupPressed(_ sender: UIButton) {
+        let point = chosenUsersTableView.convert(CGPoint.zero, from: sender)
+        if let indexPath = chosenUsersTableView.indexPathForRow(at: point) {
+            chosenUsers = chosenUsers.filter { $0 != chosenUsers[indexPath.row]}
+        }
+        chosenUsersTableView.reloadData()
+        self.chosenUsersTableViewHeightConstraint.constant = CGFloat(self.chosenUsers.count) * self.chosenUsersTableView.rowHeight
     }
     
     @objc func membersFieldDidChange () {
@@ -184,6 +195,6 @@ class AddMemberVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
 
 
 
-extension AddMemberVC: UITextFieldDelegate {
+extension EditMembersVC: UITextFieldDelegate {
     
 }

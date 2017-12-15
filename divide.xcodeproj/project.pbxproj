@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CC45576B1FDC66CB0082B701 /* AddMemberVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4557691FDC66CB0082B701 /* AddMemberVC.swift */; };
+		CC45576B1FDC66CB0082B701 /* EditMembersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4557691FDC66CB0082B701 /* EditMembersVC.swift */; };
 		CC45576F1FDC68280082B701 /* RoundedModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC45576E1FDC68280082B701 /* RoundedModalView.swift */; };
 		CC5B44E81FDC39600061B8CB /* StringExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5B44E71FDC39600061B8CB /* StringExt.swift */; };
 		CC778FCA1FCAAB6300149DA0 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC778FC91FCAAB6300149DA0 /* ProfileVC.swift */; };
@@ -35,6 +35,7 @@
 		CC7EC1B81FC9F241002CCDE5 /* RoundedOutlineButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7EC1B71FC9F241002CCDE5 /* RoundedOutlineButton.swift */; };
 		CC893A261FCA12240094E191 /* InsetTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC893A251FCA12240094E191 /* InsetTextField.swift */; };
 		CC893A281FCA16370094E191 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC893A271FCA16370094E191 /* AuthService.swift */; };
+		CC8949D81FE450D200709159 /* RemoveMembersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8949D71FE450D200709159 /* RemoveMembersVC.swift */; };
 		CCAB46551FD5C61500BC3DE9 /* SearchGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCAB46541FD5C61500BC3DE9 /* SearchGroupCell.swift */; };
 		CCAB46571FD5E05300BC3DE9 /* SearchUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCAB46561FD5E05300BC3DE9 /* SearchUserCell.swift */; };
 		CCAB46591FD6119F00BC3DE9 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCAB46581FD6119F00BC3DE9 /* Transaction.swift */; };
@@ -67,7 +68,7 @@
 
 /* Begin PBXFileReference section */
 		74EB103CD9B5B534BD898AC5 /* Pods-divide.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-divide.debug.xcconfig"; path = "Pods/Target Support Files/Pods-divide/Pods-divide.debug.xcconfig"; sourceTree = "<group>"; };
-		CC4557691FDC66CB0082B701 /* AddMemberVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMemberVC.swift; sourceTree = "<group>"; };
+		CC4557691FDC66CB0082B701 /* EditMembersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMembersVC.swift; sourceTree = "<group>"; };
 		CC45576E1FDC68280082B701 /* RoundedModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedModalView.swift; sourceTree = "<group>"; };
 		CC5B44E71FDC39600061B8CB /* StringExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExt.swift; sourceTree = "<group>"; };
 		CC778FC91FCAAB6300149DA0 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
@@ -97,6 +98,7 @@
 		CC7EC1B71FC9F241002CCDE5 /* RoundedOutlineButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedOutlineButton.swift; sourceTree = "<group>"; };
 		CC893A251FCA12240094E191 /* InsetTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsetTextField.swift; sourceTree = "<group>"; };
 		CC893A271FCA16370094E191 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		CC8949D71FE450D200709159 /* RemoveMembersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveMembersVC.swift; sourceTree = "<group>"; };
 		CCAB46541FD5C61500BC3DE9 /* SearchGroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchGroupCell.swift; sourceTree = "<group>"; };
 		CCAB46561FD5E05300BC3DE9 /* SearchUserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUserCell.swift; sourceTree = "<group>"; };
 		CCAB46581FD6119F00BC3DE9 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
@@ -240,7 +242,8 @@
 				CC778FD31FCC7A2300149DA0 /* CreateGroupVC.swift */,
 				CC778FFE1FCDE70700149DA0 /* CameraVC.swift */,
 				CCCB0DC01FD773F4006B3CDE /* TransactionVC.swift */,
-				CC4557691FDC66CB0082B701 /* AddMemberVC.swift */,
+				CC4557691FDC66CB0082B701 /* EditMembersVC.swift */,
+				CC8949D71FE450D200709159 /* RemoveMembersVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -416,7 +419,7 @@
 				CC778FD11FCC5DBC00149DA0 /* UIViewExt.swift in Sources */,
 				CC5B44E81FDC39600061B8CB /* StringExt.swift in Sources */,
 				CCCB0DC31FD7A7B3006B3CDE /* BalanceUserCell.swift in Sources */,
-				CC45576B1FDC66CB0082B701 /* AddMemberVC.swift in Sources */,
+				CC45576B1FDC66CB0082B701 /* EditMembersVC.swift in Sources */,
 				CC7EC1B11FC9ECFE002CCDE5 /* AuthVC.swift in Sources */,
 				CCC7D1101FE0DEE4005EAB01 /* GroupDetailsVC.swift in Sources */,
 				CCAB46591FD6119F00BC3DE9 /* Transaction.swift in Sources */,
@@ -441,6 +444,7 @@
 				CC7790011FCF314600149DA0 /* RoundedView.swift in Sources */,
 				CC7790091FD50F9C00149DA0 /* TransactionCell.swift in Sources */,
 				CCAB46571FD5E05300BC3DE9 /* SearchUserCell.swift in Sources */,
+				CC8949D81FE450D200709159 /* RemoveMembersVC.swift in Sources */,
 				CCD724A61FDA5ACE00483E94 /* SignupVC.swift in Sources */,
 				CC7790111FD5B7E900149DA0 /* GroupTransactionsVC.swift in Sources */,
 				CCCB0DBF1FD748B8006B3CDE /* UIViewControllerExt.swift in Sources */,

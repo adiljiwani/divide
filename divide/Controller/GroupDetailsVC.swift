@@ -88,7 +88,7 @@ class GroupDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         errorLbl.isHidden = true
         
-        let closeTouch = UITapGestureRecognizer(target: self, action: #selector(AddMemberVC.closeTap(_:)))
+        let closeTouch = UITapGestureRecognizer(target: self, action: #selector(EditMembersVC.closeTap(_:)))
         
         bgView.addGestureRecognizer(closeTouch)
     }

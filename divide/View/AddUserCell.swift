@@ -14,6 +14,10 @@ class AddUserCell: UITableViewCell {
     
     @IBOutlet weak var chosenPayeeCell: UILabel!
     @IBOutlet weak var chosenUserEmailLbl: UILabel!
+    
+    
+    @IBOutlet weak var removeMemberCell: UILabel!
+    
     @IBOutlet weak var deleteBtn: RoundedOutlineButton!
 
     override func awakeFromNib() {
@@ -29,6 +33,8 @@ class AddUserCell: UITableViewCell {
             self.chosenUserEmailLbl.text = email
         } else if sender == "groupDetails" {
             self.chosenPayeeCell.text = email
+        } else if sender == "removeMember" {
+            self.removeMemberCell.text = email
         }
         self.layer.cornerRadius = self.bounds.height / 2
     }
