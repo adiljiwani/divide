@@ -496,7 +496,7 @@
                                     <constraint firstAttribute="height" constant="100" id="qze-Dd-0vx"/>
                                 </constraints>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="addUserCell" rowHeight="40" id="wyd-4M-eLt" customClass="AddUserCell" customModule="divide" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="addUserCell" rowHeight="40" id="wyd-4M-eLt" customClass="AddUserCell" customModule="divide" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="384" height="40"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wyd-4M-eLt" id="HaG-gt-MIf">
@@ -510,7 +510,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W0Z-4o-Qnl" customClass="RoundedOutlineButton" customModule="divide" customModuleProvider="target">
-                                                    <rect key="frame" x="315" y="10" width="20" height="20"/>
+                                                    <rect key="frame" x="354" y="10" width="20" height="20"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="20" id="VhI-fh-Pym"/>
@@ -552,7 +552,7 @@
                                     <constraint firstAttribute="height" constant="175" id="FrT-r3-vLT"/>
                                 </constraints>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="searchUserCell" rowHeight="40" id="QbN-xs-xcf" customClass="SearchUserCell" customModule="divide" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="searchUserCell" rowHeight="40" id="QbN-xs-xcf" customClass="SearchUserCell" customModule="divide" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="384" height="40"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="QbN-xs-xcf" id="Y69-E2-qlX">
@@ -776,7 +776,7 @@
                                     <constraint firstAttribute="height" constant="128" id="XHF-je-iyc"/>
                                 </constraints>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="groupTransactionCell" rowHeight="75" id="6Es-qU-0Np" customClass="GroupTransactionCell" customModule="divide" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="groupTransactionCell" rowHeight="75" id="6Es-qU-0Np" customClass="GroupTransactionCell" customModule="divide" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="75"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6Es-qU-0Np" id="t4W-4P-C5L">
@@ -1389,7 +1389,7 @@
                                     <constraint firstAttribute="height" constant="100" id="9r0-3Y-tiq"/>
                                 </constraints>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="addUserCell" rowHeight="40" id="eI2-IR-q78" customClass="AddUserCell" customModule="divide" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="addUserCell" rowHeight="40" id="eI2-IR-q78" customClass="AddUserCell" customModule="divide" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="384" height="40"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eI2-IR-q78" id="h5Z-GN-VON">
@@ -1403,7 +1403,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0EK-Xh-6jf" customClass="RoundedOutlineButton" customModule="divide" customModuleProvider="target">
-                                                    <rect key="frame" x="315" y="10" width="20" height="20"/>
+                                                    <rect key="frame" x="354" y="10" width="20" height="20"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="20" id="P0z-eM-pUR"/>
@@ -1419,6 +1419,7 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
+                                                        <action selector="deletePayeePressed:" destination="vLK-sr-zO5" eventType="touchUpInside" id="i0G-FO-LTW"/>
                                                         <action selector="deletePressed:" destination="27c-zC-tiB" eventType="touchUpInside" id="98U-yH-6l8"/>
                                                     </connections>
                                                 </button>
@@ -1703,7 +1704,7 @@
                                     <constraint firstAttribute="height" constant="200" id="lNm-a6-2Q1"/>
                                 </constraints>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="transactionCell" rowHeight="90" id="a35-7w-2TB" customClass="TransactionCell" customModule="divide" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="transactionCell" rowHeight="90" id="a35-7w-2TB" customClass="TransactionCell" customModule="divide" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="90"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="a35-7w-2TB" id="lrY-gp-aME">
@@ -1794,7 +1795,7 @@
                                     <constraint firstAttribute="height" constant="150" id="44m-7r-tE5"/>
                                 </constraints>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="settledCell" rowHeight="90" id="HED-0o-rn8" customClass="TransactionCell" customModule="divide" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="settledCell" rowHeight="90" id="HED-0o-rn8" customClass="TransactionCell" customModule="divide" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="90"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="HED-0o-rn8" id="IhW-HJ-gFX">

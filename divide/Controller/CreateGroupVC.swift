@@ -132,7 +132,6 @@ class CreateGroupVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     @IBAction func deletePressed(_ sender: UIButton) {
          let point = chosenUsersTableView.convert(CGPoint.zero, from: sender)
         if let indexPath = chosenUsersTableView.indexPathForRow(at: point) {
-            print(indexPath.row)
             chosenUsers = chosenUsers.filter { $0 != chosenUsers[indexPath.row]}
         }
         chosenUsersTableView.reloadData()

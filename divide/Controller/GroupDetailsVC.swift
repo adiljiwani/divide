@@ -93,6 +93,16 @@ class GroupDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         bgView.addGestureRecognizer(closeTouch)
     }
     
+    @IBAction func deletePayeePressed(_ sender: UIButton) {
+        let point = chosenPayeesTableView.convert(CGPoint.zero, from: sender)
+        if let indexPath = chosenPayeesTableView.indexPathForRow(at: point) {
+            chosenUsers = chosenUsers.filter { $0 != chosenUsers[indexPath.row]}
+        }
+        chosenPayeesTableView.reloadData()
+        self.chosenPayeeTableViewHeightConstraint.constant = CGFloat(self.chosenUsers.count) * self.chosenPayeesTableView.rowHeight
+    }
+    
+    
     @objc func closeTap(_ recognizer: UITapGestureRecognizer) {
         payeeTableView.isHidden = true
         payerTableView.isHidden = true
