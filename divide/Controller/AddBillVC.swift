@@ -8,14 +8,17 @@
 
 import UIKit
 
-class AddBillVC: UIViewController {
+class AddBillVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
     
 
     @IBOutlet weak var billDescriptionField: InsetTextField!
     @IBOutlet weak var amountField: InsetTextField!
     @IBOutlet weak var paidByField: InsetTextField!
     @IBOutlet weak var dateField: InsetTextField!
+    @IBOutlet weak var cycleTextField: InsetTextField!
+    @IBOutlet weak var durationTextField: InsetTextField!
     
+    @IBOutlet weak var segmentControl: UISegmentedControl!
     @IBOutlet weak var nextBtn: UIButton!
     
     var groupArray = [String]()
@@ -24,6 +27,10 @@ class AddBillVC: UIViewController {
     var chosenGroup: String = ""
     var date: String?
     var amount: String?
+    
+    let cycleOptions = [["Every"],["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30"],["Day(s)","Week(s)","Month(s)","Year(s)"]]
+    
+    let durationOptions = [["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30"],["Day(s)","Week(s)","Month(s)","Year(s)"]]
     
     let picker = UIDatePicker()
     
@@ -46,6 +53,23 @@ class AddBillVC: UIViewController {
         if amount != nil {
             amountField.text = amount?.currencyInputFormatting()
         }
+        self.segmentControl.layer.cornerRadius = 20
+        self.segmentControl.layer.borderColor = #colorLiteral(red: 0.0431372549, green: 0.1960784314, blue: 0.3490196078, alpha: 1)
+        self.segmentControl.layer.borderWidth = 1
+        self.segmentControl.layer.masksToBounds = true
+        let font = UIFont(name: "AvenirNext-Regular", size: 15)
+        segmentControl.setTitleTextAttributes([NSAttributedStringKey.font: font],
+                                              for: .normal)
+        cycleTextField.delegate = self
+        createCyclePicker()
+        durationTextField.delegate = self
+        createDurationPicker()
+        
+    }
+    
+    
+    @IBAction func segmentControlChanged(_ sender: Any) {
+        
     }
     
     @objc func descFieldChanged () {
@@ -59,6 +83,100 @@ class AddBillVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         billDescriptionField.becomeFirstResponder()
+    }
+    
+    func createCyclePicker () {
+        let cyclePickerView = UIPickerView()
+        cyclePickerView.delegate = self
+        cyclePickerView.tag = 1
+        
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+        
+        let done = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(doneCyclePressed))
+        toolbar.setItems([done], animated: false)
+        cycleTextField.inputAccessoryView = toolbar
+        cycleTextField.inputView = cyclePickerView
+        cycleTextField.text = "Every month"
+        cyclePickerView.selectRow(0, inComponent: 0, animated: true)
+        cyclePickerView.selectRow(0, inComponent: 1, animated: true)
+        cyclePickerView.selectRow(2, inComponent: 2, animated: true)
+    }
+    
+    func createDurationPicker() {
+        let durationPickerView = UIPickerView()
+        durationPickerView.delegate = self
+        durationPickerView.tag = 2
+        durationPickerView.selectRow(0, inComponent: 0, animated: true)
+        durationPickerView.selectRow(0, inComponent: 0, animated: true)
+        durationPickerView.selectRow(0, inComponent: 0, animated: true)
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+        
+        let done = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(doneCyclePressed))
+        toolbar.setItems([done], animated: false)
+        durationTextField.inputAccessoryView = toolbar
+        durationTextField.inputView = durationPickerView
+    }
+    
+    @objc func doneCyclePressed () {
+        view.endEditing(true)
+    }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        if pickerView.tag == 1 {
+            return cycleOptions.count
+        } else if pickerView.tag == 2 {
+            return durationOptions.count
+        }
+        return 0
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        if pickerView.tag == 1 {
+            return cycleOptions[component].count
+        } else if pickerView.tag == 2 {
+            return durationOptions[component].count
+        }
+        return 0
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        if pickerView.tag == 1 {
+            return cycleOptions[component][row]
+        } else if pickerView.tag == 2 {
+            return durationOptions[component][row]
+        }
+        return ""
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if pickerView.tag == 1 {
+            let every = cycleOptions[0][pickerView.selectedRow(inComponent: 0)]
+            let number = cycleOptions[1][pickerView.selectedRow(inComponent: 1)]
+            let dates = cycleOptions[2][pickerView.selectedRow(inComponent: 2)]
+            if number == "1" {
+                let end = dates.index(of: "(")!
+                cycleTextField.text = every + " " + dates[..<end].lowercased()
+            } else {
+                let end = dates.index(of: "(")!
+                cycleTextField.text = every + " " + number + " " + dates[..<end].lowercased() + "s"
+            }
+        } else if pickerView.tag == 2  {
+            let number = durationOptions[0][pickerView.selectedRow(inComponent: 0)]
+            let dates = durationOptions[1][pickerView.selectedRow(inComponent: 1)]
+            if number == "1" {
+                let end = dates.index(of: "(")!
+                durationTextField.text = number + " " + dates[..<end].lowercased()
+            } else {
+                let end = dates.index(of: "(")!
+                durationTextField.text = number + " " + dates[..<end].lowercased() + "s"
+            }
+        }
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
     }
     
     func createDatePicker () {

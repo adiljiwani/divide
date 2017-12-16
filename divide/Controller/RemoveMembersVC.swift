@@ -13,6 +13,7 @@ class RemoveMembersVC: UIViewController {
     var chosenUsers = [String]()
     var group: Group?
     
+    @IBOutlet weak var bgView: UIView!
     
     @IBOutlet weak var chosenUsersTableViewHeightConstrain: NSLayoutConstraint!
     
@@ -32,6 +33,17 @@ class RemoveMembersVC: UIViewController {
         super.viewDidLoad()
         chosenUsersTableView.delegate = self
         chosenUsersTableView.dataSource = self
+        let closeTouch = UITapGestureRecognizer(target: self, action: #selector(RemoveMembersVC.closeTap(_:)))
+        
+        bgView.addGestureRecognizer(closeTouch)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
+    @objc func closeTap(_ recognizer: UITapGestureRecognizer) {
+        dismiss(animated: true, completion: nil)
     }
     
     @IBAction func deletePressed(_ sender: UIButton) {
