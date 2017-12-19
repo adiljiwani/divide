@@ -33,6 +33,8 @@ class AddBillVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate 
     let durationOptions = [["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30"],["Day(s)","Week(s)","Month(s)","Year(s)"]]
     
     let picker = UIDatePicker()
+    let cyclePickerView = UIPickerView()
+    let durationPickerView = UIPickerView()
     
     func initData (scannedDate: String, amount: String) {
         self.date = scannedDate
@@ -61,15 +63,47 @@ class AddBillVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate 
         segmentControl.setTitleTextAttributes([NSAttributedStringKey.font: font],
                                               for: .normal)
         cycleTextField.delegate = self
-        createCyclePicker()
-        durationTextField.delegate = self
-        createDurationPicker()
         
+        cyclePickerView.delegate = self
+        cyclePickerView.tag = 1
+        
+        let cycleToolbar = UIToolbar()
+        cycleToolbar.sizeToFit()
+        
+        let doneCycle = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(doneCyclePressed))
+        cycleToolbar.setItems([doneCycle], animated: false)
+        cycleTextField.inputAccessoryView = cycleToolbar
+        cycleTextField.inputView = cyclePickerView
+        cyclePickerView.selectRow(0, inComponent: 0, animated: true)
+        cyclePickerView.selectRow(0, inComponent: 1, animated: true)
+        cyclePickerView.selectRow(2, inComponent: 2, animated: true)
+        
+        
+        durationTextField.delegate = self
+        
+        durationPickerView.delegate = self
+        durationPickerView.tag = 2
+        durationPickerView.selectRow(0, inComponent: 0, animated: true)
+        durationPickerView.selectRow(3, inComponent: 1, animated: true)
+        let durationToolbar = UIToolbar()
+        durationToolbar.sizeToFit()
+        let doneDuration = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(doneDurationPressed))
+        durationToolbar.setItems([doneDuration], animated: false)
+        durationTextField.inputAccessoryView = durationToolbar
+        durationTextField.inputView = durationPickerView
+        
+        cycleTextField.isHidden = true
+        durationTextField.isHidden = true
     }
     
-    
     @IBAction func segmentControlChanged(_ sender: Any) {
-        
+        if segmentControl.selectedSegmentIndex == 0 {
+            cycleTextField.isHidden = true
+            durationTextField.isHidden = true
+        } else {
+            cycleTextField.isHidden = false
+            durationTextField.isHidden = false
+        }
     }
     
     @objc func descFieldChanged () {
@@ -85,41 +119,33 @@ class AddBillVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate 
         billDescriptionField.becomeFirstResponder()
     }
     
-    func createCyclePicker () {
-        let cyclePickerView = UIPickerView()
-        cyclePickerView.delegate = self
-        cyclePickerView.tag = 1
-        
-        let toolbar = UIToolbar()
-        toolbar.sizeToFit()
-        
-        let done = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(doneCyclePressed))
-        toolbar.setItems([done], animated: false)
-        cycleTextField.inputAccessoryView = toolbar
-        cycleTextField.inputView = cyclePickerView
-        cycleTextField.text = "Every month"
-        cyclePickerView.selectRow(0, inComponent: 0, animated: true)
-        cyclePickerView.selectRow(0, inComponent: 1, animated: true)
-        cyclePickerView.selectRow(2, inComponent: 2, animated: true)
-    }
     
-    func createDurationPicker() {
-        let durationPickerView = UIPickerView()
-        durationPickerView.delegate = self
-        durationPickerView.tag = 2
-        durationPickerView.selectRow(0, inComponent: 0, animated: true)
-        durationPickerView.selectRow(0, inComponent: 0, animated: true)
-        durationPickerView.selectRow(0, inComponent: 0, animated: true)
-        let toolbar = UIToolbar()
-        toolbar.sizeToFit()
-        
-        let done = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(doneCyclePressed))
-        toolbar.setItems([done], animated: false)
-        durationTextField.inputAccessoryView = toolbar
-        durationTextField.inputView = durationPickerView
-    }
+    
     
     @objc func doneCyclePressed () {
+        let every = cycleOptions[0][cyclePickerView.selectedRow(inComponent: 0)]
+        let number = cycleOptions[1][cyclePickerView.selectedRow(inComponent: 1)]
+        let dates = cycleOptions[2][cyclePickerView.selectedRow(inComponent: 2)]
+        if number == "1" {
+            let end = dates.index(of: "(")!
+            cycleTextField.text = every + " " + dates[..<end].lowercased()
+        } else {
+            let end = dates.index(of: "(")!
+            cycleTextField.text = every + " " + number + " " + dates[..<end].lowercased() + "s"
+        }
+        view.endEditing(true)
+    }
+    
+    @objc func doneDurationPressed () {
+        let number = durationOptions[0][durationPickerView.selectedRow(inComponent: 0)]
+        let dates = durationOptions[1][durationPickerView.selectedRow(inComponent: 1)]
+        if number == "1" {
+            let end = dates.index(of: "(")!
+            durationTextField.text = number + " " + dates[..<end].lowercased()
+        } else {
+            let end = dates.index(of: "(")!
+            durationTextField.text = number + " " + dates[..<end].lowercased() + "s"
+        }
         view.endEditing(true)
     }
     
@@ -150,34 +176,31 @@ class AddBillVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate 
         return ""
     }
     
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        if pickerView.tag == 1 {
-            let every = cycleOptions[0][pickerView.selectedRow(inComponent: 0)]
-            let number = cycleOptions[1][pickerView.selectedRow(inComponent: 1)]
-            let dates = cycleOptions[2][pickerView.selectedRow(inComponent: 2)]
-            if number == "1" {
-                let end = dates.index(of: "(")!
-                cycleTextField.text = every + " " + dates[..<end].lowercased()
-            } else {
-                let end = dates.index(of: "(")!
-                cycleTextField.text = every + " " + number + " " + dates[..<end].lowercased() + "s"
-            }
-        } else if pickerView.tag == 2  {
-            let number = durationOptions[0][pickerView.selectedRow(inComponent: 0)]
-            let dates = durationOptions[1][pickerView.selectedRow(inComponent: 1)]
-            if number == "1" {
-                let end = dates.index(of: "(")!
-                durationTextField.text = number + " " + dates[..<end].lowercased()
-            } else {
-                let end = dates.index(of: "(")!
-                durationTextField.text = number + " " + dates[..<end].lowercased() + "s"
-            }
-        }
-    }
+//    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+//        if pickerView.tag == 1 {
+//            let every = cycleOptions[0][pickerView.selectedRow(inComponent: 0)]
+//            let number = cycleOptions[1][pickerView.selectedRow(inComponent: 1)]
+//            let dates = cycleOptions[2][pickerView.selectedRow(inComponent: 2)]
+//            if number == "1" {
+//                let end = dates.index(of: "(")!
+//                cycleTextField.text = every + " " + dates[..<end].lowercased()
+//            } else {
+//                let end = dates.index(of: "(")!
+//                cycleTextField.text = every + " " + number + " " + dates[..<end].lowercased() + "s"
+//            }
+//        } else if pickerView.tag == 2  {
+//            let number = durationOptions[0][pickerView.selectedRow(inComponent: 0)]
+//            let dates = durationOptions[1][pickerView.selectedRow(inComponent: 1)]
+//            if number == "1" {
+//                let end = dates.index(of: "(")!
+//                durationTextField.text = number + " " + dates[..<end].lowercased()
+//            } else {
+//                let end = dates.index(of: "(")!
+//                durationTextField.text = number + " " + dates[..<end].lowercased() + "s"
+//            }
+//        }
+//    }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        view.endEditing(true)
-    }
     
     func createDatePicker () {
         let toolbar = UIToolbar()

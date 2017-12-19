@@ -158,6 +158,9 @@ class GroupDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
                 DataService.instance.getUsername(forUid: id, handler: { (email) in
                     if email != self.payer && !self.chosenUsers.contains(email){
                         self.suggestedPayeeArray.append(email)
+                        if self.suggestedPayeeArray.count == 0 {
+                            self.payeeTableView.isHidden = true
+                        }
                         self.payeeTableView.reloadData()
                         self.payeeTableViewHeightConstraint.constant = CGFloat(self.suggestedPayeeArray.count * 40)
                     }
