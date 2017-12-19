@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import Firebase
 class RemoveMembersVC: UIViewController {
 
     var chosenUsers = [String]()
@@ -22,7 +22,7 @@ class RemoveMembersVC: UIViewController {
     func initData (chosenGroup: Group) {
         self.group = chosenGroup
         DataService.instance.getEmails(group: chosenGroup) { (returnedEmails) in
-            self.chosenUsers = returnedEmails
+            self.chosenUsers = returnedEmails.filter { $0 != Auth.auth().currentUser?.email }
             self.chosenUsersTableView.reloadData()
             self.chosenUsersTableViewHeightConstrain.constant = CGFloat(self.chosenUsers.count) * self.chosenUsersTableView.rowHeight
         }
@@ -34,7 +34,6 @@ class RemoveMembersVC: UIViewController {
         chosenUsersTableView.delegate = self
         chosenUsersTableView.dataSource = self
         let closeTouch = UITapGestureRecognizer(target: self, action: #selector(RemoveMembersVC.closeTap(_:)))
-        
         bgView.addGestureRecognizer(closeTouch)
     }
     
@@ -49,10 +48,32 @@ class RemoveMembersVC: UIViewController {
     @IBAction func deletePressed(_ sender: UIButton) {
         let point = chosenUsersTableView.convert(CGPoint.zero, from: sender)
         if let indexPath = chosenUsersTableView.indexPathForRow(at: point) {
-            chosenUsers = chosenUsers.filter { $0 != chosenUsers[indexPath.row]}
+            DataService.instance.getIds(forEmails: [chosenUsers[indexPath.row]]) { (id) in
+                DataService.instance.getAllTransactions(forGroup: self.group!, andUser: id[0], handler: { (transactions) in
+                    if transactions.count == 0 {
+                        if let groupName = self.group?.groupTitle {
+                        let alert = UIAlertController(title: "Remove member from group", message: "Are you sure you want to remove \(self.chosenUsers[indexPath.row]) from \(groupName)?", preferredStyle: .alert)
+                        
+                        let removeAction = UIAlertAction(title: "Yes", style: .default) { (buttonPressed) in
+                            DataService.instance.removeMember(fromGroup: (self.group?.key)!, currentMembers: (self.group?.members)!, memberToDelete: id[0], groupName: (self.group?.groupTitle)!) { (memberRemoved) in
+                                
+                            }
+                            self.chosenUsers = self.chosenUsers.filter { $0 != self.chosenUsers[indexPath.row]}
+                            self.chosenUsersTableView.reloadData()
+                            self.chosenUsersTableViewHeightConstrain.constant = CGFloat(self.chosenUsers.count) * self.chosenUsersTableView.rowHeight
+                        }
+                        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (cancel) in
+                            alert.dismiss(animated: true, completion: nil)
+                        }
+                        alert.addAction(removeAction)
+                        alert.addAction(cancelAction)
+                        self.present(alert, animated: true, completion: nil)
+                        }
+                    }
+                })
+            }
+            
         }
-        chosenUsersTableView.reloadData()
-        self.chosenUsersTableViewHeightConstrain.constant = CGFloat(self.chosenUsers.count) * self.chosenUsersTableView.rowHeight
     }
     
     @IBAction func closePressed(_ sender: Any) {
@@ -71,7 +92,10 @@ extension RemoveMembersVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "addUserCell") as? AddUserCell else {return UITableViewCell()}
-        cell.configureCell(email: chosenUsers[indexPath.row], sender: "removeMember")
+        let email = chosenUsers[indexPath.row]
+        DataService.instance.getName(forEmail: email) { (name) in
+            cell.configureCell(email: email, name: name, sender: "removeMember")
+        }
         return cell
     }
 }

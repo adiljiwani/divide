@@ -13,7 +13,6 @@ class SearchUserCell: UITableViewCell {
 
     @IBOutlet weak var userEmailLbl: UILabel!
     @IBOutlet weak var friendEmailLbl: UILabel!
-    
     @IBOutlet weak var payeeEmailLbl: UILabel!
     @IBOutlet weak var friendEmailLblFromGroup: UILabel!
     
@@ -30,7 +29,7 @@ class SearchUserCell: UITableViewCell {
     
     func configureCell (email: String, sender: String) {
         if sender == "transaction"{
-        self.userEmailLbl.text = email
+            self.userEmailLbl.text = email
         } else if sender == "group"{
             self.friendEmailLbl.text = email
         } else if sender == "addMember" {

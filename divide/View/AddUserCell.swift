@@ -10,13 +10,21 @@ import UIKit
 
 class AddUserCell: UITableViewCell {
 
+    //Group
     @IBOutlet weak var emailLbl: UILabel!
+    @IBOutlet weak var nameLbl: UILabel!
     
+    //Group Details
     @IBOutlet weak var chosenPayeeCell: UILabel!
+    @IBOutlet weak var chosenPayeeName: UILabel!
+    
+    //Add member
     @IBOutlet weak var chosenUserEmailLbl: UILabel!
+    @IBOutlet weak var chosenUserNameLbl: UILabel!
     
-    
+    //Remove member
     @IBOutlet weak var removeMemberCell: UILabel!
+    @IBOutlet weak var removeMemberName: UILabel!
     
     @IBOutlet weak var deleteBtn: RoundedOutlineButton!
 
@@ -25,16 +33,20 @@ class AddUserCell: UITableViewCell {
     }
     
     
-    func configureCell(email: String, sender: String) {
+    func configureCell(email: String, name: String, sender: String) {
         if sender == "group" {
-        self.emailLbl.text = email
-        self.deleteBtn.isHidden = false
+            self.emailLbl.text = email
+            self.nameLbl.text = name
+            self.deleteBtn.isHidden = false
         } else if sender == "addMember" {
             self.chosenUserEmailLbl.text = email
+            self.chosenUserNameLbl.text = name
         } else if sender == "groupDetails" {
             self.chosenPayeeCell.text = email
+            self.chosenPayeeName.text = name
         } else if sender == "removeMember" {
             self.removeMemberCell.text = email
+            self.removeMemberName.text = name
         }
         self.layer.cornerRadius = self.bounds.height / 2
     }

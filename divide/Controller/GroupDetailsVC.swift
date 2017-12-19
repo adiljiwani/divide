@@ -268,7 +268,10 @@ class GroupDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
             cell = payeeCell
         } else if tableView == chosenPayeesTableView {
             guard let chosenPayeesCell = tableView.dequeueReusableCell(withIdentifier: "addUserCell") as? AddUserCell else {return UITableViewCell()}
-            chosenPayeesCell.configureCell(email: chosenUsers[indexPath.row], sender: "groupDetails")
+            DataService.instance.getName(forEmail: chosenUsers[indexPath.row], handler: { (name) in
+                chosenPayeesCell.configureCell(email: self.chosenUsers[indexPath.row], name: name, sender: "groupDetails")
+            })
+            
             cell = chosenPayeesCell
         }
         return cell
