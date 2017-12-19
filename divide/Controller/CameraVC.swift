@@ -15,6 +15,7 @@ class CameraVC: UIViewController {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var takePhotoBtn: RoundedButton!
 
+    @IBOutlet weak var imageView: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
         activityIndicator.isHidden = true
@@ -30,25 +31,34 @@ class CameraVC: UIViewController {
             tesseract.image = image.g8_blackAndWhite()
             tesseract.recognize()
             var fullText = tesseract.recognizedText.lowercased()
-            var fullTextArray = fullText.lowercased().components(separatedBy: " ,\n")
+            var fullTextArray = fullText.lowercased().components(separatedBy: " ")
             var totalFound = false
+            var possibleAmountString: String
+            var possibleAmountArray = [Float]()
             for word in fullTextArray {
-                if word.contains("total") {
-                    totalFound = true
-                }
+                    possibleAmountString = word.trimmingCharacters(in: CharacterSet(charactersIn: "01234567890.").inverted)
+                    let pattern = "\\d+\\.\\d{2}"
+                    let amountRegex = try! NSRegularExpression(pattern: pattern, options: [])
+                    let matches = amountRegex.matches(in: possibleAmountString, options: [], range: NSMakeRange(0, possibleAmountString.count))
+                    print(matches.count)
+                    print(possibleAmountString)
+                    print("")
+                    if matches.count == 1{
+                        if let possibleAmount = Float(possibleAmountString){
+                            possibleAmountArray.append(possibleAmount)
+                        
+                        }
+                    }
                 
             }
-            
-            for word in fullTextArray {
-                if word.hasPrefix("$"){
-                    amount = word.replacingOccurrences(of: "$", with: "")
-                    print(amount)
-                }
+            print(possibleAmountArray)
+            if possibleAmountArray.count != 0 {
+            amount = String(format: "$%.2f", possibleAmountArray.max()!)
             }
             let types: NSTextCheckingResult.CheckingType = [.date ]
             let detector = try? NSDataDetector(types: types.rawValue)
             let result = detector?.firstMatch(in: fullText, range: NSMakeRange(0,fullText.utf16.count))
-            if result?.resultType == .date {
+            if result?.resultType == .date && (result?.date)! <= date {
                 date = (result?.date)!
             }
         }
@@ -57,7 +67,7 @@ class CameraVC: UIViewController {
         formatter.dateFormat = "MMM dd, yyyy"
         let result = formatter.string(from: date)
         addBillVC.initData(scannedDate: result, amount: amount)
-        presentDetail(addBillVC)
+        present(addBillVC, animated: true, completion: nil)
         activityIndicator.stopAnimating()
         activityIndicator.isHidden = true
         takePhotoBtn.setTitle("Take Photo / Upload Image", for: .normal)
@@ -66,6 +76,7 @@ class CameraVC: UIViewController {
     @IBAction func takePhoto(_ sender: Any) {
         presentImagePicker()
     }
+    
 }
 
 extension CameraVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -100,6 +111,7 @@ extension CameraVC: UIImagePickerControllerDelegate, UINavigationControllerDeleg
                                didFinishPickingMediaWithInfo info: [String : Any]) {
         if let selectedPhoto = info[UIImagePickerControllerOriginalImage] as? UIImage,
             let scaledImage = selectedPhoto.scaleImage(640) {
+            imageView.image = scaledImage.g8_blackAndWhite()
             activityIndicator.startAnimating()
             activityIndicator.isHidden = false
             takePhotoBtn.setTitle("", for: .normal)

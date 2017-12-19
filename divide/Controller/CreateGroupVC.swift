@@ -130,12 +130,12 @@ class CreateGroupVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     
 
     @IBAction func deletePressed(_ sender: UIButton) {
-        //chosenUsers = chosenUsers.filter({ $0 != "adiljiwani@gmail.com" })
-        if chosenUsers.count == 0 {
-            doneBtn.isHidden = true
+         let point = chosenUsersTableView.convert(CGPoint.zero, from: sender)
+        if let indexPath = chosenUsersTableView.indexPathForRow(at: point) {
+            chosenUsers = chosenUsers.filter { $0 != chosenUsers[indexPath.row]}
         }
-        
         chosenUsersTableView.reloadData()
+        self.tableViewHeightConstraint.constant = CGFloat(self.chosenUsers.count) * self.chosenUsersTableView.rowHeight
     }
     
     
@@ -159,7 +159,10 @@ class CreateGroupVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         
         if tableView == chosenUsersTableView {
             guard let addUserCell = tableView.dequeueReusableCell(withIdentifier: "addUserCell", for: indexPath) as? AddUserCell else {return UITableViewCell()}
-            addUserCell.configureCell(email: chosenUsers[indexPath.row], sender: "group")
+            DataService.instance.getName(forEmail: chosenUsers[indexPath.row], handler: { (name) in
+                addUserCell.configureCell(email: self.chosenUsers[indexPath.row], name: name, sender: "group")
+            })
+            
             cell = addUserCell
         } else if tableView == usersTableView {
             if membersArray.count != 0 {

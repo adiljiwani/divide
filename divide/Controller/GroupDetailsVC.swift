@@ -12,6 +12,9 @@ class GroupDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     @IBOutlet weak var doneBtn: UIButton!
     
+    @IBOutlet weak var errorLbl: UILabel!
+    
+    @IBOutlet weak var bgView: UIView!
     @IBOutlet weak var groupNameField: InsetTextField!
     
     @IBOutlet weak var groupsTableView: UITableView!
@@ -44,9 +47,6 @@ class GroupDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.billDescription = billDescription
         self.amount = amount
         self.date = date
-        print(billDescription)
-        print(amount)
-        print(date)
     }
     
     override func viewDidLoad() {
@@ -85,6 +85,29 @@ class GroupDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         chosenPayeesTableView.dataSource = self
         self.chosenPayeeTableViewHeightConstraint.constant = CGFloat(self.payeeArray.count) * self.chosenPayeesTableView.rowHeight
         chosenPayeesTableView.isHidden = false
+        
+        errorLbl.isHidden = true
+        
+        let closeTouch = UITapGestureRecognizer(target: self, action: #selector(EditMembersVC.closeTap(_:)))
+        
+        bgView.addGestureRecognizer(closeTouch)
+    }
+    
+    @IBAction func deletePayeePressed(_ sender: UIButton) {
+        let point = chosenPayeesTableView.convert(CGPoint.zero, from: sender)
+        if let indexPath = chosenPayeesTableView.indexPathForRow(at: point) {
+            chosenUsers = chosenUsers.filter { $0 != chosenUsers[indexPath.row]}
+        }
+        chosenPayeesTableView.reloadData()
+        self.chosenPayeeTableViewHeightConstraint.constant = CGFloat(self.chosenUsers.count) * self.chosenPayeesTableView.rowHeight
+    }
+    
+    
+    @objc func closeTap(_ recognizer: UITapGestureRecognizer) {
+        payeeTableView.isHidden = true
+        payerTableView.isHidden = true
+        groupsTableView.isHidden = true
+        errorLbl.isHidden = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -93,13 +116,19 @@ class GroupDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     @objc func payerFieldTapped () {
-        self.payerTableView.isHidden = false
-        self.payeeTableView.isHidden = true
-        payerArray = []
-        DataService.instance.getGroupMemberIds(forGroup: groupNameField.text!, handler: { (groupMemberIds) in
+        if payerField.layer.borderColor == #colorLiteral(red: 0.8078431373, green: 0.1137254902, blue: 0.007843137255, alpha: 1) {
+            payerField.layer.borderColor = #colorLiteral(red: 0.0431372549, green: 0.1960784314, blue: 0.3490196078, alpha: 1)
+            let placeholder = NSAttributedString(string: payerField.placeholder!, attributes: [NSAttributedStringKey.foregroundColor: #colorLiteral(red: 0.0431372549, green: 0.1960784314, blue: 0.3490196078, alpha: 1)])
+            payerField.attributedPlaceholder = placeholder
+        }
+        if chosenGroup != "" {
+            self.payerTableView.isHidden = false
+            self.payeeTableView.isHidden = true
+            payerArray = []
+            DataService.instance.getGroupMemberIds(forGroup: groupNameField.text!, handler: { (groupMemberIds) in
             for id in groupMemberIds {
                 DataService.instance.getUsername(forUid: id, handler: { (email) in
-                    if !self.chosenUsers.contains(email){
+                    if email != self.payer {
                         self.payerArray.append(email)
                         self.payerTableView.reloadData()
                         self.payerTableViewHeightConstraint.constant = CGFloat(self.payerArray.count * 40)
@@ -107,32 +136,57 @@ class GroupDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
                 })
             }
         })
+        } else {
+            self.payerTableView.isHidden = true
+            errorLbl.isHidden = false
+        }
     }
+
     
     @objc func payeeFieldTapped () {
-        self.payeeTableView.isHidden = false
-        self.payerTableView.isHidden = true
-        suggestedPayeeArray = []
-        DataService.instance.getGroupMemberIds(forGroup: groupNameField.text!, handler: { (groupMemberIds) in
+        if payeeField.layer.borderColor == #colorLiteral(red: 0.8078431373, green: 0.1137254902, blue: 0.007843137255, alpha: 1) {
+            payeeField.layer.borderColor = #colorLiteral(red: 0.0431372549, green: 0.1960784314, blue: 0.3490196078, alpha: 1)
+            let placeholder = NSAttributedString(string: payeeField.placeholder!, attributes: [NSAttributedStringKey.foregroundColor: #colorLiteral(red: 0.0431372549, green: 0.1960784314, blue: 0.3490196078, alpha: 1)])
+            payeeField.attributedPlaceholder = placeholder
+        }
+        if chosenGroup != "" {
+            self.payeeTableView.isHidden = false
+            self.payerTableView.isHidden = true
+            suggestedPayeeArray = []
+            DataService.instance.getGroupMemberIds(forGroup: groupNameField.text!, handler: { (groupMemberIds) in
             for id in groupMemberIds {
                 DataService.instance.getUsername(forUid: id, handler: { (email) in
                     if email != self.payer && !self.chosenUsers.contains(email){
                         self.suggestedPayeeArray.append(email)
+                        if self.suggestedPayeeArray.count == 0 {
+                            self.payeeTableView.isHidden = true
+                        }
                         self.payeeTableView.reloadData()
                         self.payeeTableViewHeightConstraint.constant = CGFloat(self.suggestedPayeeArray.count * 40)
                     }
                 })
             }
         })
+        } else {
+            self.payeeTableView.isHidden = true
+            errorLbl.isHidden = false
+        }
     }
     
     @objc func groupTextFieldDidChange () {
+        if groupNameField.layer.borderColor == #colorLiteral(red: 0.8078431373, green: 0.1137254902, blue: 0.007843137255, alpha: 1) {
+            groupNameField.layer.borderColor = #colorLiteral(red: 0.0431372549, green: 0.1960784314, blue: 0.3490196078, alpha: 1)
+            let placeholder = NSAttributedString(string: groupNameField.placeholder!, attributes: [NSAttributedStringKey.foregroundColor: #colorLiteral(red: 0.0431372549, green: 0.1960784314, blue: 0.3490196078, alpha: 1)])
+            groupNameField.attributedPlaceholder = placeholder
+        }
         if groupNameField.text == "" {
             self.groupsTableView.isHidden = true
             groupArray = []
             groupsTableView.reloadData()
         } else {
             self.groupsTableView.isHidden = false
+            self.payeeTableView.isHidden = true
+            self.payerTableView.isHidden = true
             DataService.instance.getGroupNames(forSearchQuery: groupNameField.text!, handler: { (groupNameArray) in
                 self.groupArray = groupNameArray
                 self.groupsTableViewHeightConstraint.constant = CGFloat(self.groupArray.count * 40)
@@ -142,9 +196,28 @@ class GroupDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     @IBAction func donePressed(_ sender: Any) {
+        if (groupNameField.text == "") {
+            groupNameField.layer.borderColor = #colorLiteral(red: 0.8078431373, green: 0.1137254902, blue: 0.007843137255, alpha: 1)
+            let placeholder = NSAttributedString(string: groupNameField.placeholder!, attributes: [NSAttributedStringKey.foregroundColor: #colorLiteral(red: 0.8078431373, green: 0.1137254902, blue: 0.007843137255, alpha: 1)])
+            groupNameField.attributedPlaceholder = placeholder
+        }
+        
+        if (payerField.text == "") {
+            payerField.layer.borderColor = #colorLiteral(red: 0.8078431373, green: 0.1137254902, blue: 0.007843137255, alpha: 1)
+            let placeholder = NSAttributedString(string: payerField.placeholder!, attributes: [NSAttributedStringKey.foregroundColor: #colorLiteral(red: 0.8078431373, green: 0.1137254902, blue: 0.007843137255, alpha: 1)])
+            payerField.attributedPlaceholder = placeholder
+        }
+        
+        if (chosenUsers.count == 0) {
+            payeeField.layer.borderColor = #colorLiteral(red: 0.8078431373, green: 0.1137254902, blue: 0.007843137255, alpha: 1)
+            let placeholder = NSAttributedString(string: payeeField.placeholder!, attributes: [NSAttributedStringKey.foregroundColor: #colorLiteral(red: 0.8078431373, green: 0.1137254902, blue: 0.007843137255, alpha: 1)])
+            payeeField.attributedPlaceholder = placeholder
+        }
+        
+        
         let tabBar = storyboard?.instantiateViewController(withIdentifier: "MainTabBar")
         let payeesArray = payerArray.filter({ $0 != payer })
-        if groupNameField.text != "" && payerField.text != "" {
+        if groupNameField.text != "" && payerField.text != "" && chosenUsers.count != 0 {
             DataService.instance.createTransaction(groupTitle: groupNameField.text!, description: billDescription!, payees: chosenUsers, payer: payerField.text!, date: date!, amount: amount!, settled: payeesArray, handler: { (transactionCreated) in
                 if transactionCreated {
                     self.presentDetail(tabBar!)
@@ -195,7 +268,10 @@ class GroupDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
             cell = payeeCell
         } else if tableView == chosenPayeesTableView {
             guard let chosenPayeesCell = tableView.dequeueReusableCell(withIdentifier: "addUserCell") as? AddUserCell else {return UITableViewCell()}
-            chosenPayeesCell.configureCell(email: chosenUsers[indexPath.row], sender: "groupDetails")
+            DataService.instance.getName(forEmail: chosenUsers[indexPath.row], handler: { (name) in
+                chosenPayeesCell.configureCell(email: self.chosenUsers[indexPath.row], name: name, sender: "groupDetails")
+            })
+            
             cell = chosenPayeesCell
         }
         return cell
@@ -207,10 +283,14 @@ class GroupDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
             chosenGroup = cell.groupNameLbl.text!
             self.groupNameField.text = chosenGroup
             self.groupsTableView.isHidden = true
+            errorLbl.isHidden = true
         } else if tableView == payerTableView {
             guard let cell = tableView.cellForRow(at: indexPath) as? SearchUserCell else {return}
             payer = cell.userEmailLbl.text!
-            chosenUsers = []
+            if chosenUsers.contains(payer) {
+                chosenUsers = chosenUsers.filter { $0 != payer }
+                chosenPayeesTableView.reloadData()
+            }
             self.payerField.text = payer
             self.payerTableView.isHidden = true
         } else if tableView == payeeTableView {

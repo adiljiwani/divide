@@ -377,6 +377,34 @@ class DataService {
         }
     }
     
+    func getAllTransactions (forGroup group: Group, andUser key: String, handler: @escaping (_ transactionArray: [Transaction]) -> ()) {
+        var userEmail = ""
+        getUsername(forUid: key) { (email) in
+            print(email)
+            userEmail = email
+        }
+        var groupTransactionArray = [Transaction]()
+        REF_TRANSACTIONS.observe(.value) { (transactionSnapshot) in
+            guard let transactionSnapshot = transactionSnapshot.children.allObjects as? [DataSnapshot] else {return}
+            for transaction in transactionSnapshot {
+                let payer = transaction.childSnapshot(forPath: "payer").value as! String
+                let payees = transaction.childSnapshot(forPath: "payees").value as! [String]
+                let settled = transaction.childSnapshot(forPath: "settled").value as! [String]
+                    if (payer == userEmail || payees.contains(userEmail)) {
+                        let groupName = transaction.childSnapshot(forPath: "groupTitle").value as! String
+                        let date = transaction.childSnapshot(forPath: "date").value as! String
+                        let description = transaction.childSnapshot(forPath: "description").value as! String
+                        let amount = transaction.childSnapshot(forPath: "amount").value as! Float
+                        if groupName == group.groupTitle {
+                            let transactionFound = Transaction(groupTitle: groupName, key: transaction.key, payees: payees, payer: payer, date: date, description: description, amount: amount, settled: settled)
+                            groupTransactionArray.append(transactionFound)
+                        }
+                    }
+            }
+            handler(groupTransactionArray)
+        }
+    }
+    
     func getAllSettledTransactions (handler: @escaping (_ transactionArray: [Transaction]) -> ()) {
         var transactionArray = [Transaction]()
         REF_TRANSACTIONS.observe(.value) { (transactionSnapshot) in
@@ -501,6 +529,16 @@ class DataService {
         for member in groupMembers {
             self.REF_USERS.child(member).child("groups").child(key).updateChildValues(["members": groupMembers, "title": groupName])
         }
+        REF_GROUPS.child(key).updateChildValues(["members": groupMembers])
+        handler(true)
+    }
+    
+    func removeMember (fromGroup key: String, currentMembers: [String], memberToDelete: String, groupName: String, handler: @escaping (_ removedMember: Bool) -> ()) {
+        var groupMembers = currentMembers.filter { $0 != memberToDelete }
+        for member in groupMembers {
+            self.REF_USERS.child(member).child("groups").child(key).updateChildValues(["members": groupMembers, "title": groupName])
+        }
+        REF_USERS.child(memberToDelete).child("groups").child(key).removeValue()
         REF_GROUPS.child(key).updateChildValues(["members": groupMembers])
         handler(true)
     }

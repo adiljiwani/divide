@@ -56,15 +56,18 @@ class GroupTransactionsVC: UIViewController {
     }
     
     @IBAction func addPressed(_ sender: Any) {
-        guard let addMemberVC = storyboard?.instantiateViewController(withIdentifier: "AddMemberVC") as? AddMemberVC else {return}
-        addMemberVC.initData(group: group!)
-        addMemberVC.modalPresentationStyle = .custom
-        self.present(addMemberVC, animated: true, completion: nil)
+        guard let editMembersVC = storyboard?.instantiateViewController(withIdentifier: "EditMembersVC") as? EditMembersVC else {return}
+        editMembersVC.initData(group: group!)
+        editMembersVC.modalPresentationStyle = .custom
+        self.present(editMembersVC, animated: true, completion: nil)
     }
     
     @IBAction func removePressed(_ sender: Any) {
+        guard let removeMembersVC = storyboard?.instantiateViewController(withIdentifier: "RemoveMembersVC") as? RemoveMembersVC else {return}
+        removeMembersVC.initData(chosenGroup: group!)
+        removeMembersVC.modalPresentationStyle = .custom
+        self.present(removeMembersVC, animated: true, completion: nil)
     }
-    
     
     @IBAction func deletePressed(_ sender: Any) {
         let groupName = group?.groupTitle

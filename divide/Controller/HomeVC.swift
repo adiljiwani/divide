@@ -13,6 +13,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var settledTableView: UITableView!
     
+    @IBOutlet weak var transactionStatusLbl: UILabel!
     @IBOutlet weak var settledTableViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var segmentControl: UISegmentedControl!
     @IBOutlet weak var totalOwingLabel: UILabel!
@@ -48,6 +49,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         let font = UIFont(name: "AvenirNext-Regular", size: 15)
         segmentControl.setTitleTextAttributes([NSAttributedStringKey.font: font],
                                                 for: .normal)
+        self.transactionStatusLbl.isHidden = true
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -63,6 +65,12 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         }
             DataService.instance.getAllTransactions { (returnedTransactionArray) in
                 self.transactionsArray = returnedTransactionArray
+                if self.transactionsArray.count == 0 && self.segmentControl.titleForSegment(at: self.segmentControl.selectedSegmentIndex) == "Pending"{
+                    self.transactionStatusLbl.text = "You have no pending transactions."
+                    self.transactionStatusLbl.isHidden = false
+                } else {
+                    self.transactionStatusLbl.isHidden = true
+                }
                 self.pendingTableView.reloadData()
                 self.pendingTableViewHeightConstraint.constant = min(CGFloat(self.transactionsArray.count) * self.pendingTableView.rowHeight, self.view.frame.maxY - self.pendingTableView.frame.minY)
             }
@@ -72,6 +80,12 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @IBAction func segmentControlChanged(_ sender: Any) {
         if segmentControl.selectedSegmentIndex == 0 {
             transactionType = .pending
+            if self.transactionsArray.count == 0 {
+                self.transactionStatusLbl.text = "You have no pending transactions."
+                self.transactionStatusLbl.isHidden = false
+            } else {
+                self.transactionStatusLbl.isHidden = true
+            }
             settledTableView.isHidden = true
             pendingTableView.isHidden = false
             pendingTableView.reloadData()
@@ -82,11 +96,18 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
             settledTableView.isHidden = false
             DataService.instance.getAllSettledTransactions{ (settledTransactions) in
                 self.settledArray = settledTransactions
+                if self.settledArray.count == 0 {
+                    self.transactionStatusLbl.text = "You have no settled transactions."
+                    self.transactionStatusLbl.isHidden = false
+                } else {
+                    self.transactionStatusLbl.isHidden = true
+                }
                 self.settledTableView.reloadData()
                 self.settledTableViewHeightConstraint.constant = min(CGFloat(self.settledArray.count) * self.settledTableView.rowHeight, self.view.frame.maxY - self.settledTableView.frame.minY)
                 
             }
             self.settledTableView.reloadData()
+            
         }
     }
     

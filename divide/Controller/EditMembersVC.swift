@@ -9,8 +9,9 @@
 import UIKit
 import Firebase
 
-class AddMemberVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class EditMembersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    @IBOutlet weak var deleteUserButton: RoundedButton!
     @IBOutlet weak var doneBtn: RoundedButton!
     
     @IBOutlet weak var errorLbl: UILabel!
@@ -53,13 +54,23 @@ class AddMemberVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
         usersTableView.layer.borderColor = #colorLiteral(red: 0.9176470588, green: 0.9568627451, blue: 0.9647058824, alpha: 1)
         usersTableView.layer.borderWidth = 1.0
         
-        let closeTouch = UITapGestureRecognizer(target: self, action: #selector(AddMemberVC.closeTap(_:)))
+        let closeTouch = UITapGestureRecognizer(target: self, action: #selector(EditMembersVC.closeTap(_:)))
             
         bgView.addGestureRecognizer(closeTouch)
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         membersTextField.becomeFirstResponder()
+    }
+    
+    
+    @IBAction func deleteUserFromGroupPressed(_ sender: UIButton) {
+        let point = chosenUsersTableView.convert(CGPoint.zero, from: sender)
+        if let indexPath = chosenUsersTableView.indexPathForRow(at: point) {
+            chosenUsers = chosenUsers.filter { $0 != chosenUsers[indexPath.row]}
+        }
+        chosenUsersTableView.reloadData()
+        self.chosenUsersTableViewHeightConstraint.constant = CGFloat(self.chosenUsers.count) * self.chosenUsersTableView.rowHeight
     }
     
     @objc func membersFieldDidChange () {
@@ -113,7 +124,7 @@ class AddMemberVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
             errorLbl.text = "This user has already been chosen."
         } else if membersTextField.text! == Auth.auth().currentUser?.email {
             errorLbl.isHidden = false
-            errorLbl.text = "That's your email! You're already part of the group!"
+            errorLbl.text = "You're already part of the group!"
         } else if currentUsers.contains(membersTextField.text!){
             errorLbl.isHidden = false
             errorLbl.text = "This user is already part of the group."
@@ -155,7 +166,10 @@ class AddMemberVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
         
         if tableView == chosenUsersTableView {
             guard let addUserCell = tableView.dequeueReusableCell(withIdentifier: "addUserCell", for: indexPath) as? AddUserCell else {return UITableViewCell()}
-            addUserCell.configureCell(email: chosenUsers[indexPath.row], sender: "addMember")
+            DataService.instance.getName(forEmail: chosenUsers[indexPath.row], handler: { (name) in
+                addUserCell.configureCell(email: self.chosenUsers[indexPath.row], name: name, sender: "addMember")
+            })
+            
             cell = addUserCell
         } else if tableView == usersTableView {
             if membersArray.count != 0 {
@@ -184,6 +198,6 @@ class AddMemberVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
 
 
 
-extension AddMemberVC: UITextFieldDelegate {
+extension EditMembersVC: UITextFieldDelegate {
     
 }
