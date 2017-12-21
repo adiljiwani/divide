@@ -21,7 +21,7 @@ class RemoveMembersVC: UIViewController {
     
     func initData (chosenGroup: Group) {
         self.group = chosenGroup
-        DataService.instance.getEmails(group: chosenGroup) { (returnedEmails) in
+        DataService.instance.getEmails(forGroupKey: (group?.key)!) { (returnedEmails) in
             self.chosenUsers = returnedEmails.filter { $0 != Auth.auth().currentUser?.email }
             self.chosenUsersTableView.reloadData()
             self.chosenUsersTableViewHeightConstrain.constant = CGFloat(self.chosenUsers.count) * self.chosenUsersTableView.rowHeight
@@ -46,6 +46,7 @@ class RemoveMembersVC: UIViewController {
     }
     
     @IBAction func deletePressed(_ sender: UIButton) {
+        var currentMembers = [String]()
         let point = chosenUsersTableView.convert(CGPoint.zero, from: sender)
         if let indexPath = chosenUsersTableView.indexPathForRow(at: point) {
             DataService.instance.getIds(forEmails: [chosenUsers[indexPath.row]]) { (id) in
@@ -55,8 +56,12 @@ class RemoveMembersVC: UIViewController {
                         let alert = UIAlertController(title: "Remove member from group", message: "Are you sure you want to remove \(self.chosenUsers[indexPath.row]) from \(groupName)?", preferredStyle: .alert)
                         
                         let removeAction = UIAlertAction(title: "Yes", style: .default) { (buttonPressed) in
-                            DataService.instance.removeMember(fromGroup: (self.group?.key)!, currentMembers: (self.group?.members)!, memberToDelete: id[0], groupName: (self.group?.groupTitle)!) { (memberRemoved) in
-                                
+                            DataService.instance.getGroupMemberIds(forGroupKey: (self.group?.key)!) { (members) in
+                            DataService.instance.removeMember(fromGroup: (self.group?.key)!, currentMembers: members, memberToDelete: id[0], groupName: (self.group?.groupTitle)!) { (memberRemoved) in
+                                if memberRemoved {
+                                    print(id[0])
+                                }
+                            }
                             }
                             self.chosenUsers = self.chosenUsers.filter { $0 != self.chosenUsers[indexPath.row]}
                             self.chosenUsersTableView.reloadData()

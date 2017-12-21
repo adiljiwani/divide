@@ -119,32 +119,38 @@ class DataService {
         }
     }
     
-    func getEmails (group: Group, handler: @escaping (_ emailArray: [String]) -> ()) {
+    func getEmails (forGroupKey key: String, handler: @escaping (_ emailArray: [String]) -> ()) {
         var emailArray = [String]()
-        REF_USERS.observeSingleEvent(of: .value) { (userSnapshot) in
-            guard let userSnapshot = userSnapshot.children.allObjects as? [DataSnapshot] else {return}
-            for user in userSnapshot {
-                if group.members.contains(user.key) {
-                    let email = user.childSnapshot(forPath: "email").value as! String
-                    emailArray.append(email)
+        
+        getGroupMemberIds(forGroupKey: key) { (groupMembers) in
+            self.REF_USERS.observeSingleEvent(of: .value) { (userSnapshot) in
+                guard let userSnapshot = userSnapshot.children.allObjects as? [DataSnapshot] else {return}
+                for user in userSnapshot {
+                    if groupMembers.contains(user.key) {
+                        let email = user.childSnapshot(forPath: "email").value as! String
+                        emailArray.append(email)
+                    }
                 }
+                handler(emailArray)
             }
-            handler(emailArray)
         }
     }
     
-    func getNames (group: Group, handler: @escaping (_ emailArray: [String]) -> ()) {
+    func getNames (forGroupKey key: String, handler: @escaping (_ emailArray: [String]) -> ()) {
         var nameArray = [String]()
         nameArray.append("You")
-        REF_USERS.observeSingleEvent(of: .value) { (userSnapshot) in
-            guard let userSnapshot = userSnapshot.children.allObjects as? [DataSnapshot] else {return}
-            for user in userSnapshot {
-                if group.members.contains(user.key) && user.key != Auth.auth().currentUser?.uid{
-                    let name = user.childSnapshot(forPath: "name").value as! String
-                    nameArray.append(name)
+        
+        getGroupMemberIds(forGroupKey: key) { (groupMembers) in
+            self.REF_USERS.observeSingleEvent(of: .value) { (userSnapshot) in
+                guard let userSnapshot = userSnapshot.children.allObjects as? [DataSnapshot] else {return}
+                for user in userSnapshot {
+                    if groupMembers.contains(user.key) && user.key != Auth.auth().currentUser?.uid {
+                        let name = user.childSnapshot(forPath: "name").value as! String
+                        nameArray.append(name)
+                    }
                 }
+                handler(nameArray)
             }
-            handler(nameArray)
         }
     }
     
@@ -171,6 +177,21 @@ class DataService {
                 let groupTitle = group.childSnapshot(forPath: "title").value as! String
                 let groupMemberIds = group.childSnapshot(forPath: "members").value as! [String]
                 if groupTitle == groupName {
+                    groupMemberIdsArray = groupMemberIds
+                    
+                }
+            }
+            handler(groupMemberIdsArray)
+        }
+    }
+    
+    func getGroupMemberIds (forGroupKey key: String, handler: @escaping (_ groupMembers: [String]) -> ()) {
+        var groupMemberIdsArray = [String]()
+        REF_USERS.child((Auth.auth().currentUser?.uid)!).child("groups").observe(.value) { (groupSnapshot) in
+            guard let groupSnapshot = groupSnapshot.children.allObjects as? [DataSnapshot] else {return}
+            for group in groupSnapshot {
+                let groupMemberIds = group.childSnapshot(forPath: "members").value as! [String]
+                if group.key == key {
                     groupMemberIdsArray = groupMemberIds
                     
                 }
@@ -498,7 +519,6 @@ class DataService {
                 guard let groupSnapshot = groupSnapshot.children.allObjects as? [DataSnapshot] else {return}
                 for group in groupSnapshot {
                     if group.key == key {
-                        groupName = group.childSnapshot(forPath: "title").value as! String
                         members = group.childSnapshot(forPath: "members").value as! [String]
                         for userId in members {
                             self.REF_USERS.child(userId).child("groups").child(key).removeValue()

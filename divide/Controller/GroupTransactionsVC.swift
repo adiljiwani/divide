@@ -34,16 +34,16 @@ class GroupTransactionsVC: UIViewController {
         super.viewWillAppear(animated)
         groupNameLbl.text = group?.groupTitle
         DataService.instance.REF_GROUPS.child((group?.key)!).child("members").observe(.value) { (snapshot) in
-            DataService.instance.getNames(group: self.group!) { (returnedNames) in
+            DataService.instance.getNames(forGroupKey: (self.group?.key)!, handler: { (returnedNames) in
                 self.membersTextView.text = returnedNames.joined(separator: ", ")
-            }
+            })
         }
         
         
-        DataService.instance.getEmails(group: group!) { (returnedEmails) in
+        DataService.instance.getEmails(forGroupKey: (group?.key)!) { (returnedEmails) in
             self.groupMembers = returnedEmails
         }
-        
+
         DataService.instance.getAllTransactions(forGroup: group!) { (returnedTransactions) in
             self.groupTransactions = returnedTransactions
             self.tableView.reloadData()

@@ -29,7 +29,7 @@ class EditMembersVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     var currentUsers = [String]()
     var group: Group?
     func initData (group: Group) {
-        DataService.instance.getEmails(group: group) { (returnedEmails) in
+        DataService.instance.getEmails(forGroupKey: group.key) { (returnedEmails) in
             self.currentUsers = returnedEmails
         }
         self.group = group
