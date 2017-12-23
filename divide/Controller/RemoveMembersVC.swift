@@ -59,7 +59,7 @@ class RemoveMembersVC: UIViewController {
                             DataService.instance.getGroupMemberIds(forGroupKey: (self.group?.key)!) { (members) in
                             DataService.instance.removeMember(fromGroup: (self.group?.key)!, currentMembers: members, memberToDelete: id[0], groupName: (self.group?.groupTitle)!) { (memberRemoved) in
                                 if memberRemoved {
-                                    print(id[0])
+                                    print(self.chosenUsers)
                                 }
                             }
                             }
