@@ -105,7 +105,7 @@ class EditMembersVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         var memberIds = [String]()
         DataService.instance.getIds(forEmails: addedMembers) { (ids) in
             memberIds = ids
-            DataService.instance.addMember(toGroup: (self.group?.key)!, currentMembers: (self.group?.members)!, membersToAdd: memberIds, groupName: (self.group?.groupTitle)!) { (membersAdded) in
+            DataService.instance.addMember(toGroup: (self.group?.key)!, membersToAdd: memberIds, groupName: (self.group?.groupTitle)!) { (membersAdded) in
                 if membersAdded {
                     self.dismiss(animated: true, completion: nil)
                 }

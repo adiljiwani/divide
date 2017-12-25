@@ -543,13 +543,24 @@ class DataService {
             handler(true)
     }
     
-    func addMember (toGroup key: String, currentMembers: [String], membersToAdd: [String], groupName: String, handler: @escaping (_ addedMember: Bool) -> ()) {
-        var groupMembers = currentMembers
-        groupMembers += membersToAdd
-        for member in groupMembers {
-            self.REF_USERS.child(member).child("groups").child(key).updateChildValues(["members": groupMembers, "title": groupName])
+    func addMember (toGroup key: String, membersToAdd: [String], groupName: String, handler: @escaping (_ addedMember: Bool) -> ()) {
+        var groupMembers  = [String]()
+        
+        REF_GROUPS.observeSingleEvent(of: .value) { (groupSnapshot) in
+            guard let groupSnapshot = groupSnapshot.children.allObjects as? [DataSnapshot] else {return}
+            for group in groupSnapshot {
+                if group.key == key {
+                    let currentMembers = group.childSnapshot(forPath: "members").value as! [String]
+                    groupMembers = currentMembers + membersToAdd
+                    for member in groupMembers {
+                        self.REF_USERS.child(member).child("groups").child(key).updateChildValues(["members": groupMembers, "title": groupName])
+                    }
+                    self.REF_GROUPS.child(key).updateChildValues(["members": groupMembers])
+                }
+            }
         }
-        REF_GROUPS.child(key).updateChildValues(["members": groupMembers])
+        
+        
         handler(true)
     }
     
