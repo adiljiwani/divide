@@ -31,8 +31,8 @@ class RemoveMembersVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        chosenUsersTableView.delegate = self
-        chosenUsersTableView.dataSource = self
+        self.chosenUsersTableView.delegate = self
+        self.chosenUsersTableView.dataSource = self
         let closeTouch = UITapGestureRecognizer(target: self, action: #selector(RemoveMembersVC.closeTap(_:)))
         bgView.addGestureRecognizer(closeTouch)
     }
@@ -49,23 +49,22 @@ class RemoveMembersVC: UIViewController {
         var currentMembers = [String]()
         let point = chosenUsersTableView.convert(CGPoint.zero, from: sender)
         if let indexPath = chosenUsersTableView.indexPathForRow(at: point) {
-            DataService.instance.getIds(forEmails: [chosenUsers[indexPath.row]]) { (id) in
-                DataService.instance.getAllTransactions(forGroup: self.group!, andUser: id[0], handler: { (transactions) in
-                    if transactions.count == 0 {
                         if let groupName = self.group?.groupTitle {
                         let alert = UIAlertController(title: "Remove member from group", message: "Are you sure you want to remove \(self.chosenUsers[indexPath.row]) from \(groupName)?", preferredStyle: .alert)
-                        
                         let removeAction = UIAlertAction(title: "Yes", style: .default) { (buttonPressed) in
-                            DataService.instance.getGroupMemberIds(forGroupKey: (self.group?.key)!) { (members) in
-                            DataService.instance.removeMember(fromGroup: (self.group?.key)!, currentMembers: members, memberToDelete: id[0], groupName: (self.group?.groupTitle)!) { (memberRemoved) in
+                            DataService.instance.getIds(forEmails: [self.chosenUsers[indexPath.row]]) { (id) in
+                            DataService.instance.removeMember(fromGroup: (self.group?.key)!, memberToDelete: id[0], groupName: (self.group?.groupTitle)!) { (memberRemoved) in
                                 if memberRemoved {
                                     print(self.chosenUsers)
+                                    self.chosenUsers = self.chosenUsers.filter { $0 != self.chosenUsers[indexPath.row]}
+                                    self.chosenUsersTableView.reloadData()
+                                    self.chosenUsersTableViewHeightConstrain.constant = CGFloat(self.chosenUsers.count) * self.chosenUsersTableView.rowHeight
+
                                 }
                             }
+                                
                             }
-                            self.chosenUsers = self.chosenUsers.filter { $0 != self.chosenUsers[indexPath.row]}
-                            self.chosenUsersTableView.reloadData()
-                            self.chosenUsersTableViewHeightConstrain.constant = CGFloat(self.chosenUsers.count) * self.chosenUsersTableView.rowHeight
+                            
                         }
                         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (cancel) in
                             alert.dismiss(animated: true, completion: nil)
@@ -74,10 +73,6 @@ class RemoveMembersVC: UIViewController {
                         alert.addAction(cancelAction)
                         self.present(alert, animated: true, completion: nil)
                         }
-                    }
-                })
-            }
-            
         }
     }
     

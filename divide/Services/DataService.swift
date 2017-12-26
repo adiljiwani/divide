@@ -401,7 +401,6 @@ class DataService {
     func getAllTransactions (forGroup group: Group, andUser key: String, handler: @escaping (_ transactionArray: [Transaction]) -> ()) {
         var userEmail = ""
         getUsername(forUid: key) { (email) in
-            print(email)
             userEmail = email
         }
         var groupTransactionArray = [Transaction]()
@@ -564,13 +563,23 @@ class DataService {
         handler(true)
     }
     
-    func removeMember (fromGroup key: String, currentMembers: [String], memberToDelete: String, groupName: String, handler: @escaping (_ removedMember: Bool) -> ()) {
-        var groupMembers = currentMembers.filter { $0 != memberToDelete }
-        for member in groupMembers {
-            self.REF_USERS.child(member).child("groups").child(key).updateChildValues(["members": groupMembers, "title": groupName])
+    func removeMember (fromGroup key: String, memberToDelete: String, groupName: String, handler: @escaping (_ removedMember: Bool) -> ()) {
+        var groupMembers = [String]()
+        
+        REF_GROUPS.observeSingleEvent(of: .value) { (groupSnapshot) in
+            guard let groupSnapshot = groupSnapshot.children.allObjects as? [DataSnapshot] else {return}
+            for group in groupSnapshot {
+                if group.key == key {
+                    let currentMembers = group.childSnapshot(forPath: "members").value as! [String]
+                    groupMembers = currentMembers.filter { $0 != memberToDelete }
+                    for member in groupMembers {
+                        self.REF_USERS.child(member).child("groups").child(key).updateChildValues(["members": groupMembers, "title": groupName])
+                    }
+                    self.REF_USERS.child(memberToDelete).child("groups").child(key).removeValue()
+                    self.REF_GROUPS.child(key).updateChildValues(["members": groupMembers])
+                    handler(true)
+                }
+            }
         }
-        REF_USERS.child(memberToDelete).child("groups").child(key).removeValue()
-        REF_GROUPS.child(key).updateChildValues(["members": groupMembers])
-        handler(true)
     }
 }

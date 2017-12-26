@@ -1913,7 +1913,7 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleAspectFill" alwaysBounceVertical="YES" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rw6-lm-jTb">
-                                <rect key="frame" x="0.0" y="450" width="414" height="200"/>
+                                <rect key="frame" x="0.0" y="270" width="414" height="200"/>
                                 <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="lNm-a6-2Q1"/>
@@ -2143,7 +2143,7 @@
                             <constraint firstItem="fMf-T8-fSK" firstAttribute="top" secondItem="ipu-Db-vV9" secondAttribute="bottom" constant="20" id="CHI-qP-AP1"/>
                             <constraint firstItem="rw6-lm-jTb" firstAttribute="leading" secondItem="Npq-D7-BWZ" secondAttribute="leading" id="Emg-7d-U1E"/>
                             <constraint firstItem="yHY-S1-ZhF" firstAttribute="top" secondItem="fMf-T8-fSK" secondAttribute="bottom" constant="40" id="Hqj-44-Hob"/>
-                            <constraint firstItem="rw6-lm-jTb" firstAttribute="top" secondItem="fMf-T8-fSK" secondAttribute="bottom" constant="200" id="Le6-bp-ZwY"/>
+                            <constraint firstItem="rw6-lm-jTb" firstAttribute="top" secondItem="fMf-T8-fSK" secondAttribute="bottom" constant="20" id="Le6-bp-ZwY"/>
                             <constraint firstItem="XSF-G2-sLn" firstAttribute="top" secondItem="x0O-03-sTP" secondAttribute="top" id="OPx-fh-qHv"/>
                             <constraint firstItem="XSF-G2-sLn" firstAttribute="trailing" secondItem="Npq-D7-BWZ" secondAttribute="trailing" id="Z5r-7d-aN1"/>
                             <constraint firstItem="Npq-D7-BWZ" firstAttribute="trailing" secondItem="IHP-G2-Gan" secondAttribute="trailing" id="eHA-kz-SfF"/>
