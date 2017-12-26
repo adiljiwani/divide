@@ -988,7 +988,7 @@
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                             <connections>
-                                                                <action selector="deleteUserFromGroupPressed:" destination="ds8-P7-xAZ" eventType="touchUpInside" id="efV-fO-P4T"/>
+                                                                <action selector="cancelAddUser:" destination="ds8-P7-xAZ" eventType="touchUpInside" id="daV-0O-VNS"/>
                                                             </connections>
                                                         </button>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="w3I-IW-rVn">
@@ -1207,7 +1207,7 @@
                                                             </constraints>
                                                             <state key="normal" image="delete"/>
                                                             <connections>
-                                                                <action selector="deletePressed:" destination="q6e-tL-Nkx" eventType="touchUpInside" id="Gub-4O-HMC"/>
+                                                                <action selector="deleteUserPressed:" destination="q6e-tL-Nkx" eventType="touchUpInside" id="2IX-AR-gqz"/>
                                                             </connections>
                                                         </button>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="NNY-Gv-lz8">

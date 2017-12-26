@@ -64,14 +64,19 @@ class EditMembersVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     }
     
     
-    @IBAction func deleteUserFromGroupPressed(_ sender: UIButton) {
+    @IBAction func cancelAddUser(_ sender: UIButton) {
         let point = chosenUsersTableView.convert(CGPoint.zero, from: sender)
         if let indexPath = chosenUsersTableView.indexPathForRow(at: point) {
-            chosenUsers = chosenUsers.filter { $0 != chosenUsers[indexPath.row]}
+            print(self.chosenUsers)
+            self.chosenUsers = self.chosenUsers.filter { $0 != self.chosenUsers[indexPath.row]}
+            print(chosenUsers)
+            print(indexPath.row)
+            print(chosenUsers.count)
         }
-        chosenUsersTableView.reloadData()
+        self.chosenUsersTableView.reloadData()
         self.chosenUsersTableViewHeightConstraint.constant = CGFloat(self.chosenUsers.count) * self.chosenUsersTableView.rowHeight
     }
+    
     
     @objc func membersFieldDidChange () {
         if membersTextField.text == "" {
@@ -166,10 +171,9 @@ class EditMembersVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         
         if tableView == chosenUsersTableView {
             guard let addUserCell = tableView.dequeueReusableCell(withIdentifier: "addUserCell", for: indexPath) as? AddUserCell else {return UITableViewCell()}
-            DataService.instance.getName(forEmail: chosenUsers[indexPath.row], handler: { (name) in
+            DataService.instance.getName(forEmail: self.chosenUsers[indexPath.row], handler: { (name) in
                 addUserCell.configureCell(email: self.chosenUsers[indexPath.row], name: name, sender: "addMember")
             })
-            
             cell = addUserCell
         } else if tableView == usersTableView {
             if membersArray.count != 0 {
