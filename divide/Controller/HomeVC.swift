@@ -104,27 +104,50 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
                 if filterType == .owed {
                     owedView.layer.borderWidth = 0.0
                 }
-                owingView.layer.borderColor = #colorLiteral(red: 0.0431372549, green: 0.1960784314, blue: 0.3490196078, alpha: 1)
-                owingView.layer.borderWidth = 2.0
-                filterType = .owing
-                transactionsArray = transactionsArray.filter ( { $0.payees.contains((Auth.auth().currentUser?.email)!) } )
-                pendingTableView.reloadData()
-                self.pendingTableViewHeightConstraint.constant = min(CGFloat(self.transactionsArray.count) * self.pendingTableView.rowHeight, self.view.frame.maxY - self.pendingTableView.frame.minY)
+                filterByOwing()
             }
+        } else if touch?.view == owingView && filterType == .owing {
+            getPendingTransactions()
+            owingView.layer.borderWidth = 0.0
+            filterType = .none
         } else if touch?.view == owedView && filterType != .owed {
             if transactionType == .pending {
                 if filterType == .owing {
                     owingView.layer.borderWidth = 0.0
                 }
-                filterType = .owed
-                owedView.layer.borderColor = #colorLiteral(red: 0.0431372549, green: 0.1960784314, blue: 0.3490196078, alpha: 1)
-                owedView.layer.borderWidth = 2.0
-                transactionsArray = transactionsArray.filter ( { !$0.payees.contains((Auth.auth().currentUser?.email)!) } )
-                pendingTableView.reloadData()
-                self.pendingTableViewHeightConstraint.constant = min(CGFloat(self.transactionsArray.count) * self.pendingTableView.rowHeight, self.view.frame.maxY - self.pendingTableView.frame.minY)
+                filterByOwed()
             }
+        } else if touch?.view == owedView && filterType == .owed {
+            getPendingTransactions()
+            owedView.layer.borderWidth = 0.0
+            filterType = .none
         }
     }
+    
+    func filterByOwed () {
+        if filterType == .owing {
+            getPendingTransactions()
+        }
+        filterType = .owed
+        owedView.layer.borderColor = #colorLiteral(red: 0.0431372549, green: 0.1960784314, blue: 0.3490196078, alpha: 1)
+        owedView.layer.borderWidth = 2.0
+        transactionsArray = transactionsArray.filter ( { !$0.payees.contains((Auth.auth().currentUser?.email)!) } )
+        pendingTableView.reloadData()
+        self.pendingTableViewHeightConstraint.constant = min(CGFloat(self.transactionsArray.count) * self.pendingTableView.rowHeight, self.view.frame.maxY - self.pendingTableView.frame.minY)
+    }
+    
+    func filterByOwing () {
+        owingView.layer.borderColor = #colorLiteral(red: 0.0431372549, green: 0.1960784314, blue: 0.3490196078, alpha: 1)
+        owingView.layer.borderWidth = 2.0
+        if filterType == .owed {
+            getPendingTransactions()
+        }
+        filterType = .owing
+        transactionsArray = transactionsArray.filter ( { $0.payees.contains((Auth.auth().currentUser?.email)!) } )
+        pendingTableView.reloadData()
+        self.pendingTableViewHeightConstraint.constant = min(CGFloat(self.transactionsArray.count) * self.pendingTableView.rowHeight, self.view.frame.maxY - self.pendingTableView.frame.minY)
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if Auth.auth().currentUser != nil {
@@ -152,6 +175,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
             self.pendingTableView.reloadData()
             self.pendingTableViewHeightConstraint.constant = min(CGFloat(self.transactionsArray.count) * self.pendingTableView.rowHeight, self.view.frame.maxY - self.pendingTableView.frame.minY)
         }
+        self.pendingTableView.reloadData()
     }
     
     func getSettledTransactions () {
