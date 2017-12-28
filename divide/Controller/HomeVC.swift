@@ -26,7 +26,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     var owing: Float = 0.0
     var owed: Float = 0.0
     var transactionType = TransactionType.pending
-    var filterOptions = ["Date", "Amount"]
+    var filterOptions = ["Newest", "Oldest", "Amount"]
     
     @IBOutlet weak var pendingTableViewHeightConstraint: NSLayoutConstraint!
     
@@ -35,7 +35,6 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         filterView.isHidden = true
         filterView.layer.borderWidth = 1.0
         filterView.layer.borderColor = #colorLiteral(red: 0.0431372549, green: 0.1960784314, blue: 0.3490196078, alpha: 1)
@@ -65,8 +64,12 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         segmentControl.setTitleTextAttributes([NSAttributedStringKey.font: font],
                                                 for: .normal)
         self.transactionStatusLbl.isHidden = true
+        let closeTouch = UITapGestureRecognizer(target: self, action: #selector(closeTap(_:)))
+        view.addGestureRecognizer(closeTouch)
     }
-    
+    @objc func closeTap(_ recognizer: UITapGestureRecognizer) {
+        filterView.isHidden = true
+    }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if Auth.auth().currentUser != nil {
@@ -230,6 +233,78 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     func filterTransactions (filterType: String, transactionType: TransactionType) {
         print(filterType)
         print(transactionType)
+        var datesArrayString = [String]()
+        var datesArray = [Date]()
+        var amountArray = [Float]()
+        var dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMM dd, yyyy"
+        if filterType == "Newest" && transactionType == .pending {
+            for transaction in transactionsArray {
+                datesArrayString.append(transaction.date)
+            }
+            for dat in datesArrayString {
+                let date = dateFormatter.date(from: dat)
+                if let date = date {
+                    datesArray.append(date)
+                }
+            }
+            let combined = zip(datesArray, transactionsArray).sorted(by: { $0.0.compare($1.0) == .orderedDescending })
+            transactionsArray = combined.map {$0.1}
+            pendingTableView.reloadData()
+        } else if filterType == "Oldest" && transactionType == .pending {
+            for transaction in transactionsArray {
+                datesArrayString.append(transaction.date)
+            }
+            for dat in datesArrayString {
+                let date = dateFormatter.date(from: dat)
+                if let date = date {
+                    datesArray.append(date)
+                }
+            }
+            let combined = zip(datesArray, transactionsArray).sorted(by: { $0.0.compare($1.0) == .orderedAscending })
+            transactionsArray = combined.map {$0.1}
+            pendingTableView.reloadData()
+        } else if filterType == "Amount" && transactionType == .pending {
+            for transaction in transactionsArray {
+                amountArray.append(transaction.amount)
+            }
+            let combined = zip(amountArray, transactionsArray).sorted(by: { $0.0 > $1.0 })
+            transactionsArray = combined.map {$0.1}
+            pendingTableView.reloadData()
+        } else if filterType == "Newest" && transactionType == .settled {
+            for transaction in settledArray {
+                datesArrayString.append(transaction.date)
+            }
+            for dat in datesArrayString {
+                let date = dateFormatter.date(from: dat)
+                if let date = date {
+                    datesArray.append(date)
+                }
+            }
+            let combined = zip(datesArray, settledArray).sorted(by: { $0.0.compare($1.0) == .orderedDescending })
+            settledArray = combined.map {$0.1}
+            settledTableView.reloadData()
+        } else if filterType == "Oldest" && transactionType == .settled {
+            for transaction in settledArray {
+                datesArrayString.append(transaction.date)
+            }
+            for dat in datesArrayString {
+                let date = dateFormatter.date(from: dat)
+                if let date = date {
+                    datesArray.append(date)
+                }
+            }
+            let combined = zip(datesArray, settledArray).sorted(by: { $0.0.compare($1.0) == .orderedAscending })
+            settledArray = combined.map {$0.1}
+            settledTableView.reloadData()
+        } else if filterType == "Amount" && transactionType == .settled {
+            for transaction in settledArray {
+                amountArray.append(transaction.amount)
+            }
+            let combined = zip(amountArray, settledArray).sorted(by: { $0.0 > $1.0 })
+            settledArray = combined.map {$0.1}
+            settledTableView.reloadData()
+        }
     }
     
 }
