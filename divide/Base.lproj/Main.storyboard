@@ -1826,7 +1826,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="177" height="80"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="OUf-FF-oYW">
-                                                        <rect key="frame" x="38.000000000000007" y="13.333333333333325" width="101.66666666666669" height="53.666666666666657"/>
+                                                        <rect key="frame" x="37.666666666666664" y="13.333333333333325" width="101.66666666666669" height="53.666666666666657"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="YOU ARE OWED" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oir-sq-WKa">
                                                                 <rect key="frame" x="0.0" y="0.0" width="101.66666666666667" height="18"/>
@@ -1842,10 +1842,17 @@
                                                             </label>
                                                         </subviews>
                                                     </stackView>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZwX-Q4-Or6" customClass="RoundedView" customModule="divide" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="177" height="80"/>
+                                                    </view>
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.27843137254901962" green="0.69411764705882351" blue="0.31372549019607843" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstItem="OUf-FF-oYW" firstAttribute="centerX" secondItem="heW-vz-Cwj" secondAttribute="centerX" id="EfE-IS-IvO"/>
+                                                    <constraint firstItem="ZwX-Q4-Or6" firstAttribute="leading" secondItem="heW-vz-Cwj" secondAttribute="leading" id="Hl1-pd-wXq"/>
+                                                    <constraint firstAttribute="bottom" secondItem="ZwX-Q4-Or6" secondAttribute="bottom" id="bwd-dp-pAb"/>
+                                                    <constraint firstItem="ZwX-Q4-Or6" firstAttribute="top" secondItem="heW-vz-Cwj" secondAttribute="top" id="tff-5J-VHt"/>
+                                                    <constraint firstAttribute="trailing" secondItem="ZwX-Q4-Or6" secondAttribute="trailing" id="uGw-yN-CAU"/>
                                                     <constraint firstItem="OUf-FF-oYW" firstAttribute="centerY" secondItem="heW-vz-Cwj" secondAttribute="centerY" id="uKL-TO-XlQ"/>
                                                 </constraints>
                                                 <userDefinedRuntimeAttributes>
@@ -1858,7 +1865,7 @@
                                                 <rect key="frame" x="197" y="0.0" width="177" height="80"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Fv6-SV-XQB">
-                                                        <rect key="frame" x="51.333333333333314" y="13.333333333333325" width="75" height="53.666666666666657"/>
+                                                        <rect key="frame" x="51" y="13.333333333333325" width="75" height="53.666666666666657"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="YOU OWE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SiR-cY-1yp">
                                                                 <rect key="frame" x="0.0" y="0.0" width="75" height="18"/>
@@ -1874,10 +1881,17 @@
                                                             </label>
                                                         </subviews>
                                                     </stackView>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oDS-9X-XyI" customClass="RoundedView" customModule="divide" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="177" height="80"/>
+                                                    </view>
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.80784313725490198" green="0.11372549019607843" blue="0.0078431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="oDS-9X-XyI" secondAttribute="trailing" id="Fej-Hj-qcn"/>
+                                                    <constraint firstItem="oDS-9X-XyI" firstAttribute="top" secondItem="DS6-qb-nDi" secondAttribute="top" id="btI-qc-4xV"/>
                                                     <constraint firstItem="Fv6-SV-XQB" firstAttribute="centerY" secondItem="DS6-qb-nDi" secondAttribute="centerY" id="djC-87-edH"/>
+                                                    <constraint firstAttribute="bottom" secondItem="oDS-9X-XyI" secondAttribute="bottom" id="j8f-Fp-dUN"/>
+                                                    <constraint firstItem="oDS-9X-XyI" firstAttribute="leading" secondItem="DS6-qb-nDi" secondAttribute="leading" id="mqb-u1-P05"/>
                                                     <constraint firstItem="Fv6-SV-XQB" firstAttribute="centerX" secondItem="DS6-qb-nDi" secondAttribute="centerX" id="wW3-dF-2TR"/>
                                                 </constraints>
                                                 <userDefinedRuntimeAttributes>
@@ -2243,6 +2257,8 @@
                         <outlet property="filterTableView" destination="RFr-TR-xW9" id="OPg-oe-ziV"/>
                         <outlet property="filterTableViewHeightConstraint" destination="91V-iE-0a0" id="U0v-YW-zfT"/>
                         <outlet property="filterView" destination="HtB-Pj-PgC" id="yVv-dp-5ER"/>
+                        <outlet property="owedView" destination="ZwX-Q4-Or6" id="L8m-VP-BQR"/>
+                        <outlet property="owingView" destination="oDS-9X-XyI" id="Hzr-iq-ZfK"/>
                         <outlet property="pendingTableView" destination="rw6-lm-jTb" id="LTg-uA-WN0"/>
                         <outlet property="pendingTableViewHeightConstraint" destination="lNm-a6-2Q1" id="fYd-Lt-iBk"/>
                         <outlet property="segmentControl" destination="fMf-T8-fSK" id="OXz-XV-LTu"/>
@@ -2251,6 +2267,8 @@
                         <outlet property="totalOwedLabel" destination="K7U-GS-UPr" id="PI8-vU-cc2"/>
                         <outlet property="totalOwingLabel" destination="iHy-CC-Cbt" id="VA1-sD-HRb"/>
                         <outlet property="transactionStatusLbl" destination="yHY-S1-ZhF" id="fFX-qx-XgW"/>
+                        <outlet property="youAreOwedLbl" destination="oir-sq-WKa" id="ToP-3N-5vV"/>
+                        <outlet property="youOweLbl" destination="SiR-cY-1yp" id="H7O-vk-g1Q"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fmU-jW-wIz" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2743,6 +2761,20 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ebf-ce-6bw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-412" y="-366"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="1K5-Wf-G5j">
+            <objects>
+                <viewController id="aIH-8A-ZhE" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="WIN-Mm-d2z">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="Kxz-zB-MD0"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="krY-rR-nJo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
         </scene>
     </scenes>
     <resources>

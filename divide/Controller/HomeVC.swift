@@ -15,6 +15,12 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var filterView: RoundedModalView!
     @IBOutlet weak var settledTableView: UITableView!
     
+    @IBOutlet weak var owedView: RoundedView!
+    
+    @IBOutlet weak var owingView: RoundedView!
+    
+    @IBOutlet weak var youAreOwedLbl: UILabel!
+    @IBOutlet weak var youOweLbl: UILabel!
     @IBOutlet weak var filterTableView: UITableView!
     @IBOutlet weak var transactionStatusLbl: UILabel!
     @IBOutlet weak var settledTableViewHeightConstraint: NSLayoutConstraint!
@@ -29,6 +35,13 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     var sortOptions = ["Newest", "Oldest"]
     var filterOptions = ["Owed", "Owing", "None"]
     
+    enum FilterType {
+        case owing
+        case owed
+        case none
+        
+    }
+    var filterType = FilterType.none
     @IBOutlet weak var pendingTableViewHeightConstraint: NSLayoutConstraint!
     
     var transactionsArray = [Transaction]()
@@ -85,6 +98,32 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         if touch?.view != filterView{
             filterView.isHidden = true
         }
+        
+        if touch?.view == owingView && filterType != .owing {
+            if transactionType == .pending {
+                if filterType == .owed {
+                    owedView.layer.borderWidth = 0.0
+                }
+                owingView.layer.borderColor = #colorLiteral(red: 0.0431372549, green: 0.1960784314, blue: 0.3490196078, alpha: 1)
+                owingView.layer.borderWidth = 2.0
+                filterType = .owing
+                transactionsArray = transactionsArray.filter ( { $0.payees.contains((Auth.auth().currentUser?.email)!) } )
+                pendingTableView.reloadData()
+                self.pendingTableViewHeightConstraint.constant = min(CGFloat(self.transactionsArray.count) * self.pendingTableView.rowHeight, self.view.frame.maxY - self.pendingTableView.frame.minY)
+            }
+        } else if touch?.view == owedView && filterType != .owed {
+            if transactionType == .pending {
+                if filterType == .owing {
+                    owingView.layer.borderWidth = 0.0
+                }
+                filterType = .owed
+                owedView.layer.borderColor = #colorLiteral(red: 0.0431372549, green: 0.1960784314, blue: 0.3490196078, alpha: 1)
+                owedView.layer.borderWidth = 2.0
+                transactionsArray = transactionsArray.filter ( { !$0.payees.contains((Auth.auth().currentUser?.email)!) } )
+                pendingTableView.reloadData()
+                self.pendingTableViewHeightConstraint.constant = min(CGFloat(self.transactionsArray.count) * self.pendingTableView.rowHeight, self.view.frame.maxY - self.pendingTableView.frame.minY)
+            }
+        }
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -97,18 +136,33 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
             self.owing = owing
             self.totalOwingLabel.text = String(format: "$%.2f", owing)
         }
-            DataService.instance.getAllTransactions { (returnedTransactionArray) in
-                self.transactionsArray = returnedTransactionArray
-                if self.transactionsArray.count == 0 && self.segmentControl.titleForSegment(at: self.segmentControl.selectedSegmentIndex) == "Pending" {
-                    self.transactionStatusLbl.text = "You have no pending transactions."
-                    self.transactionStatusLbl.isHidden = false
-                } else {
-                    self.transactionStatusLbl.isHidden = true
-                }
-                self.pendingTableView.reloadData()
-                self.pendingTableViewHeightConstraint.constant = min(CGFloat(self.transactionsArray.count) * self.pendingTableView.rowHeight, self.view.frame.maxY - self.pendingTableView.frame.minY)
-            }
+            getPendingTransactions()
         }
+    }
+    
+    func getPendingTransactions () {
+        DataService.instance.getAllTransactions { (returnedTransactionArray) in
+            self.transactionsArray = returnedTransactionArray
+            if self.transactionsArray.count == 0 && self.segmentControl.titleForSegment(at: self.segmentControl.selectedSegmentIndex) == "Pending" {
+                self.transactionStatusLbl.text = "You have no pending transactions."
+                self.transactionStatusLbl.isHidden = false
+            } else {
+                self.transactionStatusLbl.isHidden = true
+            }
+            self.pendingTableView.reloadData()
+            self.pendingTableViewHeightConstraint.constant = min(CGFloat(self.transactionsArray.count) * self.pendingTableView.rowHeight, self.view.frame.maxY - self.pendingTableView.frame.minY)
+        }
+    }
+    
+    func getSettledTransactions () {
+        DataService.instance.getAllSettledTransactions{ (settledTransactions) in
+            self.settledArray = settledTransactions
+            self.transactionStatusLbl.isHidden = true
+            self.settledTableView.reloadData()
+            self.settledTableViewHeightConstraint.constant = min(CGFloat(self.settledArray.count) * self.settledTableView.rowHeight, self.view.frame.maxY - self.settledTableView.frame.minY)
+            
+        }
+        self.settledTableView.reloadData()
     }
     
     @IBAction func segmentControlChanged(_ sender: Any) {
@@ -134,14 +188,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
             } else {
                 self.transactionStatusLbl.isHidden = true
             }
-            DataService.instance.getAllSettledTransactions{ (settledTransactions) in
-                self.settledArray = settledTransactions
-                self.transactionStatusLbl.isHidden = true
-                self.settledTableView.reloadData()
-                self.settledTableViewHeightConstraint.constant = min(CGFloat(self.settledArray.count) * self.settledTableView.rowHeight, self.view.frame.maxY - self.settledTableView.frame.minY)
-                
-            }
-            self.settledTableView.reloadData()
+            getSettledTransactions()
             
         }
     }
