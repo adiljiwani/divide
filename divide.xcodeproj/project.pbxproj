@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CC31E7FD1FF489FB00F84422 /* FilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC31E7FC1FF489FA00F84422 /* FilterCell.swift */; };
 		CC45576B1FDC66CB0082B701 /* EditMembersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4557691FDC66CB0082B701 /* EditMembersVC.swift */; };
 		CC45576F1FDC68280082B701 /* RoundedModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC45576E1FDC68280082B701 /* RoundedModalView.swift */; };
 		CC5B44E81FDC39600061B8CB /* StringExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5B44E71FDC39600061B8CB /* StringExt.swift */; };
@@ -68,6 +69,7 @@
 
 /* Begin PBXFileReference section */
 		74EB103CD9B5B534BD898AC5 /* Pods-divide.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-divide.debug.xcconfig"; path = "Pods/Target Support Files/Pods-divide/Pods-divide.debug.xcconfig"; sourceTree = "<group>"; };
+		CC31E7FC1FF489FA00F84422 /* FilterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCell.swift; sourceTree = "<group>"; };
 		CC4557691FDC66CB0082B701 /* EditMembersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMembersVC.swift; sourceTree = "<group>"; };
 		CC45576E1FDC68280082B701 /* RoundedModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedModalView.swift; sourceTree = "<group>"; };
 		CC5B44E71FDC39600061B8CB /* StringExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExt.swift; sourceTree = "<group>"; };
@@ -264,6 +266,7 @@
 				CCCB0DC21FD7A7B3006B3CDE /* BalanceUserCell.swift */,
 				CCAB465A1FD6F48A00BC3DE9 /* GroupTransactionCell.swift */,
 				CCAB46561FD5E05300BC3DE9 /* SearchUserCell.swift */,
+				CC31E7FC1FF489FA00F84422 /* FilterCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -441,6 +444,7 @@
 				CC778FFF1FCDE70700149DA0 /* CameraVC.swift in Sources */,
 				CCAB465B1FD6F48A00BC3DE9 /* GroupTransactionCell.swift in Sources */,
 				CC7EC1981FC9E140002CCDE5 /* ViewController.swift in Sources */,
+				CC31E7FD1FF489FB00F84422 /* FilterCell.swift in Sources */,
 				CC7790011FCF314600149DA0 /* RoundedView.swift in Sources */,
 				CC7790091FD50F9C00149DA0 /* TransactionCell.swift in Sources */,
 				CCAB46571FD5E05300BC3DE9 /* SearchUserCell.swift in Sources */,
