@@ -47,7 +47,7 @@ class AuthVC: UIViewController {
                         } else if error == "The email address is already in use by another account." {
                             self.errorLbl.text = "This user already has a divide account. Please log in."
                         } else if error == "There is no user record corresponding to this identifier. The user may have been deleted." {
-                            self.errorLbl.text = "Please enter a valid email address and password."
+                            self.errorLbl.text = "Please press the Sign Up button to create an account first."
                         } else if error == "The password is invalid or the user does not have a password." {
                             self.errorLbl.text = "Incorrect password."
                         }

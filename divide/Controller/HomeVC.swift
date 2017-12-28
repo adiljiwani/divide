@@ -26,7 +26,8 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     var owing: Float = 0.0
     var owed: Float = 0.0
     var transactionType = TransactionType.pending
-    var filterOptions = ["Newest", "Oldest", "Amount"]
+    var sortOptions = ["Newest", "Oldest"]
+    var filterOptions = ["Owed", "Owing", "None"]
     
     @IBOutlet weak var pendingTableViewHeightConstraint: NSLayoutConstraint!
     
@@ -70,7 +71,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         filterTableView.layer.cornerRadius = 20
         filterTableView.delegate = self
         filterTableView.dataSource = self
-        filterTableViewHeightConstraint.constant = CGFloat(self.filterOptions.count) * self.filterTableView.rowHeight
+        filterTableViewHeightConstraint.constant = CGFloat(self.sortOptions.count) * self.filterTableView.rowHeight
         filterTableView.layer.masksToBounds = true
         filterTableView.reloadData()
         filterView.layer.shadowOpacity = 0.75
@@ -167,7 +168,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         } else if tableView == settledTableView {
             numRows = settledArray.count
         } else if tableView == filterTableView {
-            numRows = filterOptions.count
+            numRows = sortOptions.count
         }
         return numRows
     }
@@ -218,7 +219,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         
         if tableView == filterTableView {
             guard let filterCell = filterTableView.dequeueReusableCell(withIdentifier: "filterCell") as? FilterCell else {return UITableViewCell()}
-            filterCell.configureCell(type: filterOptions[indexPath.row])
+            filterCell.configureCell(type: sortOptions[indexPath.row])
             cell = filterCell
         }
             
@@ -238,7 +239,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
                 presentDetail(transactionVC)
             }
         } else if tableView == filterTableView {
-            filterTransactions(filterType: filterOptions[indexPath.row], transactionType: transactionType)
+            filterTransactions(filterType: sortOptions[indexPath.row], transactionType: transactionType)
             filterView.isHidden = true
         }
         
@@ -279,13 +280,6 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
             let combined = zip(datesArray, transactionsArray).sorted(by: { $0.0.compare($1.0) == .orderedAscending })
             transactionsArray = combined.map {$0.1}
             pendingTableView.reloadData()
-        } else if filterType == "Amount" && transactionType == .pending {
-            for transaction in transactionsArray {
-                amountArray.append(transaction.amount)
-            }
-            let combined = zip(amountArray, transactionsArray).sorted(by: { $0.0 > $1.0 })
-            transactionsArray = combined.map {$0.1}
-            pendingTableView.reloadData()
         } else if filterType == "Newest" && transactionType == .settled {
             for transaction in settledArray {
                 datesArrayString.append(transaction.date)
@@ -310,13 +304,6 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
                 }
             }
             let combined = zip(datesArray, settledArray).sorted(by: { $0.0.compare($1.0) == .orderedAscending })
-            settledArray = combined.map {$0.1}
-            settledTableView.reloadData()
-        } else if filterType == "Amount" && transactionType == .settled {
-            for transaction in settledArray {
-                amountArray.append(transaction.amount)
-            }
-            let combined = zip(amountArray, settledArray).sorted(by: { $0.0 > $1.0 })
             settledArray = combined.map {$0.1}
             settledTableView.reloadData()
         }
