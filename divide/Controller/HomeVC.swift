@@ -11,8 +11,10 @@ import Firebase
 
 class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
+    @IBOutlet weak var filterView: RoundedModalView!
     @IBOutlet weak var settledTableView: UITableView!
     
+    @IBOutlet weak var filterTableView: UITableView!
     @IBOutlet weak var transactionStatusLbl: UILabel!
     @IBOutlet weak var settledTableViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var segmentControl: UISegmentedControl!
@@ -31,6 +33,9 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        filterView.isHidden = true
+        
         pendingTableView.delegate = self
         pendingTableView.dataSource = self
         pendingTableView.reloadData()
@@ -110,6 +115,16 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
             self.settledTableView.reloadData()
             
         }
+    }
+    
+    
+    @IBAction func filterPressed(_ sender: Any) {
+        if filterView.isHidden == true {
+            filterView.isHidden = false
+        } else {
+            filterView.isHidden = true
+        }
+        
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
