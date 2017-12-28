@@ -35,15 +35,8 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        filterView.isHidden = true
-        filterView.layer.borderWidth = 1.0
-        filterView.layer.borderColor = #colorLiteral(red: 0.0431372549, green: 0.1960784314, blue: 0.3490196078, alpha: 1)
-        filterTableView.layer.cornerRadius = 20
-        filterTableView.delegate = self
-        filterTableView.dataSource = self
-        filterTableViewHeightConstraint.constant = CGFloat(self.filterOptions.count) * self.filterTableView.rowHeight
-        filterTableView.layer.masksToBounds = true
-        filterTableView.reloadData()
+        setupFilterView()
+        setupSegmentControl()
         
         pendingTableView.delegate = self
         pendingTableView.dataSource = self
@@ -56,19 +49,41 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         settledTableView.reloadData()
         self.settledTableViewHeightConstraint.constant = min(CGFloat(self.settledArray.count) * self.settledTableView.rowHeight, self.view.frame.maxY - self.settledTableView.frame.minY)
         self.pendingTableViewHeightConstraint.constant = min(CGFloat(self.transactionsArray.count) * self.pendingTableView.rowHeight, self.view.frame.maxY - self.pendingTableView.frame.minY)
+        self.transactionStatusLbl.isHidden = true
+       
+    }
+    
+    func setupSegmentControl () {
         self.segmentControl.layer.cornerRadius = 20
         self.segmentControl.layer.borderColor = #colorLiteral(red: 0.0431372549, green: 0.1960784314, blue: 0.3490196078, alpha: 1)
         self.segmentControl.layer.borderWidth = 1
         self.segmentControl.layer.masksToBounds = true
         let font = UIFont(name: "AvenirNext-Regular", size: 15)
         segmentControl.setTitleTextAttributes([NSAttributedStringKey.font: font],
-                                                for: .normal)
-        self.transactionStatusLbl.isHidden = true
-        let closeTouch = UITapGestureRecognizer(target: self, action: #selector(closeTap(_:)))
-        view.addGestureRecognizer(closeTouch)
+                                              for: .normal)
     }
-    @objc func closeTap(_ recognizer: UITapGestureRecognizer) {
+    
+    func setupFilterView () {
         filterView.isHidden = true
+        filterView.layer.borderWidth = 1.0
+        filterView.layer.borderColor = #colorLiteral(red: 0.0431372549, green: 0.1960784314, blue: 0.3490196078, alpha: 1)
+        filterTableView.layer.cornerRadius = 20
+        filterTableView.delegate = self
+        filterTableView.dataSource = self
+        filterTableViewHeightConstraint.constant = CGFloat(self.filterOptions.count) * self.filterTableView.rowHeight
+        filterTableView.layer.masksToBounds = true
+        filterTableView.reloadData()
+        filterView.layer.shadowOpacity = 0.75
+        filterView.layer.shadowRadius = 3
+        filterView.layer.shadowOffset = CGSize.zero
+        filterView.layer.shadowColor = UIColor.black.cgColor
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        var touch: UITouch? = touches.first
+        if touch?.view != filterView{
+            filterView.isHidden = true
+        }
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
