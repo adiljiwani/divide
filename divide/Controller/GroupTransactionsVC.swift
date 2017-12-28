@@ -19,6 +19,7 @@ class GroupTransactionsVC: UIViewController {
     var groupTransactions = [Transaction]()
     var maxHeight: CGFloat = 0.0
     var groupMembers = [String]()
+    var memberCount = 0
     
     func initData (forGroup group: Group) {
         self.group = group
@@ -36,6 +37,7 @@ class GroupTransactionsVC: UIViewController {
         DataService.instance.REF_GROUPS.child((group?.key)!).child("members").observe(.value) { (snapshot) in
             DataService.instance.getNames(forGroupKey: (self.group?.key)!, handler: { (returnedNames) in
                 self.membersTextView.text = returnedNames.joined(separator: ", ")
+                self.memberCount = returnedNames.count
             })
         }
         
@@ -63,10 +65,17 @@ class GroupTransactionsVC: UIViewController {
     }
     
     @IBAction func removePressed(_ sender: Any) {
-        guard let removeMembersVC = storyboard?.instantiateViewController(withIdentifier: "RemoveMembersVC") as? RemoveMembersVC else {return}
-        removeMembersVC.initData(chosenGroup: group!)
-        removeMembersVC.modalPresentationStyle = .custom
-        self.present(removeMembersVC, animated: true, completion: nil)
+            if memberCount > 2 {
+                guard let removeMembersVC = self.storyboard?.instantiateViewController(withIdentifier: "RemoveMembersVC") as? RemoveMembersVC else {return}
+                removeMembersVC.initData(chosenGroup: self.group!)
+                removeMembersVC.modalPresentationStyle = .custom
+                self.present(removeMembersVC, animated: true, completion: nil)
+            } else {
+                let groupName = self.group?.groupTitle
+                let alert = UIAlertController(title: "Remove members from \"\(groupName!)\"", message: "You cannot remove members from this group. There are only 2 people in this group.", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            }
     }
     
     @IBAction func deletePressed(_ sender: Any) {

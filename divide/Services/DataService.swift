@@ -301,6 +301,7 @@ class DataService {
                             let owingValue = (user.childSnapshot(forPath: "owing").value as! NSString).floatValue - (transaction.amount / Float(transaction.payees.count + 1))
                             self.REF_USERS.child(payeeId).updateChildValues(["owing": String(format: "%.2f", owingValue).replacingOccurrences(of: "-", with: "")])
                             self.REF_TRANSACTIONS.child(transaction.key).child(payeeId).updateChildValues(["owing": String(format: "%.2f", 0)])
+                            self.REF_TRANSACTIONS.child(transaction.key).child(payeeId).updateChildValues(["paid": String(format: "%.2f", (transaction.amount / Float(transaction.payees.count + 1)))])
                             self.REF_TRANSACTIONS.child(transaction.key).child(payeeId).updateChildValues(["settled": result])
                             
                         }
@@ -595,5 +596,9 @@ class DataService {
                 }
             }
         }
+    }
+    
+    func getAmountForEmail (email: String, key: String, handler: @escaping () -> ()) {
+        
     }
 }
