@@ -1884,18 +1884,18 @@
                                                         </subviews>
                                                     </stackView>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oDS-9X-XyI" customClass="RoundedView" customModule="divide" customModuleProvider="target">
-                                                        <rect key="frame" x="10" y="0.0" width="157" height="80"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="177" height="80"/>
                                                     </view>
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.80784313725490198" green="0.11372549019607843" blue="0.0078431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="trailing" secondItem="oDS-9X-XyI" secondAttribute="trailing" constant="10" id="Fej-Hj-qcn"/>
+                                                    <constraint firstAttribute="trailing" secondItem="oDS-9X-XyI" secondAttribute="trailing" id="Fej-Hj-qcn"/>
                                                     <constraint firstItem="Fv6-SV-XQB" firstAttribute="leading" secondItem="DS6-qb-nDi" secondAttribute="leading" constant="10" id="NXP-St-ein"/>
                                                     <constraint firstItem="oDS-9X-XyI" firstAttribute="top" secondItem="DS6-qb-nDi" secondAttribute="top" id="btI-qc-4xV"/>
                                                     <constraint firstItem="Fv6-SV-XQB" firstAttribute="centerY" secondItem="DS6-qb-nDi" secondAttribute="centerY" id="djC-87-edH"/>
                                                     <constraint firstAttribute="trailing" secondItem="Fv6-SV-XQB" secondAttribute="trailing" constant="10" id="hPP-42-v95"/>
                                                     <constraint firstAttribute="bottom" secondItem="oDS-9X-XyI" secondAttribute="bottom" id="j8f-Fp-dUN"/>
-                                                    <constraint firstItem="oDS-9X-XyI" firstAttribute="leading" secondItem="DS6-qb-nDi" secondAttribute="leading" constant="10" id="mqb-u1-P05"/>
+                                                    <constraint firstItem="oDS-9X-XyI" firstAttribute="leading" secondItem="DS6-qb-nDi" secondAttribute="leading" id="mqb-u1-P05"/>
                                                     <constraint firstItem="Fv6-SV-XQB" firstAttribute="centerX" secondItem="DS6-qb-nDi" secondAttribute="centerX" id="wW3-dF-2TR"/>
                                                 </constraints>
                                                 <userDefinedRuntimeAttributes>
@@ -2766,20 +2766,6 @@
             </objects>
             <point key="canvasLocation" x="-412" y="-366"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="1K5-Wf-G5j">
-            <objects>
-                <viewController id="aIH-8A-ZhE" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="WIN-Mm-d2z">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="Kxz-zB-MD0"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="krY-rR-nJo" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-        </scene>
     </scenes>
     <resources>
         <image name="add" width="25" height="25"/>
@@ -2797,6 +2783,6 @@
         <image name="trash" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="wtW-nf-V3M"/>
+        <segue reference="b5M-uI-y3r"/>
     </inferredMetricsTieBreakers>
 </document>
