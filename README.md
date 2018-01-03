@@ -10,7 +10,7 @@ Check all your transactions on the home page.
 <img src="Screenshots/home.PNG" width="250">
 View a breakdown of each transaction.
 <img src="Screenshots/transactionDetails.PNG" width="250">
-Create a group.
+View your groups.
 <img src="Screenshots/groups.PNG" width="250">
 Check all the transactions in your group.
 <img src="Screenshots/groupTransactions.PNG" width="250">
