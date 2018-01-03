@@ -10,6 +10,8 @@ Check all your transactions on the home page.
 <img src="Screenshots/home.PNG" width="250">
 View a breakdown of each transaction.
 <img src="Screenshots/transactionDetails.PNG" width="250">
+Create a group.
+<img src="Screenshots/groups.PNG" width="250">
 Check all the transactions in your group.
 <img src="Screenshots/groupTransactions.PNG" width="250">
 Take a picture of a receipt and make sure the date and the total are visible.
