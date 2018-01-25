@@ -54,6 +54,8 @@ extension ChooseGroupIconVC: UICollectionViewDelegate, UICollectionViewDataSourc
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let createGroupVC = storyboard?.instantiateViewController(withIdentifier: "createGroupVC") as? CreateGroupVC else {return}
+        createGroupVC.setGroupIcon(icon: imageArray[indexPath.row])
         dismiss(animated: true, completion: nil)
     }
 }
@@ -62,7 +64,7 @@ extension ChooseGroupIconVC : UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let paddingSpace = sectionInsets.left * 3
+        let paddingSpace = sectionInsets.left * 8
         let availableWidth = view.frame.width - paddingSpace
         let widthPerItem = availableWidth / 4
         let heightPerItem = widthPerItem

@@ -31,7 +31,9 @@ class CreateGroupVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     var membersArray = [String]()
     
     func setGroupIcon (icon: UIImage) {
-        
+//        if icon != nil {
+//            self.groupImageView.image = icon
+//        }
     }
     
     override func viewDidLoad() {
@@ -51,7 +53,7 @@ class CreateGroupVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         usersTableView.layer.masksToBounds = true
         usersTableView.layer.borderColor = #colorLiteral(red: 0.9176470588, green: 0.9568627451, blue: 0.9647058824, alpha: 1)
         usersTableView.layer.borderWidth = 1.0
-        
+        groupImageView.image = UIImage(named: "friends.png")!
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
         groupImageView.isUserInteractionEnabled = true
         groupImageView.addGestureRecognizer(tapGestureRecognizer)
