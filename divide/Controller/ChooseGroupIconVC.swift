@@ -18,6 +18,10 @@ class ChooseGroupIconVC: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         imageArray.append(UIImage(named: "friends.png")!)
+        imageArray.append(UIImage(named: "buildings.png")!)
+        imageArray.append(UIImage(named: "homeIcon.png")!)
+        imageArray.append(UIImage(named: "trip.png")!)
+        collectionView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -51,5 +55,30 @@ extension ChooseGroupIconVC: UICollectionViewDelegate, UICollectionViewDataSourc
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         dismiss(animated: true, completion: nil)
+    }
+}
+
+extension ChooseGroupIconVC : UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let paddingSpace = sectionInsets.left * 3
+        let availableWidth = view.frame.width - paddingSpace
+        let widthPerItem = availableWidth / 4
+        let heightPerItem = widthPerItem
+        
+        return CGSize(width: widthPerItem, height: heightPerItem)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        insetForSectionAt section: Int) -> UIEdgeInsets {
+        return sectionInsets
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return sectionInsets.left
     }
 }
