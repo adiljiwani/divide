@@ -403,7 +403,7 @@
         <!--Create GroupVC-->
         <scene sceneID="Ced-Nz-QlM">
             <objects>
-                <viewController id="27c-zC-tiB" customClass="CreateGroupVC" customModule="divide" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="createGroupVC" id="27c-zC-tiB" customClass="CreateGroupVC" customModule="divide" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="RgW-gh-vzQ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

@@ -15,7 +15,8 @@ class ChooseGroupIconVC: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        collectionView.delegate = self
+        collectionView.dataSource = self
         imageArray.append(UIImage(named: "friends.png")!)
     }
 
@@ -49,8 +50,6 @@ extension ChooseGroupIconVC: UICollectionViewDelegate, UICollectionViewDataSourc
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let createGroupVC = storyboard?.instantiateViewController(withIdentifier: "createGroupVC") as? CreateGroupVC else {return}
-        createGroupVC.setGroupIcon(icon: imageArray[indexPath.row])
-        present(createGroupVC, animated: true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
 }
