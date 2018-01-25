@@ -43,6 +43,7 @@
 		CCAB465B1FD6F48A00BC3DE9 /* GroupTransactionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCAB465A1FD6F48A00BC3DE9 /* GroupTransactionCell.swift */; };
 		CCC7D1101FE0DEE4005EAB01 /* GroupDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC7D10F1FE0DEE4005EAB01 /* GroupDetailsVC.swift */; };
 		CCC7D11F1FE2D633005EAB01 /* RoundedOutlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC7D11E1FE2D633005EAB01 /* RoundedOutlineView.swift */; };
+		CCC943A4201960E7002DA3DB /* ChooseGroupIconVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC943A3201960E7002DA3DB /* ChooseGroupIconVC.swift */; };
 		CCCB0DBF1FD748B8006B3CDE /* UIViewControllerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCB0DBE1FD748B8006B3CDE /* UIViewControllerExt.swift */; };
 		CCCB0DC11FD773F4006B3CDE /* TransactionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCB0DC01FD773F4006B3CDE /* TransactionVC.swift */; };
 		CCCB0DC31FD7A7B3006B3CDE /* BalanceUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCB0DC21FD7A7B3006B3CDE /* BalanceUserCell.swift */; };
@@ -108,6 +109,7 @@
 		CCC7D10F1FE0DEE4005EAB01 /* GroupDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDetailsVC.swift; sourceTree = "<group>"; };
 		CCC7D1111FE18C41005EAB01 /* ScanbotSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScanbotSDK.framework; path = "scanbot-ios-sdk1.5.1/ScanbotSDK/ScanbotSDK.framework"; sourceTree = "<group>"; };
 		CCC7D11E1FE2D633005EAB01 /* RoundedOutlineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedOutlineView.swift; sourceTree = "<group>"; };
+		CCC943A3201960E7002DA3DB /* ChooseGroupIconVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseGroupIconVC.swift; sourceTree = "<group>"; };
 		CCCB0DBE1FD748B8006B3CDE /* UIViewControllerExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExt.swift; sourceTree = "<group>"; };
 		CCCB0DC01FD773F4006B3CDE /* TransactionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionVC.swift; sourceTree = "<group>"; };
 		CCCB0DC21FD7A7B3006B3CDE /* BalanceUserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceUserCell.swift; sourceTree = "<group>"; };
@@ -242,6 +244,7 @@
 				CC7790061FD4ECA900149DA0 /* AddBillVC.swift */,
 				CCC7D10F1FE0DEE4005EAB01 /* GroupDetailsVC.swift */,
 				CC778FD31FCC7A2300149DA0 /* CreateGroupVC.swift */,
+				CCC943A3201960E7002DA3DB /* ChooseGroupIconVC.swift */,
 				CC778FFE1FCDE70700149DA0 /* CameraVC.swift */,
 				CCCB0DC01FD773F4006B3CDE /* TransactionVC.swift */,
 				CC4557691FDC66CB0082B701 /* EditMembersVC.swift */,
@@ -444,6 +447,7 @@
 				CC77900D1FD51A1F00149DA0 /* Group.swift in Sources */,
 				CCC7D11F1FE2D633005EAB01 /* RoundedOutlineView.swift in Sources */,
 				CC778FCC1FCB4EFD00149DA0 /* HomeVC.swift in Sources */,
+				CCC943A4201960E7002DA3DB /* ChooseGroupIconVC.swift in Sources */,
 				CCCB0DC11FD773F4006B3CDE /* TransactionVC.swift in Sources */,
 				CC45576F1FDC68280082B701 /* RoundedModalView.swift in Sources */,
 				CC7790071FD4ECA900149DA0 /* AddBillVC.swift in Sources */,
