@@ -652,10 +652,10 @@
             </objects>
             <point key="canvasLocation" x="1685.5072463768117" y="648.91304347826087"/>
         </scene>
-        <!--View Controller-->
+        <!--Choose Group IconVC-->
         <scene sceneID="tsW-VP-TDS">
             <objects>
-                <viewController id="9Qj-bl-de3" sceneMemberID="viewController">
+                <viewController id="9Qj-bl-de3" customClass="ChooseGroupIconVC" customModule="divide" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="y7Q-tl-mp5">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -669,11 +669,35 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g0P-hY-DJi">
+                                        <rect key="frame" x="351" y="30" width="43" height="36"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
+                                        <state key="normal" title="Done">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="donePressed:" destination="9Qj-bl-de3" eventType="touchUpInside" id="7VZ-6k-tXS"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JYG-hE-qNq">
+                                        <rect key="frame" x="20" y="30" width="54" height="36"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
+                                        <state key="normal" title="Cancel">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="cancelPressed:" destination="9Qj-bl-de3" eventType="touchUpInside" id="SHh-Mm-CuA"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.043137254899999998" green="0.1960784314" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="HDf-ts-uAq" firstAttribute="centerX" secondItem="F6i-hR-6lz" secondAttribute="centerX" id="3Ux-0y-X1P"/>
+                                    <constraint firstAttribute="trailing" secondItem="g0P-hY-DJi" secondAttribute="trailing" constant="20" id="7ig-cN-2Du"/>
                                     <constraint firstAttribute="bottom" secondItem="HDf-ts-uAq" secondAttribute="bottom" constant="8" id="OsX-62-DB3"/>
+                                    <constraint firstItem="JYG-hE-qNq" firstAttribute="leading" secondItem="F6i-hR-6lz" secondAttribute="leading" constant="20" id="Set-dm-dTd"/>
+                                    <constraint firstItem="JYG-hE-qNq" firstAttribute="centerY" secondItem="HDf-ts-uAq" secondAttribute="centerY" id="acl-A1-Fbe"/>
+                                    <constraint firstItem="g0P-hY-DJi" firstAttribute="centerY" secondItem="HDf-ts-uAq" secondAttribute="centerY" id="fuz-yz-a2v"/>
                                     <constraint firstAttribute="height" constant="70" id="kMY-3t-juu"/>
                                 </constraints>
                             </view>
@@ -687,7 +711,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="haA-au-Yga">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="groupIconCell" id="haA-au-Yga" customClass="GroupIconCell" customModule="divide" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -705,6 +729,9 @@
                                             <constraint firstItem="OOl-bE-6nI" firstAttribute="top" secondItem="haA-au-Yga" secondAttribute="top" id="fkp-2K-omt"/>
                                             <constraint firstAttribute="trailing" secondItem="OOl-bE-6nI" secondAttribute="trailing" id="mtI-Mb-pBH"/>
                                         </constraints>
+                                        <connections>
+                                            <outlet property="icon" destination="OOl-bE-6nI" id="2T9-W6-ZD0"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
@@ -721,6 +748,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Bi2-GH-nOF"/>
                     </view>
+                    <connections>
+                        <outlet property="collectionView" destination="RX6-ER-1YT" id="XsA-r1-R4o"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XNH-Bw-cI9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -30,6 +30,10 @@ class CreateGroupVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     var chosenUsers = [String]()
     var membersArray = [String]()
     
+    func setGroupIcon (icon: UIImage) {
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         errorLbl.isHidden = true
