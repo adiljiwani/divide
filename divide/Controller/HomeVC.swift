@@ -160,6 +160,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
             self.totalOwingLabel.text = String(format: "$%.2f", owing)
         }
             getPendingTransactions()
+            //filterTransactions(filterType: "Newest", transactionType: .pending)
         }
     }
     

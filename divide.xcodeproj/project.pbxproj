@@ -43,6 +43,8 @@
 		CCAB465B1FD6F48A00BC3DE9 /* GroupTransactionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCAB465A1FD6F48A00BC3DE9 /* GroupTransactionCell.swift */; };
 		CCC7D1101FE0DEE4005EAB01 /* GroupDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC7D10F1FE0DEE4005EAB01 /* GroupDetailsVC.swift */; };
 		CCC7D11F1FE2D633005EAB01 /* RoundedOutlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC7D11E1FE2D633005EAB01 /* RoundedOutlineView.swift */; };
+		CCC943A4201960E7002DA3DB /* ChooseGroupIconVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC943A3201960E7002DA3DB /* ChooseGroupIconVC.swift */; };
+		CCC943A620196171002DA3DB /* GroupIconCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC943A520196171002DA3DB /* GroupIconCell.swift */; };
 		CCCB0DBF1FD748B8006B3CDE /* UIViewControllerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCB0DBE1FD748B8006B3CDE /* UIViewControllerExt.swift */; };
 		CCCB0DC11FD773F4006B3CDE /* TransactionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCB0DC01FD773F4006B3CDE /* TransactionVC.swift */; };
 		CCCB0DC31FD7A7B3006B3CDE /* BalanceUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCB0DC21FD7A7B3006B3CDE /* BalanceUserCell.swift */; };
@@ -108,6 +110,8 @@
 		CCC7D10F1FE0DEE4005EAB01 /* GroupDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDetailsVC.swift; sourceTree = "<group>"; };
 		CCC7D1111FE18C41005EAB01 /* ScanbotSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScanbotSDK.framework; path = "scanbot-ios-sdk1.5.1/ScanbotSDK/ScanbotSDK.framework"; sourceTree = "<group>"; };
 		CCC7D11E1FE2D633005EAB01 /* RoundedOutlineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedOutlineView.swift; sourceTree = "<group>"; };
+		CCC943A3201960E7002DA3DB /* ChooseGroupIconVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseGroupIconVC.swift; sourceTree = "<group>"; };
+		CCC943A520196171002DA3DB /* GroupIconCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupIconCell.swift; sourceTree = "<group>"; };
 		CCCB0DBE1FD748B8006B3CDE /* UIViewControllerExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExt.swift; sourceTree = "<group>"; };
 		CCCB0DC01FD773F4006B3CDE /* TransactionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionVC.swift; sourceTree = "<group>"; };
 		CCCB0DC21FD7A7B3006B3CDE /* BalanceUserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceUserCell.swift; sourceTree = "<group>"; };
@@ -242,6 +246,7 @@
 				CC7790061FD4ECA900149DA0 /* AddBillVC.swift */,
 				CCC7D10F1FE0DEE4005EAB01 /* GroupDetailsVC.swift */,
 				CC778FD31FCC7A2300149DA0 /* CreateGroupVC.swift */,
+				CCC943A3201960E7002DA3DB /* ChooseGroupIconVC.swift */,
 				CC778FFE1FCDE70700149DA0 /* CameraVC.swift */,
 				CCCB0DC01FD773F4006B3CDE /* TransactionVC.swift */,
 				CC4557691FDC66CB0082B701 /* EditMembersVC.swift */,
@@ -263,6 +268,7 @@
 				CC7790081FD50F9C00149DA0 /* TransactionCell.swift */,
 				CC77900A1FD5179200149DA0 /* GroupCell.swift */,
 				CCAB46541FD5C61500BC3DE9 /* SearchGroupCell.swift */,
+				CCC943A520196171002DA3DB /* GroupIconCell.swift */,
 				CCCB0DC21FD7A7B3006B3CDE /* BalanceUserCell.swift */,
 				CCAB465A1FD6F48A00BC3DE9 /* GroupTransactionCell.swift */,
 				CCAB46561FD5E05300BC3DE9 /* SearchUserCell.swift */,
@@ -293,6 +299,7 @@
 				CE4B80CCEC7CD3E68B832E09 /* [CP] Embed Pods Frameworks */,
 				FE9FCF256800D94AE0107B79 /* [CP] Copy Pods Resources */,
 				CCC7D11D1FE18EC6005EAB01 /* Embed Frameworks */,
+				CC426EB12016AFAD00C8187E /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -355,7 +362,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		AB2E8CA6994C53DE7922F254 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 12;
 			files = (
 			);
 			inputPaths = (
@@ -371,9 +378,22 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		CC426EB12016AFAD00C8187E /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 8;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+			shellPath = /bin/sh;
+			shellScript = "";
+		};
 		CE4B80CCEC7CD3E68B832E09 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 12;
 			files = (
 			);
 			inputPaths = (
@@ -430,6 +450,7 @@
 				CC77900D1FD51A1F00149DA0 /* Group.swift in Sources */,
 				CCC7D11F1FE2D633005EAB01 /* RoundedOutlineView.swift in Sources */,
 				CC778FCC1FCB4EFD00149DA0 /* HomeVC.swift in Sources */,
+				CCC943A4201960E7002DA3DB /* ChooseGroupIconVC.swift in Sources */,
 				CCCB0DC11FD773F4006B3CDE /* TransactionVC.swift in Sources */,
 				CC45576F1FDC68280082B701 /* RoundedModalView.swift in Sources */,
 				CC7790071FD4ECA900149DA0 /* AddBillVC.swift in Sources */,
@@ -454,6 +475,7 @@
 				CCCB0DBF1FD748B8006B3CDE /* UIViewControllerExt.swift in Sources */,
 				CC7EC1B61FC9F160002CCDE5 /* RoundedButton.swift in Sources */,
 				CC778FCE1FCB4F0C00149DA0 /* GroupsVC.swift in Sources */,
+				CCC943A620196171002DA3DB /* GroupIconCell.swift in Sources */,
 				CC7EC1961FC9E140002CCDE5 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
