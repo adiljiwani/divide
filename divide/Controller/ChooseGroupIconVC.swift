@@ -15,8 +15,8 @@ class ChooseGroupIconVC: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
-
         
+        imageArray.append(UIImage(named: "friends.png")!)
     }
 
     override func didReceiveMemoryWarning() {

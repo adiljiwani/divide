@@ -14,6 +14,7 @@ class CreateGroupVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     @IBOutlet weak var errorLbl: UILabel!
     @IBOutlet weak var groupNameField: InsetTextField!
     
+    @IBOutlet weak var groupImageView: UIImageView!
     @IBOutlet weak var membersField: InsetTextField!
     
     @IBOutlet weak var chosenUsersTableView: UITableView!
@@ -23,7 +24,6 @@ class CreateGroupVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     @IBOutlet weak var usersTableViewHeightConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var doneBtn: UIButton!
-   
     @IBOutlet weak var addBtn: RoundedButton!
     
     var matchEmail: String = ""
@@ -51,6 +51,17 @@ class CreateGroupVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         usersTableView.layer.masksToBounds = true
         usersTableView.layer.borderColor = #colorLiteral(red: 0.9176470588, green: 0.9568627451, blue: 0.9647058824, alpha: 1)
         usersTableView.layer.borderWidth = 1.0
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
+        groupImageView.isUserInteractionEnabled = true
+        groupImageView.addGestureRecognizer(tapGestureRecognizer)
+    }
+    
+    @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer)
+    {
+        let tappedImage = tapGestureRecognizer.view as! UIImageView
+        guard let chooseGroupIconVC = storyboard?.instantiateViewController(withIdentifier: "chooseGroupIconVC") as? ChooseGroupIconVC else {return}
+        present(chooseGroupIconVC, animated: true, completion: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
