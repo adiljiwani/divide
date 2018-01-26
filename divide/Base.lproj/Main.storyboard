@@ -970,6 +970,13 @@
                                             <constraint firstItem="4Gv-EK-qzz" firstAttribute="top" secondItem="1PZ-ba-V8d" secondAttribute="topMargin" constant="8" id="k7z-Fu-DSH"/>
                                             <constraint firstItem="uo6-99-E76" firstAttribute="top" secondItem="0Le-aN-2Po" secondAttribute="bottom" constant="8" id="pzn-hZ-mOX"/>
                                         </constraints>
+                                        <connections>
+                                            <outlet property="amountLabel" destination="KhL-um-eeE" id="W6T-XZ-UM3"/>
+                                            <outlet property="owingLabel" destination="Vaq-7g-2Mn" id="d8Q-S9-dne"/>
+                                            <outlet property="owingView" destination="uo6-99-E76" id="tJ9-2H-en1"/>
+                                            <outlet property="profileImage" destination="4Gv-EK-qzz" id="fW3-Hu-a3V"/>
+                                            <outlet property="userNameLabel" destination="0Le-aN-2Po" id="Imj-Gh-Jo7"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
