@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CC1CDAEA201BF34B00011FAC /* memberBalanceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1CDAE9201BF34B00011FAC /* memberBalanceCell.swift */; };
 		CC31E7FD1FF489FB00F84422 /* FilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC31E7FC1FF489FA00F84422 /* FilterCell.swift */; };
 		CC45576B1FDC66CB0082B701 /* EditMembersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4557691FDC66CB0082B701 /* EditMembersVC.swift */; };
 		CC45576F1FDC68280082B701 /* RoundedModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC45576E1FDC68280082B701 /* RoundedModalView.swift */; };
@@ -71,6 +72,7 @@
 
 /* Begin PBXFileReference section */
 		74EB103CD9B5B534BD898AC5 /* Pods-divide.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-divide.debug.xcconfig"; path = "Pods/Target Support Files/Pods-divide/Pods-divide.debug.xcconfig"; sourceTree = "<group>"; };
+		CC1CDAE9201BF34B00011FAC /* memberBalanceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = memberBalanceCell.swift; sourceTree = "<group>"; };
 		CC31E7FC1FF489FA00F84422 /* FilterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCell.swift; sourceTree = "<group>"; };
 		CC4557691FDC66CB0082B701 /* EditMembersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMembersVC.swift; sourceTree = "<group>"; };
 		CC45576E1FDC68280082B701 /* RoundedModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedModalView.swift; sourceTree = "<group>"; };
@@ -265,6 +267,7 @@
 				CC893A251FCA12240094E191 /* InsetTextField.swift */,
 				CC7790001FCF314600149DA0 /* RoundedView.swift */,
 				CC7790021FCF7BC900149DA0 /* AddUserCell.swift */,
+				CC1CDAE9201BF34B00011FAC /* memberBalanceCell.swift */,
 				CC7790081FD50F9C00149DA0 /* TransactionCell.swift */,
 				CC77900A1FD5179200149DA0 /* GroupCell.swift */,
 				CCAB46541FD5C61500BC3DE9 /* SearchGroupCell.swift */,
@@ -452,6 +455,7 @@
 				CC778FCC1FCB4EFD00149DA0 /* HomeVC.swift in Sources */,
 				CCC943A4201960E7002DA3DB /* ChooseGroupIconVC.swift in Sources */,
 				CCCB0DC11FD773F4006B3CDE /* TransactionVC.swift in Sources */,
+				CC1CDAEA201BF34B00011FAC /* memberBalanceCell.swift in Sources */,
 				CC45576F1FDC68280082B701 /* RoundedModalView.swift in Sources */,
 				CC7790071FD4ECA900149DA0 /* AddBillVC.swift in Sources */,
 				CC778FD41FCC7A2300149DA0 /* CreateGroupVC.swift in Sources */,
