@@ -8,7 +8,7 @@
 
 import UIKit
 
-class memberBalanceCell: UICollectionViewCell {
+class MemberBalanceCell: UICollectionViewCell {
     
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var userNameLabel: UILabel!

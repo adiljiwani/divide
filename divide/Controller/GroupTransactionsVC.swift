@@ -29,6 +29,8 @@ class GroupTransactionsVC: UIViewController {
         super.viewDidLoad()
         collectionView.delegate = self
         collectionView.dataSource = self
+        var hello = ["Name", true, 15] as [Any]
+        print(hello[0])
     }
     
     override func viewWillAppear(_ animated: Bool) {
