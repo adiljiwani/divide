@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 
 class GroupTransactionsVC: UIViewController {
-    fileprivate let sectionInsets = UIEdgeInsets(top: 20.0, left: 20.0, bottom: 20.0, right: 20.0)
+    fileprivate let sectionInsets = UIEdgeInsets(top: 0.0, left: 20.0, bottom: 20.0, right: 20.0)
 
     @IBOutlet weak var memberCollectionView: UICollectionView!
     @IBOutlet weak var groupNameLbl: UILabel!
@@ -20,7 +20,12 @@ class GroupTransactionsVC: UIViewController {
     var maxHeight: CGFloat = 0.0
     var groupMembers = [String]()
     var memberCount = 0
-    var memberBalances = [] as [Any]
+    var members = [GroupMember]()
+    struct GroupMember {
+        var name: String
+        var amount: Float
+        var owing: Bool
+    }
     
     func initData (forGroup group: Group) {
         self.group = group
@@ -49,8 +54,9 @@ class GroupTransactionsVC: UIViewController {
 
         DataService.instance.getAllTransactions(forGroup: group!) { (returnedTransactions) in
             self.groupTransactions = returnedTransactions
-            self.memberBalances.append([self.groupTransactions[0].payer, 5.0,self.groupTransactions[0].payer == Auth.auth().currentUser?.email])
-            print(self.memberBalances)
+            for transaction in self.groupTransactions {
+                self.members.append(GroupMember(name: transaction.payer, amount: transaction.amount, owing: transaction.payer != Auth.auth().currentUser?.email))
+            }
             self.memberCollectionView.reloadData()
         }
     }
@@ -115,7 +121,7 @@ extension GroupTransactionsVC: UICollectionViewDelegate, UICollectionViewDataSou
         return 1
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
+        return members.count
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "memberBalanceCell", for: indexPath) as? MemberBalanceCell else {return UICollectionViewCell()}
@@ -131,7 +137,7 @@ extension GroupTransactionsVC : UICollectionViewDelegateFlowLayout {
         let paddingSpace = sectionInsets.left * 3
         let availableWidth = view.frame.width - paddingSpace
         let widthPerItem = availableWidth / 2
-        let heightPerItem = widthPerItem
+        let heightPerItem = CGFloat(225)
         
         return CGSize(width: widthPerItem, height: heightPerItem)
     }
