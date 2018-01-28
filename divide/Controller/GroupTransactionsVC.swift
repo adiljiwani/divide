@@ -12,6 +12,7 @@ import Firebase
 class GroupTransactionsVC: UIViewController {
     fileprivate let sectionInsets = UIEdgeInsets(top: 20.0, left: 20.0, bottom: 20.0, right: 20.0)
 
+    @IBOutlet weak var memberCollectionView: UICollectionView!
     @IBOutlet weak var groupNameLbl: UILabel!
     @IBOutlet weak var membersTextView: UITextView!
     var group: Group?
@@ -27,8 +28,8 @@ class GroupTransactionsVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //collectionView.delegate = self
-        //collectionView.dataSource = self
+        memberCollectionView.delegate = self
+        memberCollectionView.dataSource = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -48,9 +49,9 @@ class GroupTransactionsVC: UIViewController {
 
         DataService.instance.getAllTransactions(forGroup: group!) { (returnedTransactions) in
             self.groupTransactions = returnedTransactions
-//            self.memberBalances.append([self.groupTransactions[0].payer, 5.0,self.groupTransactions[0].payer == Auth.auth().currentUser?.email])
-//            print(self.memberBalances)
-            //self.collectionView.reloadData()
+            self.memberBalances.append([self.groupTransactions[0].payer, 5.0,self.groupTransactions[0].payer == Auth.auth().currentUser?.email])
+            print(self.memberBalances)
+            self.memberCollectionView.reloadData()
         }
     }
 
@@ -109,13 +110,27 @@ class GroupTransactionsVC: UIViewController {
     }
 }
 
+extension GroupTransactionsVC: UICollectionViewDelegate, UICollectionViewDataSource {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 1
+    }
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "memberBalanceCell", for: indexPath) as? MemberBalanceCell else {return UICollectionViewCell()}
+        cell.configureCell(name: "hello", amount: 5.0, owing: true)
+        return cell
+    }
+}
+
 extension GroupTransactionsVC : UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let paddingSpace = sectionInsets.left * 8
+        let paddingSpace = sectionInsets.left * 3
         let availableWidth = view.frame.width - paddingSpace
-        let widthPerItem = availableWidth / 4
+        let widthPerItem = availableWidth / 2
         let heightPerItem = widthPerItem
         
         return CGSize(width: widthPerItem, height: heightPerItem)

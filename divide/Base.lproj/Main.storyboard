@@ -959,6 +959,7 @@
                                                 </label>
                                             </subviews>
                                         </view>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="FV7-ev-Opg" firstAttribute="top" secondItem="Ep5-SI-4Im" secondAttribute="bottom" constant="8" id="04x-C0-Yae"/>
                                             <constraint firstItem="FV7-ev-Opg" firstAttribute="centerX" secondItem="iGe-lj-1b8" secondAttribute="centerX" id="4Q7-eJ-SxY"/>
@@ -1005,6 +1006,7 @@
                     </view>
                     <connections>
                         <outlet property="groupNameLbl" destination="ohS-5P-Faj" id="doF-L6-Iq4"/>
+                        <outlet property="memberCollectionView" destination="zan-vf-cJH" id="oZr-TX-0Yh"/>
                         <outlet property="membersTextView" destination="OE9-I0-qSJ" id="WCU-W8-BgZ"/>
                     </connections>
                 </viewController>
