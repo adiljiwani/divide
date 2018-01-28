@@ -898,88 +898,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="iQ6-AX-bmY">
-                                <rect key="frame" x="0.0" y="193.66666666666669" width="414" height="542.33333333333326"/>
-                                <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="GAJ-OH-7g4">
-                                    <size key="itemSize" width="209" height="204"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="memberBalanceCell" id="1PZ-ba-V8d" customClass="MemberBalanceCell">
-                                        <rect key="frame" x="102.66666666666667" y="0.0" width="209" height="204"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                            <rect key="frame" x="0.0" y="0.0" width="209" height="204"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultProfileImage" translatesAutoresizingMaskIntoConstraints="NO" id="4Gv-EK-qzz">
-                                                    <rect key="frame" x="53.666666666666657" y="16" width="102" height="102"/>
-                                                </imageView>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uo6-99-E76" customClass="RoundedView" customModule="divide" customModuleProvider="target">
-                                                    <rect key="frame" x="28" y="158.66666666666666" width="153" height="30"/>
-                                                    <subviews>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="80R-Yg-abY">
-                                                            <rect key="frame" x="22" y="4" width="111.33333333333331" height="23.333333333333332"/>
-                                                            <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="YOU OWE:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vaq-7g-2Mn">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="57" height="23.333333333333332"/>
-                                                                    <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="11"/>
-                                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$0.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KhL-um-eeE">
-                                                                    <rect key="frame" x="62" y="0.0" width="49.333333333333343" height="23.333333333333332"/>
-                                                                    <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="17"/>
-                                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
-                                                            </subviews>
-                                                        </stackView>
-                                                    </subviews>
-                                                    <color key="backgroundColor" red="0.2784313725" green="0.69411764710000001" blue="0.31372549020000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <constraints>
-                                                        <constraint firstItem="80R-Yg-abY" firstAttribute="centerY" secondItem="uo6-99-E76" secondAttribute="centerY" id="K96-IG-sAw"/>
-                                                        <constraint firstAttribute="height" constant="30" id="TFQ-Fs-uxV"/>
-                                                        <constraint firstItem="80R-Yg-abY" firstAttribute="centerX" secondItem="uo6-99-E76" secondAttribute="centerX" id="c9B-Cu-cjt"/>
-                                                    </constraints>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                            <real key="value" value="10"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                    </userDefinedRuntimeAttributes>
-                                                </view>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="0Le-aN-2Po">
-                                                    <rect key="frame" x="58.333333333333336" y="126.00000000000001" width="92.333333333333314" height="24.666666666666671"/>
-                                                    <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="18"/>
-                                                    <color key="textColor" red="0.043137254899999998" green="0.1960784314" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </view>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstItem="0Le-aN-2Po" firstAttribute="top" secondItem="4Gv-EK-qzz" secondAttribute="bottom" constant="8" id="5jp-yQ-u67"/>
-                                            <constraint firstItem="4Gv-EK-qzz" firstAttribute="centerX" secondItem="1PZ-ba-V8d" secondAttribute="centerX" id="7YS-GU-qsR"/>
-                                            <constraint firstItem="uo6-99-E76" firstAttribute="leading" secondItem="1PZ-ba-V8d" secondAttribute="leadingMargin" constant="20" id="LVh-8D-ETx"/>
-                                            <constraint firstAttribute="trailingMargin" secondItem="uo6-99-E76" secondAttribute="trailing" constant="20" id="eOF-e1-c8h"/>
-                                            <constraint firstItem="uo6-99-E76" firstAttribute="centerX" secondItem="1PZ-ba-V8d" secondAttribute="centerX" id="grt-RB-NSy"/>
-                                            <constraint firstItem="0Le-aN-2Po" firstAttribute="centerX" secondItem="1PZ-ba-V8d" secondAttribute="centerX" id="k5m-r8-Vj1"/>
-                                            <constraint firstItem="4Gv-EK-qzz" firstAttribute="top" secondItem="1PZ-ba-V8d" secondAttribute="topMargin" constant="8" id="k7z-Fu-DSH"/>
-                                            <constraint firstItem="uo6-99-E76" firstAttribute="top" secondItem="0Le-aN-2Po" secondAttribute="bottom" constant="8" id="pzn-hZ-mOX"/>
-                                        </constraints>
-                                        <connections>
-                                            <outlet property="amountLabel" destination="KhL-um-eeE" id="W6T-XZ-UM3"/>
-                                            <outlet property="owingLabel" destination="Vaq-7g-2Mn" id="d8Q-S9-dne"/>
-                                            <outlet property="owingView" destination="uo6-99-E76" id="tJ9-2H-en1"/>
-                                            <outlet property="profileImage" destination="4Gv-EK-qzz" id="fW3-Hu-a3V"/>
-                                            <outlet property="userNameLabel" destination="0Le-aN-2Po" id="Imj-Gh-Jo7"/>
-                                        </connections>
-                                    </collectionViewCell>
-                                </cells>
-                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -988,12 +906,8 @@
                             <constraint firstItem="Ofu-S5-qSv" firstAttribute="top" secondItem="Dkl-i8-IJs" secondAttribute="top" id="6fr-iY-xdi"/>
                             <constraint firstItem="OE9-I0-qSJ" firstAttribute="top" secondItem="Ofu-S5-qSv" secondAttribute="bottom" id="Gc2-hh-UxF"/>
                             <constraint firstItem="wOU-PD-fBH" firstAttribute="trailing" secondItem="hCa-R3-CXc" secondAttribute="trailing" id="MMf-Yf-HiV"/>
-                            <constraint firstItem="iQ6-AX-bmY" firstAttribute="top" secondItem="g85-hv-aOn" secondAttribute="bottom" constant="8" id="WBp-0p-cbB"/>
                             <constraint firstItem="Ofu-S5-qSv" firstAttribute="leading" secondItem="hCa-R3-CXc" secondAttribute="leading" id="WSm-Cg-rzB"/>
-                            <constraint firstItem="hCa-R3-CXc" firstAttribute="bottom" secondItem="iQ6-AX-bmY" secondAttribute="bottom" id="dN4-ds-cNU"/>
                             <constraint firstItem="g85-hv-aOn" firstAttribute="top" secondItem="wOU-PD-fBH" secondAttribute="bottom" constant="8" id="euv-W3-xPF"/>
-                            <constraint firstItem="iQ6-AX-bmY" firstAttribute="leading" secondItem="hCa-R3-CXc" secondAttribute="leading" id="gM6-ow-qxx"/>
-                            <constraint firstItem="hCa-R3-CXc" firstAttribute="trailing" secondItem="iQ6-AX-bmY" secondAttribute="trailing" id="jQJ-AP-AHO"/>
                             <constraint firstItem="Ofu-S5-qSv" firstAttribute="trailing" secondItem="hCa-R3-CXc" secondAttribute="trailing" id="kju-rW-oim"/>
                             <constraint firstItem="wOU-PD-fBH" firstAttribute="leading" secondItem="hCa-R3-CXc" secondAttribute="leading" id="px8-CB-wXH"/>
                             <constraint firstItem="Ofu-S5-qSv" firstAttribute="trailing" secondItem="hCa-R3-CXc" secondAttribute="trailing" id="tCk-ew-RFb"/>
@@ -1005,7 +919,6 @@
                         <viewLayoutGuide key="safeArea" id="hCa-R3-CXc"/>
                     </view>
                     <connections>
-                        <outlet property="collectionView" destination="iQ6-AX-bmY" id="SM1-Kb-Vf6"/>
                         <outlet property="groupNameLbl" destination="ohS-5P-Faj" id="doF-L6-Iq4"/>
                         <outlet property="membersTextView" destination="OE9-I0-qSJ" id="WCU-W8-BgZ"/>
                     </connections>

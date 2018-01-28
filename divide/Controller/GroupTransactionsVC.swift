@@ -12,7 +12,6 @@ import Firebase
 class GroupTransactionsVC: UIViewController {
     fileprivate let sectionInsets = UIEdgeInsets(top: 20.0, left: 20.0, bottom: 20.0, right: 20.0)
 
-    @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var groupNameLbl: UILabel!
     @IBOutlet weak var membersTextView: UITextView!
     var group: Group?
@@ -20,6 +19,7 @@ class GroupTransactionsVC: UIViewController {
     var maxHeight: CGFloat = 0.0
     var groupMembers = [String]()
     var memberCount = 0
+    var memberBalances = [] as [Any]
     
     func initData (forGroup group: Group) {
         self.group = group
@@ -27,10 +27,8 @@ class GroupTransactionsVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        var hello = ["Name", true, 15] as [Any]
-        print(hello[0])
+        //collectionView.delegate = self
+        //collectionView.dataSource = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -50,7 +48,9 @@ class GroupTransactionsVC: UIViewController {
 
         DataService.instance.getAllTransactions(forGroup: group!) { (returnedTransactions) in
             self.groupTransactions = returnedTransactions
-            self.collectionView.reloadData()
+//            self.memberBalances.append([self.groupTransactions[0].payer, 5.0,self.groupTransactions[0].payer == Auth.auth().currentUser?.email])
+//            print(self.memberBalances)
+            //self.collectionView.reloadData()
         }
     }
 
@@ -106,21 +106,6 @@ class GroupTransactionsVC: UIViewController {
         }
         
         
-    }
-}
-
-extension GroupTransactionsVC: UICollectionViewDataSource, UICollectionViewDelegate {
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return groupMembers.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "memberBalanceCell", for: indexPath) as? GroupIconCell else {return UICollectionViewCell()}
-        return cell
     }
 }
 

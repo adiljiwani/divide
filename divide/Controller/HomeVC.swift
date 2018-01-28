@@ -34,7 +34,6 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     var transactionType = TransactionType.pending
     var sortOptions = ["Newest", "Oldest"]
     var filterOptions = ["Owed", "Owing", "None"]
-    
     enum FilterType {
         case owing
         case owed
@@ -160,6 +159,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
             self.totalOwingLabel.text = String(format: "$%.2f", owing)
         }
             getPendingTransactions()
+            
             //filterTransactions(filterType: "Newest", transactionType: .pending)
         }
     }
@@ -177,6 +177,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
             self.pendingTableViewHeightConstraint.constant = min(CGFloat(self.transactionsArray.count) * self.pendingTableView.rowHeight, self.view.frame.maxY - self.pendingTableView.frame.minY)
         }
         self.pendingTableView.reloadData()
+        
     }
     
     func getSettledTransactions () {
