@@ -10,8 +10,9 @@ import UIKit
 import Firebase
 
 class GroupTransactionsVC: UIViewController {
-    fileprivate let sectionInsets = UIEdgeInsets(top: 20.0, left: 20.0, bottom: 20.0, right: 20.0)
+    fileprivate let sectionInsets = UIEdgeInsets(top: 0.0, left: 20.0, bottom: 20.0, right: 20.0)
 
+    @IBOutlet weak var memberCollectionView: UICollectionView!
     @IBOutlet weak var groupNameLbl: UILabel!
     @IBOutlet weak var membersTextView: UITextView!
     var group: Group?
@@ -19,7 +20,14 @@ class GroupTransactionsVC: UIViewController {
     var maxHeight: CGFloat = 0.0
     var groupMembers = [String]()
     var memberCount = 0
-    var memberBalances = [] as [Any]
+    struct GroupMember {
+        var name: String
+        var email: String
+        var amount: Float
+        var owing: Bool
+    }
+    var members = [GroupMember]()
+    var memberNames = [String]()
     
     func initData (forGroup group: Group) {
         self.group = group
@@ -27,31 +35,60 @@ class GroupTransactionsVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //collectionView.delegate = self
-        //collectionView.dataSource = self
+        memberCollectionView.delegate = self
+        memberCollectionView.dataSource = self
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
         groupNameLbl.text = group?.groupTitle
         DataService.instance.REF_GROUPS.child((group?.key)!).child("members").observe(.value) { (snapshot) in
             DataService.instance.getNames(forGroupKey: (self.group?.key)!, handler: { (returnedNames) in
-                self.membersTextView.text = returnedNames.joined(separator: ", ")
-                self.memberCount = returnedNames.count
+                DataService.instance.getEmails(forGroupKey: (self.group?.key)!) { (returnedEmails) in
+                    self.groupMembers = returnedEmails
+                    self.membersTextView.text = returnedNames.joined(separator: ", ")
+                    self.memberNames = returnedNames
+                    self.memberCount = returnedNames.count
+                    for i in 0..<self.memberNames.count {
+                        
+                        if self.memberNames[i] != "You" {
+                            self.members.append(GroupMember(name: self.memberNames[i], email: self.groupMembers[i], amount: 0.0, owing: true))
+                        }
+                    }
+                }
             })
         }
         
-        
-        DataService.instance.getEmails(forGroupKey: (group?.key)!) { (returnedEmails) in
-            self.groupMembers = returnedEmails
-        }
-
         DataService.instance.getAllTransactions(forGroup: group!) { (returnedTransactions) in
             self.groupTransactions = returnedTransactions
-//            self.memberBalances.append([self.groupTransactions[0].payer, 5.0,self.groupTransactions[0].payer == Auth.auth().currentUser?.email])
-//            print(self.memberBalances)
-            //self.collectionView.reloadData()
+            for transaction in self.groupTransactions {
+                if transaction.payer == Auth.auth().currentUser?.email {
+                    for payee in transaction.payees {
+                        for i in 0..<self.members.count {
+                            if self.members[i].email == payee {
+                                self.members[i].amount += transaction.amount / Float(transaction.payees.count + 1)
+                                if self.members[i].amount > 0 {
+                                    self.members[i].owing = false
+                                }
+                            }
+                        }
+                    }
+                } else if transaction.payees.contains((Auth.auth().currentUser?.email)!){
+                    for i in 0..<self.members.count {
+                        if self.members[i].email == transaction.payer {
+                            self.members[i].amount -= transaction.amount / Float(transaction.payees.count + 1)
+                            if self.members[i].amount < 0 {
+                                self.members[i].owing = true
+                            }
+                            self.members[i].amount = abs(self.members[i].amount)
+                        }
+                    }
+                }
+            }
+            self.memberCollectionView.reloadData()
         }
+        
     }
 
     @IBAction func backPressed(_ sender: Any) {
@@ -109,14 +146,31 @@ class GroupTransactionsVC: UIViewController {
     }
 }
 
+extension GroupTransactionsVC: UICollectionViewDelegate, UICollectionViewDataSource {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return members.count
+    }
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "memberBalanceCell", for: indexPath) as? MemberBalanceCell else {return UICollectionViewCell()}
+        cell.configureCell(name: members[indexPath.row].name, amount: members[indexPath.row].amount, owing: members[indexPath.row].owing)
+        cell.layer.cornerRadius = 30
+        cell.layer.borderColor = #colorLiteral(red: 0.0431372549, green: 0.1960784314, blue: 0.3490196078, alpha: 1)
+        cell.layer.borderWidth = 1.0
+        return cell
+    }
+}
+
 extension GroupTransactionsVC : UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let paddingSpace = sectionInsets.left * 8
+        let paddingSpace = sectionInsets.left * 3
         let availableWidth = view.frame.width - paddingSpace
-        let widthPerItem = availableWidth / 4
-        let heightPerItem = widthPerItem
+        let widthPerItem = availableWidth / 2
+        let heightPerItem = CGFloat(225)
         
         return CGSize(width: widthPerItem, height: heightPerItem)
     }
@@ -133,35 +187,4 @@ extension GroupTransactionsVC : UICollectionViewDelegateFlowLayout {
         return sectionInsets.left
     }
 }
-
-//extension GroupTransactionsVC: UITableViewDelegate, UITableViewDataSource {
-//    func numberOfSections(in tableView: UITableView) -> Int {
-//        return 1
-//    }
-//
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return groupTransactions.count
-//    }
-//
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        guard let cell = tableView.dequeueReusableCell(withIdentifier: "groupTransactionCell") as? GroupTransactionCell else {return UITableViewCell()}
-//        let description = groupTransactions[indexPath.row].description
-//        let owing = groupTransactions[indexPath.row].payees.contains((Auth.auth().currentUser?.email)!)
-//        let date = groupTransactions[indexPath.row].date
-//        var amount: Float = 0.0
-//        if owing {
-//            amount = groupTransactions[indexPath.row].amount / Float(groupTransactions[indexPath.row].payees.count + 1)
-//        } else {
-//            amount = Float(groupTransactions[indexPath.row].payees.count - (groupTransactions[indexPath.row].settled.count - 1)) * (groupTransactions[indexPath.row].amount / Float(groupTransactions[indexPath.row].payees.count + 1))
-//        }
-//        cell.configureCell(description: description, owing: owing, date: date, amount: amount)
-//        return cell
-//    }
-//
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        guard let transactionVC = storyboard?.instantiateViewController(withIdentifier: "TransactionVC") as? TransactionVC else {return}
-//        transactionVC.initData(forTransaction: groupTransactions[indexPath.row], type: TransactionType.pending)
-//        presentDetail(transactionVC)
-//    }
-//}
 

@@ -13,7 +13,6 @@ class Group {
     private var _key: String
     private var _memberCount: Int
     private var _members: [String]
-    
     var groupTitle: String {
         return _groupTitle
     }
@@ -29,6 +28,7 @@ class Group {
     var members: [String] {
         return _members
     }
+    
     
     init(title: String, key: String, members: [String], memberCount: Int) {
         self._groupTitle = title
