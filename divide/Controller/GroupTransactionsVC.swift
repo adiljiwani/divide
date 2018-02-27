@@ -20,12 +20,13 @@ class GroupTransactionsVC: UIViewController {
     var maxHeight: CGFloat = 0.0
     var groupMembers = [String]()
     var memberCount = 0
-    var members = [GroupMember]()
     struct GroupMember {
         var name: String
         var amount: Float
         var owing: Bool
     }
+    var members = [GroupMember]()
+    var memberNames = [String]()
     
     func initData (forGroup group: Group) {
         self.group = group
@@ -35,14 +36,11 @@ class GroupTransactionsVC: UIViewController {
         super.viewDidLoad()
         memberCollectionView.delegate = self
         memberCollectionView.dataSource = self
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         groupNameLbl.text = group?.groupTitle
         DataService.instance.REF_GROUPS.child((group?.key)!).child("members").observe(.value) { (snapshot) in
             DataService.instance.getNames(forGroupKey: (self.group?.key)!, handler: { (returnedNames) in
                 self.membersTextView.text = returnedNames.joined(separator: ", ")
+                self.memberNames = returnedNames
                 self.memberCount = returnedNames.count
             })
         }
@@ -51,14 +49,19 @@ class GroupTransactionsVC: UIViewController {
         DataService.instance.getEmails(forGroupKey: (group?.key)!) { (returnedEmails) in
             self.groupMembers = returnedEmails
         }
-
+        
         DataService.instance.getAllTransactions(forGroup: group!) { (returnedTransactions) in
             self.groupTransactions = returnedTransactions
             for transaction in self.groupTransactions {
-                self.members.append(GroupMember(name: transaction.payer, amount: transaction.amount, owing: transaction.payer != Auth.auth().currentUser?.email))
+                
             }
             self.memberCollectionView.reloadData()
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
     }
 
     @IBAction func backPressed(_ sender: Any) {
@@ -125,7 +128,7 @@ extension GroupTransactionsVC: UICollectionViewDelegate, UICollectionViewDataSou
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "memberBalanceCell", for: indexPath) as? MemberBalanceCell else {return UICollectionViewCell()}
-        cell.configureCell(name: "hello", amount: 5.0, owing: true)
+        cell.configureCell(name: members[indexPath.row].name, amount: members[indexPath.row].amount, owing: members[indexPath.row].owing)
         return cell
     }
 }
