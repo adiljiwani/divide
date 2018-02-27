@@ -22,6 +22,7 @@ class GroupTransactionsVC: UIViewController {
     var memberCount = 0
     struct GroupMember {
         var name: String
+        var email: String
         var amount: Float
         var owing: Bool
     }
@@ -36,41 +37,56 @@ class GroupTransactionsVC: UIViewController {
         super.viewDidLoad()
         memberCollectionView.delegate = self
         memberCollectionView.dataSource = self
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
         groupNameLbl.text = group?.groupTitle
         DataService.instance.REF_GROUPS.child((group?.key)!).child("members").observe(.value) { (snapshot) in
             DataService.instance.getNames(forGroupKey: (self.group?.key)!, handler: { (returnedNames) in
-                self.membersTextView.text = returnedNames.joined(separator: ", ")
-                self.memberNames = returnedNames
-                self.memberCount = returnedNames.count
-                for i in 0..<self.memberNames.count {
-                    if self.memberNames[i] != "You" {
-                    self.members.append(GroupMember(name: self.memberNames[i], amount: 0.0, owing: true))
+                DataService.instance.getEmails(forGroupKey: (self.group?.key)!) { (returnedEmails) in
+                    self.groupMembers = returnedEmails
+                    self.membersTextView.text = returnedNames.joined(separator: ", ")
+                    self.memberNames = returnedNames
+                    self.memberCount = returnedNames.count
+                    for i in 0..<self.memberNames.count {
+                        
+                        if self.memberNames[i] != "You" {
+                            self.members.append(GroupMember(name: self.memberNames[i], email: self.groupMembers[i], amount: 0.0, owing: true))
+                        }
                     }
                 }
             })
         }
         
-        
-        DataService.instance.getEmails(forGroupKey: (group?.key)!) { (returnedEmails) in
-            self.groupMembers = returnedEmails
-        }
-        
-        
-        
         DataService.instance.getAllTransactions(forGroup: group!) { (returnedTransactions) in
             self.groupTransactions = returnedTransactions
             for transaction in self.groupTransactions {
-                print(transaction.payees)
-                for payee in transaction.payees {
-                    
+                if transaction.payer == Auth.auth().currentUser?.email {
+                    for payee in transaction.payees {
+                        for i in 0..<self.members.count {
+                            if self.members[i].email == payee {
+                                self.members[i].amount += transaction.amount / Float(transaction.payees.count + 1)
+                                if self.members[i].amount > 0 {
+                                    self.members[i].owing = false
+                                }
+                            }
+                        }
+                    }
+                } else if transaction.payees.contains((Auth.auth().currentUser?.email)!){
+                    for i in 0..<self.members.count {
+                        if self.members[i].email == transaction.payer {
+                            self.members[i].amount -= abs(transaction.amount / Float(transaction.payees.count + 1))
+                            if self.members[i].amount < 0 {
+                                self.members[i].owing = true
+                            }
+                        }
+                    }
                 }
             }
             self.memberCollectionView.reloadData()
         }
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         
     }
 
