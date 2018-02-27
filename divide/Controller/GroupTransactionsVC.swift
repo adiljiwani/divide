@@ -39,8 +39,8 @@ class GroupTransactionsVC: UIViewController {
         memberCollectionView.dataSource = self
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
         groupNameLbl.text = group?.groupTitle
         DataService.instance.REF_GROUPS.child((group?.key)!).child("members").observe(.value) { (snapshot) in
@@ -156,6 +156,9 @@ extension GroupTransactionsVC: UICollectionViewDelegate, UICollectionViewDataSou
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "memberBalanceCell", for: indexPath) as? MemberBalanceCell else {return UICollectionViewCell()}
         cell.configureCell(name: members[indexPath.row].name, amount: members[indexPath.row].amount, owing: members[indexPath.row].owing)
+        cell.layer.cornerRadius = 30
+        cell.layer.borderColor = #colorLiteral(red: 0.0431372549, green: 0.1960784314, blue: 0.3490196078, alpha: 1)
+        cell.layer.borderWidth = 1.0
         return cell
     }
 }
@@ -184,35 +187,4 @@ extension GroupTransactionsVC : UICollectionViewDelegateFlowLayout {
         return sectionInsets.left
     }
 }
-
-//extension GroupTransactionsVC: UITableViewDelegate, UITableViewDataSource {
-//    func numberOfSections(in tableView: UITableView) -> Int {
-//        return 1
-//    }
-//
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return groupTransactions.count
-//    }
-//
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        guard let cell = tableView.dequeueReusableCell(withIdentifier: "groupTransactionCell") as? GroupTransactionCell else {return UITableViewCell()}
-//        let description = groupTransactions[indexPath.row].description
-//        let owing = groupTransactions[indexPath.row].payees.contains((Auth.auth().currentUser?.email)!)
-//        let date = groupTransactions[indexPath.row].date
-//        var amount: Float = 0.0
-//        if owing {
-//            amount = groupTransactions[indexPath.row].amount / Float(groupTransactions[indexPath.row].payees.count + 1)
-//        } else {
-//            amount = Float(groupTransactions[indexPath.row].payees.count - (groupTransactions[indexPath.row].settled.count - 1)) * (groupTransactions[indexPath.row].amount / Float(groupTransactions[indexPath.row].payees.count + 1))
-//        }
-//        cell.configureCell(description: description, owing: owing, date: date, amount: amount)
-//        return cell
-//    }
-//
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        guard let transactionVC = storyboard?.instantiateViewController(withIdentifier: "TransactionVC") as? TransactionVC else {return}
-//        transactionVC.initData(forTransaction: groupTransactions[indexPath.row], type: TransactionType.pending)
-//        presentDetail(transactionVC)
-//    }
-//}
 
