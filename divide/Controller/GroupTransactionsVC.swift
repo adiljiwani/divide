@@ -77,10 +77,11 @@ class GroupTransactionsVC: UIViewController {
                 } else if transaction.payees.contains((Auth.auth().currentUser?.email)!){
                     for i in 0..<self.members.count {
                         if self.members[i].email == transaction.payer {
-                            self.members[i].amount -= abs(transaction.amount / Float(transaction.payees.count + 1))
+                            self.members[i].amount -= transaction.amount / Float(transaction.payees.count + 1)
                             if self.members[i].amount < 0 {
                                 self.members[i].owing = true
                             }
+                            self.members[i].amount = abs(self.members[i].amount)
                         }
                     }
                 }
