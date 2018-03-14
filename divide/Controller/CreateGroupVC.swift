@@ -30,7 +30,7 @@ class CreateGroupVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     var chosenUsers = [String]()
     var membersArray = [String]()
     
-    func setGroupIcon (icon: UIImage) {
+    func setGroupIcon (icon: UIImage!) {
 //        if icon != nil {
 //            self.groupImageView.image = icon
 //        }
