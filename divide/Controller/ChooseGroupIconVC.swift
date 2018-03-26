@@ -59,12 +59,10 @@ extension ChooseGroupIconVC: UICollectionViewDelegate, UICollectionViewDataSourc
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let createGroupVC = storyboard?.instantiateViewController(withIdentifier: "createGroupVC") as? CreateGroupVC else {return}
-        print(indexPath.row)
         if delegate != nil {
-            print(indexPath.row)
             delegate?.iconChanged(icon: imageArray[indexPath.row])
+            dismiss(animated: true, completion: nil)
         }
-        dismiss(animated: true, completion: nil)
     }
 }
 

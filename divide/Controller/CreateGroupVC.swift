@@ -13,12 +13,6 @@ class CreateGroupVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     func iconChanged(icon: UIImage) {
         self.groupImageView.image = icon
     }
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "changeIcon" {
-            let vc : ChooseGroupIconVC = segue.destination as! ChooseGroupIconVC
-            vc.delegate = self
-        }
-    }
 
     @IBOutlet weak var errorLbl: UILabel!
     @IBOutlet weak var groupNameField: InsetTextField!
@@ -62,6 +56,7 @@ class CreateGroupVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     {
         let tappedImage = tapGestureRecognizer.view as! UIImageView
         guard let chooseGroupIconVC = storyboard?.instantiateViewController(withIdentifier: "chooseGroupIconVC") as? ChooseGroupIconVC else {return}
+        chooseGroupIconVC.delegate = self
         present(chooseGroupIconVC, animated: true, completion: nil)
     }
     

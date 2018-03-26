@@ -656,6 +656,7 @@
                         <outlet property="tableViewHeightConstraint" destination="qze-Dd-0vx" id="Cdj-ay-iMq"/>
                         <outlet property="usersTableView" destination="il8-Ci-GrD" id="XEI-CU-PRK"/>
                         <outlet property="usersTableViewHeightConstraint" destination="FrT-r3-vLT" id="RAM-Sk-omY"/>
+                        <segue destination="9Qj-bl-de3" kind="show" identifier="changeIcon" id="RNH-5x-3mM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="78S-SA-zqb" userLabel="First Responder" sceneMemberID="firstResponder"/>
