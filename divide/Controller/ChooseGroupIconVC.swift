@@ -8,10 +8,14 @@
 
 import UIKit
 
+protocol IconDelegate {
+    func iconChanged (icon: UIImage)
+}
+
 class ChooseGroupIconVC: UIViewController {
     fileprivate let sectionInsets = UIEdgeInsets(top: 20.0, left: 20.0, bottom: 20.0, right: 20.0)
     var imageArray = [UIImage]()
-    
+    var delegate : IconDelegate?
     @IBOutlet weak var collectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,7 +59,9 @@ extension ChooseGroupIconVC: UICollectionViewDelegate, UICollectionViewDataSourc
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let createGroupVC = storyboard?.instantiateViewController(withIdentifier: "createGroupVC") as? CreateGroupVC else {return}
-        createGroupVC.setGroupIcon(icon: imageArray[indexPath.row])
+        if delegate != nil {
+            delegate?.iconChanged(icon: imageArray[indexPath.row])
+        }
         dismiss(animated: true, completion: nil)
     }
 }
