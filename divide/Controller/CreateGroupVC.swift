@@ -9,32 +9,25 @@
 import UIKit
 import Firebase
 
-class CreateGroupVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class CreateGroupVC: UIViewController, UITableViewDelegate, UITableViewDataSource, IconDelegate {
+    func iconChanged(icon: UIImage) {
+        self.groupImageView.image = icon
+    }
 
     @IBOutlet weak var errorLbl: UILabel!
     @IBOutlet weak var groupNameField: InsetTextField!
-    
     @IBOutlet weak var groupImageView: UIImageView!
     @IBOutlet weak var membersField: InsetTextField!
-    
     @IBOutlet weak var chosenUsersTableView: UITableView!
     @IBOutlet weak var tableViewHeightConstraint: NSLayoutConstraint!
-    
     @IBOutlet weak var usersTableView: UITableView!
     @IBOutlet weak var usersTableViewHeightConstraint: NSLayoutConstraint!
-    
     @IBOutlet weak var doneBtn: UIButton!
     @IBOutlet weak var addBtn: RoundedButton!
     
     var matchEmail: String = ""
     var chosenUsers = [String]()
     var membersArray = [String]()
-    
-    func setGroupIcon (icon: UIImage!) {
-//        if icon != nil {
-//            self.groupImageView.image = icon
-//        }
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,6 +56,7 @@ class CreateGroupVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     {
         let tappedImage = tapGestureRecognizer.view as! UIImageView
         guard let chooseGroupIconVC = storyboard?.instantiateViewController(withIdentifier: "chooseGroupIconVC") as? ChooseGroupIconVC else {return}
+        chooseGroupIconVC.delegate = self
         present(chooseGroupIconVC, animated: true, completion: nil)
     }
     
