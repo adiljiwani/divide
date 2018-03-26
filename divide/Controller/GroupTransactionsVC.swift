@@ -50,16 +50,14 @@ class GroupTransactionsVC: UIViewController {
                     self.membersTextView.text = returnedNames.joined(separator: ", ")
                     self.memberNames = returnedNames
                     self.memberCount = returnedNames.count
-                    for i in 0..<self.memberNames.count {
-                        
+                    for i in 0..<self.memberNames.count-1 {
                         if self.memberNames[i] != "You" {
-                            self.members.append(GroupMember(name: self.memberNames[i], email: self.groupMembers[i], amount: 0.0, owing: true))
+                            self.members.append(GroupMember(name: self.memberNames[i], email: self.groupMembers[i], amount: 0.0, owing: false))
                         }
                     }
                 }
             })
         }
-        
         DataService.instance.getAllTransactions(forGroup: group!) { (returnedTransactions) in
             self.groupTransactions = returnedTransactions
             for transaction in self.groupTransactions {
