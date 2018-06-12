@@ -12,7 +12,6 @@ import Firebase
 class ProfileVC: UIViewController {
 
     @IBOutlet weak var userNameLbl: UILabel!
-    
     @IBOutlet weak var userEmailLbl: UILabel!
     
     override func viewDidLoad() {

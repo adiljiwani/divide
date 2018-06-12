@@ -169,6 +169,18 @@ class DataService {
         }
     }
     
+    func getGroupArray (forUserId key: String, handler: @escaping (_ groupArray: [String]) -> ()) {
+        var groupArray = [String]()
+        REF_USERS.child(key).child("groups").observe(.value) { (groupSnapshot) in
+            guard let groupSnapshot = groupSnapshot.children.allObjects as? [DataSnapshot] else {return}
+            for group in groupSnapshot {
+                let groupName = group.childSnapshot(forPath: "title").value as! String
+                let lowercasedName = groupName.lowercased()
+            }
+            handler(groupArray)
+        }
+    }
+    
     func getGroupMemberIds (forGroup groupName: String, handler: @escaping (_ groupMembers: [String]) -> ()) {
         var groupMemberIdsArray = [String]()
         REF_USERS.child((Auth.auth().currentUser?.uid)!).child("groups").observe(.value) { (groupSnapshot) in
@@ -240,11 +252,32 @@ class DataService {
         }
     }
     
+    func getGroupIdArray(forUid uid: String, handler: @escaping(_ groupsArray: [String]) -> ()) {
+        REF_USERS.observeSingleEvent(of: .value) { (userSnapshot) in
+            var groupsArray = [String]()
+            guard let userSnapshot = userSnapshot.children.allObjects as? [DataSnapshot] else {return}
+            for user in userSnapshot {
+                if user.key == uid {
+                    if (user.hasChild("groups_array")) {
+                        groupsArray = user.childSnapshot(forPath: "groups_array").value as! [String]
+                    }
+                    handler(groupsArray)
+                }
+            }
+        }
+    }
+    
     func createGroup (withTitle title: String, ids: [String], handler: @escaping (_ groupCreated: Bool) -> ()) {
         let groupRef = REF_GROUPS.childByAutoId()
         groupRef.updateChildValues(["title": title, "members": ids])
         for userId in ids {
             REF_USERS.child(userId).child("groups").child(groupRef.key).updateChildValues(["title": title, "members": ids])
+        
+            getGroupIdArray(forUid: userId, handler: { (currentGroupArray) in
+                var groupArray = currentGroupArray
+                groupArray.append(groupRef.key)
+                self.REF_USERS.child(userId).updateChildValues(["groups_array": groupArray])
+            })
         }
         handler(true)
     }
@@ -555,6 +588,18 @@ class DataService {
             }
             REF_GROUPS.child(key).removeValue()
             handler(true)
+    }
+    
+    func getGroupName (forId key: String, handler: @escaping (_ name: String) -> ()) {
+        REF_GROUPS.observeSingleEvent(of: .value) { (groupSnapshot) in
+            guard let groupSnapshot = groupSnapshot.children.allObjects as? [DataSnapshot] else {return}
+            for group in groupSnapshot {
+                if group.key == key {
+                    let groupName = group.childSnapshot(forPath: "title").value as! String
+                    handler(groupName)
+                }
+            }
+        }
     }
     
     func addMember (toGroup key: String, membersToAdd: [String], groupName: String, handler: @escaping (_ addedMember: Bool) -> ()) {

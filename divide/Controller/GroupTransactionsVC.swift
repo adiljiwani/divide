@@ -97,7 +97,7 @@ class GroupTransactionsVC: UIViewController {
     
     @IBAction func addPressed(_ sender: Any) {
         guard let editMembersVC = storyboard?.instantiateViewController(withIdentifier: "EditMembersVC") as? EditMembersVC else {return}
-        editMembersVC.initData(group: group!)
+        editMembersVC.initData(group: group!, groupKey: group!.key)
         editMembersVC.modalPresentationStyle = .custom
         self.present(editMembersVC, animated: true, completion: nil)
     }
