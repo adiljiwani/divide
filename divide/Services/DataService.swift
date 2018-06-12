@@ -506,17 +506,27 @@ class DataService {
         }
     }
     
-    func getAllGroups (handler: @escaping (_ groupsArray: [Group]) -> ()) {
+    func getGroups (forGroupIdArray ids: [String], handler: @escaping (_ groupsArray: [Group]) -> ()) {
         var groupsArray = [Group]()
-        REF_USERS.child((Auth.auth().currentUser?.uid)!).child("groups").observe(.value) { (groupSnapshot) in
-            guard let groupSnapshot = groupSnapshot.children.allObjects as? [DataSnapshot] else {return}
-            for group in groupSnapshot {
-                let title = group.childSnapshot(forPath: "title").value as! String
-                let members = group.childSnapshot(forPath: "members").value as! [String]
-                let groupFound = Group(title: title, key: group.key, members: members, memberCount: members.count)
-                groupsArray.append(groupFound)
+            self.REF_GROUPS.observe(.value) { (groupSnapshot) in
+                guard let groupSnapshot = groupSnapshot.children.allObjects as? [DataSnapshot] else {return}
+                for group in groupSnapshot {
+                    if ids.contains(group.key) {
+                        let title = group.childSnapshot(forPath: "title").value as! String
+                        let members = group.childSnapshot(forPath: "members").value as! [String]
+                        groupsArray.append(Group(title: title, key: group.key, members: members, memberCount: members.count))
+                    }
+                }
+                handler(groupsArray)
             }
-            handler(groupsArray)
+    }
+    
+    func getAllGroups (handler: @escaping (_ groupsArray: [Group]) -> ()) -> Void {
+        var groupsArray = [Group]()
+        getGroupIdArray(forUid: (Auth.auth().currentUser?.uid)!) { (groupIdArray) in
+            self.getGroups(forGroupIdArray: groupIdArray, handler: { (groups) in
+                handler(groups)
+            })
         }
     }
     
@@ -611,9 +621,9 @@ class DataService {
                 if group.key == key {
                     let currentMembers = group.childSnapshot(forPath: "members").value as! [String]
                     groupMembers = currentMembers + membersToAdd
-                    for member in groupMembers {
-                        self.REF_USERS.child(member).child("groups").child(key).updateChildValues(["members": groupMembers, "title": groupName])
-                    }
+//                    for member in groupMembers {
+//                        self.REF_USERS.child(member).child("groups").child(key).updateChildValues(["members": groupMembers, "title": groupName])
+//                    }
                     self.REF_GROUPS.child(key).updateChildValues(["members": groupMembers])
                 }
             }
