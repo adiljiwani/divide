@@ -11,14 +11,9 @@ import UIKit
 class SignupVC: UIViewController {
 
     @IBOutlet weak var nameTextField: InsetTextField!
-    
     @IBOutlet weak var emailTextField: InsetTextField!
-
     @IBOutlet weak var passwordField: InsetTextField!
-    
     @IBOutlet weak var errorLbl: UILabel!
-    
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
