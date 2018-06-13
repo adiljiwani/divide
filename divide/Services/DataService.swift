@@ -154,20 +154,19 @@ class DataService {
         }
     }
     
-    func getGroupNames (forSearchQuery query: String, handler: @escaping (_ groupNames: [String], _ groupDict: [String: String]) -> ()) {
-        var groupNames = [String]()
-        var groupDict = [String: String]()
+    func getGroupNames (forSearchQuery query: String, handler: @escaping (_ groupArray: [Group]) -> ()) {
+        var groupArray = [Group]()
         REF_USERS.child((Auth.auth().currentUser?.uid)!).child("groups").observe(.value) { (groupSnapshot) in
             guard let groupSnapshot = groupSnapshot.children.allObjects as? [DataSnapshot] else {return}
             for group in groupSnapshot {
                 let groupName = group.childSnapshot(forPath: "title").value as! String
+                let members = group.childSnapshot(forPath: "members").value as! [String]
                 let lowercasedName = groupName.lowercased()
                 if lowercasedName.hasPrefix(query.lowercased()) {
-                    groupNames.append(groupName)
-                    groupDict[group.key] = groupName
+                    groupArray.append(Group(title: groupName, key: group.key, members: members, memberCount: members.count))
                 }
             }
-            handler(groupNames, groupDict)
+            handler(groupArray)
         }
     }
     

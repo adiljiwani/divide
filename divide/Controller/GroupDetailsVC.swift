@@ -32,7 +32,8 @@ class GroupDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     @IBOutlet weak var groupsTableViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var payerTableViewHeightConstraint: NSLayoutConstraint!
-    var groupArray = [String]()
+    var groupDict = [String: String]()
+    var groupArray = [Group]()
     var payer: String = ""
     var payerArray = [String]()
     var payeeArray = [String]()
@@ -182,14 +183,12 @@ class GroupDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         if groupNameField.text == "" {
             self.groupsTableView.isHidden = true
             groupArray = []
-            groupsTableView.reloadData()
         } else {
             self.groupsTableView.isHidden = false
             self.payeeTableView.isHidden = true
             self.payerTableView.isHidden = true
-            DataService.instance.getGroupNames(forSearchQuery: groupNameField.text!, handler: { (groupNameArray, groupDict) in
-                print(groupDict)
-                self.groupArray = groupNameArray
+            DataService.instance.getGroupNames(forSearchQuery: groupNameField.text!, handler: { (groupArray) in
+                self.groupArray = groupArray
                 self.groupsTableViewHeightConstraint.constant = CGFloat(self.groupArray.count * 40)
                 self.groupsTableView.reloadData()
             })
@@ -257,7 +256,7 @@ class GroupDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         var cell: UITableViewCell = UITableViewCell()
         if tableView == groupsTableView {
             guard let groupCell = tableView.dequeueReusableCell(withIdentifier: "searchGroupCell") as? SearchGroupCell else {return UITableViewCell()}
-            groupCell.configureCell(groupName: groupArray[indexPath.row])
+            groupCell.configureCell(groupName: groupArray[indexPath.row].groupTitle)
             cell = groupCell
         } else if tableView == payerTableView {
             guard let userCell = tableView.dequeueReusableCell(withIdentifier: "searchUserCell") as? SearchUserCell else {return UITableViewCell()}
