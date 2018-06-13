@@ -48,7 +48,6 @@ class GroupTransactionsVC: UIViewController {
             self.memberCount = self.groupMembers.count
         }
         DataService.instance.getNames(forGroupKey: (group?.key)!) { (returnedNames) in
-            print(returnedNames)
             self.memberNames = returnedNames
             for i in 0..<self.memberNames.count {
                 
@@ -56,6 +55,7 @@ class GroupTransactionsVC: UIViewController {
                     self.members.append(GroupMember(name: self.memberNames[i], email: self.groupMembers[i], amount: 0.0, owing: true))
                 }
             }
+            self.memberCollectionView.reloadData()
         }
         
         DataService.instance.getAllTransactions(forGroup: group!) { (returnedTransactions) in

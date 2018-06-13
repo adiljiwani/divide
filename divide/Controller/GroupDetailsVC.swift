@@ -187,7 +187,8 @@ class GroupDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
             self.groupsTableView.isHidden = false
             self.payeeTableView.isHidden = true
             self.payerTableView.isHidden = true
-            DataService.instance.getGroupNames(forSearchQuery: groupNameField.text!, handler: { (groupNameArray) in
+            DataService.instance.getGroupNames(forSearchQuery: groupNameField.text!, handler: { (groupNameArray, groupDict) in
+                print(groupDict)
                 self.groupArray = groupNameArray
                 self.groupsTableViewHeightConstraint.constant = CGFloat(self.groupArray.count * 40)
                 self.groupsTableView.reloadData()
