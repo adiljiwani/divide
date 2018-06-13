@@ -43,21 +43,19 @@ class GroupTransactionsVC: UIViewController {
         super.viewDidAppear(animated)
         
         groupNameLbl.text = group?.groupTitle
-        DataService.instance.REF_GROUPS.child((group?.key)!).child("members").observe(.value) { (snapshot) in
-            DataService.instance.getNames(forGroupKey: (self.group?.key)!, handler: { (returnedNames) in
-                DataService.instance.getEmails(forGroupKey: (self.group?.key)!) { (returnedEmails) in
-                    self.groupMembers = returnedEmails
-                    self.membersTextView.text = returnedNames.joined(separator: ", ")
-                    self.memberNames = returnedNames
-                    self.memberCount = returnedNames.count
-                    for i in 0..<self.memberNames.count {
-                        
-                        if self.memberNames[i] != "You" {
-                            self.members.append(GroupMember(name: self.memberNames[i], email: self.groupMembers[i], amount: 0.0, owing: true))
-                        }
-                    }
+        DataService.instance.getEmails(forGroupKey: (self.group?.key)!) { (returnedEmails) in
+            self.groupMembers = returnedEmails
+            self.memberCount = self.groupMembers.count
+        }
+        DataService.instance.getNames(forGroupKey: (group?.key)!) { (returnedNames) in
+            print(returnedNames)
+            self.memberNames = returnedNames
+            for i in 0..<self.memberNames.count {
+                
+                if self.memberNames[i] != "You" {
+                    self.members.append(GroupMember(name: self.memberNames[i], email: self.groupMembers[i], amount: 0.0, owing: true))
                 }
-            })
+            }
         }
         
         DataService.instance.getAllTransactions(forGroup: group!) { (returnedTransactions) in
