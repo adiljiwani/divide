@@ -84,7 +84,7 @@ class GroupTransactionsVC: UIViewController {
                     }
                 }
             }
-            self.memberCollectionView.reloadData()
+        self.memberCollectionView.reloadData()
         }
         
     }

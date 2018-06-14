@@ -408,11 +408,12 @@ class DataService {
                 if payer == (Auth.auth().currentUser?.email)! || payees.contains((Auth.auth().currentUser?.email)!){
                     if (payer == (Auth.auth().currentUser?.email)! && (settled.count - 1) != payees.count) || !settled.contains((Auth.auth().currentUser?.email)!) {
                         let groupName = transaction.childSnapshot(forPath: "groupTitle").value as! String
+                        let groupKey = transaction.childSnapshot(forPath: "groupKey").value as! String
                         let date = transaction.childSnapshot(forPath: "date").value as! String
                         let description = transaction.childSnapshot(forPath: "description").value as! String
                         let amount = transaction.childSnapshot(forPath: "amount").value as! Float
                     
-                        let transactionFound = Transaction(groupTitle: groupName, key: transaction.key, payees: payees, payer: payer, date: date, description: description, amount: amount, settled: settled)
+                        let transactionFound = Transaction(groupKey: groupKey, groupTitle: groupName, key: transaction.key, payees: payees, payer: payer, date: date, description: description, amount: amount, settled: settled)
                         transactionArray.append(transactionFound)
                         }
                     }
@@ -433,11 +434,12 @@ class DataService {
                 if Auth.auth().currentUser != nil {
                     if (payer == (Auth.auth().currentUser?.email)! && (settled.count - 1) != payees.count) || (payees.contains((Auth.auth().currentUser?.email)!) && !settled.contains((Auth.auth().currentUser?.email)!)) {
                             let groupName = transaction.childSnapshot(forPath: "groupTitle").value as! String
+                            let groupKey = transaction.childSnapshot(forPath: "groupKey").value as! String
                             let date = transaction.childSnapshot(forPath: "date").value as! String
                             let description = transaction.childSnapshot(forPath: "description").value as! String
                             let amount = transaction.childSnapshot(forPath: "amount").value as! Float
-                            if groupName == group.groupTitle {
-                            let transactionFound = Transaction(groupTitle: groupName, key: transaction.key, payees: payees, payer: payer, date: date, description: description, amount: amount, settled: settled)
+                            if groupKey == group.key {
+                                let transactionFound = Transaction(groupKey: groupKey, groupTitle: groupName, key: transaction.key, payees: payees, payer: payer, date: date, description: description, amount: amount, settled: settled)
                             groupTransactionArray.append(transactionFound)
                         }
                     }
@@ -461,11 +463,12 @@ class DataService {
                 let settled = transaction.childSnapshot(forPath: "settled").value as! [String]
                     if (payer == userEmail || payees.contains(userEmail)) {
                         let groupName = transaction.childSnapshot(forPath: "groupTitle").value as! String
+                        let groupKey = transaction.childSnapshot(forPath: "groupTitle").value as! String
                         let date = transaction.childSnapshot(forPath: "date").value as! String
                         let description = transaction.childSnapshot(forPath: "description").value as! String
                         let amount = transaction.childSnapshot(forPath: "amount").value as! Float
-                        if groupName == group.groupTitle {
-                            let transactionFound = Transaction(groupTitle: groupName, key: transaction.key, payees: payees, payer: payer, date: date, description: description, amount: amount, settled: settled)
+                        if groupKey == group.key {
+                            let transactionFound = Transaction(groupKey: groupKey, groupTitle: groupName, key: transaction.key, payees: payees, payer: payer, date: date, description: description, amount: amount, settled: settled)
                             groupTransactionArray.append(transactionFound)
                         }
                     }
@@ -483,6 +486,7 @@ class DataService {
                 let payees = transaction.childSnapshot(forPath: "payees").value as! [String]
                 let settled = transaction.childSnapshot(forPath: "settled").value as! [String]
                 let groupName = transaction.childSnapshot(forPath: "groupTitle").value as! String
+                let groupKey = transaction.childSnapshot(forPath: "groupKey").value as! String
                 let description = transaction.childSnapshot(forPath: "description").value as! String
                 var amount: Float = 0.0
                 var date = transaction.childSnapshot(forPath: "date").value as! String
@@ -496,7 +500,7 @@ class DataService {
                                 amount = (user.childSnapshot(forPath: "owed").value as! NSString).floatValue
                             }
                                 date = user.childSnapshot(forPath: "settled").value as! String
-                            let transactionFound = Transaction(groupTitle: groupName, key: transaction.key, payees: payees, payer: payer, date: date, description: description, amount: amount, settled: settled)
+                            let transactionFound = Transaction(groupKey: groupKey, groupTitle: groupName, key: transaction.key, payees: payees, payer: payer, date: date, description: description, amount: amount, settled: settled)
                             transactionArray.append(transactionFound)
                             handler(transactionArray)
                         }
