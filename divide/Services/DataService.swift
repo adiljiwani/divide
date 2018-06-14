@@ -122,11 +122,11 @@ class DataService {
     func getEmails (forGroupKey key: String, handler: @escaping (_ emailArray: [String]) -> ()) {
         var emailArray = [String]()
         
-        getGroupMemberIds(forGroupKey: key) { (groupMembers) in
+        getGroupMemberIds(forGroupKey: key) { (groupMemberIds) in
             self.REF_USERS.observeSingleEvent(of: .value) { (userSnapshot) in
                 guard let userSnapshot = userSnapshot.children.allObjects as? [DataSnapshot] else {return}
                 for user in userSnapshot {
-                    if groupMembers.contains(user.key) {
+                    if groupMemberIds.contains(user.key) {
                         let email = user.childSnapshot(forPath: "email").value as! String
                         emailArray.append(email)
                     }
@@ -141,7 +141,7 @@ class DataService {
         nameArray.append("You")
         
         getGroupMemberIds(forGroupKey: key) { (groupMembers) in
-            self.REF_USERS.observeSingleEvent(of: .value) { (userSnapshot) in
+            self.REF_USERS.observe(.value) { (userSnapshot) in
                 guard let userSnapshot = userSnapshot.children.allObjects as? [DataSnapshot] else {return}
                 for user in userSnapshot {
                     if groupMembers.contains(user.key) && user.key != Auth.auth().currentUser?.uid {
@@ -154,18 +154,19 @@ class DataService {
         }
     }
     
-    func getGroupNames (forSearchQuery query: String, handler: @escaping (_ groupNames: [String]) -> ()) {
-        var groupNames = [String]()
+    func getGroupNames (forSearchQuery query: String, handler: @escaping (_ groupArray: [Group]) -> ()) {
+        var groupArray = [Group]()
         REF_USERS.child((Auth.auth().currentUser?.uid)!).child("groups").observe(.value) { (groupSnapshot) in
             guard let groupSnapshot = groupSnapshot.children.allObjects as? [DataSnapshot] else {return}
             for group in groupSnapshot {
                 let groupName = group.childSnapshot(forPath: "title").value as! String
+                let members = group.childSnapshot(forPath: "members").value as! [String]
                 let lowercasedName = groupName.lowercased()
                 if lowercasedName.hasPrefix(query.lowercased()) {
-                    groupNames.append(groupName)
+                    groupArray.append(Group(title: groupName, key: group.key, members: members, memberCount: members.count))
                 }
             }
-            handler(groupNames)
+            handler(groupArray)
         }
     }
     
@@ -199,7 +200,7 @@ class DataService {
     
     func getGroupMemberIds (forGroupKey key: String, handler: @escaping (_ groupMembers: [String]) -> ()) {
         var groupMemberIdsArray = [String]()
-        REF_USERS.child((Auth.auth().currentUser?.uid)!).child("groups").observe(.value) { (groupSnapshot) in
+        REF_GROUPS.observe(.value) { (groupSnapshot) in
             guard let groupSnapshot = groupSnapshot.children.allObjects as? [DataSnapshot] else {return}
             for group in groupSnapshot {
                 let groupMemberIds = group.childSnapshot(forPath: "members").value as! [String]
@@ -282,9 +283,9 @@ class DataService {
         handler(true)
     }
     
-    func createTransaction(groupTitle: String, description: String, payees: [String], payer: String, date: String, amount: Float, settled: [String], handler: @escaping (_ transactionCreated: Bool) -> ()) {
+    func createTransaction(groupKey: String, groupTitle: String, description: String, payees: [String], payer: String, date: String, amount: Float, settled: [String], handler: @escaping (_ transactionCreated: Bool) -> ()) {
         let transactionsRef = REF_TRANSACTIONS.childByAutoId()
-        transactionsRef.updateChildValues(["description": description, "groupTitle": groupTitle, "payees": payees, "payer": payer, "date": date, "amount": amount, "settled": [payer]])
+        transactionsRef.updateChildValues(["description": description, "groupTitle": groupTitle, "groupKey": groupKey, "payees": payees, "payer": payer, "date": date, "amount": amount, "settled": [payer]])
             getIds(forEmails: payees, handler: { (payeeIds) in
                 for payeeId in payeeIds {
                     self.REF_USERS.observeSingleEvent(of: .value, with: { (userSnapshot) in
@@ -407,11 +408,12 @@ class DataService {
                 if payer == (Auth.auth().currentUser?.email)! || payees.contains((Auth.auth().currentUser?.email)!){
                     if (payer == (Auth.auth().currentUser?.email)! && (settled.count - 1) != payees.count) || !settled.contains((Auth.auth().currentUser?.email)!) {
                         let groupName = transaction.childSnapshot(forPath: "groupTitle").value as! String
+                        let groupKey = transaction.childSnapshot(forPath: "groupKey").value as! String
                         let date = transaction.childSnapshot(forPath: "date").value as! String
                         let description = transaction.childSnapshot(forPath: "description").value as! String
                         let amount = transaction.childSnapshot(forPath: "amount").value as! Float
                     
-                        let transactionFound = Transaction(groupTitle: groupName, key: transaction.key, payees: payees, payer: payer, date: date, description: description, amount: amount, settled: settled)
+                        let transactionFound = Transaction(groupKey: groupKey, groupTitle: groupName, key: transaction.key, payees: payees, payer: payer, date: date, description: description, amount: amount, settled: settled)
                         transactionArray.append(transactionFound)
                         }
                     }
@@ -432,11 +434,12 @@ class DataService {
                 if Auth.auth().currentUser != nil {
                     if (payer == (Auth.auth().currentUser?.email)! && (settled.count - 1) != payees.count) || (payees.contains((Auth.auth().currentUser?.email)!) && !settled.contains((Auth.auth().currentUser?.email)!)) {
                             let groupName = transaction.childSnapshot(forPath: "groupTitle").value as! String
+                            let groupKey = transaction.childSnapshot(forPath: "groupKey").value as! String
                             let date = transaction.childSnapshot(forPath: "date").value as! String
                             let description = transaction.childSnapshot(forPath: "description").value as! String
                             let amount = transaction.childSnapshot(forPath: "amount").value as! Float
-                            if groupName == group.groupTitle {
-                            let transactionFound = Transaction(groupTitle: groupName, key: transaction.key, payees: payees, payer: payer, date: date, description: description, amount: amount, settled: settled)
+                            if groupKey == group.key {
+                                let transactionFound = Transaction(groupKey: groupKey, groupTitle: groupName, key: transaction.key, payees: payees, payer: payer, date: date, description: description, amount: amount, settled: settled)
                             groupTransactionArray.append(transactionFound)
                         }
                     }
@@ -460,11 +463,12 @@ class DataService {
                 let settled = transaction.childSnapshot(forPath: "settled").value as! [String]
                     if (payer == userEmail || payees.contains(userEmail)) {
                         let groupName = transaction.childSnapshot(forPath: "groupTitle").value as! String
+                        let groupKey = transaction.childSnapshot(forPath: "groupTitle").value as! String
                         let date = transaction.childSnapshot(forPath: "date").value as! String
                         let description = transaction.childSnapshot(forPath: "description").value as! String
                         let amount = transaction.childSnapshot(forPath: "amount").value as! Float
-                        if groupName == group.groupTitle {
-                            let transactionFound = Transaction(groupTitle: groupName, key: transaction.key, payees: payees, payer: payer, date: date, description: description, amount: amount, settled: settled)
+                        if groupKey == group.key {
+                            let transactionFound = Transaction(groupKey: groupKey, groupTitle: groupName, key: transaction.key, payees: payees, payer: payer, date: date, description: description, amount: amount, settled: settled)
                             groupTransactionArray.append(transactionFound)
                         }
                     }
@@ -482,6 +486,7 @@ class DataService {
                 let payees = transaction.childSnapshot(forPath: "payees").value as! [String]
                 let settled = transaction.childSnapshot(forPath: "settled").value as! [String]
                 let groupName = transaction.childSnapshot(forPath: "groupTitle").value as! String
+                let groupKey = transaction.childSnapshot(forPath: "groupKey").value as! String
                 let description = transaction.childSnapshot(forPath: "description").value as! String
                 var amount: Float = 0.0
                 var date = transaction.childSnapshot(forPath: "date").value as! String
@@ -495,7 +500,7 @@ class DataService {
                                 amount = (user.childSnapshot(forPath: "owed").value as! NSString).floatValue
                             }
                                 date = user.childSnapshot(forPath: "settled").value as! String
-                            let transactionFound = Transaction(groupTitle: groupName, key: transaction.key, payees: payees, payer: payer, date: date, description: description, amount: amount, settled: settled)
+                            let transactionFound = Transaction(groupKey: groupKey, groupTitle: groupName, key: transaction.key, payees: payees, payer: payer, date: date, description: description, amount: amount, settled: settled)
                             transactionArray.append(transactionFound)
                             handler(transactionArray)
                         }
@@ -519,6 +524,20 @@ class DataService {
                 }
                 handler(groupsArray)
             }
+    }
+    
+    func getGroup (forGroupId id: String, handler: @escaping (_ group: Group) -> ()) {
+        self.REF_GROUPS.observe(.value) { (groupSnapshot) in
+            guard let groupSnapshot = groupSnapshot.children.allObjects as? [DataSnapshot] else {return}
+            for group in groupSnapshot {
+                if id == group.key {
+                    let title = group.childSnapshot(forPath: "title").value as! String
+                    let members = group.childSnapshot(forPath: "members").value as! [String]
+                    handler(Group(title: title, key: group.key, members: members, memberCount: members.count))
+                }
+            }
+            
+        }
     }
     
     func getAllGroups (handler: @escaping (_ groupsArray: [Group]) -> ()) -> Void {
@@ -612,7 +631,7 @@ class DataService {
         }
     }
     
-    func addMember (toGroup key: String, membersToAdd: [String], groupName: String, handler: @escaping (_ addedMember: Bool) -> ()) {
+    func addMember (toGroup key: String, membersToAdd: [String], handler: @escaping (_ addedMember: Bool) -> ()) {
         var groupMembers  = [String]()
         
         REF_GROUPS.observeSingleEvent(of: .value) { (groupSnapshot) in
@@ -621,15 +640,10 @@ class DataService {
                 if group.key == key {
                     let currentMembers = group.childSnapshot(forPath: "members").value as! [String]
                     groupMembers = currentMembers + membersToAdd
-//                    for member in groupMembers {
-//                        self.REF_USERS.child(member).child("groups").child(key).updateChildValues(["members": groupMembers, "title": groupName])
-//                    }
                     self.REF_GROUPS.child(key).updateChildValues(["members": groupMembers])
                 }
             }
         }
-        
-        
         handler(true)
     }
     
@@ -642,9 +656,6 @@ class DataService {
                 if group.key == key {
                     let currentMembers = group.childSnapshot(forPath: "members").value as! [String]
                     groupMembers = currentMembers.filter { $0 != memberToDelete }
-                    for member in groupMembers {
-                        self.REF_USERS.child(member).child("groups").child(key).updateChildValues(["members": groupMembers, "title": groupName])
-                    }
                     self.REF_USERS.child(memberToDelete).child("groups").child(key).removeValue()
                     self.REF_GROUPS.child(key).updateChildValues(["members": groupMembers])
                     handler(true)
