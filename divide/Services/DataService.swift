@@ -156,7 +156,6 @@ class DataService {
     
     func getGroupNames (forSearchQuery query: String, handler: @escaping (_ groupArray: [Group]) -> ()) {
         var groupArray = [Group]()
-        var newArray = [[String: String]]()
         REF_USERS.child((Auth.auth().currentUser?.uid)!).child("groups").observe(.value) { (groupSnapshot) in
             guard let groupSnapshot = groupSnapshot.children.allObjects as? [DataSnapshot] else {return}
             for group in groupSnapshot {
@@ -165,7 +164,6 @@ class DataService {
                 let lowercasedName = groupName.lowercased()
                 if lowercasedName.hasPrefix(query.lowercased()) {
                     groupArray.append(Group(title: groupName, key: group.key, members: members, memberCount: members.count))
-                    newArray.append([group.key : groupName])
                 }
             }
             handler(groupArray)
@@ -285,9 +283,9 @@ class DataService {
         handler(true)
     }
     
-    func createTransaction(groupTitle: String, description: String, payees: [String], payer: String, date: String, amount: Float, settled: [String], handler: @escaping (_ transactionCreated: Bool) -> ()) {
+    func createTransaction(groupKey: String, groupTitle: String, description: String, payees: [String], payer: String, date: String, amount: Float, settled: [String], handler: @escaping (_ transactionCreated: Bool) -> ()) {
         let transactionsRef = REF_TRANSACTIONS.childByAutoId()
-        transactionsRef.updateChildValues(["description": description, "groupTitle": groupTitle, "payees": payees, "payer": payer, "date": date, "amount": amount, "settled": [payer]])
+        transactionsRef.updateChildValues(["description": description, "groupTitle": groupTitle, "groupKey": groupKey, "payees": payees, "payer": payer, "date": date, "amount": amount, "settled": [payer]])
             getIds(forEmails: payees, handler: { (payeeIds) in
                 for payeeId in payeeIds {
                     self.REF_USERS.observeSingleEvent(of: .value, with: { (userSnapshot) in

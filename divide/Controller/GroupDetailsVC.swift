@@ -32,7 +32,7 @@ class GroupDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     @IBOutlet weak var groupsTableViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var payerTableViewHeightConstraint: NSLayoutConstraint!
-    var groupDict = [String: String]()
+    var groupDict = [[String: String]]()
     var groupArray = [Group]()
     var payer: String = ""
     var payerArray = [String]()
@@ -40,6 +40,7 @@ class GroupDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     var chosenUsers = [String]()
     var suggestedPayeeArray = [String]()
     var chosenGroup: String = ""
+    var chosenGroupKey: String = ""
     var billDescription: String?
     var amount: Float?
     var date: String?
@@ -218,7 +219,7 @@ class GroupDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         let tabBar = storyboard?.instantiateViewController(withIdentifier: "MainTabBar")
         let payeesArray = payerArray.filter({ $0 != payer })
         if groupNameField.text != "" && payerField.text != "" && chosenUsers.count != 0 {
-            DataService.instance.createTransaction(groupTitle: groupNameField.text!, description: billDescription!, payees: chosenUsers, payer: payerField.text!, date: date!, amount: amount!, settled: payeesArray, handler: { (transactionCreated) in
+            DataService.instance.createTransaction(groupKey: chosenGroupKey, groupTitle: groupNameField.text!, description: billDescription!, payees: chosenUsers, payer: payerField.text!, date: date!, amount: amount!, settled: payeesArray, handler: { (transactionCreated) in
                 if transactionCreated {
                     self.presentDetail(tabBar!)
                 } else {
@@ -281,6 +282,7 @@ class GroupDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         if tableView == groupsTableView {
             guard let cell = tableView.cellForRow(at: indexPath) as? SearchGroupCell else {return}
             chosenGroup = cell.groupNameLbl.text!
+            chosenGroupKey = groupArray[indexPath.row].key
             self.groupNameField.text = chosenGroup
             self.groupsTableView.isHidden = true
             errorLbl.isHidden = true
