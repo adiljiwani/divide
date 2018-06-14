@@ -141,7 +141,7 @@ class DataService {
         nameArray.append("You")
         
         getGroupMemberIds(forGroupKey: key) { (groupMembers) in
-            self.REF_USERS.observeSingleEvent(of: .value) { (userSnapshot) in
+            self.REF_USERS.observe(.value) { (userSnapshot) in
                 guard let userSnapshot = userSnapshot.children.allObjects as? [DataSnapshot] else {return}
                 for user in userSnapshot {
                     if groupMembers.contains(user.key) && user.key != Auth.auth().currentUser?.uid {

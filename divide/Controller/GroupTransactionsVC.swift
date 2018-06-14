@@ -50,7 +50,6 @@ class GroupTransactionsVC: UIViewController {
         DataService.instance.getNames(forGroupKey: (group?.key)!) { (returnedNames) in
             self.memberNames = returnedNames
             for i in 0..<self.memberNames.count {
-                
                 if self.memberNames[i] != "You" {
                     self.members.append(GroupMember(name: self.memberNames[i], email: self.groupMembers[i], amount: 0.0, owing: true))
                 }
