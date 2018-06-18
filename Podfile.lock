@@ -43,6 +43,7 @@ PODS:
     - nanopb/encode (= 0.3.8)
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
+  - ReactiveKit (3.9.4)
   - RxCocoa (4.1.2):
     - RxSwift (~> 4.0)
   - RxSwift (4.1.2)
@@ -54,6 +55,7 @@ DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Database
+  - ReactiveKit
   - RxCocoa (~> 4.0)
   - RxSwift (~> 4.0)
   - TesseractOCRiOS
@@ -72,6 +74,7 @@ SPEC REPOS:
     - GTMSessionFetcher
     - leveldb-library
     - nanopb
+    - ReactiveKit
     - RxCocoa
     - RxSwift
     - TesseractOCRiOS
@@ -89,11 +92,12 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: ebaa1f79a5366922c1735f1566901f50beba23b7
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
+  ReactiveKit: cafbc91f72751d09baa9a3c3cf6d82b646328a6c
   RxCocoa: d88ba0f1f6abf040011a9eb4b539324fc426843a
   RxSwift: e49536837d9901277638493ea537394d4b55f570
   TesseractOCRiOS: 90638afbe43d082433f2e76b384c7901d23956df
   UIColor_Hex_Swift: c5ff88470499383b8fd85302d59344bb24ba9436
 
-PODFILE CHECKSUM: 05f519d17b65c6a3d9944db8334ec7b80612458e
+PODFILE CHECKSUM: 291340400aa68cc2f62ca317fe348cecebfd04fb
 
 COCOAPODS: 1.5.3

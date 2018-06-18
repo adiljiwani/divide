@@ -14,5 +14,6 @@ target 'divide' do
   pod 'RxCocoa', '~> 4.0'
   pod 'EasyPeasy'
   pod 'UIColor_Hex_Swift', '~> 4.0.1'
+  pod 'ReactiveKit'
 
 end

@@ -14,14 +14,15 @@ class AuthVC: UIViewController {
     @IBOutlet weak var errorLbl: UILabel!
     @IBOutlet weak var bottomView: UIView!
     @IBOutlet var mainview: UIView!
-    @IBOutlet weak var loginBtn: RoundedOutlineButton!
+    //@IBOutlet weak var loginBtn: RoundedOutlineButton!
     
-    @IBOutlet weak var passTextField: InsetTextField!
+    //@IBOutlet weak var passTextField: InsetTextField!
  
     //@IBOutlet weak var emailTextField: InsetTextField!
     let subtitleLabel = UILabel()
     let emailTextField = UITextField()
-    let passwordTextField = UITextField()
+    let passwordTextField = UnderlineTextField()
+    let loginBtn = RoundedButton()
     
     @IBOutlet weak var backView: UIView!
     var offsetY:CGFloat = 0
@@ -50,8 +51,11 @@ class AuthVC: UIViewController {
         view.addSubview(emailTextField)
         emailTextField.minimumFontSize = 17
         emailTextField.clearButtonMode = .never
-        emailTextField.placeholder = "Email address"
         emailTextField.font = UI.Font.regular(15)
+        let placeholder = NSMutableAttributedString(string: "Email address")
+        placeholder.addAttribute(NSAttributedStringKey.foregroundColor, value: UI.Colours.placeholderTextColour, range: NSMakeRange(0, placeholder.length))
+        emailTextField.attributedPlaceholder = placeholder
+        emailTextField.tintColor = UI.Colours.offBlack
         emailTextField <- [
             Top(200),
             Left(50),
@@ -64,20 +68,28 @@ class AuthVC: UIViewController {
         view.addSubview(passwordTextField)
         passwordTextField.minimumFontSize = 17
         passwordTextField.clearButtonMode = .never
-        passwordTextField.placeholder = "Password"
         passwordTextField.font = UI.Font.regular(15)
+        let placeholder = NSMutableAttributedString(string: "Password")
+        placeholder.addAttribute(NSAttributedStringKey.foregroundColor, value: UI.Colours.placeholderTextColour, range: NSMakeRange(0, placeholder.length))
+        passwordTextField.attributedPlaceholder = placeholder
+        passwordTextField.tintColor = UI.Colours.offBlack
+        passwordTextField.layer.masksToBounds = true
         passwordTextField <- [
             Top(20).to(emailTextField),
             Left(50),
-            Right(50),
-            Height(30)
+            Right(50)
         ]
+        passwordTextField.layer.masksToBounds = true
+    }
+    
+    func setupLoginButton() {
+        
     }
 
     @IBAction func loginPressed(_ sender: Any) {
         let tabBar = storyboard?.instantiateViewController(withIdentifier: "MainTabBar")
-        if emailTextField.text != "" && passTextField.text != "" {
-            AuthService.instance.loginUser(withEmail: emailTextField.text!, andPassword: passTextField.text!, loginComplete: { (success, loginError) in
+        if emailTextField.text != "" && passwordTextField.text != "" {
+            AuthService.instance.loginUser(withEmail: emailTextField.text!, andPassword: passwordTextField.text!, loginComplete: { (success, loginError) in
                 if success {
                     self.presentDetail(tabBar!)
                     UIApplication.shared.statusBarStyle = .lightContent
