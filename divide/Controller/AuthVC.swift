@@ -19,6 +19,7 @@ class AuthVC: UIViewController {
     @IBOutlet weak var passTextField: InsetTextField!
  
     //@IBOutlet weak var emailTextField: InsetTextField!
+    let subtitleLabel = UILabel()
     let emailTextField = UITextField()
     let passwordTextField = UITextField()
     
@@ -32,7 +33,17 @@ class AuthVC: UIViewController {
         //errorLbl.isHidden = true
         setupEmailTextField()
         setupPasswordTextField()
+        setupSubtitle()
         view.backgroundColor = UI.Colours.background
+    }
+    
+    func setupSubtitle() {
+        view.addSubview(subtitleLabel)
+        subtitleLabel.text = "Splitting money\nthe easy way"
+        subtitleLabel.font = UI.Font.demiBold(25)
+        subtitleLabel.numberOfLines = 0
+        subtitleLabel.textAlignment = .center
+        subtitleLabel <- [Top(100), CenterX()]
     }
     
     func setupEmailTextField() {
@@ -40,7 +51,13 @@ class AuthVC: UIViewController {
         emailTextField.minimumFontSize = 17
         emailTextField.clearButtonMode = .never
         emailTextField.placeholder = "Email address"
-        emailTextField <- [Top(40), Left(50), Right(50), Height(30)]
+        emailTextField.font = UI.Font.regular(15)
+        emailTextField <- [
+            Top(200),
+            Left(50),
+            Right(50),
+            Height(30)
+        ]
     }
     
     func setupPasswordTextField() {
@@ -48,7 +65,13 @@ class AuthVC: UIViewController {
         passwordTextField.minimumFontSize = 17
         passwordTextField.clearButtonMode = .never
         passwordTextField.placeholder = "Password"
-        passwordTextField <- [Top(20), Left(50), Right(50), Height(30)]
+        passwordTextField.font = UI.Font.regular(15)
+        passwordTextField <- [
+            Top(20).to(emailTextField),
+            Left(50),
+            Right(50),
+            Height(30)
+        ]
     }
 
     @IBAction func loginPressed(_ sender: Any) {

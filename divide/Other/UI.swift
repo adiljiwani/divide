@@ -12,15 +12,16 @@ import UIColor_Hex_Swift
 
 enum UI {
     struct Colours {
-
-//        static let primaryText =        UIColor(hexString: "2A2B37")!
-//        static let secondaryText =      UIColor(hexString: "6B7078")!
-//        static let disabledText =       UIColor(hexString: "8A8F97")!
-//        static let activeText =         UIColor(hexString: "F44336")!
-
         static let background = UIColor("#F2F2F2")
         static let offBlack = UIColor("#292727")
         static let defaultBackground = UIColor("#E1E1E1")
+    }
+    
+    struct Font {
+        static func regular(_ size: CGFloat = 15) ->   UIFont { return UIFont(name: "AvenirNext-Regular", size: size)! }
+        static func medium(_ size: CGFloat = 15) ->   UIFont { return UIFont(name: "AvenirNext-Medium", size: size)! }
+        static func demiBold(_ size: CGFloat = 15) ->   UIFont { return UIFont(name: "AvenirNext-DemiBold", size: size)! }
+        static func bold(_ size: CGFloat = 15) ->   UIFont { return UIFont(name: "AvenirNext-Bold", size: size)! }
     }
 }
 
