@@ -13,5 +13,6 @@ target 'divide' do
   pod 'RxSwift', '~> 4.0'
   pod 'RxCocoa', '~> 4.0'
   pod 'EasyPeasy'
+  pod 'UIColor_Hex_Swift', '~> 4.0.1'
 
 end

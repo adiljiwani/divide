@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import EasyPeasy
 
 class AuthVC: UIViewController {
 
@@ -19,23 +20,35 @@ class AuthVC: UIViewController {
  
     //@IBOutlet weak var emailTextField: InsetTextField!
     let emailTextField = UITextField()
+    let passwordTextField = UITextField()
     
     @IBOutlet weak var backView: UIView!
     var offsetY:CGFloat = 0
     override func viewDidLoad() {
         super.viewDidLoad()
         emailTextField.delegate = self
-        //passTextField.delegate = self
+        passwordTextField.delegate = self
         UIApplication.shared.statusBarStyle = .default
         //errorLbl.isHidden = true
-        
-        //view.backgroundColor = UI.Colours.background
+        setupEmailTextField()
+        setupPasswordTextField()
+        view.backgroundColor = UI.Colours.background
     }
     
     func setupEmailTextField() {
         view.addSubview(emailTextField)
         emailTextField.minimumFontSize = 17
+        emailTextField.clearButtonMode = .never
         emailTextField.placeholder = "Email address"
+        emailTextField <- [Top(40), Left(50), Right(50), Height(30)]
+    }
+    
+    func setupPasswordTextField() {
+        view.addSubview(passwordTextField)
+        passwordTextField.minimumFontSize = 17
+        passwordTextField.clearButtonMode = .never
+        passwordTextField.placeholder = "Password"
+        passwordTextField <- [Top(20), Left(50), Right(50), Height(30)]
     }
 
     @IBAction func loginPressed(_ sender: Any) {
