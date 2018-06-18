@@ -17,16 +17,25 @@ class AuthVC: UIViewController {
     
     @IBOutlet weak var passTextField: InsetTextField!
  
-    @IBOutlet weak var emailTextField: InsetTextField!
+    //@IBOutlet weak var emailTextField: InsetTextField!
+    let emailTextField = UITextField()
     
     @IBOutlet weak var backView: UIView!
     var offsetY:CGFloat = 0
     override func viewDidLoad() {
         super.viewDidLoad()
         emailTextField.delegate = self
-        passTextField.delegate = self
+        //passTextField.delegate = self
         UIApplication.shared.statusBarStyle = .default
-        errorLbl.isHidden = true
+        //errorLbl.isHidden = true
+        
+        //view.backgroundColor = UI.Colours.background
+    }
+    
+    func setupEmailTextField() {
+        view.addSubview(emailTextField)
+        emailTextField.minimumFontSize = 17
+        emailTextField.placeholder = "Email address"
     }
 
     @IBAction func loginPressed(_ sender: Any) {

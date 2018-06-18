@@ -19,8 +19,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         UIApplication.shared.statusBarStyle = .lightContent
         if Auth.auth().currentUser == nil {
-            let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-            let authVC = storyboard.instantiateViewController(withIdentifier: "AuthVC")
+            //let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+            //let authVC = storyboard.instantiateViewController(withIdentifier: "AuthVC")
+            let authVC = AuthVC()
             window?.makeKeyAndVisible()
             window?.rootViewController?.present(authVC, animated: true, completion: nil)
         }
