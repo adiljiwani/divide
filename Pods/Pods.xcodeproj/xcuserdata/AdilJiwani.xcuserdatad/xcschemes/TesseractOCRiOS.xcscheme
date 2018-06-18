@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "1287151D2B613E1AAF3D5EE57AC40460"
+               BlueprintIdentifier = "4A89F8DFA53CDE5DD438FDEEE67C5E52"
                BuildableName = "TesseractOCR.framework"
                BlueprintName = "TesseractOCRiOS"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -47,7 +47,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "1287151D2B613E1AAF3D5EE57AC40460"
+            BlueprintIdentifier = "4A89F8DFA53CDE5DD438FDEEE67C5E52"
             BuildableName = "TesseractOCR.framework"
             BlueprintName = "TesseractOCRiOS"
             ReferencedContainer = "container:Pods.xcodeproj">

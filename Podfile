@@ -12,5 +12,6 @@ target 'divide' do
   pod 'TesseractOCRiOS'
   pod 'RxSwift', '~> 4.0'
   pod 'RxCocoa', '~> 4.0'
+  pod 'EasyPeasy'
 
 end
