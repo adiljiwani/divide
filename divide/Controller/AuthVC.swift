@@ -18,6 +18,7 @@ class AuthVC: UIViewController {
     let loginButton = RoundedButton()
     let forgotPasswordButton = UIButton()
     let signUpButton = UIButton()
+    let gradientView = GradientView()
     
     @IBOutlet weak var backView: UIView!
     var offsetY:CGFloat = 0
@@ -25,8 +26,14 @@ class AuthVC: UIViewController {
         super.viewDidLoad()
         emailTextField.delegate = self
         passwordTextField.delegate = self
-        UIApplication.shared.statusBarStyle = .default
+        UIApplication.shared.statusBarStyle = .lightContent
         //errorLbl.isHidden = true
+        
+        view.addSubview(gradientView)
+        gradientView <- [Edges()]
+        gradientView.topColor = UI.Colours.gradientTopColour
+        gradientView.bottomColor = UI.Colours.gradientBottomColour
+        
         setupEmailTextField()
         setupPasswordTextField()
         setupSubtitle()
@@ -39,7 +46,8 @@ class AuthVC: UIViewController {
     func setupSubtitle() {
         view.addSubview(subtitleLabel)
         subtitleLabel.text = "Splitting money\nthe easy way"
-        subtitleLabel.font = UI.Font.demiBold(25)
+        subtitleLabel.font = UI.Font.regular(22)
+        subtitleLabel.textColor = UI.Colours.white
         subtitleLabel.numberOfLines = 0
         subtitleLabel.textAlignment = .center
         subtitleLabel <- [Top(100), CenterX()]
@@ -53,9 +61,10 @@ class AuthVC: UIViewController {
         let placeholder = NSMutableAttributedString(string: "Email address")
         placeholder.addAttribute(NSAttributedStringKey.foregroundColor, value: UI.Colours.lightGrey, range: NSMakeRange(0, placeholder.length))
         emailTextField.attributedPlaceholder = placeholder
-        emailTextField.tintColor = UI.Colours.offBlack
+        emailTextField.tintColor = UI.Colours.white
         emailTextField.autocapitalizationType = .none
         emailTextField.autocorrectionType = .no
+        emailTextField.textColor = UI.Colours.white
         emailTextField <- [
             Top(200),
             Left(50),
@@ -71,12 +80,14 @@ class AuthVC: UIViewController {
         let placeholder = NSMutableAttributedString(string: "Password")
         placeholder.addAttribute(NSAttributedStringKey.foregroundColor, value: UI.Colours.lightGrey, range: NSMakeRange(0, placeholder.length))
         passwordTextField.attributedPlaceholder = placeholder
-        passwordTextField.tintColor = UI.Colours.offBlack
+        passwordTextField.tintColor = UI.Colours.white
         passwordTextField.autocorrectionType = .no
         passwordTextField.autocapitalizationType = .none
         passwordTextField.layer.masksToBounds = true
+        passwordTextField.textColor = UI.Colours.white
+        passwordTextField.isSecureTextEntry = true
         passwordTextField <- [
-            Top(20).to(emailTextField),
+            Top(40).to(emailTextField),
             Left(50),
             Right(50)
         ]
@@ -87,15 +98,15 @@ class AuthVC: UIViewController {
         view.addSubview(loginButton)
         loginButton.backgroundColor = UI.Colours.pink
         loginButton.titleLabel?.textColor = UI.Colours.white
-        loginButton.titleLabel?.font = UI.Font.demiBold(14)
+        loginButton.titleLabel?.font = UI.Font.demiBold(15)
         loginButton.setTitle("LOG IN", for: .normal)
-        loginButton.cornerRadius = 20
+        loginButton.cornerRadius = 25
         loginButton.addTarget(self, action: #selector(loginPressed(_:)), for: .touchUpInside)
         loginButton <- [
             Top(40).to(passwordTextField),
             Left(50),
             Right(50),
-            Height(40)
+            Height(50)
         ]
     }
     
@@ -105,7 +116,7 @@ class AuthVC: UIViewController {
         forgotPasswordButton.titleLabel?.font = UI.Font.regular(15)
         forgotPasswordButton.setTitle("Forgot password?", for: .normal)
         forgotPasswordButton <- [
-            Top(20).to(loginButton),
+            Top(15).to(loginButton),
             CenterX()
         ]
     }
@@ -116,6 +127,7 @@ class AuthVC: UIViewController {
         signUpString.addAttributes([NSAttributedStringKey.foregroundColor: UI.Colours.lightGrey, NSAttributedStringKey.font: UI.Font.regular(15)], range: NSMakeRange(0, signUpString.length - 7))
         signUpString.addAttributes([NSAttributedStringKey.foregroundColor: UI.Colours.white, NSAttributedStringKey.font: UI.Font.demiBold(15)], range: NSMakeRange(signUpString.length - 7, 7))
         signUpButton.setAttributedTitle(signUpString, for: .normal)
+        signUpButton.addTarget(self, action: #selector(signUpPressed(_:)), for: .touchUpInside)
         signUpButton <- [
             Bottom(30),
             CenterX()
@@ -153,6 +165,7 @@ class AuthVC: UIViewController {
     
     @objc func signUpPressed(_ sender: Any) {
         let signUpVC = SignupVC()
+        presentDetail(signUpVC)
     }
 }
 

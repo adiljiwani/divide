@@ -18,6 +18,8 @@ enum UI {
         static let lightGrey = UIColor("#CDCDCD")
         static let pink = UIColor("#EB4668")
         static let white = UIColor("#FFFFFF")
+        static let gradientTopColour = UIColor("#282639")
+        static let gradientBottomColour = UIColor("#453D99")
     }
     
     struct Font {
