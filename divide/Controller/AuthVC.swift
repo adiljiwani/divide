@@ -13,7 +13,7 @@ class AuthVC: UIViewController {
 
     @IBOutlet weak var errorLbl: UILabel!
     let subtitleLabel = UILabel()
-    let emailTextField = UITextField()
+    let emailTextField = UnderlineTextField()
     let passwordTextField = UnderlineTextField()
     let loginButton = RoundedButton()
     let forgotPasswordButton = UIButton()
@@ -43,6 +43,19 @@ class AuthVC: UIViewController {
         view.backgroundColor = UI.Colours.background
     }
     
+    override func viewDidLayoutSubviews() {
+        let border = CALayer()
+        let width = CGFloat(1.0)
+        border.borderColor = UI.Colours.white.cgColor
+        border.frame = CGRect(x: 0, y: passwordTextField.frame.size.height - width, width:  passwordTextField.frame.size.width, height: passwordTextField.frame.size.height)
+        
+        border.borderWidth = width
+        passwordTextField.layer.borderColor = UIColor.white.cgColor
+        passwordTextField.layer.addSublayer(border)
+        passwordTextField.layer.masksToBounds = true
+        passwordTextField.borderStyle = .line
+    }
+    
     func setupSubtitle() {
         view.addSubview(subtitleLabel)
         subtitleLabel.text = "Splitting money\nthe easy way"
@@ -67,6 +80,7 @@ class AuthVC: UIViewController {
         emailTextField.textColor = UI.Colours.white
         emailTextField <- [
             Top(200),
+            Height(50),
             Left(50),
             Right(50)
         ]
@@ -88,10 +102,12 @@ class AuthVC: UIViewController {
         passwordTextField.isSecureTextEntry = true
         passwordTextField <- [
             Top(40).to(emailTextField),
+            Height(50),
             Left(50),
             Right(50)
         ]
-        passwordTextField.layer.masksToBounds = true
+        
+        print(passwordTextField.frame.size.height)
     }
     
     func setupLoginButton() {
@@ -145,7 +161,7 @@ class AuthVC: UIViewController {
                 } else {
                     if let error = loginError?.localizedDescription {
                         print(error)
-                        self.errorLbl.isHidden = false
+                        //self.errorLbl.isHidden = false
                         if error == "The password must be 6 characters long or more." {
                             self.errorLbl.text = error
                         } else if error == "The email address is badly formatted." {

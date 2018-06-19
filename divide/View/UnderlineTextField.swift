@@ -12,8 +12,15 @@ import ReactiveKit
 class UnderlineTextField: UITextField {
     private var padding = UIEdgeInsets(top: 0, left: 0, bottom: 10, right: 0)
     override func awakeFromNib() {
-        setupView()
         super.awakeFromNib()
+        let border = CALayer()
+        let width = CGFloat(2.0)
+        border.borderColor = UI.Colours.white.cgColor
+        border.frame = CGRect(x: 0, y: self.frame.size.height - width, width: self.frame.size.width, height: self.frame.size.height)
+        border.borderWidth = width
+        self.borderStyle = .line
+        self.layer.addSublayer(border)
+        self.layer.masksToBounds = true
     }
     
     override func textRect(forBounds bounds: CGRect) -> CGRect {
@@ -27,11 +34,6 @@ class UnderlineTextField: UITextField {
     override func placeholderRect(forBounds bounds: CGRect) -> CGRect {
         return UIEdgeInsetsInsetRect(bounds, padding)
     }
-    
-    func setupView() {
-        let placeholder = NSAttributedString(string: self.placeholder!)
-        
-        self.attributedPlaceholder = placeholder
-    }
+
     
 }
