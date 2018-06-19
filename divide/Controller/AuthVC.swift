@@ -16,6 +16,7 @@ class AuthVC: UIViewController {
     let emailTextField = UITextField()
     let passwordTextField = UnderlineTextField()
     let loginButton = RoundedButton()
+    let forgotPasswordButton = UIButton()
     let signUpButton = UIButton()
     
     @IBOutlet weak var backView: UIView!
@@ -31,6 +32,7 @@ class AuthVC: UIViewController {
         setupSubtitle()
         setupLoginButton()
         setupSignUpButton()
+        setupForgotPasswordButton()
         view.backgroundColor = UI.Colours.background
     }
     
@@ -97,6 +99,17 @@ class AuthVC: UIViewController {
         ]
     }
     
+    func setupForgotPasswordButton() {
+        view.addSubview(forgotPasswordButton)
+        forgotPasswordButton.titleLabel?.textColor = UI.Colours.lightGrey
+        forgotPasswordButton.titleLabel?.font = UI.Font.regular(15)
+        forgotPasswordButton.setTitle("Forgot password?", for: .normal)
+        forgotPasswordButton <- [
+            Top(20).to(loginButton),
+            CenterX()
+        ]
+    }
+    
     func setupSignUpButton() {
         view.addSubview(signUpButton)
         let signUpString = NSMutableAttributedString(string: "Don't have an account? SIGN UP")
@@ -104,7 +117,7 @@ class AuthVC: UIViewController {
         signUpString.addAttributes([NSAttributedStringKey.foregroundColor: UI.Colours.white, NSAttributedStringKey.font: UI.Font.demiBold(15)], range: NSMakeRange(signUpString.length - 7, 7))
         signUpButton.setAttributedTitle(signUpString, for: .normal)
         signUpButton <- [
-            Top(20).to(loginButton),
+            Bottom(30),
             CenterX()
         ]
     }
@@ -136,6 +149,10 @@ class AuthVC: UIViewController {
                 }
             })
         }
+    }
+    
+    @objc func signUpPressed(_ sender: Any) {
+        let signUpVC = SignupVC()
     }
 }
 
