@@ -12,13 +12,6 @@ import EasyPeasy
 class AuthVC: UIViewController {
 
     @IBOutlet weak var errorLbl: UILabel!
-    @IBOutlet weak var bottomView: UIView!
-    @IBOutlet var mainview: UIView!
-    //@IBOutlet weak var loginBtn: RoundedOutlineButton!
-    
-    //@IBOutlet weak var passTextField: InsetTextField!
- 
-    //@IBOutlet weak var emailTextField: InsetTextField!
     let subtitleLabel = UILabel()
     let emailTextField = UITextField()
     let passwordTextField = UnderlineTextField()
@@ -35,6 +28,7 @@ class AuthVC: UIViewController {
         setupEmailTextField()
         setupPasswordTextField()
         setupSubtitle()
+        setupLoginButton()
         view.backgroundColor = UI.Colours.background
     }
     
@@ -56,11 +50,12 @@ class AuthVC: UIViewController {
         placeholder.addAttribute(NSAttributedStringKey.foregroundColor, value: UI.Colours.placeholderTextColour, range: NSMakeRange(0, placeholder.length))
         emailTextField.attributedPlaceholder = placeholder
         emailTextField.tintColor = UI.Colours.offBlack
+        emailTextField.autocapitalizationType = .none
+        emailTextField.autocorrectionType = .no
         emailTextField <- [
             Top(200),
             Left(50),
-            Right(50),
-            Height(30)
+            Right(50)
         ]
     }
     
@@ -73,6 +68,8 @@ class AuthVC: UIViewController {
         placeholder.addAttribute(NSAttributedStringKey.foregroundColor, value: UI.Colours.placeholderTextColour, range: NSMakeRange(0, placeholder.length))
         passwordTextField.attributedPlaceholder = placeholder
         passwordTextField.tintColor = UI.Colours.offBlack
+        passwordTextField.autocorrectionType = .no
+        passwordTextField.autocapitalizationType = .none
         passwordTextField.layer.masksToBounds = true
         passwordTextField <- [
             Top(20).to(emailTextField),
@@ -83,15 +80,28 @@ class AuthVC: UIViewController {
     }
     
     func setupLoginButton() {
-        
+        view.addSubview(loginBtn)
+        loginBtn.backgroundColor = UI.Colours.pink
+        loginBtn.titleLabel?.textColor = UI.Colours.white
+        loginBtn.titleLabel?.font = UI.Font.demiBold(14)
+        loginBtn.setTitle("LOG IN", for: .normal)
+        loginBtn.cornerRadius = 20
+        loginBtn.addTarget(self, action: #selector(loginPressed(_:)), for: .touchUpInside)
+        loginBtn <- [
+            Top(40).to(passwordTextField),
+            Left(50),
+            Right(50),
+            Height(40)
+        ]
     }
 
-    @IBAction func loginPressed(_ sender: Any) {
+    @objc func loginPressed(_ sender: Any) {
+        let homeVC = HomeVC()
         let tabBar = storyboard?.instantiateViewController(withIdentifier: "MainTabBar")
         if emailTextField.text != "" && passwordTextField.text != "" {
             AuthService.instance.loginUser(withEmail: emailTextField.text!, andPassword: passwordTextField.text!, loginComplete: { (success, loginError) in
                 if success {
-                    self.presentDetail(tabBar!)
+                    self.presentDetail(homeVC)
                     UIApplication.shared.statusBarStyle = .lightContent
                 } else {
                     if let error = loginError?.localizedDescription {

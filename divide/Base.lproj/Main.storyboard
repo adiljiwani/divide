@@ -85,9 +85,6 @@
                                                 <real key="value" value="25"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="loginPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="kul-G6-PCf"/>
-                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="or" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K7p-LX-KWj">
                                         <rect key="frame" x="120" y="0.0" width="74" height="50"/>
@@ -144,11 +141,9 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="emailTextField" destination="Obs-lf-ZAC" id="b5a-fX-b7R"/>
                         <outlet property="errorLbl" destination="MJE-MK-prk" id="ueP-TD-Orf"/>
                         <outlet property="loginBtn" destination="sVr-bz-ScT" id="VJ2-FZ-MJ4"/>
                         <outlet property="mainview" destination="8bC-Xf-vdC" id="8nl-Od-GXn"/>
-                        <outlet property="passTextField" destination="dbU-78-aZG" id="rJa-1y-A2x"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

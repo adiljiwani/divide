@@ -16,6 +16,8 @@ enum UI {
         static let offBlack = UIColor("#292727")
         static let defaultBackground = UIColor("#E1E1E1")
         static let placeholderTextColour = UIColor("#CDCDCD")
+        static let pink = UIColor("#EB4668")
+        static let white = UIColor("#FFFFFF")
     }
     
     struct Font {
