@@ -15,7 +15,8 @@ class AuthVC: UIViewController {
     let subtitleLabel = UILabel()
     let emailTextField = UITextField()
     let passwordTextField = UnderlineTextField()
-    let loginBtn = RoundedButton()
+    let loginButton = RoundedButton()
+    let signUpButton = UIButton()
     
     @IBOutlet weak var backView: UIView!
     var offsetY:CGFloat = 0
@@ -29,6 +30,7 @@ class AuthVC: UIViewController {
         setupPasswordTextField()
         setupSubtitle()
         setupLoginButton()
+        setupSignUpButton()
         view.backgroundColor = UI.Colours.background
     }
     
@@ -47,7 +49,7 @@ class AuthVC: UIViewController {
         emailTextField.clearButtonMode = .never
         emailTextField.font = UI.Font.regular(15)
         let placeholder = NSMutableAttributedString(string: "Email address")
-        placeholder.addAttribute(NSAttributedStringKey.foregroundColor, value: UI.Colours.placeholderTextColour, range: NSMakeRange(0, placeholder.length))
+        placeholder.addAttribute(NSAttributedStringKey.foregroundColor, value: UI.Colours.lightGrey, range: NSMakeRange(0, placeholder.length))
         emailTextField.attributedPlaceholder = placeholder
         emailTextField.tintColor = UI.Colours.offBlack
         emailTextField.autocapitalizationType = .none
@@ -65,7 +67,7 @@ class AuthVC: UIViewController {
         passwordTextField.clearButtonMode = .never
         passwordTextField.font = UI.Font.regular(15)
         let placeholder = NSMutableAttributedString(string: "Password")
-        placeholder.addAttribute(NSAttributedStringKey.foregroundColor, value: UI.Colours.placeholderTextColour, range: NSMakeRange(0, placeholder.length))
+        placeholder.addAttribute(NSAttributedStringKey.foregroundColor, value: UI.Colours.lightGrey, range: NSMakeRange(0, placeholder.length))
         passwordTextField.attributedPlaceholder = placeholder
         passwordTextField.tintColor = UI.Colours.offBlack
         passwordTextField.autocorrectionType = .no
@@ -80,24 +82,36 @@ class AuthVC: UIViewController {
     }
     
     func setupLoginButton() {
-        view.addSubview(loginBtn)
-        loginBtn.backgroundColor = UI.Colours.pink
-        loginBtn.titleLabel?.textColor = UI.Colours.white
-        loginBtn.titleLabel?.font = UI.Font.demiBold(14)
-        loginBtn.setTitle("LOG IN", for: .normal)
-        loginBtn.cornerRadius = 20
-        loginBtn.addTarget(self, action: #selector(loginPressed(_:)), for: .touchUpInside)
-        loginBtn <- [
+        view.addSubview(loginButton)
+        loginButton.backgroundColor = UI.Colours.pink
+        loginButton.titleLabel?.textColor = UI.Colours.white
+        loginButton.titleLabel?.font = UI.Font.demiBold(14)
+        loginButton.setTitle("LOG IN", for: .normal)
+        loginButton.cornerRadius = 20
+        loginButton.addTarget(self, action: #selector(loginPressed(_:)), for: .touchUpInside)
+        loginButton <- [
             Top(40).to(passwordTextField),
             Left(50),
             Right(50),
             Height(40)
         ]
     }
+    
+    func setupSignUpButton() {
+        view.addSubview(signUpButton)
+        let signUpString = NSMutableAttributedString(string: "Don't have an account? SIGN UP")
+        signUpString.addAttributes([NSAttributedStringKey.foregroundColor: UI.Colours.lightGrey, NSAttributedStringKey.font: UI.Font.regular(15)], range: NSMakeRange(0, signUpString.length - 7))
+        signUpString.addAttributes([NSAttributedStringKey.foregroundColor: UI.Colours.white, NSAttributedStringKey.font: UI.Font.demiBold(15)], range: NSMakeRange(signUpString.length - 7, 7))
+        signUpButton.setAttributedTitle(signUpString, for: .normal)
+        signUpButton <- [
+            Top(20).to(loginButton),
+            CenterX()
+        ]
+    }
 
     @objc func loginPressed(_ sender: Any) {
         let homeVC = HomeVC()
-        let tabBar = storyboard?.instantiateViewController(withIdentifier: "MainTabBar")
+        //let tabBar = storyboard?.instantiateViewController(withIdentifier: "MainTabBar")
         if emailTextField.text != "" && passwordTextField.text != "" {
             AuthService.instance.loginUser(withEmail: emailTextField.text!, andPassword: passwordTextField.text!, loginComplete: { (success, loginError) in
                 if success {
