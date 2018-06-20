@@ -56,7 +56,6 @@ class GroupTransactionsVC: UIViewController {
             }
             self.memberCollectionView.reloadData()
         }
-        
         DataService.instance.getAllTransactions(forGroup: group!) { (returnedTransactions) in
             self.groupTransactions = returnedTransactions
             for transaction in self.groupTransactions {
