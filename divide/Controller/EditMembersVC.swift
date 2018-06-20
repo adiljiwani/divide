@@ -28,8 +28,9 @@ class EditMembersVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     var membersArray = [String]()
     var currentUsers = [String]()
     var group: Group?
-    func initData (group: Group) {
-        DataService.instance.getEmails(forGroupKey: group.key) { (returnedEmails) in
+    var groupKey: String?
+    func initData (group: Group, groupKey: String) {
+        DataService.instance.getEmails(forGroupKey: groupKey) { (returnedEmails) in
             self.currentUsers = returnedEmails
         }
         self.group = group
@@ -110,7 +111,7 @@ class EditMembersVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         var memberIds = [String]()
         DataService.instance.getIds(forEmails: addedMembers) { (ids) in
             memberIds = ids
-            DataService.instance.addMember(toGroup: (self.group?.key)!, membersToAdd: memberIds, groupName: (self.group?.groupTitle)!) { (membersAdded) in
+            DataService.instance.addMember(toGroup: (self.group?.key)!, membersToAdd: memberIds) { (membersAdded) in
                 if membersAdded {
                     self.dismiss(animated: true, completion: nil)
                 }
