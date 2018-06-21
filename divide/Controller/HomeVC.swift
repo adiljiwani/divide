@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RxSwift
 import Firebase
 
 class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {

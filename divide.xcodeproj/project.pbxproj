@@ -12,6 +12,10 @@
 		CC45576B1FDC66CB0082B701 /* EditMembersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4557691FDC66CB0082B701 /* EditMembersVC.swift */; };
 		CC45576F1FDC68280082B701 /* RoundedModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC45576E1FDC68280082B701 /* RoundedModalView.swift */; };
 		CC5B44E81FDC39600061B8CB /* StringExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5B44E71FDC39600061B8CB /* StringExt.swift */; };
+		CC5BF62420D898A300AEEBEC /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5BF62320D898A300AEEBEC /* GradientView.swift */; };
+		CC5BF62820DB108500AEEBEC /* UITextFieldExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5BF62720DB108500AEEBEC /* UITextFieldExt.swift */; };
+		CC60A84120D830E6000E29AB /* UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC60A84020D830E6000E29AB /* UI.swift */; };
+		CC60A84320D8534A000E29AB /* UnderlineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC60A84220D8534A000E29AB /* UnderlineTextField.swift */; };
 		CC778FCA1FCAAB6300149DA0 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC778FC91FCAAB6300149DA0 /* ProfileVC.swift */; };
 		CC778FCC1FCB4EFD00149DA0 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC778FCB1FCB4EFD00149DA0 /* HomeVC.swift */; };
 		CC778FCE1FCB4F0C00149DA0 /* GroupsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC778FCD1FCB4F0C00149DA0 /* GroupsVC.swift */; };
@@ -77,6 +81,10 @@
 		CC4557691FDC66CB0082B701 /* EditMembersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMembersVC.swift; sourceTree = "<group>"; };
 		CC45576E1FDC68280082B701 /* RoundedModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedModalView.swift; sourceTree = "<group>"; };
 		CC5B44E71FDC39600061B8CB /* StringExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExt.swift; sourceTree = "<group>"; };
+		CC5BF62320D898A300AEEBEC /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		CC5BF62720DB108500AEEBEC /* UITextFieldExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldExt.swift; sourceTree = "<group>"; };
+		CC60A84020D830E6000E29AB /* UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UI.swift; sourceTree = "<group>"; };
+		CC60A84220D8534A000E29AB /* UnderlineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderlineTextField.swift; sourceTree = "<group>"; };
 		CC778FC91FCAAB6300149DA0 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		CC778FCB1FCB4EFD00149DA0 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		CC778FCD1FCB4F0C00149DA0 /* GroupsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsVC.swift; sourceTree = "<group>"; };
@@ -169,12 +177,21 @@
 			path = XIBs;
 			sourceTree = "<group>";
 		};
+		CC60A83F20D830D0000E29AB /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				CC60A84020D830E6000E29AB /* UI.swift */,
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
 		CC778FCF1FCC5DAE00149DA0 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				CC778FD01FCC5DBC00149DA0 /* UIViewExt.swift */,
 				CCCB0DBE1FD748B8006B3CDE /* UIViewControllerExt.swift */,
 				CC5B44E71FDC39600061B8CB /* StringExt.swift */,
+				CC5BF62720DB108500AEEBEC /* UITextFieldExt.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -200,6 +217,7 @@
 		CC7EC1941FC9E140002CCDE5 /* divide */ = {
 			isa = PBXGroup;
 			children = (
+				CC60A83F20D830D0000E29AB /* Other */,
 				CC45576D1FDC66E90082B701 /* XIBs */,
 				CCCB0DCD1FD86CFF006B3CDE /* Supporting Files */,
 				CC778FCF1FCC5DAE00149DA0 /* Extensions */,
@@ -265,6 +283,7 @@
 				CCC7D11E1FE2D633005EAB01 /* RoundedOutlineView.swift */,
 				CC7EC1B71FC9F241002CCDE5 /* RoundedOutlineButton.swift */,
 				CC893A251FCA12240094E191 /* InsetTextField.swift */,
+				CC60A84220D8534A000E29AB /* UnderlineTextField.swift */,
 				CC7790001FCF314600149DA0 /* RoundedView.swift */,
 				CC7790021FCF7BC900149DA0 /* AddUserCell.swift */,
 				CC7790081FD50F9C00149DA0 /* TransactionCell.swift */,
@@ -276,6 +295,7 @@
 				CCAB465A1FD6F48A00BC3DE9 /* GroupTransactionCell.swift */,
 				CCAB46561FD5E05300BC3DE9 /* SearchUserCell.swift */,
 				CC31E7FC1FF489FA00F84422 /* FilterCell.swift */,
+				CC5BF62320D898A300AEEBEC /* GradientView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -300,7 +320,6 @@
 				CC7EC18F1FC9E140002CCDE5 /* Frameworks */,
 				CC7EC1901FC9E140002CCDE5 /* Resources */,
 				CE4B80CCEC7CD3E68B832E09 /* [CP] Embed Pods Frameworks */,
-				FE9FCF256800D94AE0107B79 /* [CP] Copy Pods Resources */,
 				CCC7D11D1FE18EC6005EAB01 /* Embed Frameworks */,
 				CC426EB12016AFAD00C8187E /* ShellScript */,
 			);
@@ -401,38 +420,33 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-divide/Pods-divide-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/EasyPeasy/EasyPeasy.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/ReactiveKit/ReactiveKit.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/TesseractOCRiOS/TesseractOCR.framework",
+				"${BUILT_PRODUCTS_DIR}/UIColor_Hex_Swift/UIColor_Hex_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EasyPeasy.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TesseractOCR.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UIColor_Hex_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-divide/Pods-divide-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		FE9FCF256800D94AE0107B79 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-divide/Pods-divide-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -455,6 +469,7 @@
 				CC778FCC1FCB4EFD00149DA0 /* HomeVC.swift in Sources */,
 				CC1CDAEC201E391000011FAC /* MemberBalanceCell.swift in Sources */,
 				CCC943A4201960E7002DA3DB /* ChooseGroupIconVC.swift in Sources */,
+				CC60A84320D8534A000E29AB /* UnderlineTextField.swift in Sources */,
 				CCCB0DC11FD773F4006B3CDE /* TransactionVC.swift in Sources */,
 				CC45576F1FDC68280082B701 /* RoundedModalView.swift in Sources */,
 				CC7790071FD4ECA900149DA0 /* AddBillVC.swift in Sources */,
@@ -463,6 +478,7 @@
 				CC7EC1AC1FC9E857002CCDE5 /* DataService.swift in Sources */,
 				CCAB46551FD5C61500BC3DE9 /* SearchGroupCell.swift in Sources */,
 				CC7EC1B81FC9F241002CCDE5 /* RoundedOutlineButton.swift in Sources */,
+				CC5BF62820DB108500AEEBEC /* UITextFieldExt.swift in Sources */,
 				CC778FCA1FCAAB6300149DA0 /* ProfileVC.swift in Sources */,
 				CC893A281FCA16370094E191 /* AuthService.swift in Sources */,
 				CC893A261FCA12240094E191 /* InsetTextField.swift in Sources */,
@@ -473,8 +489,10 @@
 				CC7790011FCF314600149DA0 /* RoundedView.swift in Sources */,
 				CC7790091FD50F9C00149DA0 /* TransactionCell.swift in Sources */,
 				CCAB46571FD5E05300BC3DE9 /* SearchUserCell.swift in Sources */,
+				CC5BF62420D898A300AEEBEC /* GradientView.swift in Sources */,
 				CC8949D81FE450D200709159 /* RemoveMembersVC.swift in Sources */,
 				CCD724A61FDA5ACE00483E94 /* SignupVC.swift in Sources */,
+				CC60A84120D830E6000E29AB /* UI.swift in Sources */,
 				CC7790111FD5B7E900149DA0 /* GroupTransactionsVC.swift in Sources */,
 				CCCB0DBF1FD748B8006B3CDE /* UIViewControllerExt.swift in Sources */,
 				CC7EC1B61FC9F160002CCDE5 /* RoundedButton.swift in Sources */,

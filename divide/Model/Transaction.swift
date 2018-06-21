@@ -17,6 +17,7 @@ class Transaction {
     private var _description: String
     private var _settled: [String]
     private var _amount: Float
+    private var _groupKey: String
     
     var groupTitle: String {
         return _groupTitle
@@ -50,7 +51,11 @@ class Transaction {
         return _amount
     }
     
-    init(groupTitle: String, key: String, payees: [String], payer: String, date: String, description: String, amount: Float, settled: [String]) {
+    var groupKey: String {
+        return _groupKey
+    }
+    
+    init(groupKey: String, groupTitle: String, key: String, payees: [String], payer: String, date: String, description: String, amount: Float, settled: [String]) {
         self._groupTitle = groupTitle
         self._key = key
         self._payees = payees
@@ -59,6 +64,7 @@ class Transaction {
         self._description = description
         self._settled = settled
         self._amount = amount
+        self._groupKey = groupKey
     }
 }
 

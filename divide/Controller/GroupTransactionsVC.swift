@@ -43,23 +43,19 @@ class GroupTransactionsVC: UIViewController {
         super.viewDidAppear(animated)
         
         groupNameLbl.text = group?.groupTitle
-        DataService.instance.REF_GROUPS.child((group?.key)!).child("members").observe(.value) { (snapshot) in
-            DataService.instance.getNames(forGroupKey: (self.group?.key)!, handler: { (returnedNames) in
-                DataService.instance.getEmails(forGroupKey: (self.group?.key)!) { (returnedEmails) in
-                    self.groupMembers = returnedEmails
-                    self.membersTextView.text = returnedNames.joined(separator: ", ")
-                    self.memberNames = returnedNames
-                    self.memberCount = returnedNames.count
-                    for i in 0..<self.memberNames.count {
-                        
-                        if self.memberNames[i] != "You" {
-                            self.members.append(GroupMember(name: self.memberNames[i], email: self.groupMembers[i], amount: 0.0, owing: true))
-                        }
-                    }
-                }
-            })
+        DataService.instance.getEmails(forGroupKey: (self.group?.key)!) { (returnedEmails) in
+            self.groupMembers = returnedEmails
+            self.memberCount = self.groupMembers.count
         }
-        
+        DataService.instance.getNames(forGroupKey: (group?.key)!) { (returnedNames) in
+            self.memberNames = returnedNames
+            for i in 0..<self.memberNames.count {
+                if self.memberNames[i] != "You" {
+                    self.members.append(GroupMember(name: self.memberNames[i], email: self.groupMembers[i], amount: 0.0, owing: true))
+                }
+            }
+            self.memberCollectionView.reloadData()
+        }
         DataService.instance.getAllTransactions(forGroup: group!) { (returnedTransactions) in
             self.groupTransactions = returnedTransactions
             for transaction in self.groupTransactions {
@@ -86,7 +82,7 @@ class GroupTransactionsVC: UIViewController {
                     }
                 }
             }
-            self.memberCollectionView.reloadData()
+        self.memberCollectionView.reloadData()
         }
         
     }
@@ -97,7 +93,7 @@ class GroupTransactionsVC: UIViewController {
     
     @IBAction func addPressed(_ sender: Any) {
         guard let editMembersVC = storyboard?.instantiateViewController(withIdentifier: "EditMembersVC") as? EditMembersVC else {return}
-        editMembersVC.initData(group: group!)
+        editMembersVC.initData(group: group!, groupKey: group!.key)
         editMembersVC.modalPresentationStyle = .custom
         self.present(editMembersVC, animated: true, completion: nil)
     }
