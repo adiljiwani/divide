@@ -71,9 +71,9 @@ class AuthVC: UIViewController {
         emailTextField.textColor = UI.Colours.white
         emailTextField <- [
             Top(200),
-            Height(50),
-            Left(50),
-            Right(50)
+            Height(30),
+            Left(30),
+            Right(30)
         ]
     }
     
@@ -92,10 +92,10 @@ class AuthVC: UIViewController {
         passwordTextField.textColor = UI.Colours.white
         passwordTextField.isSecureTextEntry = true
         passwordTextField <- [
-            Top(16).to(emailTextField),
-            Height(50),
-            Left(50),
-            Right(50)
+            Top(25).to(emailTextField),
+            Height(30),
+            Left(30),
+            Right(30)
         ]
     }
     
@@ -109,8 +109,8 @@ class AuthVC: UIViewController {
         loginButton.addTarget(self, action: #selector(loginPressed(_:)), for: .touchUpInside)
         loginButton <- [
             Top(40).to(passwordTextField),
-            Left(50),
-            Right(50),
+            Left(30),
+            Right(30),
             Height(50)
         ]
     }
