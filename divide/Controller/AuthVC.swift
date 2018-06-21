@@ -19,6 +19,7 @@ class AuthVC: UIViewController {
     let forgotPasswordButton = UIButton()
     let signUpButton = UIButton()
     let gradientView = GradientView()
+    let logoImageView = UIImageView()
     
     @IBOutlet weak var backView: UIView!
     var offsetY:CGFloat = 0
@@ -34,9 +35,10 @@ class AuthVC: UIViewController {
         gradientView.topColor = UI.Colours.gradientTopColour
         gradientView.bottomColor = UI.Colours.gradientBottomColour
         
+        setupLogo()
+        setupSubtitle()
         setupEmailTextField()
         setupPasswordTextField()
-        setupSubtitle()
         setupLoginButton()
         setupSignUpButton()
         setupForgotPasswordButton()
@@ -47,6 +49,17 @@ class AuthVC: UIViewController {
         passwordTextField.underlined()
     }
     
+    func setupLogo() {
+        view.addSubview(logoImageView)
+        //logoImageView.frame = CGRect(x: 50, y: 50, width: 106, height: 31)
+        logoImageView.image = UIImage(named: "logo")
+        logoImageView.contentMode = .scaleAspectFill
+        logoImageView <- [
+            Top(50),
+            CenterX()
+        ]
+    }
+    
     func setupSubtitle() {
         view.addSubview(subtitleLabel)
         subtitleLabel.text = "Splitting money\nthe easy way"
@@ -54,7 +67,7 @@ class AuthVC: UIViewController {
         subtitleLabel.textColor = UI.Colours.white
         subtitleLabel.numberOfLines = 0
         subtitleLabel.textAlignment = .center
-        subtitleLabel <- [Top(100), CenterX()]
+        subtitleLabel <- [Top(30).to(logoImageView, .bottom), CenterX()]
     }
     
     func setupEmailTextField() {

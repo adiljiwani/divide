@@ -15,6 +15,7 @@ class SignupVC: UIViewController {
     let emailTextField = UnderlineTextField()
     let passwordTextField = UnderlineTextField()
     let signupButton = RoundedButton()
+    let logoImageView = UIImageView()
     let loginButton = UIButton()
     let titleLabel = UILabel()
     let errorLabel = UILabel()
@@ -33,6 +34,7 @@ class SignupVC: UIViewController {
         gradientView.bottomColor = UI.Colours.gradientBottomColour
         
         setupTitle()
+        setupLogo()
         setupNameTextField()
         setupEmailTextField()
         setupPasswordTextField()
@@ -67,6 +69,16 @@ class SignupVC: UIViewController {
         titleLabel.numberOfLines = 0
         titleLabel.textAlignment = .center
         titleLabel <- [Top(50), CenterX()]
+    }
+    
+    func setupLogo() {
+        view.addSubview(logoImageView)
+        logoImageView.image = UIImage(named: "logo")
+        logoImageView <- [
+            Width(100),
+            Top(10).to(titleLabel),
+            CenterX()
+        ]
     }
     
     func setupNameTextField() {

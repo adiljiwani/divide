@@ -2783,9 +2783,6 @@
                                         <real key="value" value="25"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="signUpPressed:" destination="1G7-bP-h7D" eventType="touchUpInside" id="Tix-dj-KoY"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4mJ-rr-hKA">
                                 <rect key="frame" x="20" y="70.333333333333329" width="25" height="25"/>
@@ -2794,9 +2791,6 @@
                                     <constraint firstAttribute="width" constant="25" id="uvN-xa-yBG"/>
                                 </constraints>
                                 <state key="normal" image="back-blue"/>
-                                <connections>
-                                    <action selector="backPressed:" destination="1G7-bP-h7D" eventType="touchUpInside" id="x1d-mV-Ehe"/>
-                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="error" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="heA-9a-mHe">
                                 <rect key="frame" x="70" y="320.66666666666669" width="274" height="18"/>
@@ -2824,10 +2818,7 @@
                         <viewLayoutGuide key="safeArea" id="AKS-JT-lp5"/>
                     </view>
                     <connections>
-                        <outlet property="emailTextField" destination="a4k-sb-0K3" id="USR-G5-ypu"/>
                         <outlet property="errorLbl" destination="heA-9a-mHe" id="sgm-WR-8qS"/>
-                        <outlet property="nameTextField" destination="Gf9-ia-koj" id="8NW-zP-jNB"/>
-                        <outlet property="passwordField" destination="359-UM-CjB" id="tjP-Ak-WZb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xPi-1K-Ef8" userLabel="First Responder" sceneMemberID="firstResponder"/>
