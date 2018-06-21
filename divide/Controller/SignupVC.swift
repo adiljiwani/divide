@@ -78,14 +78,13 @@ class SignupVC: UIViewController {
         placeholder.addAttribute(NSAttributedStringKey.foregroundColor, value: UI.Colours.lightGrey, range: NSMakeRange(0, placeholder.length))
         nameTextField.attributedPlaceholder = placeholder
         nameTextField.tintColor = UI.Colours.white
-        nameTextField.autocapitalizationType = .none
-        nameTextField.autocorrectionType = .no
+        nameTextField.autocorrectionType = .default
         nameTextField.textColor = UI.Colours.white
         nameTextField <- [
             Top(200),
-            Height(50),
-            Left(50),
-            Right(50)
+            Height(30),
+            Left(30),
+            Right(30)
         ]
     }
     
@@ -103,9 +102,9 @@ class SignupVC: UIViewController {
         emailTextField.textColor = UI.Colours.white
         emailTextField <- [
             Top(16).to(nameTextField, .bottom),
-            Height(50),
-            Left(50),
-            Right(50)
+            Height(30),
+            Left(30),
+            Right(30)
         ]
     }
     
@@ -125,9 +124,9 @@ class SignupVC: UIViewController {
         passwordTextField.isSecureTextEntry = true
         passwordTextField <- [
             Top(16).to(emailTextField, .bottom),
-            Height(50),
-            Left(50),
-            Right(50)
+            Height(30),
+            Left(30),
+            Right(30)
         ]
     }
     
