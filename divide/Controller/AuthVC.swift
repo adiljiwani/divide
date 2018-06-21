@@ -40,20 +40,11 @@ class AuthVC: UIViewController {
         setupLoginButton()
         setupSignUpButton()
         setupForgotPasswordButton()
-        view.backgroundColor = UI.Colours.background
     }
     
     override func viewDidLayoutSubviews() {
-        let border = CALayer()
-        let width = CGFloat(1.0)
-        border.borderColor = UI.Colours.white.cgColor
-        border.frame = CGRect(x: 0, y: passwordTextField.frame.size.height - width, width:  passwordTextField.frame.size.width, height: passwordTextField.frame.size.height)
-        
-        border.borderWidth = width
-        passwordTextField.layer.borderColor = UIColor.white.cgColor
-        passwordTextField.layer.addSublayer(border)
-        passwordTextField.layer.masksToBounds = true
-        passwordTextField.borderStyle = .line
+        emailTextField.underlined()
+        passwordTextField.underlined()
     }
     
     func setupSubtitle() {
@@ -101,20 +92,18 @@ class AuthVC: UIViewController {
         passwordTextField.textColor = UI.Colours.white
         passwordTextField.isSecureTextEntry = true
         passwordTextField <- [
-            Top(40).to(emailTextField),
+            Top(16).to(emailTextField),
             Height(50),
             Left(50),
             Right(50)
         ]
-        
-        print(passwordTextField.frame.size.height)
     }
     
     func setupLoginButton() {
         view.addSubview(loginButton)
         loginButton.backgroundColor = UI.Colours.pink
         loginButton.titleLabel?.textColor = UI.Colours.white
-        loginButton.titleLabel?.font = UI.Font.demiBold(15)
+        loginButton.titleLabel?.font = UI.Font.demiBold(18)
         loginButton.setTitle("LOG IN", for: .normal)
         loginButton.cornerRadius = 25
         loginButton.addTarget(self, action: #selector(loginPressed(_:)), for: .touchUpInside)
@@ -132,7 +121,7 @@ class AuthVC: UIViewController {
         forgotPasswordButton.titleLabel?.font = UI.Font.regular(15)
         forgotPasswordButton.setTitle("Forgot password?", for: .normal)
         forgotPasswordButton <- [
-            Top(15).to(loginButton),
+            Top(8).to(loginButton),
             CenterX()
         ]
     }

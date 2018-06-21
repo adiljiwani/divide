@@ -13,6 +13,7 @@
 		CC45576F1FDC68280082B701 /* RoundedModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC45576E1FDC68280082B701 /* RoundedModalView.swift */; };
 		CC5B44E81FDC39600061B8CB /* StringExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5B44E71FDC39600061B8CB /* StringExt.swift */; };
 		CC5BF62420D898A300AEEBEC /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5BF62320D898A300AEEBEC /* GradientView.swift */; };
+		CC5BF62820DB108500AEEBEC /* UITextFieldExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5BF62720DB108500AEEBEC /* UITextFieldExt.swift */; };
 		CC60A84120D830E6000E29AB /* UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC60A84020D830E6000E29AB /* UI.swift */; };
 		CC60A84320D8534A000E29AB /* UnderlineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC60A84220D8534A000E29AB /* UnderlineTextField.swift */; };
 		CC778FCA1FCAAB6300149DA0 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC778FC91FCAAB6300149DA0 /* ProfileVC.swift */; };
@@ -81,6 +82,7 @@
 		CC45576E1FDC68280082B701 /* RoundedModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedModalView.swift; sourceTree = "<group>"; };
 		CC5B44E71FDC39600061B8CB /* StringExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExt.swift; sourceTree = "<group>"; };
 		CC5BF62320D898A300AEEBEC /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		CC5BF62720DB108500AEEBEC /* UITextFieldExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldExt.swift; sourceTree = "<group>"; };
 		CC60A84020D830E6000E29AB /* UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UI.swift; sourceTree = "<group>"; };
 		CC60A84220D8534A000E29AB /* UnderlineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderlineTextField.swift; sourceTree = "<group>"; };
 		CC778FC91FCAAB6300149DA0 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
@@ -189,6 +191,7 @@
 				CC778FD01FCC5DBC00149DA0 /* UIViewExt.swift */,
 				CCCB0DBE1FD748B8006B3CDE /* UIViewControllerExt.swift */,
 				CC5B44E71FDC39600061B8CB /* StringExt.swift */,
+				CC5BF62720DB108500AEEBEC /* UITextFieldExt.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -475,6 +478,7 @@
 				CC7EC1AC1FC9E857002CCDE5 /* DataService.swift in Sources */,
 				CCAB46551FD5C61500BC3DE9 /* SearchGroupCell.swift in Sources */,
 				CC7EC1B81FC9F241002CCDE5 /* RoundedOutlineButton.swift in Sources */,
+				CC5BF62820DB108500AEEBEC /* UITextFieldExt.swift in Sources */,
 				CC778FCA1FCAAB6300149DA0 /* ProfileVC.swift in Sources */,
 				CC893A281FCA16370094E191 /* AuthService.swift in Sources */,
 				CC893A261FCA12240094E191 /* InsetTextField.swift in Sources */,

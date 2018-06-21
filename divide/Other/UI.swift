@@ -16,10 +16,10 @@ enum UI {
         static let offBlack = UIColor("#292727")
         static let defaultBackground = UIColor("#E1E1E1")
         static let lightGrey = UIColor("#CDCDCD")
-        static let pink = UIColor("#EB4668")
+        static let pink = UIColor("#FF3469")
         static let white = UIColor("#FFFFFF")
-        static let gradientTopColour = UIColor("#282639")
-        static let gradientBottomColour = UIColor("#453D99")
+        static let gradientTopColour = UIColor("#28243B")
+        static let gradientBottomColour = UIColor("#484199")
     }
     
     struct Font {
