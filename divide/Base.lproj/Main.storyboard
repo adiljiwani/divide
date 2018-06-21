@@ -100,7 +100,6 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="loginPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="kzl-Tj-LfY"/>
                                             <segue destination="1G7-bP-h7D" kind="show" id="CjW-yJ-P3Q"/>
                                         </connections>
                                     </button>
@@ -132,11 +131,6 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <connections>
-                        <outlet property="errorLbl" destination="MJE-MK-prk" id="ueP-TD-Orf"/>
-                        <outlet property="loginBtn" destination="sVr-bz-ScT" id="VJ2-FZ-MJ4"/>
-                        <outlet property="mainview" destination="8bC-Xf-vdC" id="8nl-Od-GXn"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

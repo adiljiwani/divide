@@ -10,10 +10,14 @@ import UIKit
 import ReactiveKit
 @IBDesignable
 class UnderlineTextField: UITextField {
-    private var padding = UIEdgeInsets(top: 0, left: 0, bottom: 10, right: 0)
+    private var padding = UIEdgeInsets(top: 0, left: 18, bottom: 0, right: 0)
     override func awakeFromNib() {
         setupView()
-        super.awakeFromNib()
+    }
+    
+    override func prepareForInterfaceBuilder() {
+        super.prepareForInterfaceBuilder()
+        setupView()
     }
     
     override func textRect(forBounds bounds: CGRect) -> CGRect {
@@ -29,9 +33,19 @@ class UnderlineTextField: UITextField {
     }
     
     func setupView() {
-        let placeholder = NSAttributedString(string: self.placeholder!)
+        var frameRect: CGRect = self.frame
+        frameRect.size.height = 30
+        self.frame = frameRect
+        let border = CALayer()
+        let width = CGFloat(1.0)
+        border.borderColor = UI.Colours.white.cgColor
+        border.frame = CGRect(x: 0, y: self.frame.size.height - width, width: self.frame.size.width, height: self.frame.size.height)
         
-        self.attributedPlaceholder = placeholder
+        border.borderWidth = width
+        self.layer.borderColor = UIColor.white.cgColor
+        self.layer.addSublayer(border)
+        self.layer.masksToBounds = true
     }
+
     
 }
