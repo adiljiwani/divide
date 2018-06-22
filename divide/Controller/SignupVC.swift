@@ -15,6 +15,7 @@ class SignupVC: UIViewController {
     let emailTextField = UnderlineTextField()
     let passwordTextField = UnderlineTextField()
     let signupButton = RoundedButton()
+    let logoImageView = UIImageView()
     let loginButton = UIButton()
     let titleLabel = UILabel()
     let errorLabel = UILabel()
@@ -33,6 +34,7 @@ class SignupVC: UIViewController {
         gradientView.bottomColor = UI.Colours.gradientBottomColour
         
         setupTitle()
+        setupLogo()
         setupNameTextField()
         setupEmailTextField()
         setupPasswordTextField()
@@ -69,6 +71,16 @@ class SignupVC: UIViewController {
         titleLabel <- [Top(50), CenterX()]
     }
     
+    func setupLogo() {
+        view.addSubview(logoImageView)
+        logoImageView.image = UIImage(named: "logo")
+        logoImageView <- [
+            Width(100),
+            Top(10).to(titleLabel),
+            CenterX()
+        ]
+    }
+    
     func setupNameTextField() {
         view.addSubview(nameTextField)
         nameTextField.minimumFontSize = 17
@@ -80,6 +92,11 @@ class SignupVC: UIViewController {
         nameTextField.tintColor = UI.Colours.white
         nameTextField.autocorrectionType = .default
         nameTextField.textColor = UI.Colours.white
+        
+        let userImageView = UIImageView(image: UIImage(named: "user"))
+        userImageView.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
+        nameTextField.leftViewMode = .always
+        nameTextField.leftView = userImageView
         nameTextField <- [
             Top(200),
             Height(30),
@@ -122,6 +139,10 @@ class SignupVC: UIViewController {
         passwordTextField.layer.masksToBounds = true
         passwordTextField.textColor = UI.Colours.white
         passwordTextField.isSecureTextEntry = true
+        let lockImageView = UIImageView(image: UIImage(named: "lock"))
+        lockImageView.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
+        passwordTextField.leftViewMode = .always
+        passwordTextField.leftView = lockImageView
         passwordTextField <- [
             Top(16).to(emailTextField, .bottom),
             Height(30),

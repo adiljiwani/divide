@@ -15,7 +15,7 @@ enum UI {
         static let background = UIColor("#F2F2F2")
         static let offBlack = UIColor("#292727")
         static let defaultBackground = UIColor("#E1E1E1")
-        static let lightGrey = UIColor("#CDCDCD")
+        static let lightGrey = UIColor("#D4D4D4")
         static let pink = UIColor("#FF3469")
         static let white = UIColor("#FFFFFF")
         static let gradientTopColour = UIColor("#28243B")

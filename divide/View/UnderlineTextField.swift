@@ -10,7 +10,7 @@ import UIKit
 import ReactiveKit
 @IBDesignable
 class UnderlineTextField: UITextField {
-    private var padding = UIEdgeInsets(top: 0, left: 18, bottom: 0, right: 0)
+    private var padding = UIEdgeInsets(top: 0, left: 25, bottom: 0, right: 0)
     override func awakeFromNib() {
         setupView()
     }
