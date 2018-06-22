@@ -82,6 +82,10 @@ class AuthVC: UIViewController {
         emailTextField.autocapitalizationType = .none
         emailTextField.autocorrectionType = .no
         emailTextField.textColor = UI.Colours.white
+//        let emailImageView = UIImageView(image: UIImage(named: "email"))
+//        emailImageView.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
+//        emailTextField.leftViewMode = .always
+//        emailTextField.leftView = emailImageView
         emailTextField <- [
             Top(200),
             Height(30),
@@ -104,6 +108,10 @@ class AuthVC: UIViewController {
         passwordTextField.layer.masksToBounds = true
         passwordTextField.textColor = UI.Colours.white
         passwordTextField.isSecureTextEntry = true
+        let lockImageView = UIImageView(image: UIImage(named: "lock"))
+        lockImageView.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
+        passwordTextField.leftViewMode = .always
+        passwordTextField.leftView = lockImageView
         passwordTextField <- [
             Top(25).to(emailTextField),
             Height(30),
