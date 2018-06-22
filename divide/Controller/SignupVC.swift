@@ -92,6 +92,11 @@ class SignupVC: UIViewController {
         nameTextField.tintColor = UI.Colours.white
         nameTextField.autocorrectionType = .default
         nameTextField.textColor = UI.Colours.white
+        
+        let userImageView = UIImageView(image: UIImage(named: "user"))
+        userImageView.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
+        nameTextField.leftViewMode = .always
+        nameTextField.leftView = userImageView
         nameTextField <- [
             Top(200),
             Height(30),
@@ -134,6 +139,10 @@ class SignupVC: UIViewController {
         passwordTextField.layer.masksToBounds = true
         passwordTextField.textColor = UI.Colours.white
         passwordTextField.isSecureTextEntry = true
+        let lockImageView = UIImageView(image: UIImage(named: "lock"))
+        lockImageView.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
+        passwordTextField.leftViewMode = .always
+        passwordTextField.leftView = lockImageView
         passwordTextField <- [
             Top(16).to(emailTextField, .bottom),
             Height(30),
