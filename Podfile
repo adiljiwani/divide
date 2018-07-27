@@ -15,5 +15,6 @@ target 'divide' do
   pod 'EasyPeasy'
   pod 'UIColor_Hex_Swift', '~> 4.0.1'
   pod 'ReactiveKit'
+  pod 'XLPagerTabStrip', '~> 8.0'
 
 end
