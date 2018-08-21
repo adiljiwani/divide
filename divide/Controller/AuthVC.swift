@@ -25,8 +25,6 @@ class AuthVC: UIViewController {
     var offsetY:CGFloat = 0
     override func viewDidLoad() {
         super.viewDidLoad()
-        emailTextField.delegate = self
-        passwordTextField.delegate = self
         UIApplication.shared.statusBarStyle = .lightContent
         //errorLbl.isHidden = true
         
@@ -42,11 +40,6 @@ class AuthVC: UIViewController {
         setupLoginButton()
         setupSignUpButton()
         setupForgotPasswordButton()
-    }
-    
-    override func viewDidLayoutSubviews() {
-        emailTextField.underlined()
-        passwordTextField.underlined()
     }
     
     func setupLogo() {
@@ -72,16 +65,10 @@ class AuthVC: UIViewController {
     
     func setupEmailTextField() {
         view.addSubview(emailTextField)
-        emailTextField.minimumFontSize = 17
-        emailTextField.clearButtonMode = .never
-        emailTextField.font = UI.Font.regular(15)
-        let placeholder = NSMutableAttributedString(string: "Email address")
-        placeholder.addAttribute(NSAttributedStringKey.foregroundColor, value: UI.Colours.lightGrey, range: NSMakeRange(0, placeholder.length))
-        emailTextField.attributedPlaceholder = placeholder
+        let data = TextFieldEntryData(title: "Email address", placeholder: "hello@divide.com")
+        emailTextField.configure(data)
         emailTextField.tintColor = UI.Colours.white
-        emailTextField.autocapitalizationType = .none
-        emailTextField.autocorrectionType = .no
-        emailTextField.textColor = UI.Colours.white
+
 //        let emailImageView = UIImageView(image: UIImage(named: "email"))
 //        emailImageView.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
 //        emailTextField.leftViewMode = .always
@@ -96,22 +83,9 @@ class AuthVC: UIViewController {
     
     func setupPasswordTextField() {
         view.addSubview(passwordTextField)
-        passwordTextField.minimumFontSize = 17
-        passwordTextField.clearButtonMode = .never
-        passwordTextField.font = UI.Font.regular(15)
-        let placeholder = NSMutableAttributedString(string: "Password")
-        placeholder.addAttribute(NSAttributedStringKey.foregroundColor, value: UI.Colours.lightGrey, range: NSMakeRange(0, placeholder.length))
-        passwordTextField.attributedPlaceholder = placeholder
-        passwordTextField.tintColor = UI.Colours.white
-        passwordTextField.autocorrectionType = .no
-        passwordTextField.autocapitalizationType = .none
-        passwordTextField.layer.masksToBounds = true
-        passwordTextField.textColor = UI.Colours.white
-        passwordTextField.isSecureTextEntry = true
-        let lockImageView = UIImageView(image: UIImage(named: "lock"))
-        lockImageView.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
-        passwordTextField.leftViewMode = .always
-        passwordTextField.leftView = lockImageView
+        let data = TextFieldEntryData(title: "Password", placeholder: "********")
+        emailTextField.configure(data)
+        emailTextField.tintColor = UI.Colours.white
         passwordTextField <- [
             Top(25).to(emailTextField),
             Height(30),
@@ -163,8 +137,8 @@ class AuthVC: UIViewController {
     @objc func loginPressed(_ sender: Any) {
         let homeVC = HomeVC()
         //let tabBar = storyboard?.instantiateViewController(withIdentifier: "MainTabBar")
-        if emailTextField.text != "" && passwordTextField.text != "" {
-            AuthService.instance.loginUser(withEmail: emailTextField.text!, andPassword: passwordTextField.text!, loginComplete: { (success, loginError) in
+        if emailTextField.textField.text != "" && passwordTextField.textField.text != "" {
+            AuthService.instance.loginUser(withEmail: emailTextField.textField.text!, andPassword: passwordTextField.textField.text!, loginComplete: { (success, loginError) in
                 if success {
                     self.presentDetail(homeVC)
                     UIApplication.shared.statusBarStyle = .lightContent

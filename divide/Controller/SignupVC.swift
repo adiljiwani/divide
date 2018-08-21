@@ -23,9 +23,6 @@ class SignupVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        nameTextField.delegate = self
-        emailTextField.delegate = self
-        passwordTextField.delegate = self
         errorLabel.isHidden = true
         let gradientView = GradientView()
         view.addSubview(gradientView)
@@ -41,12 +38,6 @@ class SignupVC: UIViewController {
         setupLoginButton()
         setupSignupButton()
         setupBackButton()
-    }
-    
-    override func viewDidLayoutSubviews() {
-        nameTextField.underlined()
-        emailTextField.underlined()
-        passwordTextField.underlined()
     }
     
     func setupBackButton() {
@@ -83,72 +74,22 @@ class SignupVC: UIViewController {
     
     func setupNameTextField() {
         view.addSubview(nameTextField)
-        nameTextField.minimumFontSize = 17
-        nameTextField.clearButtonMode = .never
-        nameTextField.font = UI.Font.regular(15)
-        let placeholder = NSMutableAttributedString(string: "Name")
-        placeholder.addAttribute(NSAttributedStringKey.foregroundColor, value: UI.Colours.lightGrey, range: NSMakeRange(0, placeholder.length))
-        nameTextField.attributedPlaceholder = placeholder
-        nameTextField.tintColor = UI.Colours.white
-        nameTextField.autocorrectionType = .default
-        nameTextField.textColor = UI.Colours.white
-        
-        let userImageView = UIImageView(image: UIImage(named: "user"))
-        userImageView.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
-        nameTextField.leftViewMode = .always
-        nameTextField.leftView = userImageView
-        nameTextField <- [
-            Top(200),
-            Height(30),
-            Left(30),
-            Right(30)
-        ]
+        let data = TextFieldEntryData(title: "Name", placeholder: "John")
+        nameTextField.configure(data)
+        nameTextField.easy.layout(Top(100).to(titleLabel), Left(30), Right(30))
     }
     
     func setupEmailTextField() {
         view.addSubview(emailTextField)
-        emailTextField.minimumFontSize = 17
-        emailTextField.clearButtonMode = .never
-        emailTextField.font = UI.Font.regular(15)
-        let placeholder = NSMutableAttributedString(string: "Email address")
-        placeholder.addAttribute(NSAttributedStringKey.foregroundColor, value: UI.Colours.lightGrey, range: NSMakeRange(0, placeholder.length))
-        emailTextField.attributedPlaceholder = placeholder
-        emailTextField.tintColor = UI.Colours.white
-        emailTextField.autocapitalizationType = .none
-        emailTextField.autocorrectionType = .no
-        emailTextField.textColor = UI.Colours.white
-        emailTextField <- [
-            Top(16).to(nameTextField, .bottom),
-            Height(30),
-            Left(30),
-            Right(30)
-        ]
+        let data = TextFieldEntryData(title: "Email address", placeholder: "hello@divide.com")
+        emailTextField.easy.layout(Top(16).to(nameTextField), Left(30), Right(30))
     }
     
     func setupPasswordTextField() {
         view.addSubview(passwordTextField)
-        passwordTextField.minimumFontSize = 17
-        passwordTextField.clearButtonMode = .never
-        passwordTextField.font = UI.Font.regular(15)
-        let placeholder = NSMutableAttributedString(string: "Password")
-        placeholder.addAttribute(NSAttributedStringKey.foregroundColor, value: UI.Colours.lightGrey, range: NSMakeRange(0, placeholder.length))
-        passwordTextField.attributedPlaceholder = placeholder
-        passwordTextField.tintColor = UI.Colours.white
-        passwordTextField.autocorrectionType = .no
-        passwordTextField.autocapitalizationType = .none
-        passwordTextField.layer.masksToBounds = true
-        passwordTextField.textColor = UI.Colours.white
-        passwordTextField.isSecureTextEntry = true
-        let lockImageView = UIImageView(image: UIImage(named: "lock"))
-        lockImageView.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
-        passwordTextField.leftViewMode = .always
-        passwordTextField.leftView = lockImageView
-        passwordTextField <- [
-            Top(16).to(emailTextField, .bottom),
-            Height(30),
-            Left(30),
-            Right(30)
-        ]
+        let data = TextFieldEntryData(title: "Password", placeholder: "********")
+        passwordTextField.configure(data)
+        passwordTextField.easy.layout(Top(16).to(emailTextField), Left(30), Right(30))
     }
     
     func setupSignupButton() {
@@ -159,12 +100,7 @@ class SignupVC: UIViewController {
         signupButton.setTitle("SIGN UP", for: .normal)
         signupButton.cornerRadius = 25
         signupButton.addTarget(self, action: #selector(signUpPressed(_:)), for: .touchUpInside)
-        signupButton <- [
-            Bottom(15).to(loginButton),
-            Left(50),
-            Right(50),
-            Height(50)
-        ]
+        signupButton.easy.layout(Bottom(15).to(loginButton), Left(50), Right(50), Height(50))
     }
     
     func setupLoginButton() {
@@ -190,13 +126,13 @@ class SignupVC: UIViewController {
     }
     
     @objc func signUpPressed(_ sender: Any) {
-        if nameTextField.text != "" && emailTextField.text != "" && passwordTextField.text != "" {
-        let tabBar = storyboard?.instantiateViewController(withIdentifier: "MainTabBar")
-        if emailTextField.text != nil && passwordTextField.text != nil && nameTextField.text != nil {
-        AuthService.instance.registerUser(withEmail: self.emailTextField.text!, andPassword: self.passwordTextField.text!, name: nameTextField.text!, userCreationComplete: { (success, registrationError) in
+        if nameTextField.textField.text != "" && emailTextField.textField.text != "" && passwordTextField.textField.text != "" {
+        let homeViewController = HomeVC()
+        if emailTextField.textField.text != nil && passwordTextField.textField.text != nil && nameTextField.textField.text != nil {
+        AuthService.instance.registerUser(withEmail: self.emailTextField.textField.text!, andPassword: self.passwordTextField.textField.text!, name: nameTextField.textField.text!, userCreationComplete: { (success, registrationError) in
             if success {
-                AuthService.instance.loginUser(withEmail: self.emailTextField.text!, andPassword: self.passwordTextField.text!, loginComplete: { (success, nil) in
-                    self.presentDetail(tabBar!)
+                AuthService.instance.loginUser(withEmail: self.emailTextField.textField.text!, andPassword: self.passwordTextField.textField.text!, loginComplete: { (success, nil) in
+                    self.presentDetail(homeViewController)
                     UIApplication.shared.statusBarStyle = .lightContent
                 })
             } else {

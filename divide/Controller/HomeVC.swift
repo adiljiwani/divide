@@ -48,6 +48,9 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     var settledArray = [Transaction]()
     
     let headerView = UIView()
+    let titleLabel = UILabel()
+    let amountLabel = UILabel()
+    let settingsButton = UIButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()

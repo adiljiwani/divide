@@ -23,7 +23,7 @@ public class UnderlineTextField: UIView {
     private var padding = UIEdgeInsets(top: 0, left: 25, bottom: 0, right: 0)
     
     private let titleLabel = UILabel()
-    private let textField = UITextField()
+    let textField = UITextField()
     private let errorLabel = UILabel()
     private let contentView = UIView()
     
@@ -49,7 +49,7 @@ public class UnderlineTextField: UIView {
         setupErrorLabel()
         
         addSubview(contentView)
-        contentView.easy.layout(Left(), Right(), Height(75))
+        contentView.easy.layout(Top(), Bottom(), Left(), Right(), Height(75))
         contentView.addSubview(titleLabel)
         titleLabel.easy.layout(Left(), Top(), Right(), Height(22))
         contentView.addSubview(textField)
@@ -74,6 +74,10 @@ extension UnderlineTextField {
     func setupTextField() {
         textField.delegate = self
         textField.font = UI.Font.medium()
+        textField.textColor = UI.Colours.white
+        textField.autocorrectionType = .no
+        textField.autocapitalizationType = .none
+        
     }
     
     func setupErrorLabel() {
