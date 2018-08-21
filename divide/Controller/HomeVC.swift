@@ -47,23 +47,25 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     var transactionsArray = [Transaction]()
     var settledArray = [Transaction]()
     
+    let headerView = UIView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupFilterView()
-        setupSegmentControl()
-        
-        pendingTableView.delegate = self
-        pendingTableView.dataSource = self
-        pendingTableView.reloadData()
-        
-        settledTableView.isHidden = true
-        pendingTableView.isHidden = false
-        settledTableView.delegate = self
-        settledTableView.dataSource = self
-        settledTableView.reloadData()
-        self.settledTableViewHeightConstraint.constant = min(CGFloat(self.settledArray.count) * self.settledTableView.rowHeight, self.view.frame.maxY - self.settledTableView.frame.minY)
-        self.pendingTableViewHeightConstraint.constant = min(CGFloat(self.transactionsArray.count) * self.pendingTableView.rowHeight, self.view.frame.maxY - self.pendingTableView.frame.minY)
-        self.transactionStatusLbl.isHidden = true
+//        setupFilterView()
+//        setupSegmentControl()
+//
+//        pendingTableView.delegate = self
+//        pendingTableView.dataSource = self
+//        pendingTableView.reloadData()
+//
+//        settledTableView.isHidden = true
+//        pendingTableView.isHidden = false
+//        settledTableView.delegate = self
+//        settledTableView.dataSource = self
+//        settledTableView.reloadData()
+//        self.settledTableViewHeightConstraint.constant = min(CGFloat(self.settledArray.count) * self.settledTableView.rowHeight, self.view.frame.maxY - self.settledTableView.frame.minY)
+//        self.pendingTableViewHeightConstraint.constant = min(CGFloat(self.transactionsArray.count) * self.pendingTableView.rowHeight, self.view.frame.maxY - self.pendingTableView.frame.minY)
+//        self.transactionStatusLbl.isHidden = true
        
     }
     
