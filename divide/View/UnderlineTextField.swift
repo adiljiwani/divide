@@ -7,45 +7,88 @@
 //
 
 import UIKit
-import ReactiveKit
-@IBDesignable
-class UnderlineTextField: UITextField {
+import EasyPeasy
+
+public struct TextFieldEntryData {
+    let title: String
+    let placeholder: String
+    
+    public init(title: String, placeholder: String) {
+        self.title = title
+        self.placeholder = placeholder
+    }
+}
+
+public class UnderlineTextField: UIView {
     private var padding = UIEdgeInsets(top: 0, left: 25, bottom: 0, right: 0)
-    override func awakeFromNib() {
+    
+    private let titleLabel = UILabel()
+    private let textField = UITextField()
+    private let errorLabel = UILabel()
+    private let contentView = UIView()
+    
+    override public init(frame: CGRect) {
+        super.init(frame: frame)
         setupView()
     }
     
-    override func prepareForInterfaceBuilder() {
-        super.prepareForInterfaceBuilder()
-        setupView()
+    public required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
-    override func textRect(forBounds bounds: CGRect) -> CGRect {
-        return UIEdgeInsetsInsetRect(bounds, padding)
-    }
-    
-    override func editingRect(forBounds bounds: CGRect) -> CGRect {
-        return UIEdgeInsetsInsetRect(bounds, padding)
-    }
-    
-    override func placeholderRect(forBounds bounds: CGRect) -> CGRect {
-        return UIEdgeInsetsInsetRect(bounds, padding)
+    public func configure(_ data: TextFieldEntryData) {
+        titleLabel.text = data.title
+        textField.placeholder = data.placeholder
     }
     
     func setupView() {
-        var frameRect: CGRect = self.frame
-        frameRect.size.height = 30
-        self.frame = frameRect
-        let border = CALayer()
-        let width = CGFloat(1.0)
-        border.borderColor = UI.Colours.white.cgColor
-        border.frame = CGRect(x: 0, y: self.frame.size.height - width, width: self.frame.size.width, height: self.frame.size.height)
+        translatesAutoresizingMaskIntoConstraints = false
         
-        border.borderWidth = width
-        self.layer.borderColor = UIColor.white.cgColor
-        self.layer.addSublayer(border)
-        self.layer.masksToBounds = true
+        setupTitleLabel()
+        setupTextField()
+        setupErrorLabel()
+        
+        addSubview(contentView)
+        contentView.easy.layout(Left(), Right(), Height(75))
+        contentView.addSubview(titleLabel)
+        titleLabel.easy.layout(Left(), Top(), Right(), Height(22))
+        contentView.addSubview(textField)
+        textField.easy.layout(Left(), Top().to(titleLabel), Right(), Height(30))
+        contentView.addSubview(errorLabel)
+        errorLabel.easy.layout(Left(), Right(), Top().to(textField), Height(22), Bottom())
     }
-
     
+    public func setStatus(_ status: ViewStatus, message: String? = nil) {
+        errorLabel.isHidden = status != .error
+        errorLabel.text = message
+    }
+    
+}
+
+extension UnderlineTextField {
+    func setupTitleLabel() {
+        titleLabel.font = UI.Font.medium(14)
+        titleLabel.textColor = UI.Colours.white
+    }
+    
+    func setupTextField() {
+        textField.delegate = self
+        textField.font = UI.Font.medium()
+    }
+    
+    func setupErrorLabel() {
+        errorLabel.textColor = UI.Colours.pink
+        errorLabel.font = UI.Font.regular()
+        errorLabel.isHidden = true
+    }
+}
+
+extension UnderlineTextField: UITextFieldDelegate {
+    public func textFieldDidBeginEditing(_ textField: UITextField) {
+        
+    }
+    
+    public func textFieldDidEndEditing(_ textField: UITextField) {
+        
+    }
 }
