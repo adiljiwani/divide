@@ -27,8 +27,8 @@ class SignupVC: UIViewController {
         let gradientView = GradientView()
         view.addSubview(gradientView)
         gradientView <- [Edges()]
-        gradientView.topColor = UI.Colours.gradientTopColour
-        gradientView.bottomColor = UI.Colours.gradientBottomColour
+        gradientView.topColor = UI.Colours.rosePink
+        gradientView.bottomColor = UI.Colours.peachyPink
         
         setupTitle()
         setupLogo()
@@ -82,6 +82,7 @@ class SignupVC: UIViewController {
     func setupEmailTextField() {
         view.addSubview(emailTextField)
         let data = TextFieldEntryData(title: "Email address", placeholder: "hello@divide.com")
+        emailTextField.configure(data)
         emailTextField.easy.layout(Top(16).to(nameTextField), Left(30), Right(30))
     }
     

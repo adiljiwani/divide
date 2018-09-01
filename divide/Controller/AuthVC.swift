@@ -20,6 +20,7 @@ class AuthVC: UIViewController {
     let signUpButton = UIButton()
     let gradientView = GradientView()
     let logoImageView = UIImageView()
+    let termsLabel = UILabel()
     
     @IBOutlet weak var backView: UIView!
     var offsetY:CGFloat = 0
@@ -30,8 +31,8 @@ class AuthVC: UIViewController {
         
         view.addSubview(gradientView)
         gradientView <- [Edges()]
-        gradientView.topColor = UI.Colours.gradientTopColour
-        gradientView.bottomColor = UI.Colours.gradientBottomColour
+        gradientView.topColor = UI.Colours.rosePink
+        gradientView.bottomColor = UI.Colours.peachyPink
         
         setupLogo()
         setupSubtitle()
@@ -96,8 +97,8 @@ class AuthVC: UIViewController {
     
     func setupLoginButton() {
         view.addSubview(loginButton)
-        loginButton.backgroundColor = UI.Colours.pink
-        loginButton.titleLabel?.textColor = UI.Colours.white
+        loginButton.backgroundColor = UI.Colours.white
+        loginButton.setTitleColor(UI.Colours.rosePink, for: .normal)
         loginButton.titleLabel?.font = UI.Font.demiBold(18)
         loginButton.setTitle("LOG IN", for: .normal)
         loginButton.cornerRadius = 25
@@ -146,17 +147,17 @@ class AuthVC: UIViewController {
                     if let error = loginError?.localizedDescription {
                         print(error)
                         //self.errorLbl.isHidden = false
-                        if error == "The password must be 6 characters long or more." {
-                            self.errorLbl.text = error
-                        } else if error == "The email address is badly formatted." {
-                            self.errorLbl.text = "Please enter a valid email address."
-                        } else if error == "The email address is already in use by another account." {
-                            self.errorLbl.text = "This user already has a divide account. Please log in."
-                        } else if error == "There is no user record corresponding to this identifier. The user may have been deleted." {
-                            self.errorLbl.text = "Please press the Sign Up button to create an account first."
-                        } else if error == "The password is invalid or the user does not have a password." {
-                            self.errorLbl.text = "Incorrect password."
-                        }
+//                        if error == "The password must be 6 characters long or more." {
+//                            self.errorLbl.text = error
+//                        } else if error == "The email address is badly formatted." {
+//                            self.errorLbl.text = "Please enter a valid email address."
+//                        } else if error == "The email address is already in use by another account." {
+//                            self.errorLbl.text = "This user already has a divide account. Please log in."
+//                        } else if error == "There is no user record corresponding to this identifier. The user may have been deleted." {
+//                            self.errorLbl.text = "Please press the Sign Up button to create an account first."
+//                        } else if error == "The password is invalid or the user does not have a password." {
+//                            self.errorLbl.text = "Incorrect password."
+//                        }
                     }
                 }
             })

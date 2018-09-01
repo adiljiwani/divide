@@ -26,6 +26,7 @@ public class UnderlineTextField: UIView {
     let textField = UITextField()
     private let errorLabel = UILabel()
     private let contentView = UIView()
+    private let statusView = UIView()
     
     override public init(frame: CGRect) {
         super.init(frame: frame)
@@ -46,6 +47,7 @@ public class UnderlineTextField: UIView {
         
         setupTitleLabel()
         setupTextField()
+        setupStatusView()
         setupErrorLabel()
         
         addSubview(contentView)
@@ -54,8 +56,10 @@ public class UnderlineTextField: UIView {
         titleLabel.easy.layout(Left(), Top(), Right(), Height(22))
         contentView.addSubview(textField)
         textField.easy.layout(Left(), Top().to(titleLabel), Right(), Height(30))
+        contentView.addSubview(statusView)
+        statusView.easy.layout(Left(), Right(), Height(1), Top().to(textField))
         contentView.addSubview(errorLabel)
-        errorLabel.easy.layout(Left(), Right(), Top().to(textField), Height(22), Bottom())
+        errorLabel.easy.layout(Left(), Right(), Top().to(statusView), Height(22), Bottom())
     }
     
     public func setStatus(_ status: ViewStatus, message: String? = nil) {
@@ -74,16 +78,18 @@ extension UnderlineTextField {
     func setupTextField() {
         textField.delegate = self
         textField.font = UI.Font.medium()
-        textField.textColor = UI.Colours.white
         textField.autocorrectionType = .no
         textField.autocapitalizationType = .none
-        
     }
     
     func setupErrorLabel() {
         errorLabel.textColor = UI.Colours.pink
         errorLabel.font = UI.Font.regular()
         errorLabel.isHidden = true
+    }
+    
+    func setupStatusView() {
+        statusView.backgroundColor = UI.Colours.lightGrey
     }
 }
 
