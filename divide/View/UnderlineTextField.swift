@@ -22,10 +22,10 @@ public struct TextFieldEntryData {
 public class UnderlineTextField: UIView {
     private var padding = UIEdgeInsets(top: 0, left: 25, bottom: 0, right: 0)
     
-    private let titleLabel = UILabel()
-    private let textField = UITextField()
-    private let errorLabel = UILabel()
-    private let contentView = UIView()
+    let titleLabel = UILabel()
+    let textField = UITextField()
+    let errorLabel = UILabel()
+    let contentView = UIView()
     
     override public init(frame: CGRect) {
         super.init(frame: frame)

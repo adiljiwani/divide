@@ -30,7 +30,7 @@ class CameraVC: UIViewController {
             tesseract.pageSegmentationMode = .auto
             tesseract.image = image.g8_blackAndWhite()
             tesseract.recognize()
-            var fullText = tesseract.recognizedText.lowercased()
+            var fullText = tesseract.recognizedText!.lowercased()
             var fullTextArray = fullText.lowercased().components(separatedBy: " ")
             var totalFound = false
             var possibleAmountString: String

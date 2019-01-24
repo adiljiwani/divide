@@ -272,11 +272,11 @@ class DataService {
         let groupRef = REF_GROUPS.childByAutoId()
         groupRef.updateChildValues(["title": title, "members": ids])
         for userId in ids {
-            REF_USERS.child(userId).child("groups").child(groupRef.key).updateChildValues(["title": title, "members": ids])
+            REF_USERS.child(userId).child("groups").child(groupRef.key!).updateChildValues(["title": title, "members": ids])
         
             getGroupIdArray(forUid: userId, handler: { (currentGroupArray) in
                 var groupArray = currentGroupArray
-                groupArray.append(groupRef.key)
+                groupArray.append(groupRef.key!)
                 self.REF_USERS.child(userId).updateChildValues(["groups_array": groupArray])
             })
         }
@@ -294,7 +294,7 @@ class DataService {
                             if payeeId == user.key {
                                 let owingValue = (user.childSnapshot(forPath: "owing").value as! NSString).floatValue + amount / Float(payees.count + 1)
                                 self.REF_USERS.child(payeeId).updateChildValues(["owing": String(format: "%.2f", owingValue)])
-                                self.REF_TRANSACTIONS.child(transactionsRef.key).child(payeeId).updateChildValues(["owing": String(format: "%.2f", amount / Float(payees.count + 1))])
+                                self.REF_TRANSACTIONS.child(transactionsRef.key!).child(payeeId).updateChildValues(["owing": String(format: "%.2f", amount / Float(payees.count + 1))])
                             
                             }
                         }
@@ -309,7 +309,7 @@ class DataService {
                         if user.key == userId {
                             let owedValue = (user.childSnapshot(forPath: "owed").value as! NSString).floatValue + Float(payees.count) * (amount / Float(payees.count + 1))
                             self.REF_USERS.child(userId).updateChildValues(["owed": String(format: "%.2f", owedValue)])
-                            self.REF_TRANSACTIONS.child(transactionsRef.key).child(userId).updateChildValues(["owed": String(format: "%.2f", Float(payees.count) * (amount / Float(payees.count + 1)))])
+                            self.REF_TRANSACTIONS.child(transactionsRef.key!).child(userId).updateChildValues(["owed": String(format: "%.2f", Float(payees.count) * (amount / Float(payees.count + 1)))])
                         }
                     }
                 })

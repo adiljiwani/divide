@@ -11,9 +11,9 @@ import EasyPeasy
 
 class SignupVC: UIViewController {
     
-    let nameTextField = UnderlineTextField()
-    let emailTextField = UnderlineTextField()
-    let passwordTextField = UnderlineTextField()
+    let nameTextField = UITextField()
+    let emailTextField = UITextField()
+    let passwordTextField = UITextField()
     let signupButton = RoundedButton()
     let logoImageView = UIImageView()
     let loginButton = UIButton()

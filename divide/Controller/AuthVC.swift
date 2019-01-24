@@ -13,8 +13,8 @@ class AuthVC: UIViewController {
 
     @IBOutlet weak var errorLbl: UILabel!
     let subtitleLabel = UILabel()
-    let emailTextField = UnderlineTextField()
-    let passwordTextField = UnderlineTextField()
+    let emailTextField = UITextField()
+    let passwordTextField = UITextField()
     let loginButton = RoundedButton()
     let forgotPasswordButton = UIButton()
     let signUpButton = UIButton()
